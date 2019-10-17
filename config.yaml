@@ -1,0 +1,111 @@
+# General
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+ignoreFiles:
+  - "\\.Rmd$"
+  - "\\.Rmarkdown$"
+  - "_files$"
+  - "_cache$"
+baseurl: https://codgician.me/
+theme: hermit
+pygmentsCodefences: true
+pygmentsUseClasses: true
+hasCJKLanguage: true
+copyright: 'This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.'
+enableRobotsTXT: true
+author:
+  name: codgician
+permalinks:
+  posts: '/posts/:year/:month/:filename/'
+enableEmoji: true
+googleAnalytics: UA-97035940-4
+params:
+  dateform: 'Jan 2, 2006'
+  dateformShort: Jan 2
+  dateformNum: '2006-01-02'
+  dateformNumTime: '2006-01-02 15:04 -0700'
+  description: Have a codgistic day!.
+  keywords: 'homepage, blog, icpc, oi, development, programming'
+  images:
+    - ''
+  contentTypeName: posts
+  themeColor: "#292a2d"
+  relatedPosts: false
+  social:
+    - name: github
+      url: 'https://www.github.com/codgician/'
+    - name: twitter
+      url: 'https://twitter.com/codgician/'
+    - name: telegram
+      url: 'https://t.me/codgician/'
+    - name: email
+      url: 'mailto:gutomata@outlook.com'
+  code_copy_button: true
+  katex: true
+  gitalk:
+    enabled: true
+    clientID: b24412b0a2836501e222
+    clientSecret: fc4a05db9b930f4424d0bd845fb448fcd168bbb9
+    repo: homepage-comments
+    owner: codgician
+    admin:
+      - codgician
+    distractionFreeMode: false
+
+# Multi-lingual
+languages:
+  en:
+    languageName: English
+    languageCode: en
+    weight: 1
+    title: codgician
+    subtitle: 'Have a codgistic day!'
+    keywords: ''
+    footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>'
+    taxonomies:
+      category: categories
+      tag: tags
+    params:
+      homeSubtitle: Have a codgistic day!
+    menu:
+      main:
+        - identifier: blog
+          name: BLOG
+          url: posts/
+          weight: 10
+        - identifier: icpc
+          name: ICPC
+          url: icpc/
+          weight: 20
+        - identifier: more
+          name: MORE
+          url: more/
+          weight: 30
+  zh-hans:
+    languageName: 简体中文
+    languageCode: zh-hans
+    weight: 2
+    title: codgician
+    subtitle: 'Have a codgistic day!'
+    keywords: ''
+    footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>'
+    taxonomies:
+      category: categories
+      tag: tags
+    params:
+      homeSubtitle: Have a codgistic day!
+    menu:
+      main:
+        - identifier: blog
+          name: 博客
+          url: posts/
+          weight: 10
+        - identifier: icpc
+          name: 竞赛
+          url: icpc/
+          weight: 20
+        - identifier: more
+          name: 更多
+          url: more/
+          weight: 30
+

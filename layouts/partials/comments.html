@@ -1,0 +1,7 @@
+{{- if .Site.DisqusShortname }}
+{{ template "_internal/disqus.html" . }}
+{{- end }}
+
+{{- if and .Site.Params.Gitalk .Page.Params.Gitalk }}
+    <div id="gitalk-container"></div>
+{{- end }}

@@ -1,0 +1,8 @@
+[submodule "themes/hermit"]
+	path = themes/hermit
+	url = https://github.com/Track3/hermit
+
+[submodule "public"]
+	path = public
+	url = https://github.com/codgician/codgician.github.io
+	branch = master
