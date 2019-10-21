@@ -11,6 +11,8 @@ output:
     highlight: zenburn
 ---
 
+# Math
+
 ## 龟速乘  / 快速幂
 
 ```cpp
@@ -121,7 +123,7 @@ $$
 $$
 \begin{cases}
 c_ 1 = s + r \\
-c_2 = -rs \\
+c_2 = -rs
 \end{cases}
 $$
 
@@ -464,7 +466,8 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
    & = n\sum\limits_{d \mid n}\varphi(d) \\
    & = n^2
    \end{aligned}
-   \\
+   
+   $$
    S(n) = \sum\limits_{i = 1}^{n}i^2 - \sum\limits_{d = 2}^{n} dS(\left\lfloor \frac{n}{d} \right\rfloor)
    $$
    
@@ -478,7 +481,9 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
    & = n^2\sum\limits_{d \mid n} \varphi(d) \\
    & = n^3
    \end{aligned}
-   \\
+   $$
+
+   $$
    S(n) = \sum\limits_{i = 1}^{n}i^3 - \sum\limits_{d = 2}^{n}d^2S(\left\lfloor \frac{n}{d} \right\rfloor)
    $$
 
@@ -673,6 +678,7 @@ int main() {
 ##### $f(p)$ 是分段函数？
 
 Nowcoder 887K
+
 $$
 f(p^k) = 
 \begin{cases}
@@ -684,7 +690,6 @@ $$
 求：$\sum\limits_{i = 1}^{n} f(i)$
 
 - 把 $2$ 从素数中 “除名” 并不影响结果（即使得 $minp(x) \ge 3$）；
-
 - 模 $4$ 余 $1, 3$ 的素数需要分别计算，因此考虑修改 $g$ 的定义与状态转移：
   $$
   g(n, j, k) = \sum\limits_{i = 1}^{n} \left[ i \in \mathbb{P}, \ minp(p) > P_j, 
@@ -937,22 +942,29 @@ $$
 $$
 
 记：
+
 $$
 \left[ k \right]_q = \sum\limits_{i = 0}^{k - 1} q ^ i =
 \begin{cases}
 \frac{1 - q^k}{1 - q} & k \neq 1 \\
-k  & k = 1 \\
+k  & k = 1
 \end{cases}
 $$
+
 则：
+
 $$
 \binom{n}{m}_q = \frac{\left[ n \right]_q!}{\left[m\right]_q! \left[n - m\right]_q!}
 $$
+
 **组合意义**：对于长度为 $n$ 的序列 $a$， $a_i \in \{0, 1\}$，其中 $0$ 出现 $m$ 次，$1$ 出现 $(n - m)$ 次。若在计算其全排列个数时对每一个排列乘上系数 $q^d$，其中 $d$ 为该排列种逆序对的对数，得到的答案即：
+
 $$
 \frac{\left[ n \right]_q!}{\left[m\right]_q! \left[n - m\right]_q!} = \binom{n}{m}_q
 $$
+
 这一结论可以推广至 $a_i \in S, \ |S| = k$ 且 $S$ 种第 $i$ 个元素出现 $c_i$ 次的情形：
+
 $$
 \frac{\left[n\right]_q!}{\prod\limits_{i = 1}^{k}\left[c_i\right]_q!}
 $$
@@ -1001,7 +1013,7 @@ $$
 \begin{aligned}
 f(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor} \\
 g(a, b, c, n) & = \sum\limits_{i = 0}^{n} {i \left\lfloor \frac{ai + b}{c} \right\rfloor} \\
-h(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2 \\
+h(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2
 \end{aligned}
 $$
 
@@ -1012,13 +1024,13 @@ $$
 f(a, b, c, n) = &
 \begin{cases}
 \left\lfloor \frac{a}{c} \right\rfloor \frac{n(n + 1)}{2} + \left\lfloor \frac{b}{c} \right\rfloor (n + 1) + f(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
-nm - f(c, c - b - 1, a, m - 1) & \text{otherwise} \\
+nm - f(c, c - b - 1, a, m - 1) & \text{otherwise}
 \end{cases}
 \\ \\
 g(a, b, c, n) = &
 \begin{cases}
 \left\lfloor \frac{a}{c} \right\rfloor \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{b}{c} \right\rfloor \frac{1}{2}n(n + 1) + g(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
-\frac{1}{2} \left[ mn(n + 1) - h(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) \right] & \text{otherwise} \\
+\frac{1}{2} \left[ mn(n + 1) - h(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) \right] & \text{otherwise}
 \end{cases}
 \\ \\
 h(a, b, c, n) = &
@@ -1026,7 +1038,7 @@ h(a, b, c, n) = &
 \left\lfloor \frac{a}{c} \right\rfloor^2 \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{a}{c} \right\rfloor \left\lfloor \frac{b}{c} \right\rfloor 2n(n + 1) + \left\lfloor \frac{b}{c} \right\rfloor^2(n + 1) & \\
 \ + 2\left\lfloor \frac{a}{c} \right\rfloor g(a \bmod c, b \bmod c, c, n) + 2\left\lfloor \frac{b}{c} \right\rfloor f(a \bmod c, b \bmod c, c, n) & \\
 \ + h(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
-nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) & \text{otherwise} \\
+nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) & \text{otherwise}
 \end{cases}
 \end{aligned}
 $$
@@ -1113,16 +1125,18 @@ $$
 f(a, b, c, n) =
 \begin{cases}
 \left\lfloor \frac{at + b}{c} \right\rfloor \frac{1}{2}n(n + 1) + f(a, b - c \left\lfloor \frac{at + b}{c} \right\rfloor, c, n) & \frac{at + b}{c} \ge 1 \\
-nm - f(ac, -bc, a^2t^2 - b^2, m) & \frac{at + b}{c} < 1 \\
+nm - f(ac, -bc, a^2t^2 - b^2, m) & \frac{at + b}{c} < 1
 \end{cases}
 $$
 
 ### BZOJ -  2187
 
 给定 $a, b, c, d$，求解 $p, q$ 满足：
+
 $$
 \frac{a}{b} < \frac{p}{q} < \frac{c}{d}
 $$
+
 优先最小化 $q$，其次最小化 $p$。
 
 #### 分析
@@ -1143,6 +1157,7 @@ $$
 ---
 
 对于剩下不能直接得出答案的情况中，若 $a \le b$ 且 $c \le d$ ，对问题进行转换：
+
 $$
 \frac{a}{b} < \frac{p}{q} < \frac{c}{d} \Leftrightarrow \frac{d}{c} < \frac{q}{p} < \frac{b}{a}
 $$
@@ -1150,12 +1165,13 @@ $$
 由此可以对子问题 $f(d, c, b, a) = \langle p', q' \rangle$ 进行求解，并在回溯时令 $p = q', q = p'$ 。
 
 接下来就只需考虑 $c > d$ 的情况。如果此时出现了上面所说的 $\frac{a}{b}$ 和 $\frac{c}{d}$ 间存在正整数，那么直接回溯就好了。如果不存在，考虑对问题进行如下变换从而尽量缩小 $a$：
+
 $$
 \begin{aligned}
 & \frac{a}{b} < \frac{p}{q} < \frac{c}{d} \\
 & \Leftrightarrow \frac{a}{b} - \left\lfloor \frac{a}{b} \right\rfloor < \frac{p}{q} -\left\lfloor \frac{a}{b} \right\rfloor < \frac{c}{d} - \left\lfloor \frac{a}{b} \right\rfloor \\
 & \Leftrightarrow \frac{a - b\left\lfloor \frac{a}{b} \right\rfloor}{b} < \frac{p - q\left\lfloor \frac{a}{b} \right\rfloor}{q} < \frac{c - d\left\lfloor \frac{a}{b} \right\rfloor}{d} \\
-& \Leftrightarrow \frac{a \bmod b}{b} < \frac{p - q\left\lfloor \frac{a}{b} \right\rfloor}{q} < \frac{c - d\left\lfloor \frac{a}{b} \right\rfloor}{d} \\
+& \Leftrightarrow \frac{a \bmod b}{b} < \frac{p - q\left\lfloor \frac{a}{b} \right\rfloor}{q} < \frac{c - d\left\lfloor \frac{a}{b} \right\rfloor}{d}
 \end{aligned}
 $$
 
@@ -1291,9 +1307,11 @@ $$
 ### BSGS 算法
 
 令 $x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)$。问题转换为：
+
 $$
 (a^t)^i = a^{-j}b \pmod p
 $$
+
 借助 Hash 表 meet in the middle 即可。**为了求稳可考虑求出指数以防止出错！**
 
 ```cpp
@@ -1390,6 +1408,7 @@ long long int hiCon(long long int a, long long int b, long long int p) {
 ### 卷积
 
 记 $A(x) = \sum\limits_{i = 0}^{n} a_i x^i, \ B(x) = \sum\limits_{i = 0}^{n}b_ix^i$，则其卷积：
+
 $$
 (A \cdot B)(x) = \sum\limits_{i = 0}^{2n}(\sum\limits_{j = 0}^{i}a_j b_{i - j})x^i
 $$
@@ -1543,6 +1562,7 @@ P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot \frac{\prod\limits_{j = 0 \ j \neq i}^
 $$
 
 令：
+
 $$
 w(x) = \prod\limits_{j = 0}^{n}(x - x_j)
 $$
@@ -1552,9 +1572,11 @@ t_i = \frac{y_i}{\prod\limits_{j = 0, \ j \neq i}^{n} (x_i - x_j)}
 $$
 
 则有：
+
 $$
 P_n(x) = w(x)\sum\limits_{i = 0}^{n}\frac{t_i}{x - x_i}
 $$
+
 这样一来，在插入新点时，我们只需要 $\mathcal{O}(n)$ 更新 $t_i$ 即可。
 
 ```cpp
@@ -1591,6 +1613,7 @@ long long int lagrange(int x, int num) {    // retrieve f(x)
 -  $f[x_0, \dots, x_n] = \frac{f[x_0, \dots, x_{n - 1}] - f[x_1, \dots x_n]}{x_0 - x_n}$ 即 $f(x)$ 的 $n$ 阶差商。
 
 将后项不断带入前项，即可得到牛顿插值公式：
+
 $$
 \begin{aligned}
 f(x) = f(x_0) & + f[x_0, x_1](x - x_0) + \dots \\ 
@@ -1598,6 +1621,7 @@ f(x) = f(x_0) & + f[x_0, x_1](x - x_0) + \dots \\
 & + f[x, x_0, \dots, x_n](x - x_0)(x - x_1) \dots (x - x_n)
 \end{aligned}
 $$
+
 最后一项带有未知数 $x$，故当作余项并舍弃。
 
 ## 数位 DP

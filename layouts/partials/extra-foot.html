@@ -33,19 +33,10 @@
     {{- $x := index .Params.output "blogdown::html_page" -}}
     {{- with $x.toc -}}
         <script>
-            let hasTOCTitle = false;
-            const toggleTOC = () => {
-                let target = document.getElementById('TOC');
-                if (!hasTOCTitle) {
-                    let title = document.createElement("div");
-                    title.classList.toggle('toc-title');
-                    title.innerHTML = '{{ i18n "tableOfContents" }}';
-                    target.prepend(title); hasTOCTitle = true;
-                }
-                target.classList.toggle('show-toc');
-            }
-            if (header !== null) {
-                listen('#TOC-btn', "click", toggleTOC);
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>{{ i18n "tableOfContents" }}</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
             }
         </script>
     {{- end -}}

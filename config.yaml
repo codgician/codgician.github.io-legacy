@@ -40,7 +40,7 @@ params:
       url: 'https://t.me/codgician/'
     - name: email
       url: 'mailto:gutomata@outlook.com'
-  code_copy_button: true
+  code_copy_button: false
   katex: true
   gitalk:
     enabled: true
