@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BZOJ on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/bzoj/</link>
+    <description>Recent content in BZOJ on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 28 Oct 2018 22:30:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/bzoj/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>BZOJ 2187: fraction</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</link>
+      <pubDate>Sun, 28 Oct 2018 22:30:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</guid>
+      <description>题面 分析 题面 给定四个正整数 \(a, b, c, d\)，试求最简正分数 \(\frac{p}{q}\)，满足： \[ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} \] 若有多组解，取 \(q\) 最小的一组解；若仍</description>
+    </item>
+    
+    <item>
+      <title>BZOJ 3817: Sum</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</link>
+      <pubDate>Sun, 28 Oct 2018 13:27:56 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</guid>
+      <description>题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/algorithm/</link>
+    <description>Recent content in Algorithm on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 06 Aug 2019 13:18:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数论函数与狄利克雷卷积</title>
+      <link>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</link>
+      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</guid>
+      <description>简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有</description>
+    </item>
+    
+    <item>
+      <title>浅谈离线分治算法</title>
+      <link>https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/</link>
+      <pubDate>Mon, 22 Jul 2019 20:25:56 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/</guid>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+    <item>
+      <title>Luogu P3943: 星空</title>
+      <link>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</link>
+      <pubDate>Tue, 05 Feb 2019 11:20:57 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</guid>
+      <description>题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 4947: GCD Array</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</link>
+      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</guid>
+      <description>题面 分析 %%% 题面 对于长度为 \(l\) 且初始全为 \(0\) 的序列 \(a\)（下标 \(1 \sim l\)），有 \(q\) 次操作。操作分为两种： 给定 \(n, d, v\)，对于每个满足 \(\gcd(x, n) = d\) 的 \</description>
+    </item>
+    
+    <item>
+      <title>Luogu P1829: Crash 的数字表格</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</link>
+      <pubDate>Wed, 21 Nov 2018 19:15:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</guid>
+      <description>题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌</description>
+    </item>
+    
+    <item>
+      <title>浅谈莫比乌斯反演</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</link>
+      <pubDate>Sun, 18 Nov 2018 13:07:42 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</guid>
+      <description>简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一</description>
+    </item>
+    
+    <item>
+      <title>BZOJ 2187: fraction</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</link>
+      <pubDate>Sun, 28 Oct 2018 22:30:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</guid>
+      <description>题面 分析 题面 给定四个正整数 \(a, b, c, d\)，试求最简正分数 \(\frac{p}{q}\)，满足： \[ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} \] 若有多组解，取 \(q\) 最小的一组解；若仍</description>
+    </item>
+    
+    <item>
+      <title>BZOJ 3817: Sum</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</link>
+      <pubDate>Sun, 28 Oct 2018 13:27:56 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</guid>
+      <description>题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链</description>
+    </item>
+    
+    <item>
+      <title>浅谈类欧几里德算法</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</link>
+      <pubDate>Thu, 18 Oct 2018 22:54:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</guid>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+    <item>
+      <title>浅谈无旋转 Treap</title>
+      <link>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</link>
+      <pubDate>Sat, 28 Jul 2018 15:15:01 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</guid>
+      <description>简介 Treap = Tree + Heap。Treap 是一种弱平衡的二叉查找树。 我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够</description>
+    </item>
+    
+    <item>
+      <title>浅谈匈牙利算法</title>
+      <link>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</link>
+      <pubDate>Fri, 09 Mar 2018 12:52:01 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</guid>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+  </channel>
+</rss>

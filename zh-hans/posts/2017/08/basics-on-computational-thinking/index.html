@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="计算导论: 计算系统基本思维">
+<meta itemprop="description" content="前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR">
+
+
+<meta itemprop="datePublished" content="2017-08-19T23:03:10&#43;08:00" />
+<meta itemprop="dateModified" content="2017-08-19T23:03:10&#43;08:00" />
+<meta itemprop="wordCount" content="3023">
+
+
+
+<meta itemprop="keywords" content="Computational Thinking,Mathematics," />
+<meta property="og:title" content="计算导论: 计算系统基本思维" />
+<meta property="og:description" content="前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2017-08-19T23:03:10+08:00" />
+<meta property="article:modified_time" content="2017-08-19T23:03:10+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="计算导论: 计算系统基本思维"/>
+<meta name="twitter:description" content="前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>计算导论: 计算系统基本思维</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 19, 2017</span></div>
+				<h1>计算导论: 计算系统基本思维</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#逻辑运算">逻辑运算</a><ul>
+<li><a href="#基本逻辑运算">基本逻辑运算</a><ul>
+<li><a href="#与运算-and逻辑乘法">“与”运算 AND：逻辑乘法</a></li>
+<li><a href="#或运算-or逻辑加法">“或”运算 OR：逻辑加法</a></li>
+<li><a href="#非运算-not逻辑否定">“非”运算 NOT：逻辑否定</a></li>
+</ul></li>
+<li><a href="#复合逻辑运算">复合逻辑运算</a><ul>
+<li><a href="#与非运算-nand">“与非”运算 NAND</a></li>
+<li><a href="#或非运算-nor">“或非”运算 NOR</a></li>
+<li><a href="#异或运算-xor">“异或”运算 XOR</a></li>
+<li><a href="#同或运算-xnor">“同或”运算 XNOR</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#二进制与算术运算">二进制与算术运算</a><ul>
+<li><a href="#数值表示">数值表示</a></li>
+<li><a href="#符号表示">符号表示</a></li>
+<li><a href="#数值运算">数值运算</a><ul>
+<li><a href="#加法实现原理">加法实现原理</a></li>
+<li><a href="#减法实现原理">减法实现原理</a></li>
+<li><a href="#乘法实现原理">乘法实现原理</a></li>
+<li><a href="#除法实现原理">除法实现原理</a></li>
+</ul></li>
+<li><a href="#小数点表示">小数点表示</a></li>
+</ul></li>
+<li><a href="#编码">编码</a></li>
+<li><a href="#趣题赏析">趣题赏析</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</div>
+
+<div id="前言" class="section level1">
+<h1>前言</h1>
+<p>开学要考试啊 orz……</p>
+<p>学校推荐预习《计算机与计算思维导论》，然而作死的我却购入了《大学计算机——计算思维导论》（因为更便宜）。作此文以梳理本蒟蒻觉得重要的地方，以试图减小开学考试对咸鱼造成的恐惧。</p>
+</div>
+<div id="逻辑运算" class="section level1">
+<h1>逻辑运算</h1>
+<div id="基本逻辑运算" class="section level2">
+<h2>基本逻辑运算</h2>
+<p>我们先从三种最常见的逻辑运算开始：</p>
+<div id="与运算-and逻辑乘法" class="section level3">
+<h3>“与”运算 AND：逻辑乘法</h3>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(A + B\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="或运算-or逻辑加法" class="section level3">
+<h3>“或”运算 OR：逻辑加法</h3>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(AB\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="非运算-not逻辑否定" class="section level3">
+<h3>“非”运算 NOT：逻辑否定</h3>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(\overline{A}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="复合逻辑运算" class="section level2">
+<h2>复合逻辑运算</h2>
+<p>由以上介绍的三种基本逻辑运算，我们可以组合出常见的复合逻辑运算。</p>
+<div id="与非运算-nand" class="section level3">
+<h3>“与非”运算 NAND</h3>
+<p>即<strong>先与后非</strong>。</p>
+<p><span class="math display">\[
+X \text{ NAND } Y = \overline{AB}
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(\overline{A \cdot B}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="或非运算-nor" class="section level3">
+<h3>“或非”运算 NOR</h3>
+<p>即<strong>先或后非</strong>。</p>
+<p><span class="math display">\[
+A \text{ NOR } B = \overline{A + B}
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(\overline{A + B}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="异或运算-xor" class="section level3">
+<h3>“异或”运算 XOR</h3>
+<p>相同为假，相异为真。</p>
+<p><span class="math display">\[
+A \oplus B = \bar{A}B + A\bar{B}
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(A \oplus B\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="同或运算-xnor" class="section level3">
+<h3>“同或”运算 XNOR</h3>
+<p>相同为真，相异为假。</p>
+<p><span class="math display">\[
+A \odot B = \bar{A}\bar{B} + AB
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(A \odot B\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="二进制与算术运算" class="section level1">
+<h1>二进制与算术运算</h1>
+<div id="数值表示" class="section level2">
+<h2>数值表示</h2>
+<p>有大小关系的数通常采用<em>进位制</em>表达，即<strong>用数码和带权值的数位</strong>来表示。</p>
+<p>进制的基本概念就不啰嗦了吧…… r进制就是逢r进1。就只记下常见进制的英文以备后用吧：</p>
+<ul>
+<li>二进制 <strong>Binary</strong></li>
+<li>八进制 <strong>Octal</strong></li>
+<li>十进制 <strong>Decimal</strong></li>
+<li>十六进制 <strong>Hexadecimal</strong></li>
+</ul>
+<p>在计算机中我们通常采用二进制，其主要优点有：</p>
+<ol style="list-style-type: decimal">
+<li>二进制运算规则简单；</li>
+<li>二进制算术运算<strong>可与逻辑运算实现统一</strong>，即可以用逻辑运算实现算术运算；</li>
+<li>能表示两种状态的元器件容易找到，如继电器开关、灯泡、二极管/三极管等。</li>
+</ol>
+<p>哦对了，唯一的重点就是十进制小数转二进制，小数部位使用乘 <span class="math inline">\(2\)</span> 取整法，按顺序写出，看到循环了取最小循环数就行了……</p>
+</div>
+<div id="符号表示" class="section level2">
+<h2>符号表示</h2>
+<p>我们来梳理几个基本概念：</p>
+<ul>
+<li><strong>原码</strong>： 如果机器字长为 <span class="math inline">\(n\)</span>，那么一个数的原码就是用一个 <span class="math inline">\(n\)</span> 位的二进制数。其中最高位为符号位（正为 <span class="math inline">\(0\)</span>，负为 <span class="math inline">\(1\)</span>）剩下的 <span class="math inline">\(n - 1\)</span> 位表示该数的绝对值。</li>
+<li><strong>反码</strong>： 对于非负整数，反码与原码一样；对于负整数，在原码的基础上，符号位不变，其他位按位取反。</li>
+<li><strong>补码</strong>： 对于非负整数，补码与原码一样；对于负整数，补码即反码 <span class="math inline">\(+ 1\)</span>。</li>
+<li><strong>移码</strong>： 取补码并对其符号位取反。</li>
+</ul>
+<p>例如，对于 <span class="math inline">\(8\)</span> 位二进制：</p>
+<p><span class="math inline">\(-1\)</span> 的原码为 <span class="math inline">\(1000 \ 0001\)</span>，反码为 <span class="math inline">\(1111 \ 1110\)</span> ，补码为 <span class="math inline">\(1111 \ 1111\)</span> ，移码为 <span class="math inline">\(0111 \ 1111\)</span>。</p>
+<p>机器数，也就是一个在计算机中的二进制表示形式，可以用原码、反码和补码表示。若只使用原码表示，则 <span class="math inline">\(0\)</span> 有两种表示方式，即 <span class="math inline">\(+0\)</span> 和 <span class="math inline">\(-0\)</span> ，表示范围为<span class="math inline">\(-(2^n - 1) \sim +(2^n - 1)\)</span>。但若牵扯进补码的话 <span class="math inline">\(0\)</span> 就只有一种表示了，范围也就变成了<span class="math inline">\(-2^n \sim +(2^n - 1)\)</span>。如欲了解 C 语言中存储数字的具体方式，不妨参考上篇博文 <a href="https://codgician.me/zh-hans/posts/2017/08/on-int-and-float/">乱谈整型与浮点</a>。</p>
+</div>
+<div id="数值运算" class="section level2">
+<h2>数值运算</h2>
+<div id="加法实现原理" class="section level3">
+<h3>加法实现原理</h3>
+<p>我们不妨把加法运算分为两个部分：<strong>按位加过程 和 进位过程</strong>。</p>
+<p>首先，我们来研究一下一位二进制的加法运算问题：</p>
+<table>
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>SUM</th>
+<th>CARRY</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>很容易发现，<strong>SUM（和）</strong> 一栏即为前面介绍到的 <strong>“异或”运算</strong>，而 <strong>CARRY（进位）</strong> 则为前面介绍到的<strong>“与”运算</strong>。</p>
+<p>我们记 <span class="math inline">\(A_i, \ B_i\)</span> 分别为第 <span class="math inline">\(i\)</span> 位加数和被加数，<span class="math inline">\(C_i\)</span> 为第 <span class="math inline">\(i - 1\)</span> 位运算产生的进位，<span class="math inline">\(S_i\)</span> 为第 <span class="math inline">\(i\)</span> 位运算的和，<span class="math inline">\(C_{i + 1}\)</span> 为产生的进位，这样就可以总结出下列公式：</p>
+<div id="不考虑进位" class="section level4">
+<h4>不考虑进位</h4>
+<p><span class="math display">\[
+\begin{cases}
+S_i = A_i \oplus B_i \\
+C_{i + 1} = A_i B_i
+\end{cases}
+\]</span></p>
+</div>
+<div id="考虑进位" class="section level4">
+<h4>考虑进位</h4>
+<p><span class="math display">\[
+\begin{cases}
+S_i = A_i \oplus B_i \oplus C_i \\
+C_{i + 1} = (A_i \oplus B_i)  C_i + A_i B_i
+\end{cases}
+\]</span></p>
+</div>
+</div>
+<div id="减法实现原理" class="section level3">
+<h3>减法实现原理</h3>
+<p>先对减数取负，再执行上述加法即可。</p>
+</div>
+<div id="乘法实现原理" class="section level3">
+<h3>乘法实现原理</h3>
+<p>我们知道左移1位为乘以2，右移一位为除以 <span class="math inline">\(2\)</span>，因此计算机的乘法是由加法和位移组合实现的：</p>
+<p><span class="math display">\[
+\sum\limits_{i=0}^{k}a \cdot 2^n
+\]</span></p>
+</div>
+<div id="除法实现原理" class="section level3">
+<h3>除法实现原理</h3>
+<div id="人类计算除法" class="section level4">
+<h4>人类计算除法</h4>
+<p>当我们在计算 <span class="math inline">\(51 / 3 = 17\)</span> ，抛开乘法表。</p>
+<ol style="list-style-type: decimal">
+<li>从被除数的最高位 <span class="math inline">\(5\)</span> 开始，从 <span class="math inline">\(0 \sim 9\)</span> 选一个数，使得 <span class="math inline">\(5 - i \times 3 \ge 0\)</span> 且使 <span class="math inline">\(5 - (i + 1) \times 3 &lt; 0\)</span>。我们选择了1，余数为2；</li>
+<li>将余数<span class="math inline">\(2 \times 10 + 1 = 21\)</span>，继续从 0 ~ 9 中选一个数，使得<span class="math inline">\(21 - 3 \times i \ge 0\)</span>且使<span class="math inline">\(5 - (i + 1) \times 3 &lt; 0\)</span>。我们选择了 <span class="math inline">\(7\)</span>；</li>
+<li>由此，我们找到了答案 <span class="math inline">\(17\)</span>。</li>
+</ol>
+</div>
+<div id="计算机计算除法" class="section level4">
+<h4>计算机计算除法</h4>
+<p>计算机计算除法的过程与人类计算的过程很类似，只是选择范围变成了0或1。
+还以 <span class="math inline">\(51 / 3\)</span> 为例说明（<span class="math inline">\(51 = 110011_2\)</span>；<span class="math inline">\(3 = 11_2\)</span>）</p>
+<ol style="list-style-type: decimal">
+<li>从第一位开始为 <span class="math inline">\(1\)</span>，小于 <span class="math inline">\(11\)</span>，结果位置 <span class="math inline">\(0\)</span>；余数为 <span class="math inline">\(1\)</span></li>
+<li>从第二位开始，余数 <span class="math inline">\(1 \times 2 + 1 = 11\)</span>，等于 <span class="math inline">\(11\)</span>，结果位置 <span class="math inline">\(1\)</span>，余数为 <span class="math inline">\(0\)</span>；</li>
+<li>从第三、四位开始，余数 <span class="math inline">\(0 \times 2 + 0 = 0 &lt; 011\)</span>，结果位置 <span class="math inline">\(0\)</span>，余数为 <span class="math inline">\(0\)</span>；</li>
+<li>从第 <span class="math inline">\(5\)</span> 位开始，余数 <span class="math inline">\(0 \times 2 + 1 = 1 &lt; 11\)</span>，结果位置 <span class="math inline">\(0\)</span>，余数为 <span class="math inline">\(1\)</span>；</li>
+<li>从第 <span class="math inline">\(6\)</span> 位开始，余数 <span class="math inline">\(1 \times 2 + 1 = 11 = 11\)</span>，结果位置 <span class="math inline">\(1\)</span>，余数为 <span class="math inline">\(0\)</span>。</li>
+</ol>
+<p>此时将结果位相连，恰好是 <span class="math inline">\(10001\)</span>（<span class="math inline">\(17\)</span>）。</p>
+</div>
+</div>
+</div>
+<div id="小数点表示" class="section level2">
+<h2>小数点表示</h2>
+<p>可以参考上篇博文 <a href="https://codgician.github.io/2017/08/18/on-int-and-float/">乱谈整型与浮点</a>中的“浮点数”部分。</p>
+</div>
+</div>
+<div id="编码" class="section level1">
+<h1>编码</h1>
+<p><strong>概念：</strong> 以若干数位或符号的不同组合来表示非数值信息的方法，是人为将若干数码或符号的每种组合钦定一种唯一的含义。</p>
+<p><strong>特性</strong>：</p>
+<ul>
+<li>唯一性：每种组合都有唯一确定含义。</li>
+<li>公共性：所有相关者均认同、遵守、使用该种编码。</li>
+<li>规律性：具有一定规律和一定编码规则，便于计算机和人使用它。</li>
+</ul>
+<p>ASCII 码、Unicode 和 GB2312-1980 不在本文中介绍，详情咨询百科。</p>
+</div>
+<div id="趣题赏析" class="section level1">
+<h1>趣题赏析</h1>
+<p>有 <span class="math inline">\(1000\)</span> 篇大新闻，其中一篇是长者的，香港记者只要报道了长者的新闻生命就会在 <span class="math inline">\(24h\)</span> 内被续掉，问至少要多少名香港记者才能在 <span class="math inline">\(24h\)</span> 内鉴别出长者的新闻？</p>
+<p><del>鬼才想得到计算思维……</del></p>
+<p>🐷：这还不简单，<span class="math inline">\(1000\)</span> 名就够啦。</p>
+<p>😏：猪就是蠢，<span class="math inline">\(999\)</span> 名不就行啦。</p>
+<p>🤓：其实 <span class="math inline">\(10\)</span> 名就够了。这其实是一个二进制转十进制问题。我们以 <span class="math inline">\(0\)</span> 代表记者存活，<span class="math inline">\(1\)</span> 代表记者被续。给记者编号 <span class="math inline">\(0 \sim 9\)</span>；给新闻编号 <span class="math inline">\(0 \sim 999\)</span>。</p>
+<ol style="list-style-type: decimal">
+<li>让 <span class="math inline">\(9\)</span> 号记者报道新闻 <span class="math inline">\(512 \sim 999\)</span>（<span class="math inline">\(2^9\)</span>）；</li>
+<li>让 <span class="math inline">\(8\)</span> 号记者报道新闻 <span class="math inline">\(256 \sim 51, 768 \sim 999\)</span>（<span class="math inline">\(2^8\)</span>）；</li>
+<li>让 <span class="math inline">\(7\)</span> 号记者报道新闻 <span class="math inline">\(128 \sim 255, 384 \sim 511, 640 \sim 767, 896 \sim 999\)</span>（<span class="math inline">\(2^7\)</span>）；</li>
+<li>让 <span class="math inline">\(6\)</span> 号记者报道新闻 <span class="math inline">\(64 \sim 127, 192 \sim 255, 320 \sim 383, \dots, 936 \sim 999\)</span>（<span class="math inline">\(2^6\)</span>）；
+……
+依此类推，直到最后让 <span class="math inline">\(0\)</span> 号记者报道所有的奇数新闻（<span class="math inline">\(2^0\)</span>）。</li>
+</ol>
+<p><span class="math inline">\(24h\)</span> 后，将 <span class="math inline">\(0 \sim 9\)</span> 号记者的生存情况排列成一个二进制数，将其转换为 <span class="math inline">\(10\)</span> 进制，即为长者新闻编号。</p>
+<p>例如，假设 <span class="math inline">\(817\)</span> 号新闻是长者的，那么根据上述步骤得到的二进制数即为：</p>
+<p><span class="math display">\[
+1100110001_2 = 817_{10}
+\]</span></p>
+<p>还没懂？</p>
+<p>那我们这样想，二进制数转十进制数的过程是不是对二进制数的每一位（第 <span class="math inline">\(n\)</span> 位）乘以 <span class="math inline">\(2^n\)</span> 并求和。若 <span class="math inline">\(0\)</span> v号记者最终被续，那么长者新闻的编号自然含有 <span class="math inline">\(1 \times 2^9\)</span>，同理，若8号记者被续则必然含有 <span class="math inline">\(1 \times 2^8\)</span>…… 现在明白了吧。</p>
+<p>为什么这样想？</p>
+<p><span class="math inline">\(1000\)</span> 篇新闻，有一篇是能送命的，无非意味着一共仅有 <span class="math inline">\(1000\)</span> 种状态。我们只要找出一种方法能够表示这种状态就可以了——比如 <span class="math inline">\(10\)</span> 位二进制就是一个不错的选择（<del>状压 DP 入门？</del>）。</p>
+</div>
+<div id="参考文献" class="section level1">
+<h1>参考文献</h1>
+<ul>
+<li>战德臣、聂兰顺等 - 《大学计算机——计算思维导论》</li>
+<li>战德臣老师在中国大学MOOC上的在线课程</li>
+<li>点奇 - <a href="http://blog.csdn.net/qq_16234613/article/details/55505035">数字逻辑电路 逻辑运算 与、或、非、与非、或非、与或非、异或、同或</a></li>
+<li>刘水镜 - <a href="http://blog.csdn.net/liushuijinger/article/details/7429197">原码、反码、补码和移码其实很简单</a></li>
+<li>匿名用户 - <a href="https://zhihu.com/question/22261713/answer/20805633">计算机怎么计算，具体工作原理是什么？</a></li>
+<li>小橋流水 - <a href="http://www.cnblogs.com/youwang/archive/2011/12/22/2298585.html">一道关于计算机如何做加法的面试题</a></li>
+<li>中华胡杨的专栏 - <a href="http://blog.csdn.net/zdavb/article/details/47108505">计算机计算乘除法的原理</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/computational-thinking">Computational Thinking</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3023 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-08-19 23:03 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>浅谈匈牙利算法</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2017/08/on-int-and-float/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>乱谈整型与浮点</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="9"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

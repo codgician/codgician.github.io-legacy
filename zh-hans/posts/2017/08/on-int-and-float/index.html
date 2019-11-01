@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="乱谈整型与浮点">
+<meta itemprop="description" content="前言 前几天好友终于也入了 C/C&#43;&#43; 的邪教，问起了几个浮点相关的问题，让我终于意识到深陷现代语言泥潭的我早已忘却这些富有趣味但又基础地不能在基础的知识">
+
+
+<meta itemprop="datePublished" content="2017-08-18T22:43:10&#43;08:00" />
+<meta itemprop="dateModified" content="2017-08-18T22:43:10&#43;08:00" />
+<meta itemprop="wordCount" content="3867">
+
+
+
+<meta itemprop="keywords" content="Computer Organization," />
+<meta property="og:title" content="乱谈整型与浮点" />
+<meta property="og:description" content="前言 前几天好友终于也入了 C/C&#43;&#43; 的邪教，问起了几个浮点相关的问题，让我终于意识到深陷现代语言泥潭的我早已忘却这些富有趣味但又基础地不能在基础的知识" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2017/08/on-int-and-float/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2017-08-18T22:43:10+08:00" />
+<meta property="article:modified_time" content="2017-08-18T22:43:10+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="乱谈整型与浮点"/>
+<meta name="twitter:description" content="前言 前几天好友终于也入了 C/C&#43;&#43; 的邪教，问起了几个浮点相关的问题，让我终于意识到深陷现代语言泥潭的我早已忘却这些富有趣味但又基础地不能在基础的知识"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>乱谈整型与浮点</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 18, 2017</span></div>
+				<h1>乱谈整型与浮点</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="前言">前言<a href="#前言" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>前几天好友终于也入了 C/C++ 的邪教，问起了几个浮点相关的问题，让我终于意识到<del>深陷现代语言泥潭</del>的我早已忘却这些富有趣味但又基础地不能在基础的知识…… 在网上大量查阅相关资料后决定属文以记之。</p>
+
+<h1 id="整型">整型<a href="#整型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>注：本文中默认 <code>int</code> 长度为 $32$ 位。</p>
+
+<h2 id="无符号整形">无符号整形<a href="#无符号整形" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>这里以 <code>unsigned int</code> 为例（$32$ 位）。<code>unsigned int</code> 就是没有符号的 <code>int</code>，在内存里占用 $4$ Byte，也就是 $32$ bit。很容易得知其能存储的最小值为 $0$，最大值则为 $2^{32} - 1 = 4294967295$。</p>
+
+<h2 id="整形">整形<a href="#整形" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>int 是带有符号的，因此其所占据的第 $0 \sim 31$ 位中第 $31$ 位是用于存储符号的（$0$ 为正，$1$ 为负）。当然你会问，既然所有位均为 $0$ 时变量的值为 $0$，那么符号位为 $1$ 时剩余位为 $0$ 表示的又是什么呢？</p>
+
+<p>这里就要牵扯进 <em>补数 (2’s complement，又称二补数)</em> 的概念了。</p>
+
+<blockquote>
+<p>一个数字的二补数就是将该数字作*比特反相运算（即反码）*，再将结果加 1。在二补数系统中，一个负数就是用其对应正数的二补数来表示。(*Wikipedia*，有修改)</p>
+</blockquote>
+
+<p>而借助二补数性质进行编码的编码系统则简称补码，在补码系统中，我们采用如下方式表示每一个数：</p>
+
+<ul>
+<li>对于非负数，采用原始二进制表示；</li>
+<li>对于负数，符号位为 $1$，剩余位采用其补数表示。</li>
+</ul>
+
+<p>为了方便，我们假定一种只有 $8$ 位的整型数据类型来举几个例子（注意下面列出的是对应的补码不是二补数）：</p>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th></th>
+<th>=</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>1 1 1 1 1 1 1</td>
+<td><strong>127</strong></td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>0 0 0 0 0 1 0</td>
+<td><strong>2</strong></td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>0 0 0 0 0 0 1</td>
+<td><strong>1</strong></td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>0 0 0 0 0 0 0</td>
+<td><strong>0</strong></td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1 1 1 1 1 1 1</td>
+<td><strong>-1</strong></td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1 1 1 1 1 1 0</td>
+<td><strong>-2</strong></td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>0 0 0 0 0 0 1</td>
+<td><strong>-127</strong></td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>0 0 0 0 0 0 0</td>
+<td><strong>-128</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>我们可以容易地总结出以下两点：</p>
+
+<ul>
+<li>取负运算实际上就是取该数的二补数 ($\sim x + 1$)。</li>
+<li>有两个数的二补数等于其本身：$0$ 和 $-128$ (溢出了，所以就变成自己了)。</li>
+</ul>
+
+<p>至此，我们也应该理解为什么 $32$ 位整型的取值范围是 $-2147483648 \sim 2147483647$ 了。</p>
+
+<h1 id="浮点">浮点<a href="#浮点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>在 C 语言中，浮点数的存储均遵循 IEEE 754 标准。我们不妨结合标准内容来对 <code>float</code> 做一番介绍。</p>
+
+<p>注：并不是在任何情况下浮点数的存储都遵循 IEEE 754 标准！这里仅介绍 IEEE 754 标准。</p>
+
+<h2 id="整体结构">整体结构<a href="#整体结构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>在 IEEE 754 中，浮点数的存储被划为三个部分：*符号位 (sign bit)、阶码 (biased exponent)、尾码 (mantissa)*。在单精度中它们的长度分别为 $1$ bit、$8$ bit 和 $23$  bit；双精度中它们的长度分别为 $1$ bit、$11$ bit 和 $52$ bit。</p>
+
+<p>为了方便展示，不妨从 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Representation_of_non-numbers">Wikipedia</a> 盗两张图下来（遵循  <a href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a>）：</p>
+
+<h3 id="单精度">单精度<a href="#单精度" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/IEEE_754_Single_Floating_Point_Format.svg" alt="Single precision" /></p>
+
+<h3 id="双精度">双精度<a href="#双精度" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/IEEE_754_Double_Floating_Point_Format.svg" alt="Double precision" /></p>
+
+<p>我们知道任意一个<strong>二进制</strong>浮点数 $V$ 都可以表示为（科学记数法）：</p>
+
+<p>$$
+V = (-1)^s \cdot M \cdot 2^E
+$$</p>
+
+<p>其中，$s$ 是<strong>符号位</strong>，$M$ 是有效数字（$1 \le M &lt; 2$），$E$ 是指数。</p>
+
+<p>举个例子，对于 ${0.15625}<em>{10}$，其二进制表示为 ${0.00101}</em>{2}$，用科学记数法表示就是 ${0.00101}_2 = {1.01}_2 \times 2^{-3}$，那么其符号位为 $0$，有效数字为 ${1.01}_2$，尾码为 ${.01}_2$，指数为 $-3$。</p>
+
+<p>我们很容易发现，$M$ 的整数部分一定恒为 1，那还存什么存？只用存 $M$ 的小数部分就行了，所以<strong>尾码</strong>就是 $M - 1$。</p>
+
+<h2 id="指数偏移值">指数偏移值<a href="#指数偏移值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>依据前文对阶码存储结构的介绍，<strong>阶码</strong>看起来就像是一个无符号整数。可惜科学记数法中指数是可以为负数的。怎么办？IEEE 就搞了个 <em>指数偏移值 (exponent bias)</em> 出来。指数偏移值就是指<strong>浮点数表示法中的指数域的编码值（即阶码的值）为指数的实际值加上某个固定的值</strong>（阶码 = $E$ + 指数偏移值）。在 IEEE 754 标准中，指数偏移值的固定大小为 $2^{e - 1} - 1$，其中 $e$ 为储存指数的比特长度。</p>
+
+<p>例如，在单精度中，阶码位长 $e$ 为 8 bit，换算成十进制其可表示范围为 $0 \sim 255$。依据前文，其指数偏移值是 $2^{8 - 1} - 1 = 127$。这样一来，对于单精度浮点数类型指数就可取 $-127 \sim 128$ 了。</p>
+
+<h2 id="规约形式与非规约形式">规约形式与非规约形式<a href="#规约形式与非规约形式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="规约形式-normalized-numbers">规约形式 (Normalized numbers)<a href="#规约形式-normalized-numbers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><strong>规约形式的浮点数</strong>指的是<strong>阶码</strong>范围为 $(0, 2^{e} - 1)$ ，且<strong>尾码</strong>部分最高有效位（即整数部分）为 $1$ 的浮点数。也就是说，前文中我们讨论的浮点数都是规约形式的。</p>
+
+<h3 id="非规约形式-denormalized-numbers">非规约形式 (Denormalized numbers)<a href="#非规约形式-denormalized-numbers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>为了减小因为<em>下溢 (underflow)</em> 造成的精度损失（换言之，为了使得浮点数可表示的正最小值和负最大值更接近 $0$），IEEE 754 标准中提出了非规约形式浮点数——用于填补最小正数和最大负数与 $0$ 的距离。</p>
+
+<p><strong>非规约形式浮点数</strong>的<strong>阶码</strong>为 $0$，并且<strong>尾码</strong>为非 $0$。相比规约形式浮点数其最大的不同之处在于，<strong>其尾码隐含的整数部分不再是 $1$，而变成了 $0$</strong>。另外，IEEE 754 标准规定，<strong>非规约形式的浮点数的指数偏移值比规约形式的浮点数的指数偏移值小 $1$</strong>。也就是说，最小的规约形式浮点数阶码为 $1$，指数的实际值为 $-126$。而非规约形式的单精度浮点数的阶码为 $0$，依照上述规定其指数的实际值也是 $-126$ 而不是 $-127$。</p>
+
+<h4 id="为什么要这样规定">为什么要这样规定？<a href="#为什么要这样规定" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>我们首先来看看这种规定下<strong>非规约形式</strong>浮点数能表示的<strong>最大</strong>正浮点数吧（拿<strong>单精度</strong>举个例子，双精度是类似的）：</p>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾码</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0000 0000</td>
+<td>111 1111 1111 1111 1111 1111</td>
+</tr>
+</tbody>
+</table>
+
+<p>不难得出，其实际指数 $E = 0 - 126 = -126$，其实际有效数字为 ${0.11111111111111111111111}_2$。因此，二进制下，其表示的实际值为 $V = {0.11111111111111111111111}_2 \times 2^{-126}$。</p>
+
+<p>而对于<strong>规约形式浮点数</strong>能表示的<strong>最小</strong>正浮点数：</p>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾码</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0000 0001</td>
+<td>000 0000 0000 0000 0000 0000</td>
+</tr>
+</tbody>
+</table>
+
+<p>不难得出，其实际指数为 $E = 1 - 127 = -126$，其实际有效数字为 ${1.00000000000000000000000}_2$。因此，二进制下，其表示的实际值为 $V = {1.00000000000000000000000}_2 \times 2^{-126}$。</p>
+
+<p>不难发现在这种规定下，<strong>最大非规约形式浮点数和最小非规约形式浮点数是连续的</strong>。这也是该规定出现的原因。</p>
+
+<h2 id="特殊值">特殊值<a href="#特殊值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>另外，在标准中也定义了几个特殊值：</p>
+
+<ul>
+<li>当<strong>阶码</strong>和<strong>尾码</strong>均为 $0$ 时，浮点数表示的实际值为 $\pm 0$；</li>
+<li>当<strong>阶码</strong>为 $2^{e} - 1$且<strong>尾码</strong>为 0 时，浮点数表示的实际值为 $\pm \infty$；</li>
+<li>当<strong>阶码</strong>为 $2^e - 1$ 且<strong>尾码</strong>非 0 时，浮点数表示的实际值为 $\text{NaN}$ *(Not a Number)*。</li>
+</ul>
+
+<p>$\text{NaN}$ 是什么？可以吃吗？</p>
+
+<p>当然不能。$\text{NaN}$ 往往出现于一些无效的计算结果。比如说，对负数进行求平方根运算，返回的结果就是 $\text{NaN}$。</p>
+
+<h2 id="取值范围-精度和间隙">取值范围、精度和间隙<a href="#取值范围-精度和间隙" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>注：本节主要讨论单精度浮点数的取值范围与精度。双精度与之类似，所以请读者自行推导。</p>
+
+<h3 id="取值范围-range">取值范围 (Range)<a href="#取值范围-range" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>前文中已经介绍过单精度浮点数在存储中的大致结构了。我们先就<strong>正浮点数</strong>做一下分析：</p>
+
+<h4 id="非规约形式单精度浮点数能表示的最小正值">非规约形式单精度浮点数能表示的最小正值<a href="#非规约形式单精度浮点数能表示的最小正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾码</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0001</td>
+</tr>
+</tbody>
+</table>
+
+<p>不难得出，不难得出，其实际指数 $E$ = 0 - 126 = -126，其实际有效数字为 ${0.00000000000000000000001}_2$。因此，二进制下，其表示的实际值为 $V = {0.00000000000000000000001}_2 \times 2^{-126} \approx 1.40130 \times 10^{-45}$。</p>
+
+<h4 id="规约形式单精度浮点数能表示的最小正值">规约形式单精度浮点数能表示的最小正值<a href="#规约形式单精度浮点数能表示的最小正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾码</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0000 0001</td>
+<td>000 0000 0000 0000 0000 0000</td>
+</tr>
+</tbody>
+</table>
+
+<p>不难得出，其实际指数为 $E$ = 1 - 127 = -126，其实际有效数字为 ${1.00000000000000000000000}_2$。因此，二进制下，其表示的实际值为 $V = {1.00000000000000000000000}_2 \times 2^{-126} \approx 1.17549 \times 10^{-38}$。</p>
+
+<h5 id="单精度浮点数能表示的最大正值">单精度浮点数能表示的最大正值<a href="#单精度浮点数能表示的最大正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<table>
+<thead>
+<tr>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾码</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>1111 1110</td>
+<td>111 1111 1111 1111 1111 1111</td>
+</tr>
+</tbody>
+</table>
+
+<p>不难得出，不难得出，其实际指数 $E$ = 254 - 127 = 127，其实际有效数字为 ${1.11111111111111111111111}_2$。因此，二进制下，其表示的实际值为 $V = {1.11111111111111111111111}_2 \times 2^{127} \approx 3.40282 \times 10^{38}$。</p>
+
+<p>对于负数也是一样的，这里也不做过多讨论。</p>
+
+<p>双精度也是与此类似的，这里只给出如下结论：</p>
+
+<h5 id="非规约形式双精度浮点数能表示的最小正值">非规约形式双精度浮点数能表示的最小正值<a href="#非规约形式双精度浮点数能表示的最小正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>$2^{-1074} \approx 4.94066 \times 10^{-324}$</p>
+
+<h5 id="规约形式双精度浮点数能表示的最小正值">规约形式双精度浮点数能表示的最小正值<a href="#规约形式双精度浮点数能表示的最小正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>$2^{-1022} \approx 2.22507 \times 10^{-308}$</p>
+
+<h5 id="双精度浮点数能表示的最大正值">双精度浮点数能表示的最大正值<a href="#双精度浮点数能表示的最大正值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>$(1 - 2^{-53}) \times 2^{1024} \approx 1.79769 \times 10^{308}$</p>
+
+<h3 id="精度-precision-与-间隙-gap">精度 (Precision) 与 间隙 (Gap)<a href="#精度-precision-与-间隙-gap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>首先摘抄一段来自 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Range_and_precision">Wikipedia</a> 的原文：</p>
+
+<blockquote>
+<p><strong>Precision</strong> is defined as the minimum difference between two successive mantissa representations; thus it is a function only in the mantissa; while the <strong>gap</strong> is defined as the difference between two successive numbers.</p>
+</blockquote>
+
+<p>简单翻译过来就是（不知道翻译错没有）：</p>
+
+<p><strong>精度</strong>的定义为两个连续尾数表示之间的最小差值，因此它只是存在于尾数中的功能。而<strong>间隙</strong>被定义为两个连续数字之间的差值。</p>
+
+<p>对于<strong>精度</strong>，我们已经可以很容易地回答这个问题了。对于单精度浮点数，尾码有 $23$ 位。$2^{23} = 8388608$，因此<strong>单精度浮点数最长（不完整地）可存储小数点后 $7$ 位，但只能完整地存储小数点后 $6$ 位</strong>。</p>
+
+<p>而对于<strong>间隙</strong>出现的原因，我们可以这样理解。</p>
+
+<p>前面我们提到了浮点数内部存储实际上是二进制科学记数法，我们不难发现尾数是有限位的。当指数越来越大时，相邻两尾数表示的两实际值之间的大小也越来越大。这两实际值之间的差也就是<strong>间隙</strong>。而在间隙之间的数是无法被准确存储下来的。</p>
+
+<p>我们不妨从 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Single_precision">Wikipedia</a> 摘录一个展示单精度类型在不同指数下相邻两实际值之间的间隙大小的表格。其中最小值和最大值分别代表当实际指数一定时该浮点数可表示的最小十进制数和最大十进制数。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>实际指数</strong></th>
+<th><strong>阶码</strong></th>
+<th><strong>最小值</strong></th>
+<th><strong>最大值</strong></th>
+<th><strong>间隙</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>127</td>
+<td>1</td>
+<td>≈ 1.999999880791</td>
+<td>≈ 1.19209e-7</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>128</td>
+<td>2</td>
+<td>≈ 3.999999761581</td>
+<td>≈ 2.38419e-7</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>129</td>
+<td>4</td>
+<td>≈ 7.999999523163</td>
+<td>≈ 4.76837e-7</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>137</td>
+<td>1024</td>
+<td>≈ 2047.999877930</td>
+<td>≈ 1.22070e-4</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>138</td>
+<td>2048</td>
+<td>≈ 4095.999755859</td>
+<td>≈ 2.44141e-4</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>150</td>
+<td>8388608</td>
+<td>16777215</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>24</td>
+<td>151</td>
+<td>16777216</td>
+<td>33554430</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>127</td>
+<td>254</td>
+<td>≈ 1.70141e38</td>
+<td>≈ 3.40282e38</td>
+<td>≈ 2.02824e31</td>
+</tr>
+</tbody>
+</table>
+
+<p>根据表格，当实际指数为 24 时，相邻两数间的差值已经达到了 2 这么大。因此，$162777217$ 实际上是无法用浮点数表示的，因为事实上它的值会丢失精度至 $162777216$。</p>
+
+<p>相比单精度，由于双精度的尾数总位数更长，故在指数相同时，双精度数与数之间的间隙会比单精度数更小。下面我们也继续从 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Double_precision">Wikipedia</a> 摘录一个展示双精度类型不同指数下相邻两实际值间间隙的表格：</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>实际指数</strong></th>
+<th><strong>阶码</strong></th>
+<th><strong>最小值</strong></th>
+<th><strong>最大值</strong></th>
+<th><strong>间隙</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>1023</td>
+<td>1</td>
+<td>≈ 1.999999999999999777955</td>
+<td>≈ 2.22045e-16</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1024</td>
+<td>2</td>
+<td>≈ 3.999999999999999555911</td>
+<td>≈ 4.44089e-16</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>1025</td>
+<td>4</td>
+<td>≈ 7.999999999999999111822</td>
+<td>≈ 8.88178e-16</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>1033</td>
+<td>1024</td>
+<td>≈ 2047.999999999999772626</td>
+<td>≈ 2.27374e-13</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>1034</td>
+<td>2048</td>
+<td>≈ 4095.999999999999545253</td>
+<td>≈ 4.54747e-13</td>
+</tr>
+
+<tr>
+<td>52</td>
+<td>1075</td>
+<td>4503599627370496</td>
+<td>9007199254740991</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>53</td>
+<td>1076</td>
+<td>9007199254740992</td>
+<td>18014398509481982</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>1023</td>
+<td>2046</td>
+<td>≈ 8.98847e307</td>
+<td>≈ 1.79769e308</td>
+<td>≈ 1.99584e292</td>
+</tr>
+</tbody>
+</table>
+
+<p>这也完美地解释了前几天在学校的 OJ 上水题有的题明明在单精度取值范围内却没法用单精度 A 掉的原因…… 看起来还是我太弱了 orz。</p>
+
+<h1 id="小结">小结<a href="#小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>懒得写了（逃</p>
+
+<h1 id="参考文献">参考文献<a href="#参考文献" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>排序顺序嘛…… 我才不会告诉你是乱序呢。</p>
+
+<ul>
+<li>红太阳 <a href="http://fstqwq.pw">fstqwq</a> %%%</li>
+<li>维基百科 - <a href="https://zh.wikipedia.org/zh-cn/%E4%BA%8C%E8%A3%9C%E6%95%B8">补码</a></li>
+<li>维基百科 - <a href="https://zh.wikipedia.org/wiki/IEEE_754">IEEE 754</a></li>
+<li>Wikipedia - <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754-1985</a></li>
+<li>adream307 - <a href="http://blog.csdn.net/adream307/article/details/7246993">float 的内存结构</a></li>
+<li>andyhzw - <a href="http://blog.chinaunix.net/uid-28458801-id-3507427.html">C/C++ 中浮点数的存储方式</a></li>
+<li>wenrang - <a href="http://blog.csdn.net/wenrang/article/details/5758759">浮点数与 IEEE 浮点标准</a></li>
+</ul>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/computer-organization">Computer Organization</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3867 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-08-18 22:43 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#整型">整型</a>
+<ul>
+<li><a href="#无符号整形">无符号整形</a></li>
+<li><a href="#整形">整形</a></li>
+</ul></li>
+<li><a href="#浮点">浮点</a>
+<ul>
+<li><a href="#整体结构">整体结构</a>
+<ul>
+<li><a href="#单精度">单精度</a></li>
+<li><a href="#双精度">双精度</a></li>
+</ul></li>
+<li><a href="#指数偏移值">指数偏移值</a></li>
+<li><a href="#规约形式与非规约形式">规约形式与非规约形式</a>
+<ul>
+<li><a href="#规约形式-normalized-numbers">规约形式 (Normalized numbers)</a></li>
+<li><a href="#非规约形式-denormalized-numbers">非规约形式 (Denormalized numbers)</a>
+<ul>
+<li><a href="#为什么要这样规定">为什么要这样规定？</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#特殊值">特殊值</a></li>
+<li><a href="#取值范围-精度和间隙">取值范围、精度和间隙</a>
+<ul>
+<li><a href="#取值范围-range">取值范围 (Range)</a>
+<ul>
+<li><a href="#非规约形式单精度浮点数能表示的最小正值">非规约形式单精度浮点数能表示的最小正值</a></li>
+<li><a href="#规约形式单精度浮点数能表示的最小正值">规约形式单精度浮点数能表示的最小正值</a>
+<ul>
+<li><a href="#单精度浮点数能表示的最大正值">单精度浮点数能表示的最大正值</a></li>
+<li><a href="#非规约形式双精度浮点数能表示的最小正值">非规约形式双精度浮点数能表示的最小正值</a></li>
+<li><a href="#规约形式双精度浮点数能表示的最小正值">规约形式双精度浮点数能表示的最小正值</a></li>
+<li><a href="#双精度浮点数能表示的最大正值">双精度浮点数能表示的最大正值</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#精度-precision-与-间隙-gap">精度 (Precision) 与 间隙 (Gap)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#小结">小结</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>计算导论: 计算系统基本思维</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>高考导数: 洛必达法则</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="8"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script>
+</body>
+
+</html>

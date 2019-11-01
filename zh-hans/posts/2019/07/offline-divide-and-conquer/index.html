@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="浅谈离线分治算法">
+<meta itemprop="description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+
+
+<meta itemprop="datePublished" content="2019-07-22T20:25:56&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-22T20:25:56&#43;08:00" />
+<meta itemprop="wordCount" content="10990">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Divide and Conquer," />
+<meta property="og:title" content="浅谈离线分治算法" />
+<meta property="og:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2019-07-22T20:25:56+08:00" />
+<meta property="article:modified_time" content="2019-07-22T20:25:56+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="浅谈离线分治算法"/>
+<meta name="twitter:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>浅谈离线分治算法</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 22, 2019</span></div>
+				<h1>浅谈离线分治算法</h1>
+			</header>
+			<div class="content">
+				
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#分治思想">分治思想</a></li>
+<li><a href="#基于时间的离线分治">基于时间的离线分治</a><ul>
+<li><a href="#cdq-分治">CDQ 分治</a><ul>
+<li><a href="#从归并排序讲起">从归并排序讲起</a></li>
+<li><a href="#偏序问题">偏序问题</a></li>
+<li><a href="#动态数据结构问题">动态数据结构问题？</a></li>
+<li><a href="#优化动态规划">优化动态规划</a></li>
+<li><a href="#小结">小结</a></li>
+</ul></li>
+<li><a href="#线段树分治">线段树分治</a><ul>
+<li><a href="#动态二分图判定">动态二分图判定</a></li>
+<li><a href="#虚假的强制在线">虚假的强制在线</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#基于数值的离线分治">基于数值的离线分治</a><ul>
+<li><a href="#整体二分">整体二分</a><ul>
+<li><a href="#静态区间第-k-小">静态区间第 <span class="math inline">\(k\)</span> 小</a></li>
+<li><a href="#动态区间第-k-小">动态区间第 <span class="math inline">\(k\)</span> 小</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>七月在集训队内水了一次讲座，本来打算随便普及一下 CDQ 分治，然后<del>结果发现大家全都会</del>，于是只好稍稍再多研究了一点点，并在这一过程中有了不少感想。虽然之前也写过一篇离线分治的文章，但是反过来看发现当时写的太垃圾了，于是就决定重写一遍，用更合理和更能看见本质的方式来介绍一波离线分治。</p>
+<p>另外这里也附上我当时讲座用的 <a href="https://1drv.ms/p/s!AothL07zyekdmbw3p-C5cCTR8596Xw?e=lqfUlG">演示文档</a> （密码：<code>niNT@iqi@nGLe~</code>），不过当时时间紧迫没有仔细验稿，有错恳请指出 QAQ。另外当时因为经验不足，加之下午又刚好被安排了比赛，因此讲的速度可能过快了一点，实在是非常抱歉 QAQ。大家可以通过这篇文章简要地进行复习~</p>
+</div>
+<div id="分治思想" class="section level1">
+<h1>分治思想</h1>
+<p>分治算法，即“分而治之”，每次将当前的问题化成两个或更多相同或相似的子问题，再对每个分出的问题进行同样的操作…… 直到子问题足够地小，让我们能够方便地直接求解。归并排序便是分治算法的经典应用之一。</p>
+<p>不过，在过去我们遇到的题目中，可能分治思想更多应用在动态规划这一类的题目中。我们来考虑，在允许离线算法的数据结构问题中，是否可以尝试对操作和询问进行分治？</p>
+<p>数据结构问题…… 数据结构问题的本质是什么？</p>
+<p>数据结构问题往往要求我们维护一系列数据，并对一系列操作依次做出响应。其中，操作往往可以分为以下两种：</p>
+<ul>
+<li>查询：统计数据信息；</li>
+<li>修改：更新数据状态。</li>
+</ul>
+<p>有了这样的定义后，我们便可以把常见的数据结构问题分为如下两类：</p>
+<ul>
+<li>静态问题：只有查询，或者所有查询都在所有修改之后进行。</li>
+<li>动态问题：所有不是静态问题的数据结构问题 😝。</li>
+</ul>
+<p>同时，我们也可以把我们用于数据结构的算法分为两类：</p>
+<ul>
+<li>在线算法：对于每一个查询及时进行响应的算法；</li>
+<li>离线算法：预先知道所有操作，集中进行处理后再批量回答查询。</li>
+</ul>
+<p>比如，常见的线段树就是一个在线算法，因为它能够对每一个询问做出及时的响应；而莫队则是一个离线算法，因为我们必须预先知道完整的操作序列才能够计算答案。</p>
+<p>顾名思义，本文所要讲的算法都是离线算法。离线所能带来的好处就是通过增加 <span class="math inline">\(\mathcal{O}(\log{n})\)</span> 的复杂度达到原问题进行简化的目的，或许是把动态问题转换成更加容易处理的静态问题，亦或是把带有插入和删除的操作序列转换成只包含插入操作…… 非常的优雅与简洁，这也是我非常喜欢这一思想的主要原因。</p>
+</div>
+<div id="基于时间的离线分治" class="section level1">
+<h1>基于时间的离线分治</h1>
+<div id="cdq-分治" class="section level2">
+<h2>CDQ 分治</h2>
+<div id="从归并排序讲起" class="section level3">
+<h3>从归并排序讲起</h3>
+<p><span class="math inline">\(mergesort(l, r)\)</span>：对序列下表区间 <span class="math inline">\([l, r]\)</span> 内元素按值进行排序</p>
+<ul>
+<li><span class="math inline">\(mid = \frac{1}{2}(l + r)\)</span>；</li>
+<li><span class="math inline">\(mergesort(l, mid)\)</span>；</li>
+<li><span class="math inline">\(mergesort(mid + 1, r)\)</span>；</li>
+<li>双指针合并两个左右有序区间：<span class="math inline">\(merge(l, mid + 1, r + 1)\)</span></li>
+</ul>
+<p>不难发现，归并排序巧妙地避开了对区间进行排序本身，把问题完全转变为了两个有序区间的合并问题。只要能解决后者，那么前者就解决了。这能不能给我们带来一些启发呢？</p>
+</div>
+<div id="偏序问题" class="section level3">
+<h3>偏序问题</h3>
+<p>对于两个 <span class="math inline">\(k\)</span> 元组 <span class="math inline">\(t_1: \langle x_1, x_2, \dots x_k \rangle, \ t_2: \langle y_1, y_2, \dots y_k \rangle\)</span>，如果 <span class="math inline">\(\forall i \in [1, k]\)</span>，满足 <span class="math inline">\(x_i &lt; y_i\)</span>，那么我们称 <span class="math inline">\(\langle t_1, t_2 \rangle\)</span> 构成一组 <span class="math inline">\(k\)</span> 维偏序（有的地方可能会把 <span class="math inline">\(&lt;\)</span> 定义成 <span class="math inline">\(\le\)</span>）。</p>
+<div id="三维偏序" class="section level4">
+<h4>三维偏序</h4>
+<p>我们来考虑这样一个问题：</p>
+<p>给定 <span class="math inline">\(n\)</span> 个三元组 <span class="math inline">\(p_i = \langle a_i, b_i, c_i \rangle\)</span>，对于每一个元素 <span class="math inline">\(p_i\)</span>，求满足：<span class="math inline">\(a_i &lt; a_j, b_i &lt; b_j, c_i &lt; c_j\)</span> 的 <span class="math inline">\(\langle i, j \rangle\)</span> 对数。为了方便，我们先考虑不存在 <span class="math inline">\(i, j\)</span> 使得 <span class="math inline">\(a_i = a_j\)</span> 或 <span class="math inline">\(b_i = b_j\)</span> 或 <span class="math inline">\(c_i = c_j\)</span> 的情况。</p>
+<p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, 1 \le a_i, b_i, c_i \le 10^9\)</span>。</p>
+<hr />
+<p>首先，如果是二维偏序问题的话（即假设每个元素只有 <span class="math inline">\(a, b\)</span> 两维），我们可以很容易想到一个解法：首先将所有元素按照 <span class="math inline">\(a\)</span> 维从小到大排序，然后将 <span class="math inline">\(b\)</span> 维离散化，按值扔进一个树状数组双指针统计一下就好了（即从小到大遍历 <span class="math inline">\(a\)</span>，然后在树状数组中 <span class="math inline">\(b\)</span> 的位置 <span class="math inline">\(+1\)</span>，每次都统计一下当前树状数组中小于当前 <span class="math inline">\(a\)</span> 的前缀和即可）。理论上三维偏序我们可以用一个二维树状数组解决，然而空间开不下，这可怎么办呢……</p>
+<p>我们还是先将所有元素按照 <span class="math inline">\(a\)</span> 维从小到大进行排序，接下来考虑这样一个算法：</p>
+<p><span class="math inline">\(solve(l, r)\)</span>：<span class="math inline">\(\forall k \in [l, r]\)</span>，计算第 <span class="math inline">\([l, k - 1]\)</span> 项元素对第 <span class="math inline">\(k\)</span> 项元素的贡献（与此同时对所有三元组按照 <span class="math inline">\(b\)</span> 维排序）：</p>
+<ul>
+<li><span class="math inline">\(mid = \frac{1}{2}(l + r)\)</span>；</li>
+<li><span class="math inline">\(solve(l, mid)\)</span>；</li>
+<li><span class="math inline">\(solve(mid + 1, r)\)</span>；</li>
+<li><strong>计算 <span class="math inline">\([l, mid]\)</span> 中元素对 <span class="math inline">\([mid + 1, r]\)</span> 中每个元素造成的贡献</strong>，同时双指针合并两个左右有序区间：<span class="math inline">\(merge(l, mid + 1, r + 1)\)</span>。</li>
+</ul>
+<hr />
+<p>接下来我们简要谈谈为什么这一算法是正确的。对于第 <span class="math inline">\(k\)</span> 项元素而言（作为偏序对中较大的元素）：</p>
+<ul>
+<li>若 <span class="math inline">\(k \le mid\)</span>，则 <span class="math inline">\(solve(l, mid)\)</span> 已经计算它所能与第 <span class="math inline">\([l, k - 1]\)</span> 项元素构成的偏序对数量；</li>
+<li>若 <span class="math inline">\(k &gt; mid\)</span>，则 <span class="math inline">\(solve(mid + 1, r)\)</span> 已经计算了其所能与第 <span class="math inline">\([mid + 1, k - 1]\)</span> 项元素构成的偏序对数量；最后一步则计算了其可与第 <span class="math inline">\([l, mid]\)</span> 项元素构成的偏序对数量。两者相加后即为其与第 <span class="math inline">\([l, k - 1]\)</span> 项元素可构成的偏序对数量。</li>
+<li>Voilà!</li>
+</ul>
+<hr />
+<p>那么接下来我们需要仔细探讨一下上述算法中第 <span class="math inline">\(4\)</span> 步应当如何进行。不难发现在这一步时有两个重要特性：</p>
+<ul>
+<li>左区间中所有元素 <span class="math inline">\(a\)</span> 维一定小于右区间中所有元素 <span class="math inline">\(a\)</span> 维；</li>
+<li>左右区间都已经按 <span class="math inline">\(b\)</span> 维排好序了。</li>
+</ul>
+<p>显然，这意味着我们不用去管 <span class="math inline">\(a\)</span> 维了，因为只要两个元素一个来自于左区间而另一个来自右区间，那么它们在 <span class="math inline">\(a\)</span> 维上肯定是满足偏序对要求的。那么…… <span class="math inline">\(b\)</span> 维已经排好序了，<span class="math inline">\(c\)</span> 维…… 等等，这不就是个二维偏序问题吗？所以我们只需要采用之前对二维偏序的做法对其进行处理就完事了~ 不难发现，采用了分治思想后，我们成功地将原问题的维度降低了一维。</p>
+<hr />
+<p>接下来我们简单分析一下复杂度：记当前分治区间长度为 <span class="math inline">\(n\)</span>，且第 <span class="math inline">\(4\)</span> 步处理所需复杂度为 <span class="math inline">\(\mathcal{O}(f(n))\)</span>（比如在上例中就是树状数组的复杂度即 <span class="math inline">\(\mathcal{O}(\log{n})\)</span>，则有：</p>
+<p><span class="math display">\[
+T(n) = 2T(\frac{n}{2}) + \mathcal{O}(f(n))
+\]</span></p>
+<p>借助主定理解一下（或者画递归树看一看）不难得到：</p>
+<p><span class="math display">\[
+T(n) \le \mathcal{O}(f(n) \log{n})
+\]</span></p>
+<p>通过复杂度计算我们也得到一条重要注意事项：我们必须保证在执行第 <span class="math inline">\(4\)</span> 步的时候复杂度与当前分治区间长度相关而不可以与整个区间长度相关，否则复杂度就不是上面这个样子了。在之前提到的具体问题中，就是清空树状数组的时候不能直接 <code>memset</code>，而必须逐一删除被修改了的部分，这样才能保证复杂度正确。</p>
+<hr />
+<p>下面简要上一段代码以供参考：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">void</span> divideConquer(<span class="dt">int</span> headPt, <span class="dt">int</span> tailPt) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">if</span> (headPt == tailPt)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="cf">return</span>;</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="dt">int</span> midPt = (headPt + tailPt) &gt;&gt; <span class="dv">1</span>;</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    divideConquer(headPt, midPt); divideConquer(midPt + <span class="dv">1</span>, tailPt);</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">int</span> j = headPt; <span class="co">// j: 左区间中指针；i: 右区间中指针</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = midPt + <span class="dv">1</span>; i &lt;= tailPt; i++) {</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        <span class="cf">for</span> (; j &lt;= midPt &amp;&amp; arr[j].b &lt; arr[i].b; j++) </span>
+<span id="cb1-9"><a href="#cb1-9"></a>            add(arr[j].c, <span class="dv">1</span>);</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="co">// 统计总三维偏序对数量（树状数组中 c 维小于当前的数量）</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        ans += prefixSum(arr[i].c - <span class="dv">1</span>);</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    }</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="co">// 撤销对树状数组的更改</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = headPt; i &lt; j; i++)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        add(arr[i].c, -<span class="dv">1</span>);</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="co">// 按 b 维合并左右有序区间（cmpSnd 为按照 b 维从小到大排序的比较函数）</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>    inplace_merge(arr + headPt, arr + midPt + <span class="dv">1</span>, arr + tailPt + <span class="dv">1</span>, cmpSnd);</span>
+<span id="cb1-18"><a href="#cb1-18"></a>}</span></code></pre></div>
+<hr />
+<p>接下来，我们再来仔细考虑一下之前为了方便引入的限制。如果不满足不同元素间同一维上的值互不相同会引入什么问题？</p>
+<p>问题依然是出在第 <span class="math inline">\(4\)</span> 步。在这一步时，我们只能保证左区间 <span class="math inline">\(a\)</span> 维<strong>小于等于</strong>右区间，而不能保证<strong>严格小于</strong>。换言之，在对 <span class="math inline">\(b\)</span> 维进行分治时，可能出现对于右区间某元素，左区间中存在某个元素使得两者 <span class="math inline">\(a\)</span> 维相等。读者可以先自行思考一下如何解决这一问题~</p>
+<p>这里提供一种解决方法以供参考：先将 <span class="math inline">\(a\)</span> 维离散化，在双指针处理时开一个数组来记录某个 <span class="math inline">\(a\)</span> 维值对应的左区间中的元素的个数，在统计时减掉 <span class="math inline">\(a\)</span> 维相等的情况。</p>
+<p>最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： <a href="https://www.luogu.org/problem/P3810">洛谷 P3810: 陌上花开</a>。顺便附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
+</div>
+<div id="四维偏序" class="section level4">
+<h4>四维偏序？</h4>
+<p>既然三维偏序可以借助分治降成二维偏序，那么四维偏序何尝不可以借助分治降为三维偏序，然后再借助一层分治降成二维偏序呢？（不过 <span class="math inline">\(\mathcal{O}(n\log^3{n})\)</span> 这个复杂度也是挺尴尬的……</p>
+<p>如果您已经跃跃欲试，不妨去 <a href="http://cogs.pro:8080/cogs/problem/problem.php?pid=vmXQmVqWP">COGS 2479:【HZOI 2016】偏序</a> 当场表演一波（逃……</p>
+<p>不过当我们在对 <span class="math inline">\(c\)</span> 维进行分治（即三维偏序降为二维偏序）时只能保证任意左区间元素 <span class="math inline">\(p_i\)</span> 和任意右区间元素 <span class="math inline">\(p_j\)</span> 之间满足 <span class="math inline">\(b_i \le b_j\)</span>，而并不能保证 <span class="math inline">\(a_i \le a_j\)</span>。因此：</p>
+<ul>
+<li>对 <span class="math inline">\(b\)</span> 维进行分治时，合并左右区间前应标记此时元素属于哪个区间，且合并后应当备份这一区间；</li>
+<li>对 <span class="math inline">\(c\)</span> 维进行分治时计算两层分治都在左区间的元素对两层分治都在右区间的元素的贡献，完成后应将区间从备份恢复以继续 <span class="math inline">\(b\)</span> 维上的分治。</li>
+</ul>
+<p>具体的实现可以参考一下 <a href="https://github.com/codgician/Competitive-Programming/blob/master/COGS/2479/divide_and_conquer_2d.cpp">我的代码</a>。</p>
+</div>
+<div id="十维偏序" class="section level4">
+<h4>十维偏序？</h4>
+<p>在 <span class="math inline">\(10^5\)</span> 的这个数据范围下，<span class="math inline">\(\mathcal{O}(n^2)\)</span> 不香吗（逃……</p>
+</div>
+</div>
+<div id="动态数据结构问题" class="section level3">
+<h3>动态数据结构问题？</h3>
+<p>接下来我们讨论这个思想怎么跟动态数据结构问题扯上联系。</p>
+<p>我们来考虑一下动态数据结构问题中回答查询的本质：即计算初始数据和本次查询之前，所有修改对该查询造成的影响。那么我们能不能借助分治思想使得修改和查询不要混在一起呢？</p>
+<p><span class="math inline">\(solve(l, r)\)</span>：<span class="math inline">\(\forall k \in [l, r]\)</span>，若第 <span class="math inline">\(k\)</span> 项操作是查询，则计算 <span class="math inline">\([l, k - 1]\)</span> 中修改对其造成的影响：</p>
+<ul>
+<li><span class="math inline">\(mid = \frac{1}{2}(l + r)\)</span>；</li>
+<li><span class="math inline">\(solve(l, mid)\)</span>；</li>
+<li><span class="math inline">\(solve(mid + 1, r)\)</span>；</li>
+<li>计算第 <span class="math inline">\([l, mid]\)</span> 项操作中所有修改对 <span class="math inline">\([mid + 1, r]\)</span> 中所有查询造成的影响。</li>
+</ul>
+<p>这样一来，我们便将 “计算操作集区间 <span class="math inline">\([l, r]\)</span> 内所有查询” 这一问题转换为了 “计算左区间中所有修改对右区间中所有查询造成影响”。换言之，以 <span class="math inline">\(\mathcal{O}(\log{n})\)</span> 的代价，我们成功地将一个动态问题转换成了静态问题。</p>
+<hr />
+<p>我们仿照之前来对这一算法的正确性进行分析（同时也可以看出运用这一思想对原问题的一些要求）。设第 <span class="math inline">\(k\)</span> 项操作是查询，则：</p>
+<ul>
+<li>若 <span class="math inline">\(k \le mid\)</span>，则 <span class="math inline">\(solve(l, mid)\)</span> 已经计算了第 <span class="math inline">\([l, k - 1]\)</span> 项操作中所有修改对当前查询的影响；</li>
+<li>若 <span class="math inline">\(k &gt; mid\)</span>，则 <span class="math inline">\(solve(mid + 1, r)\)</span> 已经计算了第 <span class="math inline">\([mid + 1, k − 1]\)</span> 项操作中所有修改对当前查询操作的影响。只要这一影响满足可加性且满足交换律，并且不同修改操作造成的影响互相独立，直接加上最后一项计算就可以得到第 <span class="math inline">\([l, k − 1]\)</span> 项操作中所有修改对当前查询的影响。</li>
+</ul>
+<p>那么接下来我们就来看几个例子吧。</p>
+<div id="动态二维数点" class="section level4">
+<h4>动态二维数点</h4>
+<p>给定二维平面上 <span class="math inline">\(n\)</span> 个点且有 <span class="math inline">\(q\)</span> 次操作。需要支持两种操作：</p>
+<ul>
+<li>添加一个新坐标点；</li>
+<li>删除一个已有的坐标点；</li>
+</ul>
+<p>每次询问一个矩形区域 <span class="math inline">\((x_L, y_L), \ (x_R, y_R)\)</span> 内点的数量（左下和右上顶点坐标）。</p>
+<p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, \ q \le 10^5\)</span>。</p>
+<hr />
+<p>为了方便说明，我们先引入一些标记：</p>
+<ul>
+<li>记 <span class="math inline">\(a(x, y)\)</span> 代表 <span class="math inline">\((x, y)\)</span> 位置上点的个数；</li>
+<li>记 <span class="math inline">\(Q(x_L, y_L, x_R, y_R)\)</span> 代表矩形区域 <span class="math inline">\((x_L, y_L), \ (x_R, y_R)\)</span> 内点的数量；</li>
+<li>记 <span class="math inline">\(F(x, y)\)</span> 代表矩形区域 <span class="math inline">\((1, 1), (x, y)\)</span> 内点的数量（即二维前缀和）。</li>
+</ul>
+<p>那么显然，我们可以得到：</p>
+<p><span class="math display">\[
+Q(x_L, y_L, x_R, y_R) = \sum\limits_{i = x_L}^{x_R}\sum\limits_{j = y_L}^{y_R} a(i, j)
+\]</span></p>
+<p>借助一点点容斥原理，我们也可以推出：</p>
+<p><span class="math display">\[
+\begin{aligned}
+Q(x_L, y_L, x_R, y_R) = &amp; F(x_R, y_R) + F(x_L − 1, y_L − 1) \\
+&amp; − F(x_L − 1, y_R) − F(x_R, y_L − 1)
+\end{aligned}
+\]</span></p>
+<p>那么现在问题就转换为求解 <span class="math inline">\(F(x, y)\)</span> 了。为什么要做这一转换？因为通过之前的了解我们也发现分治思想能够很好解决两者之间的大小关系，而很难解决三者之间的大小关系。转换为前缀和后我们处理的便是两者间的大小关系了（💡 其实第三维是没有必要拆分的，这里只是为了方便说明所以一起拆了。大家可以想想为什么 😝）。</p>
+<p>另外既然要支持修改，那么意味着操作之间的顺序不能变。这等价于引入了时间维度 <span class="math inline">\(t\)</span>，越早出现的操作 <span class="math inline">\(t\)</span> 越小。这样问题便被转换为，若 <span class="math inline">\(P_i: \langle t_i, x_i, y_i \rangle\)</span> 是查询，则需计算所有满足以下条件修改的影响之和：</p>
+<ul>
+<li><span class="math inline">\(t_j &lt; t_i\)</span></li>
+<li><span class="math inline">\(x_j \le x_i, \ y_j \le y_i\)</span></li>
+</ul>
+<p>Umm… 这不就成一个三维偏序问题了吗？接下来我们会介绍这一模型的一种经典应用。</p>
+</div>
+<div id="动态区间不同值" class="section level4">
+<h4>动态区间不同值</h4>
+<p>给定一个长度为 <span class="math inline">\(n\)</span> 的序列，共 <span class="math inline">\(q\)</span> 次操作。需要支持两种操作：</p>
+<ul>
+<li>把位置 <span class="math inline">\(i\)</span> 上的数修改为 <span class="math inline">\(v\)</span>（从 <span class="math inline">\(1\)</span> 开始编号）；</li>
+<li>查询区间 <span class="math inline">\([L, R]\)</span> 内不同的数有多少种。</li>
+</ul>
+<p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, \ q \le 10^5\)</span>。</p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problemnew/show/P1903">Luogu P1903: 数颜色</a></p>
+<hr />
+<p>下面给出一点提示：</p>
+<ul>
+<li>记 <span class="math inline">\(pre(i)\)</span> 代表在位置 <span class="math inline">\(i\)</span> 左边与它最近的数值相同的数的位置；</li>
+<li>对于每次查询只计算满足 <span class="math inline">\(pre(𝑖) &lt; L\)</span> 的位置个数；</li>
+<li><span class="math inline">\(\langle l, 0 \rangle \le \langle i, pre(i) \rangle \le \rangle r, l - 1 \rangle\)</span>。</li>
+</ul>
+<p>至此我们成功得到了一个二维数点问题。</p>
+<p>不过最后还有一点问题，每次修改会影响 <span class="math inline">\(pre\)</span> 值。不过我们发现每次修改至多影响 <span class="math inline">\(3\)</span> 个位置的 <span class="math inline">\(pre\)</span> 值（假设修改位置 <span class="math inline">\(i\)</span>，那么 <span class="math inline">\(pre(i)\)</span>、原先值的后继 和 新值前驱的后继会改变），那么按值开 <span class="math inline">\(n\)</span> 个 <code>std::set</code> 维护即可。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P1903/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
+</div>
+<div id="动态曼哈顿最近点对" class="section level4">
+<h4>动态曼哈顿最近点对</h4>
+<p>二维平面上，有 <span class="math inline">\(q\)</span> 种操作。需要支持三种操作：</p>
+<ul>
+<li>添加一个新坐标点 <span class="math inline">\((x, y)\)</span>；</li>
+<li>删除一个已有的坐标点 <span class="math inline">\((x, y)\)</span>；</li>
+<li>查询距离 <span class="math inline">\((x_A, y_A)\)</span> 曼哈顿距离最接近的点。</li>
+</ul>
+<p><strong>数据范围</strong>：均为 <span class="math inline">\(10^5\)</span> 数量级。</p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problem/P4169">洛谷 P4169: 天使玩偶</a></p>
+<hr />
+<p><span class="math inline">\(A, B\)</span> 两点之间的曼哈顿距离：</p>
+<p><span class="math display">\[
+dist(A, B) = |x_A - x_B| + |y_A - y_B|
+\]</span></p>
+<p>首先看着这个绝对值符号就很不爽，我们需要考虑将绝对值符号去除掉。我们不妨对所有情况进行讨论试一试：</p>
+<p><span class="math display">\[
+\begin{cases}
+(x_A + y_A) - (x_B + y_B) &amp; x_A \ge x_B, \ y_A \ge y_B \\
+(x_A - y_A) - (x_B - y_B) &amp; x_A \ge x_B, \ y_A &lt; y_B \\
+(-x_A + y_A) - (-x_B + y_B) &amp; x_A &lt; x_B, \ y_A \ge y_B \\
+(-x_A - y_A) - (-x_B - y_B) &amp; x_A &lt; x_B, \ y_A &lt; y_B
+\end{cases}
+\]</span></p>
+<p>不难发现对于每一次询问 <span class="math inline">\((x_A, y_A)\)</span> 而言，上面四个式子前半部分都是定值。既然要最小化结果，那么我们只要让后半部分最小就好了。换言之，我们只需要对这四种情况都分别跑一次 CDQ 分治并且取最小答案就好了。不过，在实现的时候还有一个小技巧。我们还可以对上面的四种情况进行进一步整理：</p>
+<p><span class="math display">\[
+\begin{cases}
+(x_A + y_A) - (x_B + y_B) &amp; x_A \ge x_B, \ y_A \ge y_B \\
+(x_A + (\infty - y_A)) - (x_B + (\infty - y_B)) &amp; x_A \ge x_B, \ (\infty - y_A) &gt; (\infty - y_B) \\
+((\infty - x_A) + y_A) - ((\infty - x_B) + y_B) &amp; (\infty - x_A) &gt; (t - x_B), \ y_A \ge y_B \\
+((\infty - x_A) + (\infty - y_A)) - ((\infty - x_B) + (\infty - y_B)) &amp; (\infty - x_A) &gt; (\infty - x_B), \ (\infty - y_A) &gt; (\infty - y_B)
+\end{cases}
+\]</span></p>
+<p>需要注意的是，由于本题是取最大值，因此把上面式子中的 <span class="math inline">\(&gt;\)</span> 换成 <span class="math inline">\(\ge\)</span> 是不影响答案的；而如果是要计数的话则需要留意这一细节。</p>
+<p>不难发现，我们成功地把四个式子都转换成了如下的形式：</p>
+<p><span class="math display">\[
+x_A&#39; + y_A&#39; - (x_B&#39; + y_B&#39;) \quad x_A&#39; \ge x_B&#39;, \ y_A&#39; \ge y_B&#39;
+\]</span></p>
+<p>这样一来，我们只需要考虑这样一种情况就好了，我们只需要改变一下 <span class="math inline">\(x_A&#39;, y_A&#39;, x_B&#39;, y_B&#39;\)</span> 的值跑四遍一种情况即可，这样极大方便了代码编写。</p>
+<p>也就是说，现在问题转化成了需要支持下面两种操作：</p>
+<ul>
+<li>插入新点 <span class="math inline">\((x, y)\)</span>；</li>
+<li>给定点 <span class="math inline">\((x_A, y_A)\)</span>，询问满足以下条件的 <span class="math inline">\((x_B, y_B)\)</span>：
+<ul>
+<li><span class="math inline">\(x_A \ge x_B, \ y_A \ge y_B\)</span>；</li>
+<li><span class="math inline">\(x_B + y_B\)</span> 取值最大。</li>
+</ul></li>
+</ul>
+<p>可以看出，这依然是个三维偏序问题的变种。至于维护最大值，我们其实需要维护的只是前缀最大值，魔改一下树状数组就好了。</p>
+</div>
+</div>
+<div id="优化动态规划" class="section level3">
+<h3>优化动态规划</h3>
+<div id="三维-lis" class="section level4">
+<h4>三维 LIS</h4>
+<p>给定长为 <span class="math inline">\(n\)</span> 的三元组序列 <span class="math inline">\(p_i = \langle a_i, b_i, c_i \rangle\)</span>，求其最长的上升子序列。</p>
+<p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, a_i, b_i, c_i \le 2^{30}\)</span></p>
+<p><strong>题目链接</strong>：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4742">HDUOJ 4742: Pinball Game 3D</a></p>
+<hr />
+<p>借助分治对 <span class="math inline">\(dp(i)\)</span> 进行更新就行了~</p>
+<p>首先，LIS 的 DP 方程式很好写出：</p>
+<p>我们记 <span class="math inline">\(dp(i)\)</span> 代表前 <span class="math inline">\(i\)</span> 个元素所能构成的 LIS 长度，那么对于能够使得 <span class="math inline">\(\langle i, j \rangle\)</span> 构成偏序对的 <span class="math inline">\(j\)</span>，我们可以用如下转移方程来更新答案：</p>
+<p><span class="math display">\[
+dp(i) = \max\limits_{j &lt; i}\{dp(j)\} + 1
+\]</span></p>
+<p>但是在 DP 时我们需要注意顺序问题，比如采用上面方程的话我们需要从左往右 DP，换言之在更新 <span class="math inline">\(dp(i)\)</span> 时，<span class="math inline">\(\forall j &lt; i\)</span>，其 <span class="math inline">\(dp(j)\)</span> 应当都已被计算完成。所以在进行分治的时候我们要 “中序” 进行，即先左区间递归，然后计算左右之间贡献，最后再右区间递归。由于双指针合并要求左右区间有序，因此左区间递归后还需对右区间进行排序，同时递归右区间前还需还原右区间的顺序。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/HDUOJ/4742/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
+</div>
+</div>
+<div id="小结" class="section level3">
+<h3>小结</h3>
+<p>通过上面的例题，我们大致领略了 CDQ 分治这一思想的几个神奇作用，即
+以 <span class="math inline">\(\mathcal{O}(\log{n})\)</span> 复杂度的代价：</p>
+<ul>
+<li>将区间内的问题转化为两个有序区间之间的问题；</li>
+<li>将高维的问题维度降低一维；</li>
+<li>将动态数据结构问题转化成静态数据结构问题。</li>
+</ul>
+</div>
+</div>
+<div id="线段树分治" class="section level2">
+<h2>线段树分治</h2>
+<p>前面也提到了动态数据结构问题带有修改操作，而修改操作也可以被分为插入和删除两种。如果插入和删除都比较好实现的话，那么运用上面的 CDQ 分治就可以容易求解问题了。但是再有的题目里面，插入很好实现，但是删除却难以实现。比如并查集维护图的连通性时，添加边很容易，但是如果要删除边就会很复杂（因为并查集里面只维护了连通性而没有维护原图本身）。在这种时候，我们便可以考虑用线段树分治以 <span class="math inline">\(\mathcal{O}(\log{n})\)</span> 的代价把带有插入和删除的问题转化为只带插入的问题。</p>
+<p>为了便于理解，我们直接上一道经典例题。</p>
+<div id="动态二分图判定" class="section level3">
+<h3>动态二分图判定</h3>
+<p>给定一张 <span class="math inline">\(n\)</span> 个点的图，在 <span class="math inline">\(T\)</span> 时间内一些边会在 <span class="math inline">\(s_i\)</span> 时刻出现，并在 <span class="math inline">\(t_i\)</span> 时刻消失。询问每一个时刻该图是否是二分图。</p>
+<p><strong>数据范围</strong>：均在 <span class="math inline">\(10^5\)</span> 级别。</p>
+<p><strong>题目链接</strong>：<a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025">BZOJ 4025: 二分图</a> | <a href="https://darkbzoj.tk/problem/4025">如果挂了试试这个</a></p>
+<hr />
+<p>首先，判断是否构成二分图的本质即判断是否存在奇环。一张无向图不存在奇环是该图为二分图的充要条件。那么如何维护奇环信息？我们可以用带权的并查集解决，即在并查集中记录一个深度，如果在连边时两点深度加起来在加 <span class="math inline">\(1\)</span> 是奇数的话，就说明存在奇环了（大家可以想想为什么）。</p>
+<p>现在问题来了，并查集中加边容易删边难，这可怎么办 QAQ。</p>
+<p>首先，对于元素又有插入又有删除这一特性，说明每一个元素都有一个存活的时间区间（在这道题里面是直接把存活区间给出了）。对于更一般的情况，我们可以对于每一个元素预处理出时间区间，然后对时间区间进行分治。</p>
+<p>假设一共有 <span class="math inline">\(q\)</span> 次询问（即 <span class="math inline">\(q\)</span> 个事件），考虑对完整时间区间 <span class="math inline">\([1, q]\)</span> 建一棵线段树，那么对于时间点的询问即询问这棵线段树的叶子节点上的状态；而对于边的修改则是对线段树上对应区间上的修改。这样问题就转换为对于一个时间区间加边和查询叶子节点，也就不存在删边这种操作了。而整个分治过程本质上就是对这一棵线段树做先序遍历。</p>
+<hr />
+<p><span class="math inline">\(solve(l, r, Q)\)</span>：对于时刻 <span class="math inline">\([l, r]\)</span>，操作集为 <span class="math inline">\(Q\)</span>，满足 <span class="math inline">\(\forall q \in Q\)</span>，其存活时间区间与当前分治的时间区间交集非空；而这个函数的作用为对于 <span class="math inline">\([l, r]\)</span> 内每个时刻，判断此时图是否是二分图。操作集 <span class="math inline">\(Q\)</span> 中元素 <span class="math inline">\(q\)</span> 带有 <span class="math inline">\(4\)</span> 个属性：<span class="math inline">\(\langle u, v, l, r \rangle\)</span>。其中，<span class="math inline">\(u, v\)</span> 代表边的两个端点，而 <span class="math inline">\(l, r\)</span> 代表出现和消失时刻。我们可以考虑如下算法：</p>
+<ul>
+<li><span class="math inline">\(mid = \frac{1}{2} (l + r)\)</span>，并新建两个空操作集 <span class="math inline">\(Q_L, Q_R\)</span>；</li>
+<li>遍历 <span class="math inline">\(q \in Q\)</span>：
+<ul>
+<li>若 <span class="math inline">\(q.l = l \land q.r = r\)</span>（说明这一操作对其子树中所有叶子节点都有影响，那么直接加边）：
+<ul>
+<li>并查集中合并 <span class="math inline">\(q.u\)</span> 和 <span class="math inline">\(q.v\)</span>，并判断是否出现奇环；</li>
+<li>存在奇环？说明时间区间 <span class="math inline">\([l, r]\)</span> 都凉了，均标记答案为否！<strong>撤销对并查集的操作并回溯</strong>（所以我们需要可撤销并查集，其实也很简单，就搞一个栈记录一下操作之前值的情况然后撤销的时候弹栈就好了）；</li>
+</ul></li>
+<li>若 <span class="math inline">\(q.l \le mid\)</span>：令 <span class="math inline">\(q.r = \min⁡(q.r, mid)\)</span>，并把 <span class="math inline">\(q\)</span> 放入 <span class="math inline">\(Q_L\)</span>；</li>
+<li>若 <span class="math inline">\(q.r &gt; mid\)</span>：<span class="math inline">\(q.l = \max⁡(q.l, mid + 1)\)</span>，并把 <span class="math inline">\(q\)</span> 放入 <span class="math inline">\(Q_R\)</span>；</li>
+</ul></li>
+<li>若 <span class="math inline">\(l = r\)</span>，标记答案为是，<strong>撤销对并查集的操作并回溯</strong>；</li>
+<li><span class="math inline">\(solve(l, mid, Q_L)\)</span>；</li>
+<li><span class="math inline">\(solve(mid + 1, r, Q_R)\)</span>；</li>
+<li><strong>撤销对并查集的操作并回溯</strong>。</li>
+</ul>
+<p>这样一来，我们就成功避免了删除操作，从而更容易地得以解决问题。大家可以结合演示文稿里面的图示以方便理解。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/BZOJ/4025/divide_and_conquer_disjoint_set_heuristic.cpp">我的代码</a> 以供参考。我的写法实际上是没有建出线段树的，当然也有另外建出线段树的写法，大家也可以去了解一下。</p>
+</div>
+<div id="虚假的强制在线" class="section level3">
+<h3>虚假的强制在线</h3>
+<p>这一启发来自于 Codeforces 上一道有趣的题目。</p>
+<p>给定一个初始无边的含有 <span class="math inline">\(n\)</span> 个点的无向图（标号从 <span class="math inline">\(1\)</span> 开始），共 <span class="math inline">\(q\)</span> 次操作。操作有两种形式（其中 <span class="math inline">\(last\)</span> 代表上一次 <span class="math inline">\(2\)</span> 类操作的结果）：</p>
+<ul>
+<li><span class="math inline">\(1 \ x \ y \ (1 \le x, y \le n, \ x \neq y)\)</span>：在点 <span class="math inline">\((x + last - 1) \bmod (n + 1)\)</span> 和点 <span class="math inline">\((y + last - 1) \bmod (n + 1)\)</span> 间添加一条无向边；</li>
+<li><span class="math inline">\(2 \ x \ y \ (1 \le x, y \le n, \ x \neq y)\)</span>：查询点 <span class="math inline">\((x + last - 1) \bmod (n + 1)\)</span> 和点 <span class="math inline">\((y + last - 1) \bmod (n + 1)\)</span> 是否连通。</li>
+</ul>
+<p><strong>数据范围</strong>：<span class="math inline">\(2 \le n, q \le 10^5\)</span></p>
+<p><strong>题目链接</strong>：<a href="https://codeforces.com/contest/1217/problem/F">Codeforces 1217F: Forced Online Queries Problem</a></p>
+<hr />
+<p>虽说这道题看起来强制在线了，但是 <span class="math inline">\(last \in [0, 1]\)</span>，其实可能的操作种数顶多就 <span class="math inline">\(2q\)</span> 个。因此我们不妨考虑把所有操作都加入线段树分治，然后处理的时候只选取有效的那个处理。</p>
+<p>但是怎么判这个有效呢？我们是不是只有在执行完其之前最接近的 <span class="math inline">\(2\)</span> 类操作才能知道当前操作哪一个有效。换言之，只要在分治过程中能保证在处理每一条边前在其前面的 <span class="math inline">\(2\)</span> 类操作已经被处理过就行了。由于查询都在叶子上，所以我们单独开一个数组记录第 <span class="math inline">\(i\)</span> 时刻的查询是什么（即直接记录在线段树的叶子上）。</p>
+<p>我们可以施加一点小技巧。原本边的出现时间是区间 <span class="math inline">\((s, t)\)</span>，我们现在把它改成 <span class="math inline">\((s + 1, t)\)</span>。这一修改导致的结果非常微妙：首先，在 <span class="math inline">\(s\)</span> 时刻的操作其实是加边，不会同时进行查询，因此这一修改不会影响答案；其次，这样的修改保证了我们在把这一条边加入并查集是，<span class="math inline">\(s\)</span> 时刻对应的叶子节点一定是被遍历过的，即我们已经知道了 <span class="math inline">\(last\)</span> 确切的值，因此我们就可以判断出哪些操作是有效的了。</p>
+<p>详细的实现大家可以参考一下 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Codeforces/1217F/divide_and_conquer_disjoint_set_heuristic.cpp">我的代码</a>。</p>
+</div>
+</div>
+</div>
+<div id="基于数值的离线分治" class="section level1">
+<h1>基于数值的离线分治</h1>
+<div id="整体二分" class="section level2">
+<h2>整体二分</h2>
+<p>大家对于二分算法大概是非常熟悉的，但是我们接触到的传统的二分往往是针对单个询问进行二分。而整体二分则更进一步，对多个同类操作（包括修改和查询）一起二分答案，同时依据当前二分的判定值对当前操作集进行分类，再应用分治思想分而治之。而这一算法的经典应用即为区间第 <span class="math inline">\(k\)</span> 小。我们不妨以其作为例子来介绍整体二分。</p>
+<div id="静态区间第-k-小" class="section level3">
+<h3>静态区间第 <span class="math inline">\(k\)</span> 小</h3>
+<p>对于一个长度为 <span class="math inline">\(n\)</span> 的数列，现有 <span class="math inline">\(q\)</span> 次询问。每次询问给出 <span class="math inline">\(l, r, k\)</span>，试求数列中下标在 <span class="math inline">\([l, r]\)</span> 中第 <span class="math inline">\(k\)</span> 小的数的数值。</p>
+<p><strong>数据范围</strong>：<span class="math inline">\(1 \le n \le 10^5, \ 1 \le q \le 5 \times 10^3\)</span></p>
+<p><strong>题目链接</strong>： <a href="http://bailian.openjudge.cn/practice/2104/">POJ 2104: Kth Number</a></p>
+<hr />
+<p><del>主席树裸题？</del></p>
+<p>如果是对于单次查询，我们显然是可以先对区间进行预处理然后进行二分的。一种显而易见的思路就是将数值离散化然后开一个数组来记录每一个值在区间内出现的次数然后对前缀和进行二分。但是，当我们面对多个询问的时候，如果对每一个询问都进行预处理然后再二分，这样的复杂度显然是无法接受的。</p>
+<p>不难发现对于每个询问其实预处理的过程都是大致相同的。那么我们是否可以对多个询问同时进行二分操作呢？</p>
+<p>假设题目给定了由 <span class="math inline">\(n\)</span> 个询问组成的一个询问集合 <span class="math inline">\(Q\)</span>，并且我们知道所有出现过的数值的区间为 <span class="math inline">\([l, r]\)</span>。二分过程中，我们记 <span class="math inline">\(mid = \frac{1}{2}(l+r)\)</span>。在每一层递归中，我们首先对于 <span class="math inline">\(Q\)</span> 内每一个询问进行处理，求得该询问区间中数值在 <span class="math inline">\([l, mid]\)</span> 范围内的值的个数 <span class="math inline">\(cnt\)</span>。接下来，我们以此将 <span class="math inline">\(Q\)</span> 中的询问分为两类：<span class="math inline">\(cnt \ge k\)</span> 的以及 <span class="math inline">\(cnt &lt; k\)</span> 的。我们用 <span class="math inline">\(Q_1\)</span> 和 <span class="math inline">\(Q_2\)</span> 来表示这两类询问。</p>
+<p>对于 <span class="math inline">\(Q_1\)</span> 中的询问，我们显然可以在 <span class="math inline">\([l, mid]\)</span> 这一范围中求得答案。换句话说，<span class="math inline">\([l, r]\)</span> 中的第 <span class="math inline">\(k\)</span> 小即 <span class="math inline">\([l, mid]\)</span> 中的第 <span class="math inline">\(k\)</span> 小；而对于 <span class="math inline">\(Q_2\)</span> 中的询问，我们便可以得知答案坐落于 <span class="math inline">\((mid, r]\)</span> 这一范围中。显然，求 <span class="math inline">\([l, r]\)</span> 中的第 <span class="math inline">\(k\)</span> 小等价于求 <span class="math inline">\((mid, r]\)</span> 中的第 <span class="math inline">\(k - cnt\)</span> 小（我们需要剔除 <span class="math inline">\([l, mid)\)</span> 中的数）。通过这种方式，我们可以把问题 <span class="math inline">\(Q\)</span> 拆分成 <span class="math inline">\(Q_1\)</span> 和 <span class="math inline">\(Q_2\)</span> 两个子问题然后对它们进行分治并递归求解。递归结束于 <span class="math inline">\(l = r\)</span>，记此时的询问集为 <span class="math inline">\(Q&#39;\)</span>，则 <span class="math inline">\(Q&#39;\)</span> 中的所有询问的答案即为 <span class="math inline">\(r\)</span>，便可以求解问题了。</p>
+<p>我们最后需要解决的问题便是如何求得 <span class="math inline">\(cnt\)</span> 了。我们可以考虑将原始数列中的数值离散化，然后用一个树状数组来维护这一信息。树状数组的第 <span class="math inline">\(i\)</span> 位表示数列中第 <span class="math inline">\(i\)</span> 位上的值是否坐落于 <span class="math inline">\([l, mid]\)</span> 范围内，因此我们只需要在树状数组上求<span class="math inline">\([L, R]\)</span> 区间的区间和便可以得知下标 <span class="math inline">\([L, R]\)</span> 间有多少个数坐落于 <span class="math inline">\([l, mid]\)</span> 范围内，即 <span class="math inline">\(cnt\)</span>。</p>
+<p>具体实现时，我们可以在记录数列中每个数的原始下标后对数列按数值从小到大排序。我们可以通过二分搜索快速查找到 <span class="math inline">\(l\)</span> 的位置，接下来我们便可以轻松地对于 <span class="math inline">\([l, mid]\)</span> 中的每个值更新树状数组中的信息。再求得 <span class="math inline">\(cnt\)</span> 后我们再逐一撤销我们方才对树状数组进行的更改以为接下来递归中求 <span class="math inline">\(cnt\)</span> 做准备。需要注意的是，撤销更改时不可以直接用 <code>memset</code>，若是如此每一次预处理就与原数组长度有关而并非与当前二分区间有关了，而这会导致复杂度的变化（下面会给出详细说明）。显然，这一过程复杂度是 <span class="math inline">\(\mathcal{O}(m\log{n})\)</span> 的，其中 <span class="math inline">\(m\)</span> 是当前二分区间的长度。总的复杂度是 <span class="math inline">\(\mathcal{O}(n\log^2{n})\)</span> 级别的（下面也会给出详细说明）。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/POJ/2104/overall_binary_search_binary_indexed_tree.cpp">我的代码</a> 以供参考。</p>
+<hr />
+<p>对于复杂度，这里引用《浅谈数据结构题的几个非经典解法》一文中的相关证明：</p>
+<p>定义 <span class="math inline">\(T(C, S)\)</span> 表示当前待二分区间长度为 <span class="math inline">\(C\)</span>，待二分序列长度为 <span class="math inline">\(S\)</span>，且记对于长度为 <span class="math inline">\(m\)</span> 的序列单次处理复杂度为 <span class="math inline">\(\mathcal{O}(f(m))\)</span>，则在 <span class="math inline">\(\mathcal{O}(f(n)) \ge n\)</span> 的前提下有：</p>
+<p><span class="math display">\[
+T(C, S) = T(\frac{C}{2}, S&#39;) + T(\frac{C}{2}, S - S&#39;) + \mathcal{O}(f(S))
+\]</span></p>
+<p>解得：</p>
+<p><span class="math display">\[
+T(C, S) \le \mathcal{O}(f(n)\log{n})
+\]</span></p>
+<p>而如果每一次处理的复杂度都与序列长度 <span class="math inline">\(n\)</span> 有关，则有：</p>
+<p><span class="math display">\[
+T(C, S) = T(\frac{C}{2}, S&#39;) + T(\frac{C}{2}, S - S&#39;) + \mathcal{O}(n)
+\]</span></p>
+<p>解得：</p>
+<p><span class="math display">\[
+T(C, S) = \mathcal{O}(nS)
+\]</span></p>
+<p>不难发现，这样一来实际上复杂度就变得与暴力没什么区别了……</p>
+<p>那么对于这一例题中我们的做法，我们先对数值进行排序，然后在二分查找过程中我们每次直接通过二分查找来确定端点位置，其复杂的是 <span class="math inline">\(\mathcal{O(m\log{m})}\)</span> 的，其中 <span class="math inline">\(m\)</span> 为当前处理区间长度。总的复杂度即 <span class="math inline">\(\mathcal{O}((n + Q) \log{n}\log{C})\)</span>，在该题数据范围下就是 <span class="math inline">\(\mathcal{O}(n\log^2{n})\)</span> 级别的。</p>
+<hr />
+<p>由上面的例子，我们可以初步窥见整体二分适用的问题范围。首先最基本的是，询问的答案必须具有可二分性，并且题目允许离线算法。</p>
+<p>其次，我们注意到在上例中二分时我们每一次预处理只与当前区间长度有关。这是因为其余部分对答案的贡献是固定的。具体地阐述，假设我们计算某询问区间内的第 <span class="math inline">\(k\)</span> 大时，假设该区间内数值的范围为 <span class="math inline">\([L, R]\)</span>，当我们正在二分数值区间 <span class="math inline">\([l, r]\)</span> 时，<span class="math inline">\([l, r]\)</span> 以外的数值区间（即 <span class="math inline">\([L, l)\)</span> 和 <span class="math inline">\((r, R]\)</span>）对答案的贡献是固定不变的（询问区间内数值在这些区间内的数的个数固定），因此我们没有必要去重复计算那两个区间对答案的贡献，直接加上即可。由此，贡献也应当是可加的，并且满足交换律和结合律。</p>
+<p>那么，如果我们需要支持的操作不仅仅有询问，同时还要有修改呢？事实上，只要加入修改操作后我们依然能够做到二分时每一次预处理只与当前区间长度有关，我们就可以继续使用整体二分。</p>
+</div>
+<div id="动态区间第-k-小" class="section level3">
+<h3>动态区间第 <span class="math inline">\(k\)</span> 小</h3>
+<p>对于一个长度为 <span class="math inline">\(n\)</span> 的数列，现有两类共 <span class="math inline">\(q\)</span> 次操作：</p>
+<ul>
+<li>将第 <span class="math inline">\(i\)</span> 个数的值修改为 <span class="math inline">\(v\)</span>；</li>
+<li>询问第 <span class="math inline">\(l\)</span> 个数和第 <span class="math inline">\(r\)</span> 个数之间第 <span class="math inline">\(k\)</span> 小的数值。</li>
+</ul>
+<p><strong>数据范围</strong>：<span class="math inline">\(1 \le n \le 5 \times 10^4, \ 1 \le q \le 10^4\)</span></p>
+<p><strong>题目链接</strong>： <a href="https://zoj.pintia.cn/problem-sets/91827364500/problems/91827365611">ZJU 2112: Dynamic Rankings</a></p>
+<hr />
+<p>本题与上一例唯一的区别便在于新加入了修改操作，这样一来上例中的询问集 <span class="math inline">\(Q\)</span> 在本题中就变成可以含有询问即修改两种操作的操作集了。我们不妨把每个修改操作拆成两步：先删除该位置上原值，再在该位置上插入新值。同时，序列的初始化也可看作 <span class="math inline">\(n\)</span> 次在位置 <span class="math inline">\(i\)</span> 插入新值。</p>
+<p>我们注意到每一次修改操作其实对答案的贡献是独立的。具体地说，假设二分过程中当前某区间值域为 <span class="math inline">\([L, R]\)</span>，当前二分区间为 <span class="math inline">\([l, r]\)</span>。我们若是将该区间内某位置上的值由 <span class="math inline">\(a_i\)</span> 改变为 <span class="math inline">\(a_i&#39; \ (l \le a_i&#39; \le r)\)</span> ，并不会改变 <span class="math inline">\([l, r]\)</span> 以外的区间（即 <span class="math inline">\([L, l)\)</span> 和 <span class="math inline">\((r, R]\)</span> 这两个区间对答案的贡献。 由此，每一次预处理的复杂度依然仅仅是与当前二分区间有关的，可以使用整体二分。</p>
+<p>故我们依然采用与上例类似的思路对所有操作进行二分。不同之处在于，由于修改这一操作的引入，我们不能随意改变操作的顺序。因此，区别仅仅在于求 <span class="math inline">\(cnt\)</span> 这一过程的实现。我们不能再像之前一样先对值排序然后二分，因为那样会改变操作的顺序。对于 <span class="math inline">\(Q\)</span> 内的操作，我们必须按照原顺序进行遍历，查询和修改同时进行（若操作为修改，只应用值在 <span class="math inline">\([l, mid]\)</span> 区间之内的）。另外在将 <span class="math inline">\(Q\)</span> 分类为 <span class="math inline">\(Q_1\)</span> 和 <span class="math inline">\(Q_2\)</span> 时也要单独开两个单独的空间来进行分类以防止改变操作之间的顺序。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/ZOJ/2112/overall_binary_search_edit_binary_indexed_tree.cpp">我的代码</a> 以供参考。</p>
+</div>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>Thesis2013 - <a href="https://github.com/enkerewpo/OI-Public-Library/raw/master/%E5%9B%BD%E5%86%85%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/Thesis2013-%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98%E7%9A%84%E5%87%A0%E4%B8%AA%E9%9D%9E%E7%BB%8F%E5%85%B8%E8%A7%A3%E6%B3%95.pdf">浅谈数据结构题的几个非经典解法</a></li>
+<li>李煜东 - 《算法竞赛进阶指南（第二版）》</li>
+<li>OI Wiki - <a href="https://oi-wiki.org/misc/cdq-divide">CDQ分治 - OI Wiki</a></li>
+<li>wu_tongtong - <a href="https://blog.csdn.net/wu_tongtong/article/details/78823783">整体二分（二分进阶）</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/divide-and-conquer">Divide and Conquer</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>10990 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-07-22 20:25 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>数论函数与狄利克雷卷积</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Luogu P3943: 星空</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="67"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

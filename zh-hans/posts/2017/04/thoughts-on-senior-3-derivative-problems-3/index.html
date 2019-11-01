@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="高考导数: 洛必达法则">
+<meta itemprop="description" content="简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。">
+
+
+<meta itemprop="datePublished" content="2017-04-08T20:26:59&#43;08:00" />
+<meta itemprop="dateModified" content="2017-04-08T20:26:59&#43;08:00" />
+<meta itemprop="wordCount" content="2435">
+
+
+
+<meta itemprop="keywords" content="Mathematics,Calculus," />
+<meta property="og:title" content="高考导数: 洛必达法则" />
+<meta property="og:description" content="简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2017-04-08T20:26:59+08:00" />
+<meta property="article:modified_time" content="2017-04-08T20:26:59+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="高考导数: 洛必达法则"/>
+<meta name="twitter:description" content="简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>高考导数: 洛必达法则</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 8, 2017</span></div>
+				<h1>高考导数: 洛必达法则</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#法则内容">法则内容</a></li>
+<li><a href="#例题赏析">例题赏析</a></li>
+<li><a href="#小结">小结</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。这时，我们就需要借助洛必达法则这一高等数学中极为重要的法则来解决问题了。</p>
+<p>在介绍洛必达（伯努利）法则之前，先声明一下我<strong>非常不建议大家在正式考试的解答题中优先使用该法则</strong>。这个法则事实上是高等数学中的知识，因此在高考或其它正式考试中使用<strong>极可能造成失分</strong>。所以<strong>除非万不得已，请不要用这个方法。</strong></p>
+</div>
+<div id="法则内容" class="section level1">
+<h1>法则内容</h1>
+<p>首先我们来看看洛必达法则是个什么东西（以下内容摘自百科）：</p>
+<p><strong>(1) <span class="math inline">\(\frac{0}{0}\)</span> 型不等式极限</strong>：</p>
+<p>若函数 <span class="math inline">\(f(x)\)</span> 满足下列条件：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lim\limits_{x \to a}f(x) = 0, \ \lim\limits_{x \to a}g(x) = 0\)</span>；</li>
+<li>在 <span class="math inline">\(a\)</span> 点的某去心领域内两者都可导，且 <span class="math inline">\(g&#39;(x) \neq 0\)</span>；（去心领域可以理解为接近 <span class="math inline">\(a\)</span> 但不包含 <span class="math inline">\(a\)</span> 的区间）</li>
+<li><span class="math inline">\(\lim\limits_{x \to a} \frac{f&#39;(x)}{g&#39;(x)} = A\)</span>；（暗示若一阶导无法求极限还可以求二阶导乃至更高阶导）</li>
+</ol>
+<p>则有：</p>
+<p><span class="math display">\[
+\lim\limits_{x \to a} \frac{f(x)}{g(x)} = \lim\limits_{x \to a} \frac{f&#39;(x)}{g&#39;(x)} = A
+\]</span></p>
+<p><strong>(2) <span class="math inline">\(\frac{\infty}{\infty}\)</span>型不等式极限</strong>：</p>
+<p>若函数 <span class="math inline">\(f(x)\)</span> 满足下列条件：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lim\limits_{x \to a}f(x) = \infty, \ \lim\limits_{x \to a}g(x) = \infty\)</span>；</li>
+<li>在 <span class="math inline">\(a\)</span> 点的某去心领域内两者都可导，且 <span class="math inline">\(g&#39;(x) \neq 0\)</span>；（去心领域可以理解为接近 <span class="math inline">\(a\)</span> 但不包含 <span class="math inline">\(a\)</span> 的区间）</li>
+<li><span class="math inline">\(\lim\limits_{x \to a} \frac{f&#39;(x)}{g&#39;(x)} = A\)</span>；（暗示若一阶导无法求极限还可以求二阶导乃至更高阶导）</li>
+</ol>
+<p>则有：</p>
+<p><span class="math display">\[
+\lim\limits_{x \to a} \frac{f(x)}{g(x)} = \lim\limits_{x \to a} \frac{f&#39;(x)}{g&#39;(x)} = A
+\]</span></p>
+<p>你可能会说这玩意儿有什么卵用：好，请你仔细回忆，当你使用<strong>分离参数法</strong>解题时有没有遇到过一种极其坑爹的情况：好不容易判断出 <span class="math inline">\(f(x)\)</span> 在给定区间上的单调性，然而特么的 <span class="math inline">\(f(x)\)</span> 在端点处的取值竟然没意义，那我还证个卵啊！洛必达法则正是适用于这一种情况，它可以让你找到这种情况下函数在端点处的趋近值（极限值）。</p>
+<p>另外，对于除上两种外其他类型的不等式可通过使用一定的技巧化为上述两种，为了节省篇幅我就不在这里赘述了，感兴趣的话可以到<a href="https://zh.wikipedia.org/wiki/%E6%B4%9B%E5%BF%85%E8%BE%BE%E6%B3%95%E5%88%99">维基百科</a>上看看。</p>
+<p>至于对该法则的证明，去查了一下貌似要用柯西中值定理什么的，懵逼 =.=||…</p>
+</div>
+<div id="例题赏析" class="section level1">
+<h1>例题赏析</h1>
+<p>下面我们分别演示使用洛必达法则来解答上文中2010和2011年的那两道导数题。</p>
+<p><strong>1.</strong> (2010.全国大纲卷理) 设函数<span class="math inline">\(f(x) = 1 - e^{-x}\)</span>.<br />
+(1) 证明：当 <span class="math inline">\(x &gt; -1\)</span> 时，<span class="math inline">\(f(x) \ge \frac{x}{x+1}\)</span>；<br />
+(2) 设当 <span class="math inline">\(x \ge 0\)</span> 时，<span class="math inline">\(f(x) \le \frac{x}{ax + 1}\)</span>，求 <span class="math inline">\(a\)</span> 的取值范围.</p>
+<p><em>注：由于 (1) 问较简单，这里只分析第 (2) 问</em>。</p>
+<p><strong>解:</strong> (2)<br />
+<strong>I.</strong> 若 <span class="math inline">\(a &lt; 0\)</span><br />
+<span class="math inline">\(\therefore\)</span> 当 <span class="math inline">\(x \in (-\frac{1}{a},+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+\frac{x}{ax + 1} &lt; 0
+\]</span></p>
+<p>又 <span class="math inline">\(\because\)</span> 在 <span class="math inline">\(x \in [0,+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+f(x) = 1 - e^{-x} \ge 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 当 <span class="math inline">\(x \in (-\frac{1}{a},+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+f(x) &gt; \frac{x}{ax + 1}
+\]</span></p>
+<p>与题意矛盾，舍去。</p>
+<p><strong>II.</strong> 若 <span class="math inline">\(a \ge 0\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; f(x) \le \frac{x}{ax + 1} \\
+&amp; \Leftrightarrow 1 - e^{-x} \le \frac{x}{ax + 1} \\
+&amp; \Leftrightarrow a \le \frac{xe^x - e^x + 1}{xe^x - x}
+\end{aligned}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+g(x) = \frac{xe^x - e^x + 1}{xe^x - x}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\therefore g&#39;(x) &amp; = \frac{e^{2x} - x^2e^x - 2e^x + 1}{(xe^x - x)^2} \\
+                 &amp; = \frac{e^x}{(xe^x - x)^2}(e^x - x^2 - 2 - e^{-x})
+\end{aligned}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+h(x) = e^x - x^2 - 2 - e^{-x}
+\]</span></p>
+<p><span class="math display">\[
+\therefore h&#39;(x) = e^x - 2x - e^{-x}
+\]</span></p>
+<p><span class="math display">\[
+\therefore h&#39;&#39;(x) = e^x + e^{-x} - 2 &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore h&#39;(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递增，<span class="math inline">\(h&#39;(x) \ge h&#39;(0) = 0\)</span><br />
+<span class="math inline">\(\therefore h(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递增，<span class="math inline">\(h(x) \ge h(0) = 0\)</span><br />
+<span class="math inline">\(\therefore g&#39;(x) \ge 0\)</span>，<span class="math inline">\(g(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递增</p>
+<p><em>插一句话：好的，现在我们发现 <span class="math inline">\(g(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递增，可是 <span class="math inline">\(g(0)\)</span> 是没有意义的！这下子只好用洛必达法则了</em>。</p>
+<p>由洛必达法则有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim\limits_{x \to 0}g(x)
+&amp; = \lim\limits_{x \to 0}\frac{xe^x - e^x + 1}{xe^x - x}  \\
+&amp; = \lim\limits_{x \to 0}\frac{xe^x}{e^x + xe^x - 1} \\
+&amp; = \lim\limits_{x \to 0}\frac{e^x + xe^x }{2e^x + xe^x} \\
+&amp; = \frac{1}{2}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore g(x) \ge \frac{1}{2}\)</span><br />
+<span class="math inline">\(\therefore a \le \frac{1}{2}\)</span></p>
+<p>答：<span class="math inline">\(a\)</span> 的取值范围为 <span class="math inline">\([0,\frac{1}{2}]\)</span>。</p>
+<p>虽然看上去篇幅略小，其实你仔细观察过程后就会发现求了很多次导，运算量着实不小，其实并没有第一节中提到的简化原函数的方法容易。但至少，分离参数法作为一种极为常见的思路是很容易想到的，故该方法也远比<a href="http://www.jyeoo.com/math2/ques/detail/3e6ca929-5ca7-4716-a80c-1873e641d558">参考答案</a>简单。</p>
+<hr />
+<p><strong>2.</strong> (2011.全国大纲卷理) 已知函数 <span class="math inline">\(f(x) = \frac{alnx}{x+1} + \frac{b}{x}\)</span>，曲线 <span class="math inline">\(y = f(x)\)</span> 在点 <span class="math inline">\((1, f(1))\)</span> 处的切线方程为<span class="math inline">\(x + 2y - 3 = 0\)</span>.<br />
+(1) 求a,b的值;<br />
+(2) 如果当<span class="math inline">\(x &gt; 0\)</span>，且 <span class="math inline">\(x \neq 0\)</span> 时，<span class="math inline">\(f(x) &gt; \frac{lnx}{x - 1} + \frac{k}{x}\)</span>，求 <span class="math inline">\(k\)</span> 的取值范围.</p>
+<p><em>注：(1) 问过程略，解得 a = 1，b = 1，这里只分析第 (2) 问</em>。</p>
+<p><strong>解:</strong> (2)<br />
+由题，有：</p>
+<p><span class="math display">\[
+\frac{lnx}{x + 1} + \frac{1}{x} &gt; \frac{lnx}{x - 1} + \frac{k}{x}
+\]</span></p>
+<p>即：</p>
+<p><span class="math display">\[
+k &lt; \frac{xlnx}{x + 1} + \frac{1}{x} - \frac{xlnx}{x - 1} = \frac{2xlnx}{1 - x^2} + 1
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+g(x) = \frac{2xlnx}{1 - x^2} + 1 \ (x &gt; 0, x \neq 1)
+\]</span></p>
+<p><span class="math display">\[
+\therefore g&#39;(x) = \frac{2(x^2 + 1)lnx + 2(1 - x^2)}{(1 - x^2)^2} = \frac{2(x^2 + 1)}{(1 - x^2)^2}(lnx + \frac{1 - x^2}{x^2 + 1})
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+h(x) = lnx + \frac{1 - x^2}{x^2 + 1}
+\]</span></p>
+<p><span class="math display">\[
+\therefore h&#39;(x) = \frac{1}{x} + \frac{-4x}{(1 + x^2)^2} = \frac{(1 - x^2)^2}{x(1 + x^2)^2} &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore h(x)\)</span> 在 <span class="math inline">\((0,+\infty)\)</span> 上单调递增，且 <span class="math inline">\(h(1) = 0\)</span><br />
+<span class="math inline">\(\therefore x \in (0,1)\)</span> 时，<span class="math inline">\(h(x) &lt; 0\)</span>；<span class="math inline">\(x \in (1,+\infty)\)</span> 时，<span class="math inline">\(h(x) &gt; 0\)</span><br />
+<span class="math inline">\(\therefore x \in (0,1)\)</span> 时，<span class="math inline">\(g&#39;(x) &lt; 0\)</span>，<span class="math inline">\(g(x)\)</span> 单调递减；<span class="math inline">\(x \in (1,+\infty)\)</span> 时，<span class="math inline">\(g&#39;(x) &gt; 0\)</span>，<span class="math inline">\(g(x)\)</span> 单调递增</p>
+<p>由洛必达法则有:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim\limits_{x \to 1}g(x) &amp; = \lim\limits_{x \to 1}(\frac{2xlnx}{1 - x^2} + 1) \\
+&amp; = 1 + \lim\limits_{x \to 1}\frac{2xlnx}{1 - x^2} \\
+&amp; = 1 +  \lim\limits_{x \to 1}\frac{2lnx + 2}{-2x} \\
+&amp; = 0
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore x \to 1\)</span> 时，<span class="math inline">\(g(x) = 0\)</span>，故在 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,+\infty)\)</span> 上恒有<span class="math inline">\(g(x) &gt; 0\)</span><br />
+<span class="math inline">\(\therefore k \in (-\infty,0)\)</span></p>
+<p>答: <span class="math inline">\(k\)</span> 的取值范围为 <span class="math inline">\((-\infty,0]\)</span>。</p>
+</div>
+<div id="小结" class="section level1">
+<h1>小结</h1>
+<p>洛必达法则告诉我们，对于恒成立问题，使用<strong>分离参数法</strong>是一定可以硬算出来的（虽然有时会多次求导，十分麻烦）。也正是因为如此，我并不推荐<strong>在高中阶段</strong>使用这种方法。除去这本身并不是高中生所应掌握的内容（这也是为什么在较正式的考试使用该方法极可能会被扣上几分），更重要的是一味地依赖于该方法会极大地限制我们的思路。</p>
+<p>相信在初中学过数学竞赛的朋友们进入高中后都会发现，在高中阶段学的知识可以帮助我们轻而易举地解答许多数学联赛中的难题。比如，对于部分要求角度的几何题，我干嘛还要费尽心思看看哪里能做辅助线？直接用向量、正余玄定理、乃至三角函数恒等变换就可以轻松解决。然而，如果我们在初中阶段就这么做，纵使能够成功解题，但我们却没有使我们的转化思想等能力得到锻炼。就像我在前言中所说的一样，若干年后我们很可能并不会从事数学相关的行业，而什么正余玄定理之类的定理也很可能被我们逐步遗忘，但那种乐于探究的精神和转换思想作为一种习惯将会长存于我们心中，成为我们性格的一部分。这样，我理解中的数学教育初衷也就达到了。</p>
+</div>
+<div id="参考文献" class="section level1">
+<h1>参考文献</h1>
+<ul>
+<li>陈柞同主编.创知路高考数学解题手册 立体几何·解析几何·导数·定积分 [M].北京, 2017</li>
+<li>蔡小雄主编.更高更妙的高中数学 一题多解与一题多变 [M].浙江：浙江大学出版社, 2016</li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/calculus">Calculus</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2435 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-04-08 20:26 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2017/08/on-int-and-float/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>乱谈整型与浮点</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>高考导数: 优化函数以方便求解</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="5"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

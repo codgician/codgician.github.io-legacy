@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="BZOJ 3817: Sum">
+<meta itemprop="description" content="题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链">
+
+
+<meta itemprop="datePublished" content="2018-10-28T13:27:56&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-28T13:27:56&#43;08:00" />
+<meta itemprop="wordCount" content="1204">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Quasi-Euclidean Algorithm,BZOJ," />
+<meta property="og:title" content="BZOJ 3817: Sum" />
+<meta property="og:description" content="题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-10-28T13:27:56+08:00" />
+<meta property="article:modified_time" content="2018-10-28T13:27:56+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="BZOJ 3817: Sum"/>
+<meta name="twitter:description" content="题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>BZOJ 3817: Sum</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 28, 2018</span></div>
+				<h1>BZOJ 3817: Sum</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#题面">题面</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="题面" class="section level1">
+<h1>题面</h1>
+<p>给定正整数 <span class="math inline">\(n, r\)</span>，试求：</p>
+<p><span class="math display">\[
+\sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor}
+\]</span></p>
+<p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^9, \ r \le 10^4\)</span>，测试数据组数 <span class="math inline">\(T \le 10^4\)</span>。</p>
+<p><strong>题目链接</strong>：<a href="https://darkbzoj.tk/problem/3817">BZOJ 3817: Sum</a></p>
+</div>
+<div id="分析" class="section level1">
+<h1>分析</h1>
+<p>首先不难考虑到，如果 <span class="math inline">\(\sqrt{r}\)</span> 是有理数（整数）的话，这个问题非常好解决：</p>
+<ul>
+<li>若 <span class="math inline">\(\sqrt{r}\)</span> 为偶数，则原式答案显然为 <span class="math inline">\(n\)</span>；</li>
+<li>若 <span class="math inline">\(\sqrt{r}\)</span> 为奇数，则：
+<ul>
+<li>若 <span class="math inline">\(n\)</span> 为偶数，则 <span class="math inline">\(-1\)</span> 与 <span class="math inline">\(1\)</span> 个数相等，原式答案为 <span class="math inline">\(0\)</span>；</li>
+<li>若 <span class="math inline">\(n\)</span> 为奇数，则 <span class="math inline">\(-1\)</span> 比 <span class="math inline">\(1\)</span> 个数多一个，原式答案为 <span class="math inline">\(1\)</span>；</li>
+</ul></li>
+</ul>
+<hr />
+<p>接下来讨论 <span class="math inline">\(\sqrt{r}\)</span> 是无理数的情况。我们不妨令 <span class="math inline">\(t = \sqrt{r}\)</span>。</p>
+<p>首先，显而易见地：</p>
+<ul>
+<li>若 <span class="math inline">\(\left\lfloor dt \right\rfloor\)</span> 为偶数，则 <span class="math inline">\((-1)^{\left\lfloor dt \right\rfloor} = 1\)</span>；</li>
+<li>若 <span class="math inline">\(\left\lfloor dt \right\rfloor\)</span> 为奇数，则 <span class="math inline">\((-1)^{\left\lfloor dt \right\rfloor} = -1\)</span>；</li>
+</ul>
+<p>可以归纳出：</p>
+<p><span class="math display">\[
+(-1)^{\left\lfloor dt \right\rfloor} = 1 - 2\left( \left\lfloor dt \right\rfloor - 2\left\lfloor \frac{\left\lfloor dt \right\rfloor}{2} \right\rfloor \right)
+\]</span></p>
+<p>那么：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor}
+= &amp; \sum\limits_{d = 1}^{n} \left[ 1 - 2\left( \left\lfloor dt \right\rfloor - 2\left\lfloor \frac{dt}{2} \right\rfloor \right) \right] \\
+= &amp; n - 2\sum\limits_{d = 1}^{n} \left\lfloor dt \right\rfloor + 4\sum\limits_{d = 1}^{n} \left\lfloor \frac{dt}{2} \right\rfloor
+\end{aligned}
+\]</span></p>
+<p>至于为什么对于实数 <span class="math inline">\(n\)</span> 有 <span class="math inline">\(\left\lfloor \frac{\left\lfloor n \right\rfloor}{2} \right\rfloor = \left\lfloor \frac{n}{2} \right\rfloor\)</span>，简单想想就明白了，本文不再给出证明。</p>
+<hr />
+<p>后两项均可记作 <span class="math inline">\(\sum\limits_{d = 1}^{n} \left\lfloor k \cdot d \right\rfloor\)</span> 的形式，其中 <span class="math inline">\(k = \frac{at + b}{c}\)</span>（<span class="math inline">\(a, b, c\)</span> 均为整数，而 <span class="math inline">\(t = \sqrt{r}\)</span> 是无理数）。这就显得跟类欧几里得可解决的问题很相似了。我们尝试仿照之前一篇博文 <a href="https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/">浅谈类欧几里德算法</a> 里的推导方法对下面的式子进行推导（为了符合一般习惯下面一段中把 <span class="math inline">\(d\)</span> 写作 <span class="math inline">\(i\)</span>）：</p>
+<p><span class="math display">\[
+f(a, b, c, n) = \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b}{c} \right\rfloor
+\]</span></p>
+<p>令 <span class="math inline">\(k = \frac{at + b}{c}\)</span>。</p>
+<ul>
+<li><p>若 <span class="math inline">\(k \ge1\)</span>（即满足对所有 <span class="math inline">\(i\)</span> 均有 <span class="math inline">\(\left\lfloor ki \right\rfloor &gt; 0\)</span>） ：
+<span class="math display">\[
+\begin{aligned}
+f(a, b, c, n) = &amp; \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b}{c} \right\rfloor \\
+= &amp; \sum\limits_{i = 0}^{n} \left\lfloor i \cdot ( \left\lfloor \frac{at + b}{c} \right\rfloor + \frac{at + b}{c} - \left\lfloor \frac{at + b}{c} \right\rfloor ) \right\rfloor \\
+= &amp; \left\lfloor \frac{at + b}{c} \right\rfloor \sum\limits_{i = 0}^{n} i + \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b - c \left\lfloor \frac{at + b}{c} \right\rfloor}{c} \right\rfloor \\
+= &amp; \left\lfloor \frac{at + b}{c} \right\rfloor \frac{1}{2}n(n + 1) + f(a, b - c \left\lfloor \frac{at + b}{c} \right\rfloor, c, n)
+\end{aligned}
+\]</span></p></li>
+<li><p>若 <span class="math inline">\(k &lt; 1\)</span>（即不满足对所有 <span class="math inline">\(i\)</span> 均有 <span class="math inline">\(\left\lfloor ki \right\rfloor &gt; 0\)</span>）：</p></li>
+</ul>
+<p><span class="math display">\[
+  \begin{aligned}
+  f(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} \left\lfloor ki \right\rfloor \\
+  &amp; = \sum\limits_{i = 0}^{n} \sum\limits_{j = 0}^{\left\lfloor ki \right\rfloor - 1} 1 \\
+  &amp; = \sum\limits_{j = 0}^{\left\lfloor kn \right\rfloor - 1} \sum\limits_{i = 0}^{n} (j \le \left\lfloor ki \right\rfloor - 1) \\
+  &amp; = \sum\limits_{j = 0}^{\left\lfloor kn \right\rfloor - 1} \sum\limits_{i = 0}^{n} (j &lt; ki - 1) \\
+  &amp; = \sum\limits_{j = 0}^{\left\lfloor kn \right\rfloor - 1} \sum\limits_{i = 0}^{n} (i &gt; \frac{j + 1}{k}) \\
+  &amp; = \sum\limits_{j = 0}^{\left\lfloor kn \right\rfloor - 1} (n - \left\lfloor \frac{j + 1}{k} \right\rfloor) \\
+  &amp; \text{let } m = \left\lfloor kn \right\rfloor \\
+  &amp; = \sum\limits_{j = 0}^{m - 1} (n - \left\lfloor \frac{j + 1}{k} \right\rfloor) \\
+  &amp; = nm - \sum\limits_{j = 0}^{m - 1} \left\lfloor \frac{j + 1}{k} \right\rfloor \\
+  &amp; = nm - \sum\limits_{j = 0}^{m - 1} \left\lfloor (j + 1) \cdot \frac{c}{at + b} \right\rfloor \\
+  &amp; = nm - \sum\limits_{j = 0}^{m} \left\lfloor j \cdot \frac{c}{at + b} \right\rfloor \\
+  \end{aligned}
+\]</span></p>
+<p>我们注意到最后一项已经比较类似于 <span class="math inline">\(f\)</span> 式的定义，我们需要对其进行分母有理化：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(a, b, c, n) = &amp; nm - \sum\limits_{j = 0}^{m} \left\lfloor j \cdot \frac{act - bc}{a^2t^2 - b^2} \right\rfloor \\
+= &amp; nm - f(ac, -bc, a^2t^2 - b^2, m)
+\end{aligned}
+\]</span></p>
+<hr />
+<p>对其简要总结（令 <span class="math inline">\(m = \left\lfloor n \cdot \frac{at + b}{c} \right\rfloor\)</span>）：</p>
+<p><span class="math display">\[
+f(a, b, c, n) =
+\begin{cases}
+\left\lfloor \frac{at + b}{c} \right\rfloor \frac{1}{2}n(n + 1) + f(a, b - c \left\lfloor \frac{at + b}{c} \right\rfloor, c, n) &amp; \frac{at + b}{c} \ge 1 \\
+nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1 \\
+\end{cases}
+\]</span></p>
+<p>就按照类欧的样子递归实现就好了。数学妙啊~ 复杂度为 <span class="math inline">\(\mathcal{O}(\log{n})\)</span>。</p>
+<p>为了防止中间过程爆 <code>int64</code> 需要在每一步的时候对 <span class="math inline">\(\frac{at + b}{c}\)</span> 约分。但是由此一来复杂度就变成 <span class="math inline">\(\mathcal{O}(\log^2{n})\)</span>了 QAQ… 最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/BZOJ/3817/quasi_euclidean.cpp">我的代码</a> 以供参考。</p>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>u014609452 - <a href="https://blog.csdn.net/u014609452/article/details/52343533">类欧几里得算法 数论 BZOJ 3817 Sum</a></li>
+<li>Y-E-T-I - <a href="https://www.cnblogs.com/Y-E-T-I/p/8435828.html">BZOJ 3817 Sum</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/quasi-euclidean-algorithm">Quasi-Euclidean Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/bzoj">BZOJ</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1204 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-10-28 13:27 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>BZOJ 2187: fraction</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈类欧几里德算法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="60"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

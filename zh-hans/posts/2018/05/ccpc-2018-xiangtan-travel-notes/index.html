@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="CCPC 2018 湘潭邀请赛游记">
+<meta itemprop="description" content="Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器">
+
+
+<meta itemprop="datePublished" content="2018-05-16T13:19:35&#43;08:00" />
+<meta itemprop="dateModified" content="2018-05-16T13:19:35&#43;08:00" />
+<meta itemprop="wordCount" content="2241">
+
+
+
+<meta itemprop="keywords" content="Competitive Programming,Travel," />
+<meta property="og:title" content="CCPC 2018 湘潭邀请赛游记" />
+<meta property="og:description" content="Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-05-16T13:19:35+08:00" />
+<meta property="article:modified_time" content="2018-05-16T13:19:35+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="CCPC 2018 湘潭邀请赛游记"/>
+<meta name="twitter:description" content="Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>CCPC 2018 湘潭邀请赛游记</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 16, 2018</span></div>
+				<h1>CCPC 2018 湘潭邀请赛游记</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="day-0">Day 0<a href="#day-0" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。</p>
+
+<p>下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器带上了。</p>
+
+<p>坐地铁到了杭州东站，17:50 上了学校报销的硬卧火车，车上偶遇浙江工商大学的巨佬，得知他们参加过区域赛感觉打扰了。他们说他们学校另外两个队都坐飞机（因为他们去年拿了银），而且学校报销，无限羡慕 QAQ。</p>
+
+<p>车上一位老奶奶问起我们是去湘潭干嘛的，我们异口同声表示是去打电竞 😂 。</p>
+
+<p>没上车多久就忍不住吃面包，然后一不小心把明天早餐的部分也吃完了。刚开始还翻看了一下自己带的《编程之美》，然后感觉车上的环境完全看不下去就开始划水了。</p>
+
+<p>熄灯之前 jackyan 巨佬让我拿出之前打印的 2017 湘潭邀请赛题册，于是我也没法继续愉快地划水了。拿出了题册一起看，发现怎么有两道高斯消元，好可啪。xywsxp 巨佬也过来观摩题目。其中有一题大意是在给定图中删去最少边数使得 MST 变大。 xywsxp 在集训队群里面问了一波，然后老刘秒回“最短边删除不是就变大了吗”，然后 Claris 神犇秒打脸表示要用最小割，然后老刘就问起出发顺不顺利了 🙈。感觉好尴尬啊（<del>虽然本垃圾也有过这一念头</del>），%%% Claris。</p>
+
+<p>晚上 Hanano 巨佬表示睡什么觉并安利了达芬奇睡眠法，瑟瑟发抖。最后十一点过的时候我忍不住还是滚到床上去睡觉了 QAQ。</p>
+
+<h1 id="day-1">Day 1<a href="#day-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>睡觉时完全处于一个小时醒一次的状态，于是四点过的时候就受不了爬起来<del>看日出</del>，然后发现 Hanano 貌似在下面待了一个晚上 QAQ。</p>
+
+<p>下车出站后坐公交一路飙到了湘潭大学东门，然后来到了人均 30 人民币一晚的住宿，<del>终于知道为什么老刘不来带队了</del>，感觉被卖了 😭。</p>
+
+<p>早餐混进了湘潭大学食堂解决，食堂的师傅热心地表示支持支付宝的，然后说完就现场拉了个学生喊他帮我们刷卡然后我们转账给他。怪不好意思的 QAQ。本想照顾队友不吃辣的口味于是一起点了“北京炸酱面”，但面做好后发现竟然是臊子红油拌面 orz。队友貌似被学校食堂的辣椒酱惯坏了，还勇敢地加了几勺旁边的辣酱 🙈 。这锅我不背（逃</p>
+
+<p>中午本想跟 xywsxp 一起吃石锅鱼，然而由于他的花样乱带路我们就抛弃他去吃低配版华莱士了（逃</p>
+
+<p>下午领了狗牌和衣服后就是热身赛了。热身赛只有一个半小时，感觉好短 QAQ。调了一下环境，本来想用 Sublime 结果配 build file 的时候貌似写错了一个地方一直没调好，于是就只好用 Dev C++ 了。</p>
+
+<p>一看 A 题，感觉是个暴搜，然而不敢上，于是就开 B，发现 B 是个超级大模拟，怕写挂还是不敢上，于是就开 C 题，感觉 C 题貌似可做，想到可以把原矩阵和目标矩阵异或一下只要判断异或后的矩阵能不能按题目规则化为全 0 矩阵就好了。然后和队友脑袋一热猜结论只要 1 的个数能被 4 整除就可以了&hellip; WA&hellip; 然后很快就找出反例了。Hanano 巨佬貌似有自己的想法了，然后 C 题就交给他去码了。D 题显然是个 DP，然而我当时 DP 方程式推错（实际上少算了非第一个数开始的能被 3 整除的数）。差点以为热身赛要爆零，还好 Hanano 巨佬在最后十分钟左右 A 掉了 C 题，然后我立马开始码 D 题，结果发现样例没过，然后就一题滚粗了。</p>
+
+<p>南邮巨佬好强啊，热身赛进行了一半就 AK 走人了。</p>
+
+<p>在去觅食的路上反应过来了错在哪里，然后回招待所加了一行代码就过了样例，心情跌入谷底。无心复习的我晚上打了若干局 Wordament 和数独。</p>
+
+<p><img src="/posts/ccpc-2018-xiangtan-travel-notes/cover.jpg" alt="欢迎牌" /></p>
+
+<h1 id="day-2">Day 2<a href="#day-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>早上起来感觉慌慌的，把开幕式翘了直接去了赛场。</p>
+
+<p>Hanano 赛前就猜 F 题是签到题，比赛开始后第一个就开了 F 题，挂了一次后 A 掉了，太强了orz。</p>
+
+<p>jackyan 貌似阅读 A 题的时候到了一点语言障碍，本来还在推 K 题的我过去看了看，发现是道大水题，然后就 1A 了，于是 jackyan 就去开 B 题了。</p>
+
+<p>A 掉了 A 题后我意识到 A、B、C 三道题貌似是一个系列的，就去看了看 C 题。感觉是个线段树，然而没想出来怎么区间合并，所以就感觉是分块或者莫队。然而我都不会，所以准备丢给队友 🙈。与此同时 Hanano 又用容斥原理 A 掉了 K 题，好强啊 QAQ。所以我就去看 D 题了。</p>
+
+<p>D 题我推了半天没有太确切的思路，看了一下榜发现没人过，果断放弃。Hanano 让我跟他去看看 G 题，然后 Hanano 巨佬很快想到了正解，1A，太强了orz。</p>
+
+<p>看了看榜发现好多人都过了 C 题，于是我们一起开了 C 题。我们用莫队 + 树状数组 + 二分瞎搞出来了一个复杂度 $\mathcal{O}(N\sqrt{N}log^2{N})$ 的算法。由于队里就本垃圾不会写莫队，Hanano 表示状态不好，所以 Hanano 写了一半后就交给 jackyan 巨佬去写了，没想到第一发交竟然是 WA 不是 TLE，顿觉有希望。瞎改了一下莫队后又交一发，竟然 A 了。进入疯狂膜队友模式 %%%。</p>
+
+<p>接下来就是循环卡题的时光了QAQ。我们主要尝试攻 B 题和 J 题，另外我也继续把 D 题和 I 题考虑了一波，然而很遗憾直到比赛结束都没搞出来，五题滚粗。<del>本垃圾 A 了一道大水题后就全程划水，好惭愧啊 QAQ</del>。</p>
+
+<p>另外，午餐竟然是麦当劳，超级好评！</p>
+
+<p>下午讲题的时候得知 B 题竟然是结论题，只要一篇论文一小时就好，吐血 QAQ。讲题人表示题是叉姐出的，有问题问叉姐，然后就光速讲完了，留下我一脸懵逼。</p>
+
+<p>没想到竟然水到了一个银奖，然而摸一下奖牌后又要还给老刘堆在集训室了 QAQ。</p>
+
+<p>jackyan 巨佬貌似对我有了一句新的口头禅 “你羞愧吗？” QAQ 😶</p>
+
+<p>下午五点过就来到了火车站…… 打了若干盘斗地主，每次我发牌 jackyan 都会莫名其妙地当上地主，然后将本垃圾狂虐 QAQ。</p>
+
+<p>然后湘潭两日游就这么结束了（逃</p>
+
+<h1 id="赛后总结">赛后总结<a href="#赛后总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><del>可以明显感到这场比赛中我太水了。</del></p>
+
+<p>这场比赛反映出了我个人在思维能力上的不足。平时做专题的时候侧重点都在于学习新的算法而忽略了对思维的培养。这就造成一个很尴尬的局面，简单的思维题（诸如 DP）做不来，而比赛时需要稍微难一点算法的题目又不可能是裸的模板题，所以还是做不来。 🙈</p>
+
+<p>看起来下个月要抽时间多练练 DP 以及数学了。 QAQ</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/travel">Travel</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2241 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-05-16 13:19 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li><a href="#day-0">Day 0</a></li>
+<li><a href="#day-1">Day 1</a></li>
+<li><a href="#day-2">Day 2</a></li>
+<li><a href="#赛后总结">赛后总结</a></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>浅谈无旋转 Treap</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈匈牙利算法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="33"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script>
+</body>
+
+</html>

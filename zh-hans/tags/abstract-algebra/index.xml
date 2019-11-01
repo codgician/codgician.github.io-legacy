@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abstract Algebra on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/abstract-algebra/</link>
+    <description>Recent content in Abstract Algebra on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 06 Aug 2019 13:18:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/abstract-algebra/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数论函数与狄利克雷卷积</title>
+      <link>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</link>
+      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</guid>
+      <description>简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有</description>
+    </item>
+    
+  </channel>
+</rss>

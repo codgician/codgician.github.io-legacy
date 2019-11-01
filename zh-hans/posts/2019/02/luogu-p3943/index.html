@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="Luogu P3943: 星空">
+<meta itemprop="description" content="题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡">
+
+
+<meta itemprop="datePublished" content="2019-02-05T11:20:57&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-05T11:20:57&#43;08:00" />
+<meta itemprop="wordCount" content="1667">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Prefix Array,Dynamic Programming,Graph Theory,Luogu," />
+<meta property="og:title" content="Luogu P3943: 星空" />
+<meta property="og:description" content="题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2019-02-05T11:20:57+08:00" />
+<meta property="article:modified_time" content="2019-02-05T11:20:57+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="Luogu P3943: 星空"/>
+<meta name="twitter:description" content="题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Luogu P3943: 星空</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Feb 5, 2019</span></div>
+				<h1>Luogu P3943: 星空</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="题面">题面<a href="#题面" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡区间，对这个区间内所有灯泡的状态都进行一次翻转（亮变灭，灭变亮）。试求最少需要几次操作就可以让所有灯泡都被点亮。</p>
+
+<p><strong>数据范围</strong>：$1 \le n, b_i \le 4 \times 10^4, \ 1 \le m \le 64, \ 1 \le k \le 8$</p>
+
+<p><strong>题目链接</strong>：<a href="https://www.luogu.org/problemnew/show/P3943">Luogu P3943: 星空</a></p>
+
+<h1 id="分析">分析<a href="#分析" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<h2 id="差分思想">差分思想<a href="#差分思想" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>首先一个非常优雅的想法就是利用差分将区间操作变换为单点操作。不过这里我们面对的是一个 $01$ 序列，我们可以把普通的前缀和改成异或前缀和。严格地说，记 $a$ 代表原 $01$ 序列，$d$ 是原序列的异或差分数组。那么它们之间存在如下关系：</p>
+
+<p>$$
+a_i = b_0 \oplus b_1 \oplus \dots \oplus b_i
+$$</p>
+
+<p>这样翻转 $a$ 中的 $[l, r]$ 区间就等价于在 $b$ 中翻转 $l$ 和 $r + 1$ 两个位置，于是 $a$ 中的区间操作就转换为了 $d$ 中的单点操作（注意 $d$ 的长度是 $n + 1$）。</p>
+
+<p>由此原问题被转换为这样一个新问题：给定一个 $01$ 序列 $d$，一次只能选择两个位置上的值（这两个位置间隔的距离是题面给出的 $m$ 种）并对其进行翻转，试问最少翻转多少次可以将序列翻转成目标序列？</p>
+
+<hr />
+
+<p>我们不妨记灯亮为 $0$，灯暗为 $1$。这样的方便之处在于所有灯全亮时 $a$ 为全 $0$，而其对应的 $d$ 前 $n$ 个位置也为全 $0$。至于 $d$ 中的第 $n + 1$ 个位置，不论其为 $0$ 还是 $1$ 都不会对 $a$ 产生任何影响，因此第 $n + 1$ 位可以是任意值。</p>
+
+<p>需要注意的是，题目给出了 $a$ 中 $1$ 的个数 $k \le 8$，这一限制对应到差分数组 $d$ 中会是怎样呢？如果我们要让 $d$ 为 $111111\dots$，那么 $a$ 的形式即如 $101010\dots$。不难发现若 $a$ 中最多有 $k$ 个 $1$，则 $d$ 中最多有 $2k$ 个 $1$。</p>
+
+<h2 id="完全背包">完全背包<a href="#完全背包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>我们继续考虑转换后的问题。为了最小化反转次数我们显然不会选择两个 $0$ 进行翻转，因为这样只会使得 $1$ 的个数增多。那么我们可以选择：</p>
+
+<ul>
+<li>选中两个 $1$，那么翻转后两个位置上的值都会变为 $0$；</li>
+<li>选择一个 $0$ 和一个 $1$，那么这次操作后 $1$ 的个数并不会变化，其效果等效于将选中的两个位置上的值交换位置。进一步说，如果记两个位置间的距离为 $\Delta{x}$，则我们可以认为是 $1$ 向左或是向右移动了 $\Delta{x}$。</li>
+</ul>
+
+<p>那么问题进一步转换为：给定一个 $01$ 序列，对于序列中每个 $1$，每一步可以向前或向后走 $k$ 种距离，如果走到的位置上也是 $1$ 则两者相消为 $0$，问最少需要多少步可以使得所有位置都变为 $0$？</p>
+
+<hr />
+
+<p>考虑某一对 $1$ 之间的距离为 $\Delta{x}$，若要将这对 $1$ 相消，就需要左右两端的 $1$ 分别向左和向右移动到同一位置上。我们不妨把 $\Delta{x}$ 看作背包容量，每种可能的步数看作背包里的物品（每种步数 $v$ 要拆成 $+v$ 和 $-v$ 两个物品，因为既可以往左走又可以往右走），那么我们 $\mathcal{O}(nm)$ 跑一个完全背包就可以得到消去每一对 $1$ 所需要的最小步数。</p>
+
+<h2 id="一般图的最大匹配">一般图的最大匹配<a href="#一般图的最大匹配" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>在得到了消去每一对 $1$ 所需要的最小步数后 $w$，我们可以考虑在这两个点间建立一条价值为 $w$ 的无向边。这样一来，问题就转变为了一般图的最大匹配问题…… 大佬们可以使用带花树算法用 $\mathcal{O}(k^3)$ 级别复杂度解决之…… 当然这道题数据范围很小，所以我们也可以使用状压 DP 来解决。</p>
+
+<p>最后还有一个细节，前面说了 $d$ 中第 $n + 1$ 位可以是任意值，因此如果考虑这一位会带来一些不便。我们可以这样处理：如果位置 $i$ 经过若干步可以到达第 $n + 1$ 位，我们就从 $i$ 向自己连一条边。其意义为 $i$ 可以与自己进行匹配。这样子就可以完全去掉第 $n + 1$ 位从而简化模型。</p>
+
+<p>为了减小状态数量，我们不妨只考虑所有 $1$ 点。这样一来，初始状态用二进制表示就是 $11\dots1$，而目标状态即为 $00\dots0$。另外一个常见的优化是，我们不必用 $\mathcal{O}(k^2)$ 的复杂度去枚举每一个点对（那样会造成大量重复运算）。我们可以每次选取最左的 $1$ 点作为点对的一个点，然后 $\mathcal{O}(k)$ 枚举另一个点直接进行转移即可。这样子其实是可以遍历到所有状态的（反正目标状态中这个 $1$ 迟早要消去，这样转移的意义就是按顺序依次消去 $1$）。因此状压 DP 的复杂度为 $\mathcal{O}(k \cdot 2^k)$。</p>
+
+<p>如果最后一部分采用状压 DP 实现，那么总的复杂度为 $\mathcal{O}(nm + k \cdot 2^k)$。如果能用带花树大概可以有 $\mathcal{O}(nm + k^3)$ 的复杂度，可惜我不会。最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3943/dp_state_compression.cpp">我的代码</a> 以供参考。</p>
+
+<h1 id="toc_5">%%%<a href="#toc_5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<ul>
+<li>fstqwq 杨爷太强了 %%%</li>
+</ul>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/prefix-array">Prefix Array</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/dynamic-programming">Dynamic Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/graph-theory">Graph Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/luogu">Luogu</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1667 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-02-05 11:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li><a href="#题面">题面</a></li>
+<li><a href="#分析">分析</a>
+<ul>
+<li><a href="#差分思想">差分思想</a></li>
+<li><a href="#完全背包">完全背包</a></li>
+<li><a href="#一般图的最大匹配">一般图的最大匹配</a></li>
+</ul></li>
+<li><a href="#toc_5">%%%</a></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>浅谈离线分治算法</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/11/icpc-2018-asia-beijing-regional-travel-notes/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>ICPC 2018 亚洲区域赛北京站游记</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="69"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script>
+</body>
+
+</html>

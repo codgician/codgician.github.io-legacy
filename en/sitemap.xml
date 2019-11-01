@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://codgician.me/</loc>
+    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/tags/hello/</loc>
+    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/hello/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/hello/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/posts/2019/10/hello-world/</loc>
+    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/posts/2019/10/hello-world/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/posts/2019/10/hello-world/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/posts/</loc>
+    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/tags/</loc>
+    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/icpc/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/icpc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/icpc/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/more/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/more/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/more/"
+                />
+  </url>
+  
+</urlset>

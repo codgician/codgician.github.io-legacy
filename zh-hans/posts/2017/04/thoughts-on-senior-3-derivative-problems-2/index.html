@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="高考导数: 优化函数以方便求解">
+<meta itemprop="description" content="简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著">
+
+
+<meta itemprop="datePublished" content="2017-04-08T20:21:50&#43;08:00" />
+<meta itemprop="dateModified" content="2017-04-08T20:21:50&#43;08:00" />
+<meta itemprop="wordCount" content="4903">
+
+
+
+<meta itemprop="keywords" content="Mathematics,Calculus," />
+<meta property="og:title" content="高考导数: 优化函数以方便求解" />
+<meta property="og:description" content="简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2017-04-08T20:21:50+08:00" />
+<meta property="article:modified_time" content="2017-04-08T20:21:50+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="高考导数: 优化函数以方便求解"/>
+<meta name="twitter:description" content="简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>高考导数: 优化函数以方便求解</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 8, 2017</span></div>
+				<h1>高考导数: 优化函数以方便求解</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#真简介">真·简介</a></li>
+<li><a href="#指数型-ex">指数型 (<span class="math inline">\(e^x\)</span>)</a></li>
+<li><a href="#对数型-ln-x">对数型 (<span class="math inline">\(\ln x\)</span>)</a></li>
+<li><a href="#既有对数又有指数">既有对数又有指数？</a></li>
+<li><a href="#小结">小结</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>在进入正题前总是忍不住想先扯点其它的……</p>
+<p>前几周经不住诱惑购入了蔡小雄先生所著的数本高中数学相关的书籍，其中《更高更妙的高中数学 一题多解与一题多变》卷首语中的一段文字让我感触颇多：</p>
+<blockquote>
+<p>在实际教学中，我们会遇到这样的情况：有的题不是考察学生<strong>认知障碍</strong>，而是考查学生的“合理”错误；有的题不是让学生<strong>把握数学的本质、方法、思想和理性精神</strong>，而是教学生去防陷阱、防小人、防“边界”；有的题不是教学生<strong>大胆地去创新、探究</strong>，而是引导学生去“循规蹈矩”，找题型、找原型、找关系、找技巧。这样的题做多了，<strong>人会变笨，会更讨厌数学</strong>。</p>
+</blockquote>
+<p>而我个人的经历有何尝不与之相似？在高三上期与《高考数学你真的掌握了吗？》系列丛书邂逅前，我也因“循规蹈矩”而迷失于题海之中。在我眼中，有的只是繁琐的计算，枯燥的数字和无法捉摸的套路。当你秉承“暴力解决一切”的思想去面对数学时，数学诸多优美之处便荡然无存。</p>
+<p>近几年来我们可以看到高考也越来越侧重于考察素质与能力：其不仅仅包含着对基本知识的概念与理解，更有一种<strong>乐于探究，勇于创新的精神</strong>。这种精神驱动着我们不仅仅满足于解出一道题，而是从不同的角度去思考，用不同的方法去探究，以在快乐与满足之中提升我们<strong>类比迁移、化繁为简、数形结合、归纳猜想等等数学素养</strong>。或许若干年后我们并不从事数学相关的职业，也早已忘记什么韦达定理、什么圆锥曲线第二定义… 但长存于心的一定将是迁移问题的思想和解决问题的能力。而有这，我想数学教育也就成功了。</p>
+<p>而能具体地体现数学之美的也便是众多“不走寻常路”的方法了。比如，在解圆锥曲线题目时你或许会不假思索地用直角坐标系去解答，但你有想过参数方程或许可以更简便地得出答案吗？在做恒成立问题时你会不假思索地立马进行求导讨论，可你有想过对原函数做适当变换其实可以事半功倍吗？有时我想，高考或许没有错，<strong>是我们学习与应考的方式给高考打上了机械化、不合理的标签</strong>。若平时静下心来，花一些时间对做过的一些题去探究、去总结、去尝试、去创新，便会发现难题不就是由一些奇巧的思想组合而来的吗？</p>
+<p>作为一名高三学生，我很遗憾直到中学的最后阶段才得以粗浅地领略数学的美妙。在此，我也想小小地分享一下曾激起我学习数学兴趣的几点有关导数压轴题的特殊技巧。之前本来打算把优化函数以方便求解、对端点效应的优化以及浅谈洛必达法则三点心得写在一篇名为“奇技淫巧”的博文里的，结果发现还没写完文章就长地令人难以忍受。于是我觉得把这一篇文章拆为三篇文章可能会和谐一些。</p>
+<p>这三篇文章里都会有几道相同的例题出现（即2010年和2011年全国大纲卷的两道导数压轴题）。希望读者有兴趣的话可以把这三篇文章摆在一起看，感受一下运用不同方法带来的不同乐趣。</p>
+</div>
+<div id="真简介" class="section level1">
+<h1>真·简介</h1>
+<p>好吧，这回是真的简介了（逃…</p>
+<p>在做导数相关的题目时，我们往往习惯于一来就先分离参数或者直接求导再考虑下一步怎么做。殊不知，很多时候先静下心来，仔细观察一下原函数并对函数做出适当变换（优化）其实可以事半功倍。</p>
+<p>为了方便陈述，个人将这种方法（思路）命名为“优化法”。该方法也来自于《高考数学你真的掌握了吗》系列丛书的《函数》一册。</p>
+</div>
+<div id="指数型-ex" class="section level1">
+<h1>指数型 (<span class="math inline">\(e^x\)</span>)</h1>
+<p><span class="math inline">\(e^x\)</span> 在导数题中的出镜率不可谓不低，而其最显著的特点便是：</p>
+<div class="figure">
+<img src="thoughts-on-senior-3-derivative-problems-2/exponential_function.jpg" alt="" />
+<p class="caption">“百般求导浑不怕，要留原形在人间”</p>
+</div>
+<p>就像上图那样，倘若对于含 <span class="math inline">\(e^x\)</span> 的函数直接求导，其导函数也会带有 <span class="math inline">\(e^x\)</span>。在较为简单的函数中（比如形如 <span class="math inline">\(f(x) = e^{ax + b} + cx + d\)</span>），直接求导仍能比较方便地找到导函数的零点以讨论单调区间。然而对于稍微复杂的函数，<span class="math inline">\(e^x\)</span> 的存在便直接增大了我们寻找导函数零点的难度。</p>
+<p>还好，我们不难发现，对于形如 <span class="math inline">\(f(x) = g(x)e^x + m\)</span> 的函数，其导函数为 <span class="math inline">\(f&#39;(x) = e^x[g&#39;(x) + g(x)]\)</span>。类似地，如果是形如 <span class="math inline">\(f(x) = g(x)e^{-x} + m\)</span> 的函数，其导函数为 <span class="math inline">\(f&#39;(x) = e^{-x}[g&#39;(x) - g(x)]\)</span>。我们知道 <span class="math inline">\(e^x &gt; 0 (x \in R)\)</span>，那么实际上在讨论 <span class="math inline">\(f(x)\)</span> 的单调性时，我们仅仅需要讨论 <span class="math inline">\(\varphi(x) = g&#39;(x) + g(x)\)</span> 或是 <span class="math inline">\(\varphi(x) = g&#39;(x) - g(x)\)</span> 的正负性即可，也便有效地解决了无法解得零点的问题。</p>
+<p><strong>因此，对于含 <span class="math inline">\(e^x\)</span> 的函数，我们应考虑将函数化为 <span class="math inline">\(e^xg(x) + b\)</span> 或 <span class="math inline">\(e^{-x}g(x) + b\)</span> 的形式</strong>。</p>
+<hr />
+<p>2010年全国大纲卷理科数学的压轴题是一道难题，并且此题在高考中坑完了一批无辜的学生还变着花样在模拟题中坑更多的学生，乃至于在不久前我甚至做到一道与该题几乎没有区别的2016武汉模拟题。在各大资料都倾向于使用令高中生头疼的放缩法亦或是普通高中生听都没听说过的洛必达法则（后文中也会介绍）解答时，我们来看看它与上述技巧能碰撞出怎样的火花：</p>
+<p><strong>1.</strong> (2010.全国大纲卷理) 设函数 <span class="math inline">\(f(x) = 1 - e^{-x}\)</span>。<br />
+(1) 证明：当 <span class="math inline">\(x &gt; -1\)</span> 时，<span class="math inline">\(f(x) \ge \frac{x}{x+1}\)</span>；<br />
+(2) 设当 <span class="math inline">\(x \ge 0\)</span> 时，<span class="math inline">\(f(x) \le \frac{x}{ax + 1}\)</span>，求 <span class="math inline">\(a\)</span> 的取值范围。</p>
+<p><em>注：由于 (1) 问较简单，这里只分析第 (2) 问</em>。</p>
+<p><strong>解</strong>： (2)</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; f(x) \le \frac{x}{ax + 1} \\
+&amp; \Leftrightarrow 1 - e^{-x} \le \frac{x}{ax + 1} \\
+&amp; \Leftrightarrow 1 - \frac{x}{ax + 1} \le e^{-x} \\
+&amp; \Leftrightarrow e^x(1 - \frac{x}{ax + 1}) \le 1
+\end{aligned}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+F(x) = e^x(1 - \frac{x}{ax + 1}) - 1
+\]</span></p>
+<p>即证 <span class="math inline">\(x \ge 0\)</span> 时 <span class="math inline">\(F(x) \le 0\)</span> 恒成立</p>
+<p><span class="math display">\[
+\begin{aligned}
+\therefore F&#39;(x) &amp; = e^x[1 - \frac{x}{ax + 1} - \frac{(ax - 1) - ax}{(ax + 1)^2}] \\
+                 &amp; = \frac{e^x}{(ax + 1)^2}[(a^2 - a)x^2 + (2a - 1)x] \\
+                 &amp; = \frac{xe^x}{(ax + 1)^2}[(a^2 - a)x + (2a - 1)]
+\end{aligned}
+\]</span></p>
+<p><em>插一句话：这个时候我们就要分情况讨论了。注意到 <span class="math inline">\((a^2 - a)x + (2a - 1)\)</span> 在 <span class="math inline">\(a \neq 0 \ or \ \pm1\)</span> 时是一次函数，所以不妨以 <span class="math inline">\(a^2 - a = 0\)</span>与<span class="math inline">\(2a - 1 = 0\)</span> 所解得的 <span class="math inline">\(a\)</span> 值作为临界来讨论。另外，显然 <span class="math inline">\(a &lt; 0\)</span> 可以放在一起讨论（第1问起了提示作用）</em>。</p>
+<p><strong>I.</strong> 若 <span class="math inline">\(a &lt; 0\)</span><br />
+<span class="math inline">\(\therefore\)</span> 当<span class="math inline">\(x \in (-\frac{1}{a},+\infty)\)</span>时：</p>
+<p><span class="math display">\[
+\frac{x}{ax + 1} &lt; 0
+\]</span></p>
+<p>又 <span class="math inline">\(\because\)</span> 在 <span class="math inline">\(x \in [0,+\infty)\)</span>时：</p>
+<p><span class="math display">\[
+f(x) = 1 - e^{-x} \ge 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 当 <span class="math inline">\(x \in (-\frac{1}{a},+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+f(x) &gt; \frac{x}{ax + 1}
+\]</span></p>
+<p>与题意矛盾，舍去。</p>
+<p><strong>II.</strong> 若 <span class="math inline">\(a \in [0,\frac{1}{2}]\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{cases}
+a^2 - a \le 0 \\
+2a - 1 \le 0
+\end{cases}
+\]</span></p>
+<p>由一次函数性质，<span class="math inline">\(x \in [0,+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+(a^2 - a)x + (2a - 1) \le 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore F&#39;(x) \le 0
+\]</span></p>
+<p><span class="math inline">\(\therefore F(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递减 ，故：</p>
+<p><span class="math display">\[
+\therefore F(x) \le F(0) = 0
+\]</span></p>
+<p>满足题意。</p>
+<p><strong>III.</strong> 若 <span class="math inline">\(a \in (\frac{1}{2}, 1)\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{cases}
+a^2 - a \le 0 \\
+2a - 1 &gt; 0
+\end{cases}
+\]</span></p>
+<p>令 <span class="math inline">\(f&#39;(x) = 0\)</span>，有：</p>
+<p><span class="math display">\[
+x = \frac{1 - 2a}{a^2 - a} &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore F(x)\)</span>在<span class="math inline">\([0, \frac{1 - 2a}{a^2 - a}]\)</span>上单调递增，故：</p>
+<p><span class="math display">\[
+F(\frac{1 - 2a}{a^2 - a}) &gt; F(0) = 0
+\]</span></p>
+<p>不满题意，舍去。</p>
+<p><strong>IV.</strong> 若<span class="math inline">\(a \ge 1\)</span></p>
+<p><span class="math display">\[
+\begin{cases}
+a^2 - a \ge 0 \\
+2a - 1 \ge 0
+\end{cases}
+\]</span></p>
+<p>由一次函数性质，<span class="math inline">\(x \in [0,+\infty)\)</span> 时：</p>
+<p><span class="math display">\[
+(a^2 - a)x + (2a - 1) &gt; 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore F&#39;(x) &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore F(x)\)</span> 在 <span class="math inline">\([0,+\infty)\)</span> 单调递增，故：</p>
+<p><span class="math display">\[
+F(x) \ge F(0) = 0
+\]</span></p>
+<p>不满题意，舍去。</p>
+<p>综上，<span class="math inline">\(a \in [0,\frac{1}{2}]\)</span></p>
+<p>答：<span class="math inline">\(a\)</span> 的取值范围为 <span class="math inline">\([0,\frac{1}{2}]\)</span>。</p>
+<p>怎么样，是不是很简单？别看情况分的挺多，其实每一种情况几乎就是几秒就可以判断出是否满足条件。</p>
+<p>再来看看<a href="http://www.jyeoo.com/math2/ques/detail/3e6ca929-5ca7-4716-a80c-1873e641d558">参考答案</a>，它利用了 <span class="math inline">\(e^x \ge x + 1\)</span> 这一基本放缩，而且思路极其不好想，远没有该方法好想、易操作。</p>
+</div>
+<div id="对数型-ln-x" class="section level1">
+<h1>对数型 (<span class="math inline">\(\ln x\)</span>)</h1>
+<p>与上一节相似地，我们不难发现，对于形如 <span class="math inline">\(f(x) = \ln g(x)\)</span> 的函数，其导函数为 <span class="math inline">\(f&#39;(x) = \frac{g&#39;(x)}{g(x)}\)</span>，也可以使其导函数中不再带有对数函数从而更易讨论解答。</p>
+<p><strong>因此，对于含 <span class="math inline">\(h(x)\ln g(x)\)</span> 的函数，我们应考虑把函数化为 <span class="math inline">\(k(x) + \ln g(x)\)</span> 的形式</strong>。</p>
+<p>2011年全国大纲卷理科数学的压轴题也是一道有名的难题，让我们来看看优化函数又能起到怎样的效果。</p>
+<p><strong>2.</strong> (2011.全国大纲卷理) 已知函数<span class="math inline">\(f(x) = \frac{a\ln x}{x+1} + \frac{b}{x}\)</span>，曲线 <span class="math inline">\(y = f(x)\)</span> 在点<span class="math inline">\((1, f(1))\)</span> 处的切线方程为 <span class="math inline">\(x + 2y - 3 = 0\)</span>。<br />
+(1) 求 <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> 的值；<br />
+(2) 如果当 <span class="math inline">\(x &gt; 0\)</span>，且 <span class="math inline">\(x \neq 0\)</span>时，<span class="math inline">\(f(x) &gt; \frac{\ln x}{x - 1} + \frac{k}{x}\)</span>，求 <span class="math inline">\(k\)</span> 的取值范围。</p>
+<p><em>注：(1) 问过程略，解得 <span class="math inline">\(a = 1, b = 1\)</span>，这里只分析第 (2) 问</em>。</p>
+<p><strong>解</strong>: (2)<br />
+由题，有：</p>
+<p><span class="math display">\[
+\frac{\ln x}{x + 1} + \frac{1}{x} &gt; \frac{\ln x}{x - 1} + \frac{k}{x}
+\]</span></p>
+<p><span class="math display">\[
+\Leftrightarrow \begin{cases}
+(k - 1)(x - \frac{1}{x}) + 2\ln x &lt; 0 &amp; (x &gt; 1) \\
+(k - 1)(x - \frac{1}{x}) + 2\ln x &gt; 0 &amp; (0 &lt; x &lt; 1)
+\end{cases}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+g(x) = (k - 1)(x - \frac{1}{x}) + 2\ln x
+\]</span></p>
+<p><span class="math inline">\(\therefore 0 &lt; x &lt; 1\)</span>时，<span class="math inline">\(g(x) &gt; 0\)</span>；<span class="math inline">\(x &gt; 1\)</span>时，<span class="math inline">\(g(x) &lt; 0\)</span></p>
+<p><span class="math display">\[
+g&#39;(x) = \frac{(k - 1)x^2 + 2x + k - 1}{x^2}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+h(x) = (k - 1)x^2 + 2x + k - 1
+\]</span></p>
+<p><strong>I.</strong> 若 <span class="math inline">\(k \le 0\)</span><br />
+对 <span class="math inline">\(h(x)\)</span>：</p>
+<p><span class="math display">\[
+\Delta = 4 - 4(k - 1)^2 \le 0
+\]</span></p>
+<p>由二次函数性质：</p>
+<p><span class="math display">\[
+h(x) \le 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore g&#39;(x) \le 0
+\]</span></p>
+<p><span class="math inline">\(\therefore g(x)\)</span> 在 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,+\infty)\)</span> 单调递减<br />
+<span class="math inline">\(\therefore\)</span> 在 <span class="math inline">\((0,1)\)</span> 上，<span class="math inline">\(g(x) &gt; g(1) = 0\)</span> 恒成立；在 <span class="math inline">\((1,+\infty)\)</span> 上，<span class="math inline">\(g(x) &lt; g(1) = 0\)</span> 恒成立<br />
+<span class="math inline">\(\therefore\)</span> 满足要求</p>
+<p><strong>II.</strong> 若 <span class="math inline">\(0 &lt; k &lt; 1\)</span><br />
+对 <span class="math inline">\(h(x)\)</span>：</p>
+<p><span class="math display">\[
+\Delta = 4 - 4(k - 1)^2 &gt; 0
+\]</span></p>
+<p>设 <span class="math inline">\(h(x)\)</span> 两零点分别为 <span class="math inline">\(x_1\)</span>、<span class="math inline">\(x_2\)</span>，且 <span class="math inline">\(x_2 &gt; x_1\)</span><br />
+由韦达定理：</p>
+<p><span class="math display">\[
+x_1 + x_2 = -\frac{2}{k - 1} &gt; 2
+\]</span></p>
+<p><span class="math display">\[
+\therefore x_2 &gt; 1
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 由二次函数性质，当 <span class="math inline">\(x \in (1, x_2)\)</span> 时有：</p>
+<p><span class="math display">\[
+g(x) &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 不符要求，舍去。</p>
+<p><strong>III.</strong> 若 <span class="math inline">\(k \ge 1\)</span></p>
+<p><span class="math display">\[
+\therefore k - 1 \ge 0
+\]</span></p>
+<p>又 <span class="math inline">\(\because\)</span> 在 <span class="math inline">\((1,+\infty)\)</span> 区间内 <span class="math inline">\(x\)</span> 单调递增，<span class="math inline">\(\frac{1}{x}\)</span> 单调递减<br />
+<span class="math inline">\(\therefore x - \frac{1}{x}\)</span> 在该区间内单调递增</p>
+<p><span class="math display">\[
+\therefore x - \frac{1}{x} &gt; 1 - \frac{1}{1} = 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 在 <span class="math inline">\((1,+\infty)\)</span> 区间内：</p>
+<p><span class="math display">\[
+g(x) = (k - 1)(x - \frac{1}{x}) + 2\ln x &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 不符要求，舍去.</p>
+<p><span class="math inline">\(\therefore\)</span> 综上，<span class="math inline">\(k \in (-\infty,0]\)</span></p>
+<p>答: <span class="math inline">\(k\)</span> 的取值范围为<span class="math inline">\((-\infty,0]\)</span>。</p>
+<p>该题的解法可谓十分巧妙。就算优化函数的过程中会出现不可避免的分类讨论，但在不同情况下优化后新函数的方程式都是一样的。自然而然我们便知道了新函数在不同区间内的正负性。我们只需对新函数求导并讨论即可。</p>
+<p>有读者可能会问：我怎么知道要讨论<span class="math inline">\(k\)</span>的哪些区间？其实在本题中<span class="math inline">\(k\)</span>的区间是由<span class="math inline">\(\Delta\)</span>的正负性和二次项系数的正负性决定的。也就是说，我们基本上就是在讨论<span class="math inline">\(h(x)\)</span>是否有解和开口方向不同的几种可能情况。</p>
+<p>上述方法与该题的<a href="http://www.mofangge.com/html/qDetail/02/g3/201108/7oeag302255882.html">参考答案</a>是十分类似的，感兴趣的话也可以去看看。</p>
+</div>
+<div id="既有对数又有指数" class="section level1">
+<h1>既有对数又有指数？</h1>
+<p>额… 一般来说对于既有对数又有指数的题目<strong>一般不采用该方法</strong>，因为就算进行优化也只能顾全一者，优化后的式子往往也不够简单。但再少见的较为简单的情况中，我们只需要顾及其中一种就是了。</p>
+<p>前几天的一次数学周考中，有如下一道导数压轴题，我也在此把它当作一道例题：</p>
+<p><strong>3</strong>. (2016.武汉模拟) 已知函数 <span class="math inline">\(f(x) = e^x - ax^2\)</span>，曲线 <span class="math inline">\(y = f(x)\)</span> 在 <span class="math inline">\(x = 1\)</span> 处的切线方程为 <span class="math inline">\(y = bx + 1\)</span>。<br />
+(1) 求 <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> 的值；<br />
+(2) 求函数 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([0,1]\)</span> 上的最大值；<br />
+(3) 证明：当 <span class="math inline">\(x &gt; 0\)</span> 时，<span class="math inline">\(e^x + (1 - e)x - x\ln x -1 \ge 0\)</span>.</p>
+<p>前两问实属容易，这里就不讲解了，公布一下答案：<br />
+(1) <span class="math inline">\(a = 1\)</span>; <span class="math inline">\(b = e - 2\)</span><br />
+(2) 最大值即 <span class="math inline">\(f(1) = e - 1\)</span></p>
+<p>好的，接下来我们重点看看 (3) 问。我们先对待求的这个不等式进行观察，发现其中有一项 <span class="math inline">\(x\ln x\)</span>。这非常令人不爽，因为我们知道对 <span class="math inline">\(x\ln x\)</span> 求导函数的结果是 <span class="math inline">\(\ln x + 1\)</span>，并不能搞掉 <span class="math inline">\(\ln x\)</span>；而如果是对 <span class="math inline">\(\ln x\)</span> 求导函数结果即 <span class="math inline">\(\frac{1}{x}\)</span>，就根本没有对数的事情了。再看看题目，限制条件为 <span class="math inline">\(x &gt; 0\)</span>，于是本着简化原式的思想我将不等号两边除以 <span class="math inline">\(x\)</span>。</p>
+<p>这样一来，我们就将原题转化为证明 <span class="math inline">\(\frac{e^x}{x} + (1 - e) - \ln x - \frac{1}{x} \ge 0\)</span> 在 <span class="math inline">\(x &gt; 0\)</span> 时恒成立了。</p>
+<p>令：</p>
+<p><span class="math display">\[
+F(x) = \frac{e^x}{x} + (1 - e) - \ln x - \frac{1}{x}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\therefore F&#39;(x) &amp; = \frac{xe^x - (e^x - 1)}{x^2} - \frac{1}{x} \\
+                 &amp; = \frac{(x - 1)e^x - (x - 1)}{x^2} \\
+                 &amp; = \frac{(x - 1)(e^x - 1)}{x^2}
+\end{aligned}
+\]</span></p>
+<p>令 <span class="math inline">\(F&#39;(x) = 0\)</span>，得 <span class="math inline">\(x = 1\)</span>。<br />
+当 <span class="math inline">\(x \in (0,1)\)</span> 时，<span class="math inline">\(F&#39;(x) &lt; 0\)</span>，<span class="math inline">\(F(x)\)</span>单调递减；<br />
+当 <span class="math inline">\(x \in (1,+\infty)\)</span> 时，<span class="math inline">\(F&#39;(x) &gt; 0\)</span>，<span class="math inline">\(F(x)\)</span> 单调递增；<br />
+<span class="math inline">\(\therefore F(1)\)</span> 为 <span class="math inline">\(F(x)\)</span> 的极小值点</p>
+<p><span class="math display">\[
+\therefore F(x) \ge F(1) = 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore xF(x) \ge 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 得证。</p>
+<p>卧槽！怎么会这么简单？这简直是我做过最简单的一道导数压轴题了… 当时考试时我还觉得不可能这么简单还重算了2遍，最后发现真的这么简单…直到我看到了<a href="http://www.jyeoo.com/math2/ques/detail/bc86d470-f229-43d4-a98a-791409411aaa">参考答案</a>。</p>
+<p>参考答案我就不转载了，大家点上面的链接进去看看吧。参考答案的解法利用了一个基本的放缩式 <span class="math inline">\(\ln x \le x - 1\)</span>（可以自行求导证明），从而将 <span class="math inline">\(x\ln x\)</span> 搞掉：<span class="math inline">\(x\ln x \le x^2 - x\)</span>。这样的好处是不仅仅搞掉了 <span class="math inline">\(x\ln x\)</span>，同时还获得了 <span class="math inline">\(x^2\)</span>，可以构造出题目中的 <span class="math inline">\(f(x)\)</span>。由 <span class="math inline">\(e^x + (1 - e)x - x\ln x -1 \ge e^x + (1 - e)x - (x^2 - x) -1\)</span>，自然而然地问题也就转化为证明 <span class="math inline">\(e^x + (1 - e)x - (x^2 - x) -1 \ge 0\)</span>，即 <span class="math inline">\(f(x) \ge (e - 2)x + 1\)</span>。这样以来就转化为了 <span class="math inline">\(f(x) \ge g(x)\)</span>这一类的问题了，直接令 <span class="math inline">\(h(x) = f(x) - g(x)\)</span> 求导做就行了。 然而，这种消去 <span class="math inline">\(x\ln x\)</span> 的方法远没有两边直接除以 <span class="math inline">\(x\)</span> 的方法优雅高效，同时尤其是对于初学者也不是很好想。</p>
+</div>
+<div id="小结" class="section level1">
+<h1>小结</h1>
+<p>本文简要介绍了对于含有 <span class="math inline">\(e^x\)</span> 或含有 <span class="math inline">\(\ln x\)</span> 的函数先进行适当变换再进行求解的方法，这种方法往往可以轻松地解决相应题目。</p>
+<ul>
+<li>对于含 <span class="math inline">\(e^x\)</span> 的函数，我们应考虑将函数化为 <span class="math inline">\(e^xg(x) + b\)</span> 或 <span class="math inline">\(e^{-x}g(x) + b\)</span> 的形式。</li>
+<li>对于含 <span class="math inline">\(h(x)\ln g(x)\)</span> 的函数，我们应考虑把函数化为 <span class="math inline">\(k(x) + \ln g(x)\)</span> 的形式。</li>
+<li>对于两者都有的函数，一般不这样考虑，但在简单的情况下顾全一者即可求出。</li>
+</ul>
+</div>
+<div id="参考文献" class="section level1">
+<h1>参考文献</h1>
+<ul>
+<li>张杨文主编.高考数学你真的掌握了吗 函数 [M].北京：清华大学出版社, 2014 (2016.5 重印)</li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/calculus">Calculus</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4903 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-04-08 20:21 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>高考导数: 洛必达法则</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>高考导数: “两点”问题</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="3"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

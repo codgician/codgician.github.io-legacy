@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="Luogu P1829: Crash 的数字表格">
+<meta itemprop="description" content="题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌">
+
+
+<meta itemprop="datePublished" content="2018-11-21T19:15:10&#43;08:00" />
+<meta itemprop="dateModified" content="2018-11-21T19:15:10&#43;08:00" />
+<meta itemprop="wordCount" content="911">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Arithmetic Function,Luogu," />
+<meta property="og:title" content="Luogu P1829: Crash 的数字表格" />
+<meta property="og:description" content="题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-11-21T19:15:10+08:00" />
+<meta property="article:modified_time" content="2018-11-21T19:15:10+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="Luogu P1829: Crash 的数字表格"/>
+<meta name="twitter:description" content="题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Luogu P1829: Crash 的数字表格</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 21, 2018</span></div>
+				<h1>Luogu P1829: Crash 的数字表格</h1>
+			</header>
+			<div class="content">
+				
+
+
+<div id="题面" class="section level1">
+<h1>题面</h1>
+<p>给定 <span class="math inline">\(n, m\)</span>，试求：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j)
+\]</span></p>
+<p>答案对 <span class="math inline">\(20101009\)</span> 取模。</p>
+<p><strong>数据范围</strong>：<span class="math inline">\(1 \le n,m \le 10^7\)</span></p>
+<p><strong>题目链接</strong>：<a href="https://www.luogu.org/problemnew/show/P1829">Luogu P1829: Crash 的数字表格</a></p>
+</div>
+<div id="分析" class="section level1">
+<h1>分析</h1>
+<p>显然我们需要往莫比乌斯函数的方向考虑。因此，我们要把 <span class="math inline">\(\operatorname{lcm}(i, j)\)</span> 换作使用 <span class="math inline">\(\gcd(i, j)\)</span> 表示。</p>
+<p>为了方便，下文中假设 <span class="math inline">\(n \le m\)</span>（如果 <span class="math inline">\(n &gt; m\)</span> 那么两者交换一下就好了）。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) = &amp; \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \frac{ij}{\gcd(i, j)}
+\end{aligned}
+\]</span></p>
+<p>我们发现 <span class="math inline">\(\gcd(i, j)\)</span> 位于分母，这十分不好处理。因此我们在这里介绍一个技巧，令 <span class="math inline">\(\gcd(i, j) = k\)</span> 并枚举 <span class="math inline">\(k\)</span> 从而使得 <span class="math inline">\(\gcd(i, j)\)</span> 离开分母：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) = &amp; \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \sum\limits_{k = 1}^{n} \frac{ij}{k} [\gcd(i. j) = k] \\
+= &amp; \sum\limits_{k = 1}^{\min(n, m)} \sum\limits_{i = 1}^{\left\lfloor \frac{n}{k} \right\rfloor} \sum\limits_{j = 1}^{\left\lfloor \frac{m}{k} \right\rfloor} ijk[\gcd(i, j) = 1]
+\end{aligned}
+\]</span></p>
+<p>终于出现了我们最喜闻乐见的 <span class="math inline">\([\gcd(i, j) = 1]\)</span>，我们按套路对其进行变换：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) = &amp; \sum\limits_{k = 1}^{n} \sum\limits_{i = 1}^{\left\lfloor \frac{n}{k} \right\rfloor} \sum\limits_{j = 1}^{\left\lfloor \frac{m}{k} \right\rfloor} ijk \sum\limits_{d \mid \gcd(i, j)} \mu(d) \\
+= &amp; \sum\limits_{k = 1}^{n} \sum\limits_{i = 1}^{\left\lfloor \frac{n}{k} \right\rfloor} \sum\limits_{j = 1}^{\left\lfloor \frac{m}{k} \right\rfloor} ijk \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor} \mu(d) [d  \mid  \gcd(i, j)] \\
+= &amp; \sum\limits_{k = 1}^{n} k \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\mu(d) \sum\limits_{i = 1}^{\left\lfloor \frac{n}{k} \right\rfloor} \sum\limits_{j = 1}^{\left\lfloor \frac{m}{k} \right\rfloor} ij [d  \mid  \gcd(i, j)] \\
+= &amp; \sum\limits_{k = 1}^{n} k \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\mu(d) \sum\limits_{i = 1}^{\left\lfloor \frac{n}{kd} \right\rfloor} \sum\limits_{j = 1}^{\left\lfloor \frac{m}{kd} \right\rfloor} ijd^2 [1  \mid  \gcd(i, j)] \\
+= &amp; \sum\limits_{k = 1}^{n}k \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\mu(d) d^2 \sum\limits_{i = 1}^{\left\lfloor \frac{n}{kd} \right\rfloor}i \sum\limits_{j = 1}^{\left\lfloor \frac{m}{kd} \right\rfloor} j
+\end{aligned}
+\]</span></p>
+<p>我们注意到最后两项实际上都是等差数列求和。我们不妨令 <span class="math inline">\(g(i) = \sum\limits_{i = 1}^{n} i\)</span>，那么有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) = &amp; \sum\limits_{k = 1}^{n}k \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\mu(d) d^2 g\left( \left\lfloor \frac{n}{kd} \right\rfloor \right) g\left( \left\lfloor \frac{m}{kd} \right\rfloor \right) \\
+\end{aligned}
+\]</span></p>
+<p>令 <span class="math inline">\(T = kd\)</span>，同时我们考虑枚举 <span class="math inline">\(T\)</span>，则有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) = &amp; \sum\limits_{k = 1}^{n}k \sum\limits_{d = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\mu(d) d^2 g\left( \left\lfloor \frac{n}{T} \right\rfloor \right) g\left( \left\lfloor \frac{m}{T} \right\rfloor \right) \\
+= &amp; \sum\limits_{T = 1}^{n} g\left( \left\lfloor \frac{n}{T} \right\rfloor \right) g\left( \left\lfloor \frac{m}{T} \right\rfloor \right) \sum\limits_{d \mid T}\mu(d)d^2\frac{T}{d} \\
+= &amp; \sum\limits_{T = 1}^{n} g\left( \left\lfloor \frac{n}{T} \right\rfloor \right) g\left( \left\lfloor \frac{m}{T} \right\rfloor \right)T \sum\limits_{d \mid T}d\mu(d)
+\end{aligned}
+\]</span></p>
+<p>不妨令 <span class="math inline">\(F(n) = \sum\limits_{d \mid n} d\mu(d)\)</span> 并对 <span class="math inline">\(F(n)\)</span> 进行研究。</p>
+<p>我们发现，当 <span class="math inline">\(a \perp b\)</span> 时（当 <span class="math inline">\(a, b\)</span> 互质时）：</p>
+<p><span class="math display">\[
+\begin{aligned}
+F(a) = &amp; \sum\limits_{d \mid a} d\mu(d) \\
+F(b) = &amp; \sum\limits_{d \mid b} d\mu(d) \\
+\end{aligned}
+\]</span></p>
+<p>我们不难发现，由 <span class="math inline">\(a \perp b\)</span>，故 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 不存在公共因子，因此 <span class="math inline">\(i \mid a, \ j \mid b \Leftrightarrow ij \mid ab\)</span>。又由于 <span class="math inline">\(\mu(n)\)</span> 本身又是积性函数，所以有 <span class="math inline">\(\mu(ab) = \mu(a) \cdot \mu(b)\)</span>。由此：</p>
+<p><span class="math display">\[
+\begin{aligned}
+F(a) \cdot F(b) = &amp; \sum\limits_{i \mid a}i\mu(i)\sum\limits_{j \mid b}j\mu(j) \\
+= &amp; \sum\limits_{ij \mid ab}ij \cdot \mu(ij) \\
+= &amp; \sum\limits_{k \mid ab}k\mu(k) \\
+= &amp; F(ab)
+\end{aligned}
+\]</span></p>
+<p>我们发现 <span class="math inline">\(F(n)\)</span> 也是个积性函数！既然是积性函数…… 那么一定可以线性筛：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(F(1) = 1\)</span>；</li>
+<li>若 <span class="math inline">\(a\)</span> 是质数，<span class="math inline">\(F(a) = 1 - a\)</span>；</li>
+<li>若 <span class="math inline">\(a \perp b\)</span>，<span class="math inline">\(F(ab) = F(a) \cdot F(b)\)</span>；</li>
+</ol>
+<p>由此一来，我们就可以 <span class="math inline">\(\mathcal{O}(N)\)</span> 初始化（线性筛 <span class="math inline">\(F(n)\)</span>），并借助整除分块 <span class="math inline">\(\mathcal{O}(\sqrt{N})\)</span> 解决询问了。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P1829/mobius_inversion.cpp">我的代码</a> 以供参考。</p>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>An-Amazing-Blog - <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/arithmetic-function">Arithmetic Function</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/luogu">Luogu</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>911 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-11-21 19:15 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>HDUOJ 4947: GCD Array</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈莫比乌斯反演</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="63"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script>
+</body>
+
+</html>

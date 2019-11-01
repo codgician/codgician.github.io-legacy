@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="浅谈匈牙利算法">
+<meta itemprop="description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+
+
+<meta itemprop="datePublished" content="2018-03-09T12:52:01&#43;08:00" />
+<meta itemprop="dateModified" content="2018-03-09T12:52:01&#43;08:00" />
+<meta itemprop="wordCount" content="6422">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Graph Theory,Bipartite Matching,Hungarian Algorithm," />
+<meta property="og:title" content="浅谈匈牙利算法" />
+<meta property="og:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-03-09T12:52:01+08:00" />
+<meta property="article:modified_time" content="2018-03-09T12:52:01+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="浅谈匈牙利算法"/>
+<meta name="twitter:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>浅谈匈牙利算法</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 9, 2018</span></div>
+				<h1>浅谈匈牙利算法</h1>
+			</header>
+			<div class="content">
+				
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#几点概念">几点概念</a><ul>
+<li><a href="#二分图">二分图</a></li>
+<li><a href="#匹配">匹配</a></li>
+<li><a href="#增广路径">增广路径</a></li>
+</ul></li>
+<li><a href="#无权二分图最大匹配">无权二分图最大匹配</a><ul>
+<li><a href="#思想">思想</a></li>
+<li><a href="#正确性">正确性</a></li>
+<li><a href="#代码-c">代码 (C++)</a></li>
+</ul></li>
+<li><a href="#数个名词">数个名词</a><ul>
+<li><a href="#交错树">交错树</a></li>
+<li><a href="#顶标">顶标</a></li>
+<li><a href="#相等子图">相等子图</a></li>
+</ul></li>
+<li><a href="#带权二分图最大匹配">带权二分图最大匹配</a><ul>
+<li><a href="#思想-1">思想</a></li>
+<li><a href="#几点变形">几点变形</a></li>
+<li><a href="#代码-c-1">代码 (C++)</a><ul>
+<li><a href="#dfs-版本">DFS 版本</a></li>
+<li><a href="#bfs-版本">BFS 版本</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="前言" class="section level1">
+<h1>前言</h1>
+<p>说好的自己整理笔记，最后却变成了抄别人的博客 + 抄书。我还是太菜了，惭愧😭……</p>
+<p>所以…… 本文<strong>很大程度上</strong>借鉴了巨佬出的新书和网络上几篇优秀文章（具体列表可见文末）。本人向这些文章的作者们表示衷心感谢！</p>
+<p>这篇文章算得上是我第一次写稍微有点难度的算法总结文章…… 可能会有很多错误，欢迎指正~</p>
+</div>
+<div id="几点概念" class="section level1">
+<h1>几点概念</h1>
+<div id="二分图" class="section level2">
+<h2>二分图</h2>
+<p><strong>二分图 (Bipartite graph)</strong> 是一种特殊的简单图，它的顶点可以被分为两个不相交的集合（<span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span>），并且同属一个集合的点两两不相连 (<span class="math inline">\(E_U = E_V = \varnothing\)</span>)。也就是说，如果一个图是二分图，它要么没有圈 (cycle)，要么所有圈包含边的个数均为偶数。</p>
+<p>例如，下图 <code>Fig.1</code> 就是一个二分图。但是为了方便，我们通常将其画作 <code>Fig.2</code> 的样子。</p>
+<div class="figure">
+<img src="/posts/hungarian-algorithm/fig-1-to-2.png" alt="" />
+<p class="caption">Fig.1 &amp;&amp; 2</p>
+</div>
+<p>那么我们如何使用算法来判定二分图呢？</p>
+<p>显然，我们可以使用<strong>染色法</strong>，即用黑白两种颜色来标记图中的节点，当一个节点被标记后，我们将所有与之相邻的节点都标记为相反的颜色。若在此染色过程中出现了冲突，那么就不是二分图，否则是二分图。</p>
+</div>
+<div id="匹配" class="section level2">
+<h2>匹配</h2>
+<p><strong>匹配 (Matching)</strong> 是边的集合 (<span class="math inline">\(M \subset E\)</span>)，其中任意两条边都没有公共点。</p>
+<p>例如，下图 <code>Fig.3</code> 中所有红的的边组成的集合就是 <code>Fig.2</code> 的一个匹配。而在其中，被标红的边被称作<strong>匹配边</strong>；匹配边所连接的点被称为<strong>匹配点</strong>。与之相反地，没有被标红的边被称作<strong>非匹配边</strong>，非匹配边所连接的点被称作<strong>非匹配点</strong>。</p>
+<p>显而易见，对于一个二分图来说，可能会有很多种匹配。如果某二分图的某一个匹配包含的边的数量在该二分图所有匹配中最大，那么称这个匹配为<strong>最大匹配</strong>。例如，下图 <code>Fig.4</code> 就是 <code>Fig.2</code> 的最大匹配。</p>
+<p>相似地，如果这个二分图带权，那么权值之和最大的匹配被称作<strong>最大权匹配</strong>。</p>
+<div class="figure">
+<img src="/posts/hungarian-algorithm/fig-3-to-4.png" alt="" />
+<p class="caption">Fig.3 &amp;&amp; 4</p>
+</div>
+</div>
+<div id="增广路径" class="section level2">
+<h2>增广路径</h2>
+<p><strong>增广路径 (Augmenting Path)</strong> 是一条连通两个未匹配点，且非匹配边和匹配边在其上交替出现的路径。</p>
+<p>例如，下图 <code>Fig.6</code> 就是 <code>Fig.5</code> 的一条增广路径。</p>
+<div class="figure">
+<img src="/posts/hungarian-algorithm/fig-5-to-6.png" alt="" />
+<p class="caption">Fig.5 &amp;&amp; 6</p>
+</div>
+<p>我个人认为增广路径应该理解为<strong>某种还可以进一步优化的路径</strong>，因此在不同的问题中增广路径应该有不同的具体定义。例如上面提到的这种路径，如果把非匹配边和匹配边交换就可以增加一条匹配边（也就是说，这种路径不是最优的，是仍然可以增广的）。</p>
+</div>
+</div>
+<div id="无权二分图最大匹配" class="section level1">
+<h1>无权二分图最大匹配</h1>
+<div id="思想" class="section level2">
+<h2>思想</h2>
+<p>通过上面的概念，我们不难发现增广路径有一个十分重要的性质：<strong>非匹配边比匹配边多一条</strong>。因此，研究增广路径的意义是<strong>改进匹配</strong>。如果我们把增广路径中的非匹配边和匹配边交换，这样做不仅不会破坏匹配本身的性质（因为增广路径中所有的匹配边并不存在与其他点相连的匹配边），而且交换后匹配边的数目还会比原来多 <span class="math inline">\(1\)</span> 条。</p>
+<p>如果我们不停地寻找增广路径，并在每一次找到增广路径后交换增广路径中的匹配点和非匹配点以增加匹配边的数目，这样直到再也找不到增广路径时，我们就得到了该二分图的最大匹配。这就是<strong>匈牙利算法</strong>的本质，因此有时我们也称其为<strong>增广路算法</strong>。</p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>设 <span class="math inline">\(S = \varnothing\)</span>，即把所有边都标记为未匹配边。</li>
+<li>寻找增广路径，接着把其上所有边的状态取反（即把匹配边都标记为未匹配边，未匹配边都标记为匹配边）。</li>
+<li>重复第 2 步，直到再也无法在图中找到增广路径。</li>
+</ol>
+<p>显然，该算法的关键在于如何寻找增广路径。</p>
+<p>匈牙利算法尝试<strong>给每一个左部节点 <span class="math inline">\(x\)</span> 寻找一个右部节点 <span class="math inline">\(y\)</span></strong>。右部节点 <span class="math inline">\(y\)</span> 能够与左部节点 <span class="math inline">\(x\)</span> 匹配，需要满足如下两个条件之一：</p>
+<ol style="list-style-type: decimal">
+<li><strong><span class="math inline">\(y\)</span> 本身就是非匹配点</strong>。在这种情况下，<span class="math inline">\(x - y\)</span> 本身就是一条非匹配边，则是一条长度为 <span class="math inline">\(1\)</span> 的增广路径。</li>
+<li><strong><span class="math inline">\(y\)</span> 已经与左部点 <span class="math inline">\(x&#39;\)</span> 匹配，但从 <span class="math inline">\(x&#39;\)</span> 出发能找到另一个右部节点 <span class="math inline">\(y&#39;\)</span> 与之匹配</strong>。在这种情况下，<span class="math inline">\(x - y - x&#39; - y&#39;\)</span> 为一条增广路径。</li>
+</ol>
+<p>我们可以使用 <strong>深度优先搜素 (DFS)</strong> 来递归地从左部节点 <span class="math inline">\(x\)</span> 出发寻找增广路径。若找到，则在回溯的时候把路径上的匹配状态取反。另外，在每一次搜索时，我们可以开一个 <code>bool</code> 数组来记录每个右部节点的访问情况，以避免重复搜索。</p>
+<hr />
+<p>下面我们举一个例子来演示匈牙利算法的大致过程（请配合图片下方的一段文字说明食用）：</p>
+<div class="figure">
+<img src="/posts/hungarian-algorithm/hungarian-unweighted-demo.png" alt="" />
+<p class="caption">匈牙利算法样例</p>
+</div>
+<p>首先，我们从左1出发，找到右1，发现这两点可以匹配（满足条件1）。至此，我们找到了一条增广路径。在回溯时，我们将这条未匹配边标记为匹配边（见图2）。</p>
+<p>然后，我们从左2出发，先找到右1，发现它已经与左1匹配了。接着我们递归，尝试给与之匹配的左1另外找一个匹配点。但是我们找不到，因此匹配失败（不满足条件2，见图3）。接着，我们找到右3并匹配成功，找到增广路径，回溯时将该边标记为匹配边（见图4）。</p>
+<p>接着，我们从左3出发，找到右2，匹配成功（满足条件1），找到增广路径，回溯时标记该边为匹配边（见图5）。</p>
+<p>最后，我们从左4出发，找到右3，发现它已经与左2匹配了。接着我们递归，尝试给与之匹配的左2另外找一个匹配点，我们找到了右4，找到增广路径（满足条件2），回溯并将增广路径上的所有非匹配边标记为匹配边。</p>
+<p>至此，我们便找到了最大匹配，算法完成。</p>
+<p>另外，插句嘴，对于上例这种所有点最后都成匹配点的匹配，我们称其为<strong>完备匹配</strong>。</p>
+</div>
+<div id="正确性" class="section level2">
+<h2>正确性</h2>
+<p>匈牙利算法实际上基于<strong>贪心策略</strong>。它的一个重要特点是：当一个节点成为匹配点后，至多因为找到增广路而更换匹配对象，但是<strong>绝对不会从匹配点变成非匹配点</strong>。</p>
+<p>如果要更详细地说明，我们可以从反证法考虑：</p>
+<p>假设存在这样的<strong>非最大匹配</strong>，在其中已经无法找到增广路径。</p>
+<p><span class="math inline">\(\because\)</span> 当前匹配不是最大匹配</p>
+<p><span class="math inline">\(\therefore\)</span> 左右部均至少存在一个非匹配点</p>
+<p>对于这两个非匹配点，我们可以分两种情况讨论：</p>
+<ul>
+<li><strong>若这两个点间存在一条边</strong>： 那么我们就找到了一条增广路径，与假设矛盾；</li>
+<li><strong>若这两个点间不存在边：</strong>
+<ul>
+<li><strong>若这两个点可以与已有的匹配点相连</strong>：那么我们完全可以将其加入增广路径里，与假设矛盾；</li>
+<li><strong>若这两个点不能与已有匹配点相连</strong>：那么这两个点无法增加图中匹配边的数量，也就是说我们已经找到最大匹配了，与假设矛盾。</li>
+</ul></li>
+</ul>
+<p>对于每个左部节点，寻找增广路最多遍历一次整张二分图，因此该算法的复杂度为 <span class="math inline">\(\mathcal{O}(NM)\)</span>。</p>
+</div>
+<div id="代码-c" class="section level2">
+<h2>代码 (C++)</h2>
+<p><strong>几点说明</strong>：</p>
+<p>在代码样例中 <span class="math inline">\(\text{fst}\)</span> 代表左部元素（first 的缩写），<span class="math inline">\(\text{snd}\)</span> 代表右部元素（second 的缩写）。</p>
+<p><span class="math inline">\(\text{arr}\)</span> 是存边的邻接矩阵。例如，<span class="math inline">\(\text{arr}[i][j] == true\)</span> 意味着左部点 <span class="math inline">\(i\)</span> 和右部点 <span class="math inline">\(j\)</span> 间存在一条无权边。</p>
+<p><span class="math inline">\(\text{sndMatch}\)</span> 记录与右部节点相匹配的左部节点（即记录当前的所有匹配边）。例如，<span class="math inline">\(\text{sndMatch}[j] == i\)</span> 意味着左部 <span class="math inline">\(i\)</span> 节点和右部 <span class="math inline">\(j\)</span> 结点间存在一条匹配边。在刚开始时我们将该数组所有元素初始化为 <span class="math inline">\(-1\)</span>，代表所有边开始时都是未匹配边。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">bool</span> arr[SIZE][SIZE], sndVisited[SIZE];</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">int</span> sndMatch[SIZE];</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">int</span> fstNum, sndNum;</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">// Find snd vertex for fst vertex</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="dt">bool</span> canFind(<span class="dt">int</span> fstId) {</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        <span class="co">// If edge exists and snd vertex has not been visited</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>        <span class="cf">if</span> (arr[fstId][i] &amp;&amp; !sndVisited[i]) {</span>
+<span id="cb1-10"><a href="#cb1-10"></a>            sndVisited[i] = <span class="kw">true</span>;</span>
+<span id="cb1-11"><a href="#cb1-11"></a>            <span class="co">// Two conditions mentioned above</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>            <span class="cf">if</span> (sndMatch[i] == -<span class="dv">1</span> || canFind(sndMatch[i])) {</span>
+<span id="cb1-13"><a href="#cb1-13"></a>                sndMatch[i] = fstId;</span>
+<span id="cb1-14"><a href="#cb1-14"></a>                <span class="cf">return</span> <span class="kw">true</span>;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>            }</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        }</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    }</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="cf">return</span> <span class="kw">false</span>;</span>
+<span id="cb1-19"><a href="#cb1-19"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="dt">int</span> hungarian() {</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="dt">int</span> ans = <span class="dv">0</span>;    <span class="co">// Number of edges in maximum bipartite matching</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; fstNum; i++) {</span>
+<span id="cb1-24"><a href="#cb1-24"></a>        <span class="co">// Initialize every snd vertex as unvisited</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>        memset(sndVisited, <span class="kw">false</span>, <span class="kw">sizeof</span>(sndVisited));</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        <span class="cf">if</span> (canFind(i)) {</span>
+<span id="cb1-27"><a href="#cb1-27"></a>            ans++;</span>
+<span id="cb1-28"><a href="#cb1-28"></a>        }</span>
+<span id="cb1-29"><a href="#cb1-29"></a>    }</span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb1-31"><a href="#cb1-31"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="数个名词" class="section level1">
+<h1>数个名词</h1>
+<div id="交错树" class="section level2">
+<h2>交错树</h2>
+<p>在上面提到的算法中，如果从某个左部节点出发寻找匹配失败，那么在 DFS 的过程中，所有<strong>访问过的节点</strong>以及<strong>为了访问这些节点而经过的边</strong>可以构成一棵树。</p>
+<p>我们不难发现，这棵树的根是一个左部节点，所有的叶子节点也是左部节点（因为最终匹配失败），并且树上的奇数层边均为非匹配边，偶数层边均为匹配边。因此我们把这棵树称作<strong>交错树</strong>。</p>
+<p>为了方便理解，下面简单举个例子：</p>
+<div class="figure">
+<img src="/posts/hungarian-algorithm/alternating-tree-demo.png" alt="" />
+<p class="caption">交错树样例</p>
+</div>
+</div>
+<div id="顶标" class="section level2">
+<h2>顶标</h2>
+<p><strong>顶标，全称顶点标记值</strong>。在二分图中，我们给左部节点一个整数值 <span class="math inline">\(A_i\)</span>，给第 <span class="math inline">\(j\)</span> 个右部节点一个整数值 <span class="math inline">\(B_j\)</span>。同时，必须满足：</p>
+<p><span class="math display">\[
+\forall i, j, A_i + B_j \geq w(i, j)
+\]</span></p>
+<p>其中，<span class="math inline">\(w(i, j)\)</span> 表示连接 <span class="math inline">\(i, j\)</span> 两点边的权重（如果没有边可设作负无穷）。这些整数 <span class="math inline">\(A_i, B_j\)</span> 称作节点的<strong>顶标</strong>。</p>
+</div>
+<div id="相等子图" class="section level2">
+<h2>相等子图</h2>
+<p><strong>相等子图</strong>是原图的一个<em>生成子图</em>（即包含原图的所有节点，但是不包含所有的边），并且该生成子图中只包含满足下述条件的边：</p>
+<p><span class="math display">\[
+A_i + B_j = w(i, j)
+\]</span>
+其中，<span class="math inline">\(A_i\)</span> 是左部 <span class="math inline">\(i\)</span> 点的顶标，<span class="math inline">\(B_j\)</span> 是右部 <span class="math inline">\(j\)</span> 点的顶标，<span class="math inline">\(w(i, j)\)</span> 则是连接 <span class="math inline">\(i, j\)</span> 两点边的权重。</p>
+<p>下面我们来看看与之相关的一个定理：</p>
+<blockquote>
+<p>若相等子图存在完备匹配，则这个完备匹配就是二分图的最大匹配。</p>
+</blockquote>
+<p>我们简要地证明一下：</p>
+<p>在相等子图中，完备匹配的边权之和为：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{N} (A_i + B_i)
+\]</span>
+也就是所有顶标之和。</p>
+<p><span class="math inline">\(\because\)</span> 顶标满足：</p>
+<p><span class="math display">\[
+\forall i, j: \ A_i + B_j \geq w(i, j)
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 在整个二分图中，任何一组匹配的边权都不可能大于所有顶标的和。</p>
+</div>
+</div>
+<div id="带权二分图最大匹配" class="section level1">
+<h1>带权二分图最大匹配</h1>
+<p>带权二分图最大权匹配问题的算法叫 “KM算法”</p>
+<div id="思想-1" class="section level2">
+<h2>思想</h2>
+<p>我们不妨先给每个节点随意赋值一个顶标（我们可以赋值 <span class="math inline">\(A_i = \max\limits_{i \leq j \leq N} \{ w(i, j) \}, B_j = 0\)</span>）。接着，我们采取适当的策略不断扩大相等子图的规模，直至相等子图中存在完备匹配。这样，依据上面的定理，我们便找到了最大权匹配。</p>
+<p>根据上面的思想我们不难发现，<strong>该算法默认了带权最大匹配一定是完备匹配</strong>，因此该算法仅适用于满足“最大匹配一定是完备匹配”的图，而更一般的情况则需要采用费用流来计算最大权匹配。基于此，即使该算法在处理稠密图时有稍高的效率，我们还是建议在遇到相关问题的时候采用费用流。</p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>初始化顶标的值：<span class="math inline">\(A_i = \max\limits_{i \leq j \leq N}{w(i, j)}, \ B_j = 0\)</span>；</li>
+<li>用“无权二分图的最大匹配”中提到的算法寻找相等子图的完备匹配；</li>
+<li>若未找到增广路径则采用适当策略修改顶标的值；</li>
+<li>重复上述 2、3 直到找到相等子图的完备匹配为止。</li>
+</ol>
+<p>至于如何再相等子图中寻找完备匹配，我们可以采用上一节“无权二分图的最大匹配”中提到的算法来寻找该相等子图的最大匹配。如果最大匹配不完备，则说明至少有一个左部节点匹配失败。而节点匹配失败那次所进行的 DFS 并形成了一颗交错树，我们记之为 <span class="math inline">\(T\)</span>。</p>
+<p>结合寻找最大匹配的过程，不难发现以下结论：</p>
+<ul>
+<li>除了根节点以外，<span class="math inline">\(T\)</span> 中其它的左部节点都是<strong>从右部点沿着匹配边</strong>访问到的，即在程序中调用了 <code>canFind(sndMatch[i])</code>，其中 <span class="math inline">\(i\)</span> 是一个右部节点，<code>sndMatch[i]</code> 则是曾与之匹配的左部节点。</li>
+<li><span class="math inline">\(T\)</span> 中所有右部点都是<strong>从左部点沿着非匹配边</strong>访问到的。</li>
+</ul>
+<p>在寻找增广路径以前，我们并不会改变已有的匹配，所以一个右部点沿着匹配边能访问到的左部点是固定的。为了让匹配数增加，我们只能从第 2 条结论入手，考虑<strong>怎样让左部节点沿着非匹配边访问到更多右部点</strong>。</p>
+<p>假如我们把交错树 <span class="math inline">\(T\)</span> 中的所有左部节点顶标 <span class="math inline">\(A_i (i \in T)\)</span> 减小一个整数值 <span class="math inline">\(\Delta\)</span>，把 <span class="math inline">\(T\)</span> 中所有右部节点顶标 <span class="math inline">\(B_j (j \in T)\)</span> 增大一个整数值 <span class="math inline">\(\Delta\)</span>，节点的访问情况会有哪些变化？我们可以分两方面进行讨论：</p>
+<ul>
+<li><strong>右部点 <span class="math inline">\(j\)</span> 沿着匹配边，递归访问 <span class="math inline">\(i = \text{sndMatch}[j]\)</span> 的情形</strong>。对于一条连接左部点 <span class="math inline">\(i\)</span> 和右部点 <span class="math inline">\(j\)</span> 的匹配边，显然要么 <span class="math inline">\(i, j \in T\)</span>（被访问到了），要么 <span class="math inline">\(i, j \notin T\)</span>（没被访问到）。因此 <span class="math inline">\(A_i + B_j\)</span> 不变，匹配边仍然属于相等子图。</li>
+<li><strong>左部点 <span class="math inline">\(i\)</span> 沿着非匹配边，访问右部点 <span class="math inline">\(j\)</span> 并尝试与之匹配的情形</strong>。由于左部点是被动的（被右部点沿着匹配边递归），因此 <span class="math inline">\(i \in T\)</span>。
+<ul>
+<li>若 <span class="math inline">\(i, j \in T\)</span> ，显然 <span class="math inline">\(A_i + B_j\)</span> 不变，即以前能从 <span class="math inline">\(i\)</span> 访问到 <span class="math inline">\(j\)</span>，现在仍能访问。</li>
+<li>若 <span class="math inline">\(i \in T, j \notin T\)</span>，则 <span class="math inline">\(A_i + B_j\)</span> 减小。即以前从 <span class="math inline">\(i\)</span> 访问不到 <span class="math inline">\(j\)</span>，现在有可能访问到了。</li>
+</ul></li>
+</ul>
+<p>为了保证顶标符合前提条件 <span class="math inline">\(\forall i, j, A_i + B_j \leq w(i, j)\)</span>，我们就在所有 <span class="math inline">\(i \in T, j \notin T\)</span> 的边 <span class="math inline">\((i, j)\)</span> 之中，找出最小的 <span class="math inline">\(A_i + B_j - w(i, j)\)</span> 作为 <span class="math inline">\(\Delta\)</span> 值。只要原图存在完备匹配，这样的边一定存在。上述方法及不会破坏前提条件，又能保证至少有一条新的边会加入相等子图，使得交错树中至少一个左部点能访问到的右部点增多。</p>
+<p>至于例子…… 懒得画了，推荐大家参考一下下面提到的那篇博文（逃</p>
+<p>不好理解？如果你只对算法过程比较感兴趣而暂时不需要具体理解算法原理，在这里强烈推荐一篇博文：<a href="http://www.cnblogs.com/wenruo/p/5264235.html">KM算法详解+模板</a>，其中作者用极其新颖而易懂的模型解释了算法的具体流程（其实我最早就是参照这篇博文来学的🙈）。</p>
+<p>时间复杂度为 <span class="math inline">\(\mathcal{O}(N^3)\)</span> 级别。</p>
+</div>
+<div id="几点变形" class="section level2">
+<h2>几点变形</h2>
+<p>这部分内容是我自己在做题的 YY 出来的，如果错误恳请指正。</p>
+<ol style="list-style-type: decimal">
+<li>如果要求最小权匹配，可以直接把边权去成负数，得出答案后再取绝对值。</li>
+<li>对于部分找不到结果要求输出 -1 的题目，为了避免死循环，当执行 “在所有 <span class="math inline">\(i \in T, j \notin T\)</span> 的边 <span class="math inline">\((i, j)\)</span> 之中找出最小的 <span class="math inline">\(A_i + B_j - w(i, j)\)</span>” 时，如果发现找不到，就说明没有满足要求的结果，这个时候就可以直接 <code>return -1;</code> 了。</li>
+<li>【正确性未知】对于不满足“带权最大匹配一定是完备匹配”这一特性的图，我们可以将不存在的边都当作边权为 -INF 的边（这样就可以保证一定可以找出最大权完备匹配），然后我们再在计算最大权的时候剔除长为 -INF 的边，这样剩下的匹配应该就是最大权匹配。</li>
+</ol>
+</div>
+<div id="代码-c-1" class="section level2">
+<h2>代码 (C++)</h2>
+<p><strong>几点说明</strong>：</p>
+<p>在代码样例中 <span class="math inline">\(\text{fst}\)</span> 代表左部元素（first 的缩写），<span class="math inline">\(\text{snd}\)</span> 代表右部元素（second 的缩写）。</p>
+<p><span class="math inline">\(\text{arr}\)</span> 是描存边的邻接矩阵。例如，<span class="math inline">\(\text{arr}[i][j] = k\)</span> 代表左部点 <span class="math inline">\(i\)</span> 与右部点 <span class="math inline">\(j\)</span> 之前存在一条权重为 <span class="math inline">\(k\)</span> 的边。至于不存在的边，我们令 <span class="math inline">\(\text{arr}[i][j] = -\infty\)</span>。</p>
+<p><span class="math inline">\(\text{fstEx}\)</span> 和 <span class="math inline">\(\text{sndEx}\)</span> 则分别记录了左部何右部每个点的顶标值。</p>
+<p><span class="math inline">\(\text{sndMatch}\)</span> 记录与右部节点相匹配的左部节点（即记录当前的所有匹配边）。例如，<span class="math inline">\(\text{sndMatch}[j] == i\)</span> 意味着左部 <span class="math inline">\(i\)</span> 节点和右部 <span class="math inline">\(j\)</span> 结点间存在一条匹配边。在刚开始时我们将该数组所有元素初始化为 <span class="math inline">\(-1\)</span>，代表所有边开始时都是未匹配边。</p>
+<p><span class="math inline">\(\text{sndNeed}\)</span> 则是记录当前寻找最大匹配过程中每一次找到找到满足 <span class="math inline">\(i \in T, j \notin T\)</span> 的边 <span class="math inline">\((i, j)\)</span> 时的 <span class="math inline">\(\Delta\)</span> 值： <span class="math inline">\(A_i + B_j - w(i, j)\)</span>。这个数组会在寻找最小 <span class="math inline">\(\Delta\)</span> 值的时候用到。</p>
+<div id="dfs-版本" class="section level3">
+<h3>DFS 版本</h3>
+<p>注：DFS 版本最坏时间复杂度可能高达 <span class="math inline">\(\mathcal{O}(N^4)\)</span>，所以一般建议使用下文中的 BFS 版本（该结论引用自：<a href="https://blog.csdn.net/c20182030/article/details/73330556">【原创】KM算法的Bfs写法</a>）。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">int</span> arr[SIZE][SIZE];</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="dt">int</span> fstEx[SIZE], sndEx[SIZE];</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">int</span> sndMatch[SIZE], sndNeed[SIZE];</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="dt">bool</span> fstVisited[SIZE], sndVisited[SIZE];</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="dt">int</span> sndNum, fstNum;</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="dt">bool</span> canFind(<span class="dt">int</span> fstId) {</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    fstVisited[fstId] = <span class="kw">true</span>;</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        <span class="cf">if</span> (sndVisited[i]) {</span>
+<span id="cb2-11"><a href="#cb2-11"></a>            <span class="cf">continue</span>;</span>
+<span id="cb2-12"><a href="#cb2-12"></a>        }</span>
+<span id="cb2-13"><a href="#cb2-13"></a>        <span class="dt">int</span> delta = fstEx[fstId] + sndEx[i] - arr[fstId][i];</span>
+<span id="cb2-14"><a href="#cb2-14"></a>        <span class="cf">if</span> (delta == <span class="dv">0</span>) {</span>
+<span id="cb2-15"><a href="#cb2-15"></a>            sndVisited[i] = <span class="kw">true</span>;</span>
+<span id="cb2-16"><a href="#cb2-16"></a>            <span class="cf">if</span> (sndMatch[i] == -<span class="dv">1</span> || canFind(sndMatch[i])) {</span>
+<span id="cb2-17"><a href="#cb2-17"></a>                sndMatch[i] = fstId;</span>
+<span id="cb2-18"><a href="#cb2-18"></a>                <span class="cf">return</span> <span class="kw">true</span>;</span>
+<span id="cb2-19"><a href="#cb2-19"></a>            }</span>
+<span id="cb2-20"><a href="#cb2-20"></a>        } <span class="cf">else</span> {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>            sndNeed[i] = min(sndNeed[i], delta);</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        }</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    }</span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="cf">return</span> <span class="kw">false</span>;</span>
+<span id="cb2-25"><a href="#cb2-25"></a>}</span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="dt">int</span> hungarian() {</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    memset(sndMatch, -<span class="dv">1</span>, <span class="kw">sizeof</span>(sndMatch));</span>
+<span id="cb2-29"><a href="#cb2-29"></a>    memset(sndEx, <span class="dv">0</span>, <span class="kw">sizeof</span>(sndEx));</span>
+<span id="cb2-30"><a href="#cb2-30"></a></span>
+<span id="cb2-31"><a href="#cb2-31"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; fstNum; i++) {</span>
+<span id="cb2-32"><a href="#cb2-32"></a>        fstEx[i] = arr[i][<span class="dv">0</span>];</span>
+<span id="cb2-33"><a href="#cb2-33"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; sndNum; j++) {</span>
+<span id="cb2-34"><a href="#cb2-34"></a>            fstEx[i] = max(fstEx[i], arr[i][j]);</span>
+<span id="cb2-35"><a href="#cb2-35"></a>        }</span>
+<span id="cb2-36"><a href="#cb2-36"></a>    }</span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; fstNum; i++) {</span>
+<span id="cb2-39"><a href="#cb2-39"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; sndNum; j++) {</span>
+<span id="cb2-40"><a href="#cb2-40"></a>            sndNeed[j] = INF;</span>
+<span id="cb2-41"><a href="#cb2-41"></a>        }</span>
+<span id="cb2-42"><a href="#cb2-42"></a></span>
+<span id="cb2-43"><a href="#cb2-43"></a>        <span class="cf">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb2-44"><a href="#cb2-44"></a>            memset(fstVisited, <span class="kw">false</span>, <span class="kw">sizeof</span>(fstVisited));</span>
+<span id="cb2-45"><a href="#cb2-45"></a>            memset(sndVisited, <span class="kw">false</span>, <span class="kw">sizeof</span>(sndVisited));</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a>            <span class="cf">if</span> (canFind(i)) {</span>
+<span id="cb2-48"><a href="#cb2-48"></a>                <span class="cf">break</span>;</span>
+<span id="cb2-49"><a href="#cb2-49"></a>            }</span>
+<span id="cb2-50"><a href="#cb2-50"></a>            <span class="dt">int</span> minDelta = INF;</span>
+<span id="cb2-51"><a href="#cb2-51"></a>            <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; sndNum; j++) {</span>
+<span id="cb2-52"><a href="#cb2-52"></a>                <span class="cf">if</span> (!sndVisited[j]) {</span>
+<span id="cb2-53"><a href="#cb2-53"></a>                    minDelta = min(minDelta, sndNeed[j]);</span>
+<span id="cb2-54"><a href="#cb2-54"></a>                }</span>
+<span id="cb2-55"><a href="#cb2-55"></a>            }</span>
+<span id="cb2-56"><a href="#cb2-56"></a></span>
+<span id="cb2-57"><a href="#cb2-57"></a>            <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; fstNum; j++) {</span>
+<span id="cb2-58"><a href="#cb2-58"></a>                <span class="cf">if</span> (fstVisited[j]) {</span>
+<span id="cb2-59"><a href="#cb2-59"></a>                    fstEx[j] -= minDelta;</span>
+<span id="cb2-60"><a href="#cb2-60"></a>                }</span>
+<span id="cb2-61"><a href="#cb2-61"></a>            }</span>
+<span id="cb2-62"><a href="#cb2-62"></a>            <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; sndNum; j++) {</span>
+<span id="cb2-63"><a href="#cb2-63"></a>                <span class="cf">if</span> (sndVisited[j]) {</span>
+<span id="cb2-64"><a href="#cb2-64"></a>                    sndEx[j] += minDelta;</span>
+<span id="cb2-65"><a href="#cb2-65"></a>                } <span class="cf">else</span> {</span>
+<span id="cb2-66"><a href="#cb2-66"></a>                    sndNeed[j] -= minDelta;</span>
+<span id="cb2-67"><a href="#cb2-67"></a>                }</span>
+<span id="cb2-68"><a href="#cb2-68"></a>            }</span>
+<span id="cb2-69"><a href="#cb2-69"></a>        }</span>
+<span id="cb2-70"><a href="#cb2-70"></a>    }</span>
+<span id="cb2-71"><a href="#cb2-71"></a></span>
+<span id="cb2-72"><a href="#cb2-72"></a>    <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb2-73"><a href="#cb2-73"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb2-74"><a href="#cb2-74"></a>        ans += arr[sndMatch[i]][i];</span>
+<span id="cb2-75"><a href="#cb2-75"></a>    }</span>
+<span id="cb2-76"><a href="#cb2-76"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb2-77"><a href="#cb2-77"></a>}</span></code></pre></div>
+</div>
+<div id="bfs-版本" class="section level3">
+<h3>BFS 版本</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">int</span> arr[SIZE][SIZE];</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="dt">int</span> fstEx[SIZE], sndEx[SIZE];</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="dt">int</span> sndMatch[SIZE], sndNeed[SIZE], pre[SIZE];</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="dt">bool</span> sndVisited[SIZE];</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="dt">int</span> sndNum, fstNum;</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="dt">void</span> bfs(<span class="dt">int</span> fstId) {</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        sndVisited[i] = <span class="kw">false</span>;</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        sndNeed[i] = INT_MAX;</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        pre[i] = -<span class="dv">1</span>;</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    }</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="dt">int</span> cntSnd = -<span class="dv">1</span>;</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="cf">while</span> (cntSnd == -<span class="dv">1</span> || sndMatch[cntSnd] != -<span class="dv">1</span>) {</span>
+<span id="cb3-16"><a href="#cb3-16"></a>        <span class="dt">int</span> cntFst;</span>
+<span id="cb3-17"><a href="#cb3-17"></a>        <span class="cf">if</span> (cntSnd == -<span class="dv">1</span>) {</span>
+<span id="cb3-18"><a href="#cb3-18"></a>            cntFst = fstId;</span>
+<span id="cb3-19"><a href="#cb3-19"></a>        } <span class="cf">else</span> {</span>
+<span id="cb3-20"><a href="#cb3-20"></a>            cntFst = sndMatch[cntSnd];</span>
+<span id="cb3-21"><a href="#cb3-21"></a>            sndVisited[cntSnd] = <span class="kw">true</span>;</span>
+<span id="cb3-22"><a href="#cb3-22"></a>        }</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>        <span class="dt">int</span> minDelta = INT_MAX, minSnd = -<span class="dv">1</span>;</span>
+<span id="cb3-25"><a href="#cb3-25"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-26"><a href="#cb3-26"></a>            <span class="cf">if</span> (!sndVisited[i]) {</span>
+<span id="cb3-27"><a href="#cb3-27"></a>                <span class="cf">if</span> (sndNeed[i] &gt; fstEx[cntFst] + sndEx[i] - arr[cntFst][i]) {</span>
+<span id="cb3-28"><a href="#cb3-28"></a>                    sndNeed[i] = fstEx[cntFst] + sndEx[i] - arr[cntFst][i];</span>
+<span id="cb3-29"><a href="#cb3-29"></a>                    pre[i] = cntSnd;</span>
+<span id="cb3-30"><a href="#cb3-30"></a>                }</span>
+<span id="cb3-31"><a href="#cb3-31"></a>                <span class="cf">if</span> (sndNeed[i] &lt; minDelta) {</span>
+<span id="cb3-32"><a href="#cb3-32"></a>                    minDelta = sndNeed[i];</span>
+<span id="cb3-33"><a href="#cb3-33"></a>                    minSnd = i;</span>
+<span id="cb3-34"><a href="#cb3-34"></a>                }</span>
+<span id="cb3-35"><a href="#cb3-35"></a>            }</span>
+<span id="cb3-36"><a href="#cb3-36"></a>        }</span>
+<span id="cb3-37"><a href="#cb3-37"></a></span>
+<span id="cb3-38"><a href="#cb3-38"></a>        fstEx[fstId] -= minDelta;</span>
+<span id="cb3-39"><a href="#cb3-39"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-40"><a href="#cb3-40"></a>            <span class="cf">if</span> (sndVisited[i]) {</span>
+<span id="cb3-41"><a href="#cb3-41"></a>                fstEx[sndMatch[i]] -= minDelta;</span>
+<span id="cb3-42"><a href="#cb3-42"></a>                sndEx[i] += minDelta;</span>
+<span id="cb3-43"><a href="#cb3-43"></a>            } <span class="cf">else</span> {</span>
+<span id="cb3-44"><a href="#cb3-44"></a>                sndNeed[i] -= minDelta;</span>
+<span id="cb3-45"><a href="#cb3-45"></a>            }</span>
+<span id="cb3-46"><a href="#cb3-46"></a>        }</span>
+<span id="cb3-47"><a href="#cb3-47"></a>        cntSnd = minSnd;</span>
+<span id="cb3-48"><a href="#cb3-48"></a>    }</span>
+<span id="cb3-49"><a href="#cb3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50"></a>    <span class="cf">while</span> (cntSnd != -<span class="dv">1</span>) {</span>
+<span id="cb3-51"><a href="#cb3-51"></a>        <span class="cf">if</span> (pre[cntSnd] == -<span class="dv">1</span>)</span>
+<span id="cb3-52"><a href="#cb3-52"></a>            sndMatch[cntSnd] = fstId;</span>
+<span id="cb3-53"><a href="#cb3-53"></a>        <span class="cf">else</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>            sndMatch[cntSnd] = sndMatch[pre[cntSnd]];</span>
+<span id="cb3-55"><a href="#cb3-55"></a>        cntSnd = pre[cntSnd];</span>
+<span id="cb3-56"><a href="#cb3-56"></a>    }</span>
+<span id="cb3-57"><a href="#cb3-57"></a>}</span>
+<span id="cb3-58"><a href="#cb3-58"></a></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="dt">int</span> hungarian() {</span>
+<span id="cb3-60"><a href="#cb3-60"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-61"><a href="#cb3-61"></a>        sndMatch[i] = -<span class="dv">1</span>;</span>
+<span id="cb3-62"><a href="#cb3-62"></a>        sndEx[i] = <span class="dv">0</span>;</span>
+<span id="cb3-63"><a href="#cb3-63"></a>    }</span>
+<span id="cb3-64"><a href="#cb3-64"></a></span>
+<span id="cb3-65"><a href="#cb3-65"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; fstNum; i++) {</span>
+<span id="cb3-66"><a href="#cb3-66"></a>        fstEx[i] = arr[i][<span class="dv">0</span>];</span>
+<span id="cb3-67"><a href="#cb3-67"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; sndNum; j++) {</span>
+<span id="cb3-68"><a href="#cb3-68"></a>            fstEx[i] = max(fstEx[i], arr[i][j]);</span>
+<span id="cb3-69"><a href="#cb3-69"></a>        }</span>
+<span id="cb3-70"><a href="#cb3-70"></a>    }</span>
+<span id="cb3-71"><a href="#cb3-71"></a></span>
+<span id="cb3-72"><a href="#cb3-72"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-73"><a href="#cb3-73"></a>        bfs(i);</span>
+<span id="cb3-74"><a href="#cb3-74"></a>    }</span>
+<span id="cb3-75"><a href="#cb3-75"></a></span>
+<span id="cb3-76"><a href="#cb3-76"></a>    <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb3-77"><a href="#cb3-77"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndNum; i++) {</span>
+<span id="cb3-78"><a href="#cb3-78"></a>        <span class="cf">if</span> (sndMatch[i] != -<span class="dv">1</span>)</span>
+<span id="cb3-79"><a href="#cb3-79"></a>            ans += arr[sndMatch[i]][i];</span>
+<span id="cb3-80"><a href="#cb3-80"></a>    }</span>
+<span id="cb3-81"><a href="#cb3-81"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-82"><a href="#cb3-82"></a>}</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>李煜东 - 《算法竞赛进阶指南》</li>
+<li>Renfei Song - <a href="https://www.renfei.org/blog/bipartite-matching.html">二分图的最大匹配、完美匹配和匈牙利算法</a></li>
+<li>liam0205 - <a href="https://liam0205.me/2016/04/03/Hungarian-algorithm-in-the-maximum-matching-problem-of-bigraph/">二分图最大匹配问题与匈牙利算法的核心思想</a></li>
+<li>Dark_Scope - <a href="http://blog.csdn.net/dark_scope/article/details/8880547">趣写算法系列之–匈牙利算法</a></li>
+<li>SixDayCoder - <a href="http://blog.csdn.net/sixdaycoder/article/details/47720471">二分图的最佳完美匹配——KM算法</a></li>
+<li>伊甸一点 - <a href="https://www.cnblogs.com/zpfbuaa/p/7218607.html">我的KM算法详解</a></li>
+<li>段文弱 - <a href="http://www.cnblogs.com/wenruo/p/5264235.html">KM算法详解+模板</a></li>
+<li>C20182030EPIC - <a href="https://blog.csdn.net/c20182030/article/details/73330556">【原创】KM算法的Bfs写法</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/graph-theory">Graph Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/bipartite-matching">Bipartite Matching</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/hungarian-algorithm">Hungarian Algorithm</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6422 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-03-09 12:52 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>CCPC 2018 湘潭邀请赛游记</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>计算导论: 计算系统基本思维</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="22"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

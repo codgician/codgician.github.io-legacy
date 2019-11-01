@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arithmetic Function on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/arithmetic-function/</link>
+    <description>Recent content in Arithmetic Function on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 06 Aug 2019 13:18:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/arithmetic-function/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数论函数与狄利克雷卷积</title>
+      <link>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</link>
+      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</guid>
+      <description>简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 4947: GCD Array</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</link>
+      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</guid>
+      <description>题面 分析 %%% 题面 对于长度为 \(l\) 且初始全为 \(0\) 的序列 \(a\)（下标 \(1 \sim l\)），有 \(q\) 次操作。操作分为两种： 给定 \(n, d, v\)，对于每个满足 \(\gcd(x, n) = d\) 的 \</description>
+    </item>
+    
+    <item>
+      <title>Luogu P1829: Crash 的数字表格</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</link>
+      <pubDate>Wed, 21 Nov 2018 19:15:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</guid>
+      <description>题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌</description>
+    </item>
+    
+    <item>
+      <title>浅谈莫比乌斯反演</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</link>
+      <pubDate>Sun, 18 Nov 2018 13:07:42 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</guid>
+      <description>简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一</description>
+    </item>
+    
+  </channel>
+</rss>

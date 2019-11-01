@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mathematics on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/mathematics/</link>
+    <description>Recent content in Mathematics on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 06 Aug 2019 13:18:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数论函数与狄利克雷卷积</title>
+      <link>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</link>
+      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</guid>
+      <description>简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 4947: GCD Array</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</link>
+      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</guid>
+      <description>题面 分析 %%% 题面 对于长度为 \(l\) 且初始全为 \(0\) 的序列 \(a\)（下标 \(1 \sim l\)），有 \(q\) 次操作。操作分为两种： 给定 \(n, d, v\)，对于每个满足 \(\gcd(x, n) = d\) 的 \</description>
+    </item>
+    
+    <item>
+      <title>Luogu P1829: Crash 的数字表格</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</link>
+      <pubDate>Wed, 21 Nov 2018 19:15:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</guid>
+      <description>题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌</description>
+    </item>
+    
+    <item>
+      <title>浅谈莫比乌斯反演</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</link>
+      <pubDate>Sun, 18 Nov 2018 13:07:42 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</guid>
+      <description>简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一</description>
+    </item>
+    
+    <item>
+      <title>BZOJ 2187: fraction</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</link>
+      <pubDate>Sun, 28 Oct 2018 22:30:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</guid>
+      <description>题面 分析 题面 给定四个正整数 \(a, b, c, d\)，试求最简正分数 \(\frac{p}{q}\)，满足： \[ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} \] 若有多组解，取 \(q\) 最小的一组解；若仍</description>
+    </item>
+    
+    <item>
+      <title>BZOJ 3817: Sum</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</link>
+      <pubDate>Sun, 28 Oct 2018 13:27:56 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</guid>
+      <description>题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链</description>
+    </item>
+    
+    <item>
+      <title>浅谈类欧几里德算法</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</link>
+      <pubDate>Thu, 18 Oct 2018 22:54:39 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</guid>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+    <item>
+      <title>计算导论: 计算系统基本思维</title>
+      <link>https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/</link>
+      <pubDate>Sat, 19 Aug 2017 23:03:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/</guid>
+      <description>前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR</description>
+    </item>
+    
+    <item>
+      <title>高考导数: 洛必达法则</title>
+      <link>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</link>
+      <pubDate>Sat, 08 Apr 2017 20:26:59 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</guid>
+      <description>简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。</description>
+    </item>
+    
+    <item>
+      <title>高考导数: 优化函数以方便求解</title>
+      <link>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/</link>
+      <pubDate>Sat, 08 Apr 2017 20:21:50 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/</guid>
+      <description>简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著</description>
+    </item>
+    
+    <item>
+      <title>高考导数: “两点”问题</title>
+      <link>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</link>
+      <pubDate>Tue, 21 Mar 2017 16:32:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</guid>
+      <description>简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="Math">
+<meta itemprop="description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+
+
+<meta itemprop="datePublished" content="2019-10-15T19:28:28&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-15T19:28:28&#43;08:00" />
+<meta itemprop="wordCount" content="11080">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Math" />
+<meta property="og:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/icpc/templates/math/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2019-10-15T19:28:28+08:00" />
+<meta property="article:modified_time" content="2019-10-15T19:28:28+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="Math"/>
+<meta name="twitter:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Math</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 15, 2019</span></div>
+				<h1>Math</h1>
+			</header>
+			<div class="content">
+				
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#math">Math</a><ul>
+<li><a href="#龟速乘-快速幂">龟速乘 / 快速幂</a></li>
+<li><a href="#线性递推式">线性递推式</a><ul>
+<li><a href="#矩阵快速幂">矩阵快速幂</a></li>
+<li><a href="#特征方程求通项公式">特征方程求通项公式</a></li>
+</ul></li>
+<li><a href="#数论分块">数论分块</a></li>
+<li><a href="#素数">素数</a></li>
+<li><a href="#数论函数">数论函数</a><ul>
+<li><a href="#欧拉函数-varphin">欧拉函数 <span class="math inline">\(\varphi(n)\)</span></a></li>
+<li><a href="#莫比乌斯函数">莫比乌斯函数</a></li>
+<li><a href="#约数个数-dn">约数个数 <span class="math inline">\(d(n)\)</span></a></li>
+<li><a href="#约数和-dsn">约数和 <span class="math inline">\(ds(n)\)</span></a></li>
+<li><a href="#迪利克雷卷积">迪利克雷卷积</a></li>
+<li><a href="#杜教筛">杜教筛</a></li>
+<li><a href="#min25-筛">min25 筛</a></li>
+<li><a href="#推式子的人生经验">推式子的人生经验</a></li>
+</ul></li>
+<li><a href="#逆元-n-1-pmod-p">逆元 <span class="math inline">\(n^{-1} \pmod p\)</span></a><ul>
+<li><a href="#欧拉定理">欧拉定理</a></li>
+<li><a href="#拓展欧几里得">拓展欧几里得</a></li>
+<li><a href="#线性预处理">线性预处理</a></li>
+<li><a href="#阶乘逆元-n-1">阶乘逆元 <span class="math inline">\((n!)^{-1}\)</span></a></li>
+</ul></li>
+<li><a href="#组合数">组合数</a><ul>
+<li><a href="#简介与计算">简介与计算</a></li>
+<li><a href="#性质">性质</a></li>
+<li><a href="#lucas-定理">Lucas 定理</a></li>
+</ul></li>
+<li><a href="#高斯二项式系数">高斯二项式系数</a></li>
+<li><a href="#类欧几里得">类欧几里得</a><ul>
+<li><a href="#常见形式">常见形式</a></li>
+<li><a href="#bzoj---3817">BZOJ - 3817</a></li>
+<li><a href="#bzoj---2187">BZOJ - 2187</a></li>
+</ul></li>
+<li><a href="#一次同余">一次同余</a><ul>
+<li><a href="#拓展欧几里得-1">拓展欧几里得</a></li>
+<li><a href="#一次同余方程">一次同余方程</a></li>
+<li><a href="#拓展中国剩余定理">拓展中国剩余定理</a></li>
+</ul></li>
+<li><a href="#二次剩余">二次剩余</a><ul>
+<li><a href="#解的存在性">解的存在性</a></li>
+<li><a href="#tonellishanks-算法">Tonelli–Shanks 算法</a></li>
+</ul></li>
+<li><a href="#离散对数">离散对数</a><ul>
+<li><a href="#bsgs-算法">BSGS 算法</a></li>
+<li><a href="#pohlighellman-算法">Pohlig–Hellman 算法</a></li>
+</ul></li>
+<li><a href="#多项式">多项式</a><ul>
+<li><a href="#卷积">卷积</a></li>
+<li><a href="#插值">插值</a></li>
+</ul></li>
+<li><a href="#数位-dp">数位 DP</a></li>
+<li><a href="#置换群">置换群</a><ul>
+<li><a href="#burnside-定理">Burnside 定理</a></li>
+<li><a href="#pólya-定理">Pólya 定理</a></li>
+</ul></li>
+<li><a href="#杂项">杂项</a><ul>
+<li><a href="#康托展开">康托展开</a></li>
+<li><a href="#勒让德定理">勒让德定理</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="math" class="section level1">
+<h1>Math</h1>
+<div id="龟速乘-快速幂" class="section level2">
+<h2>龟速乘 / 快速幂</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> fastMul(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>; a %= mod;</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">while</span> (n &gt; <span class="dv">0</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="cf">if</span> (n &amp; <span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>            ret = (ret + a) % mod;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>        a = (a &lt;&lt; <span class="dv">1</span>) % mod; n &gt;&gt;= <span class="dv">1</span>;</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    }</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb1-9"><a href="#cb1-9"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> fastPow(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">1</span>; a %= mod;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">while</span> (n &gt; <span class="dv">0</span>) {</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">if</span> (n &amp; <span class="dv">1</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>            ret = (ret * a) % mod;</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        a = (a * a) % mod; n &gt;&gt;= <span class="dv">1</span>;</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    }</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb1-19"><a href="#cb1-19"></a>}</span></code></pre></div>
+</div>
+<div id="线性递推式" class="section level2">
+<h2>线性递推式</h2>
+<div id="矩阵快速幂" class="section level3">
+<h3>矩阵快速幂</h3>
+<p>可以构造矩阵来加速线性递推式第 <span class="math inline">\(n\)</span> 项的计算。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> Matrix {</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">public</span>:</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">int</span> row, col;</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> arr[SIZE][SIZE];</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    Matrix(<span class="dt">int</span> r, <span class="dt">int</span> c) {</span>
+<span id="cb2-7"><a href="#cb2-7"></a>        row = r; col = c;</span>
+<span id="cb2-8"><a href="#cb2-8"></a>        memset(arr, <span class="dv">0</span>, <span class="kw">sizeof</span>(arr));</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    }</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="dt">void</span> <span class="kw">operator</span> += (<span class="at">const</span> Matrix &amp; b) {</span>
+<span id="cb2-12"><a href="#cb2-12"></a>        <span class="co">// assert(row == b.row &amp;&amp; col == b.col);</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; row; i++) {</span>
+<span id="cb2-14"><a href="#cb2-14"></a>            <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; col; j++) {</span>
+<span id="cb2-15"><a href="#cb2-15"></a>                arr[i][j] += b.arr[i][j];</span>
+<span id="cb2-16"><a href="#cb2-16"></a>                <span class="cf">if</span> (arr[i][j] &gt;= mod)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>                    arr[i][j] %= mod;</span>
+<span id="cb2-18"><a href="#cb2-18"></a>            }</span>
+<span id="cb2-19"><a href="#cb2-19"></a>        }</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    }</span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a>    Matrix <span class="kw">operator</span> * (<span class="at">const</span> Matrix &amp; snd) <span class="at">const</span> {</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="co">// assert(col == snd.row);</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        Matrix ret(row, snd.col);</span>
+<span id="cb2-25"><a href="#cb2-25"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; row; i++) {</span>
+<span id="cb2-26"><a href="#cb2-26"></a>            <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">0</span>; k &lt; col; k++) {</span>
+<span id="cb2-27"><a href="#cb2-27"></a>                <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cnt = arr[i][k];</span>
+<span id="cb2-28"><a href="#cb2-28"></a>                <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; col; j++) {</span>
+<span id="cb2-29"><a href="#cb2-29"></a>                    ret.arr[i][j] += cnt * snd.arr[k][j];</span>
+<span id="cb2-30"><a href="#cb2-30"></a>                    <span class="cf">if</span> (ret.arr[i][j] &gt;= mod)</span>
+<span id="cb2-31"><a href="#cb2-31"></a>                        ret.arr[i][j] %= mod;</span>
+<span id="cb2-32"><a href="#cb2-32"></a>                }</span>
+<span id="cb2-33"><a href="#cb2-33"></a>            }</span>
+<span id="cb2-34"><a href="#cb2-34"></a>        }</span>
+<span id="cb2-35"><a href="#cb2-35"></a>        <span class="cf">return</span> ret;</span>
+<span id="cb2-36"><a href="#cb2-36"></a>    }</span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a>    Matrix &amp; <span class="kw">operator</span> = (<span class="at">const</span> Matrix &amp; snd) {</span>
+<span id="cb2-39"><a href="#cb2-39"></a>        row = snd.row; col = snd.col;</span>
+<span id="cb2-40"><a href="#cb2-40"></a>        memcpy(arr, snd.arr, <span class="kw">sizeof</span>(snd.arr));</span>
+<span id="cb2-41"><a href="#cb2-41"></a>        <span class="cf">return</span> *<span class="kw">this</span>;</span>
+<span id="cb2-42"><a href="#cb2-42"></a>    }</span>
+<span id="cb2-43"><a href="#cb2-43"></a>};</span>
+<span id="cb2-44"><a href="#cb2-44"></a></span>
+<span id="cb2-45"><a href="#cb2-45"></a>Matrix matFastPow(Matrix mat, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb2-46"><a href="#cb2-46"></a>    <span class="co">// assert(mat.row == mat.col);</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a>    Matrix ret(mat.row, mat.col);</span>
+<span id="cb2-48"><a href="#cb2-48"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; mat.row; i++)</span>
+<span id="cb2-49"><a href="#cb2-49"></a>        ret.arr[i][i] = <span class="dv">1</span>;</span>
+<span id="cb2-50"><a href="#cb2-50"></a>    <span class="cf">while</span> (n &gt; <span class="dv">0</span>) {</span>
+<span id="cb2-51"><a href="#cb2-51"></a>        <span class="cf">if</span> (n &amp; <span class="dv">1</span>)</span>
+<span id="cb2-52"><a href="#cb2-52"></a>            ret = ret * mat;</span>
+<span id="cb2-53"><a href="#cb2-53"></a>        mat = mat * mat;</span>
+<span id="cb2-54"><a href="#cb2-54"></a>        n &gt;&gt;= <span class="dv">1</span>;</span>
+<span id="cb2-55"><a href="#cb2-55"></a>    }</span>
+<span id="cb2-56"><a href="#cb2-56"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb2-57"><a href="#cb2-57"></a>}</span></code></pre></div>
+</div>
+<div id="特征方程求通项公式" class="section level3">
+<h3>特征方程求通项公式</h3>
+<p>如果是在模 <span class="math inline">\(p\)</span> 意义下求第 <span class="math inline">\(n\)</span> 项的值，且通项公式中无理数或复数均可用二次剩余代替时可考虑直接公式求解。</p>
+<p>这里只讨论如下二阶线性递推式：</p>
+<p><span class="math display">\[
+f_n =
+\begin{cases}
+a &amp; n \le 0 \\
+b &amp; n = 1 \\
+c_1f_{n - 1} + c_2f_{n - 2} &amp; n \ge 2
+\end{cases}
+\]</span></p>
+<p>将其化成一个等比数列，设 <span class="math inline">\(\exists \ r, s, \text{ s.t. } f_{n} - rf_{n - 1} = s(f_{n - 1} - rf_{n - 2})\)</span>，则联立原式得：</p>
+<p><span class="math display">\[
+\begin{cases}
+c_ 1 = s + r \\
+c_2 = -rs
+\end{cases}
+\]</span></p>
+<p>消去 <span class="math inline">\(s\)</span> 即可得到<em>特征方程</em>：</p>
+<p><span class="math display">\[
+r^2 = c_1r + c_2
+\]</span></p>
+<p>记该方程的两个根为 <span class="math inline">\(x_1, x_2\)</span>，则有：</p>
+<p><span class="math display">\[
+f_n = c_1{x_1}^n+c_2{x_2}^n
+\]</span></p>
+<p>代入 <span class="math inline">\(f_0 = a, \ f_1 = b\)</span> 即可得到通项公式。</p>
+</div>
+</div>
+<div id="数论分块" class="section level2">
+<h2>数论分块</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">// just n</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="cf">for</span> (<span class="dt">int</span> l = <span class="dv">1</span>, r; l &lt;= n; l = r + <span class="dv">1</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    r = n / (n / l);</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// Range: [l, r]</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">// n and m</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="cf">if</span> (n &gt; m)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    swap(n, m);</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="cf">for</span> (<span class="dt">int</span> l = <span class="dv">1</span>, r; l &lt;= n; l = r + <span class="dv">1</span>) {</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    r = min(n / (n / l), m / (m / l));</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="co">// Range: [l, r]</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>}</span></code></pre></div>
+</div>
+<div id="素数" class="section level2">
+<h2>素数</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">// Variant #1</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], primesPt;</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="dt">void</span> initPrimes() {</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    primesPt = <span class="dv">0</span>;</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb4-7"><a href="#cb4-7"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>) {</span>
+<span id="cb4-8"><a href="#cb4-8"></a>            minFac[i] = i;</span>
+<span id="cb4-9"><a href="#cb4-9"></a>            primes[primesPt++] = i;</span>
+<span id="cb4-10"><a href="#cb4-10"></a>        }</span>
+<span id="cb4-11"><a href="#cb4-11"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], (SIZE - <span class="dv">1</span>) / i); j++) {</span>
+<span id="cb4-12"><a href="#cb4-12"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb4-13"><a href="#cb4-13"></a>        }</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    }</span>
+<span id="cb4-15"><a href="#cb4-15"></a>}</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">// Variant #2</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="dt">int</span> primes[SIZE], primesPt; <span class="dt">bool</span> hasSieved[SIZE];</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="dt">void</span> initPrimes() {</span>
+<span id="cb4-20"><a href="#cb4-20"></a>    memset(hasSieved, <span class="kw">false</span>, <span class="kw">sizeof</span>(hasSieved));</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    primesPt = <span class="dv">0</span>;</span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb4-23"><a href="#cb4-23"></a>        <span class="cf">if</span> (!hasSieved[i])</span>
+<span id="cb4-24"><a href="#cb4-24"></a>            primes[primesPt++] = i;</span>
+<span id="cb4-25"><a href="#cb4-25"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt; j++) {</span>
+<span id="cb4-26"><a href="#cb4-26"></a>            <span class="cf">if</span> (primes[j] * i &gt; SIZE - <span class="dv">1</span>)</span>
+<span id="cb4-27"><a href="#cb4-27"></a>                <span class="cf">break</span>;</span>
+<span id="cb4-28"><a href="#cb4-28"></a>            hasSieved[i * primes[j]] =  <span class="kw">true</span>;</span>
+<span id="cb4-29"><a href="#cb4-29"></a>            <span class="cf">if</span> (i % primes[j] == <span class="dv">0</span>)</span>
+<span id="cb4-30"><a href="#cb4-30"></a>                <span class="cf">break</span>;</span>
+<span id="cb4-31"><a href="#cb4-31"></a>        }</span>
+<span id="cb4-32"><a href="#cb4-32"></a>    }</span>
+<span id="cb4-33"><a href="#cb4-33"></a>}</span></code></pre></div>
+<p><strong>拓展</strong>：<span class="math inline">\(\text{minFac}(x)\)</span> 记录 <span class="math inline">\(x\)</span> 的最小质因子，所以如果我们要对所有数快速分解质因子，那么一直除它的最小质因子就好了。</p>
+</div>
+<div id="数论函数" class="section level2">
+<h2>数论函数</h2>
+<p>以下均令 <span class="math inline">\(n = \prod\limits_{i = 1}^{k} p_i^{e_i}\)</span>，其中 <span class="math inline">\(p_i \in \text{PRIMES}\)</span>（<span class="math inline">\(n \geq 2\)</span>）。</p>
+<div id="欧拉函数-varphin" class="section level3">
+<h3>欧拉函数 <span class="math inline">\(\varphi(n)\)</span></h3>
+<p><span class="math display">\[
+\varphi(n) = n\prod\limits_{i = 1}^{k}(1 - \frac{1}{p_i})
+\]</span></p>
+<div id="朴素" class="section level4">
+<h4>朴素</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> phi(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = num;</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; <span class="dv">1</span><span class="bu">ll</span> * i * i &lt;= num; i++) {</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="cf">if</span> (num % i != <span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>            <span class="cf">continue</span>;</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        ret -= ret / i;</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="cf">while</span> (num % i == <span class="dv">0</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>            num /= i;</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    }</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="cf">if</span> (num &gt; <span class="dv">1</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>        ret -= ret / num;</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb5-13"><a href="#cb5-13"></a>}</span></code></pre></div>
+</div>
+<div id="线性筛" class="section level4">
+<h4>线性筛</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">int</span> minFac[SIZE], primes[SIZE], phi[SIZE], primesPt;</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="dt">void</span> initPhi() {</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    primesPt = <span class="dv">0</span>; phi[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>) {</span>
+<span id="cb6-7"><a href="#cb6-7"></a>            minFac[i] = i;</span>
+<span id="cb6-8"><a href="#cb6-8"></a>            primes[primesPt++] = i;</span>
+<span id="cb6-9"><a href="#cb6-9"></a>            phi[i] = i - <span class="dv">1</span>;</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        }</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], (SIZE - <span class="dv">1</span>) / i); j++) {</span>
+<span id="cb6-12"><a href="#cb6-12"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb6-13"><a href="#cb6-13"></a>            <span class="cf">if</span> (minFac[i] == primes[j])</span>
+<span id="cb6-14"><a href="#cb6-14"></a>                phi[i * primes[j]] = phi[i] * primes[j];</span>
+<span id="cb6-15"><a href="#cb6-15"></a>            <span class="cf">else</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>                phi[i * primes[j]] = phi[i] * (primes[j] - <span class="dv">1</span>);</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        }</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    }</span>
+<span id="cb6-19"><a href="#cb6-19"></a>}</span></code></pre></div>
+</div>
+<div id="性质欧拉反演基础" class="section level4">
+<h4>性质（欧拉反演基础）</h4>
+<p><span class="math display">\[
+\varphi(ij) = \frac{\varphi(i)\varphi(j)\gcd(i, j)}{\varphi(\gcd(i, j))}
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \varphi(d) = n
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \frac{\mu(d)}{d} = \frac{\varphi(n)}{n}
+\]</span></p>
+</div>
+</div>
+<div id="莫比乌斯函数" class="section level3">
+<h3>莫比乌斯函数</h3>
+<p><span class="math display">\[
+\mu(n) =
+\begin{cases}
+1 &amp; n = 1 \\
+0 &amp; \exists \ e_i &gt; 1 \\
+(-1)^k &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<div id="朴素-1" class="section level4">
+<h4>朴素</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">int</span> mu(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num) {</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="dt">int</span> ret = <span class="dv">1</span>;</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; <span class="dv">1</span><span class="bu">ll</span> * i * i &lt;= num; i++) {</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="cf">if</span> (num % i != <span class="dv">0</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>            <span class="cf">continue</span>;</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        <span class="cf">if</span> (num % (<span class="dv">1</span><span class="bu">ll</span> * i * i) == <span class="dv">0</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a>            <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        ret *= -<span class="dv">1</span>, num /= i;</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    }</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="cf">if</span> (num &gt; <span class="dv">1</span>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a>        ret *= -<span class="dv">1</span>;</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb7-13"><a href="#cb7-13"></a>}</span></code></pre></div>
+</div>
+<div id="线性筛-1" class="section level4">
+<h4>线性筛</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">int</span> minFac[SIZE], primes[SIZE], mu[SIZE], primesPt;</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="dt">void</span> initMu() {</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    primesPt = <span class="dv">0</span>;</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    mu[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>) {</span>
+<span id="cb8-8"><a href="#cb8-8"></a>            minFac[i] = i;</span>
+<span id="cb8-9"><a href="#cb8-9"></a>            mu[i] = -<span class="dv">1</span>;</span>
+<span id="cb8-10"><a href="#cb8-10"></a>            primes[primesPt++] = i;</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        }</span>
+<span id="cb8-12"><a href="#cb8-12"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], (SIZE - <span class="dv">1</span>) / i); j++) {</span>
+<span id="cb8-13"><a href="#cb8-13"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb8-14"><a href="#cb8-14"></a>            <span class="cf">if</span> (minFac[i] == primes[j]) {</span>
+<span id="cb8-15"><a href="#cb8-15"></a>                mu[i * primes[j]] = <span class="dv">0</span>;</span>
+<span id="cb8-16"><a href="#cb8-16"></a>            } <span class="cf">else</span> {</span>
+<span id="cb8-17"><a href="#cb8-17"></a>                mu[i * primes[j]] = -mu[i];</span>
+<span id="cb8-18"><a href="#cb8-18"></a>            }</span>
+<span id="cb8-19"><a href="#cb8-19"></a>        }</span>
+<span id="cb8-20"><a href="#cb8-20"></a>    }</span>
+<span id="cb8-21"><a href="#cb8-21"></a>}</span></code></pre></div>
+</div>
+<div id="性质莫比乌斯反演基础" class="section level4">
+<h4>性质（莫比乌斯反演基础）</h4>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \mu(d) = 
+\begin{cases}
+1 &amp; n = 1 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+</div>
+<div id="反演wip" class="section level4">
+<h4>反演[WIP]</h4>
+<pre><code>咕咕咕……</code></pre>
+</div>
+</div>
+<div id="约数个数-dn" class="section level3">
+<h3>约数个数 <span class="math inline">\(d(n)\)</span></h3>
+<p><span class="math display">\[
+d(n) = \prod\limits_{i = 1}^{k}(e_i + 1)
+\]</span></p>
+<div id="线性筛-2" class="section level4">
+<h4>线性筛</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], numArr[SIZE], d[SIZE], primesPt;</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="dt">void</span> initD() {</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    primesPt = <span class="dv">0</span>;</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    d[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb10-7"><a href="#cb10-7"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>) {</span>
+<span id="cb10-8"><a href="#cb10-8"></a>            minFac[i] = i;</span>
+<span id="cb10-9"><a href="#cb10-9"></a>            numArr[i] = <span class="dv">1</span>;</span>
+<span id="cb10-10"><a href="#cb10-10"></a>            d[i] = <span class="dv">2</span>;</span>
+<span id="cb10-11"><a href="#cb10-11"></a>            primes[primesPt++] = i;</span>
+<span id="cb10-12"><a href="#cb10-12"></a>        }</span>
+<span id="cb10-13"><a href="#cb10-13"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], (SIZE - <span class="dv">1</span>) / i); j++) {</span>
+<span id="cb10-14"><a href="#cb10-14"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb10-15"><a href="#cb10-15"></a>            <span class="cf">if</span> (minFac[i] == primes[j]) {</span>
+<span id="cb10-16"><a href="#cb10-16"></a>                numArr[i * primes[j]] = numArr[i] + <span class="dv">1</span>;</span>
+<span id="cb10-17"><a href="#cb10-17"></a>                d[i * primes[j]] = d[i] / (numArr[i] + <span class="dv">1</span>) * (numArr[i * primes[j]] + <span class="dv">1</span>);</span>
+<span id="cb10-18"><a href="#cb10-18"></a>            } <span class="cf">else</span> {</span>
+<span id="cb10-19"><a href="#cb10-19"></a>                numArr[i * primes[j]] = <span class="dv">1</span>;</span>
+<span id="cb10-20"><a href="#cb10-20"></a>                d[i * primes[j]] = d[i] * d[primes[j]];</span>
+<span id="cb10-21"><a href="#cb10-21"></a>            }</span>
+<span id="cb10-22"><a href="#cb10-22"></a>        }</span>
+<span id="cb10-23"><a href="#cb10-23"></a>    }</span>
+<span id="cb10-24"><a href="#cb10-24"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="约数和-dsn" class="section level3">
+<h3>约数和 <span class="math inline">\(ds(n)\)</span></h3>
+<p><span class="math display">\[
+ds(n) = \prod\limits_{i = 1}^{k}\sum\limits_{j = 0}^{e_i}p_i^j
+\]</span></p>
+<div id="线性筛-3" class="section level4">
+<h4>线性筛</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], primesPt;</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> dSum[SIZE], facSqrSum[SIZE];</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="dt">void</span> initDSum() {</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    primesPt = <span class="dv">0</span>;</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    facSqrSum[<span class="dv">1</span>] = <span class="dv">1</span>; dSum[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++) {</span>
+<span id="cb11-8"><a href="#cb11-8"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>) {</span>
+<span id="cb11-9"><a href="#cb11-9"></a>            minFac[i] = i;</span>
+<span id="cb11-10"><a href="#cb11-10"></a>            primes[primesPt++] = i;</span>
+<span id="cb11-11"><a href="#cb11-11"></a>            facSqrSum[i] = <span class="dv">1</span> + i;</span>
+<span id="cb11-12"><a href="#cb11-12"></a>            dSum[i] = <span class="dv">1</span> + i;</span>
+<span id="cb11-13"><a href="#cb11-13"></a>        }</span>
+<span id="cb11-14"><a href="#cb11-14"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], (SIZE - <span class="dv">1</span>) / i); j++) {</span>
+<span id="cb11-15"><a href="#cb11-15"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb11-16"><a href="#cb11-16"></a>            <span class="cf">if</span> (minFac[i] == primes[j]) {</span>
+<span id="cb11-17"><a href="#cb11-17"></a>                facSqrSum[i * primes[j]] = facSqrSum[i] * primes[j] + <span class="dv">1</span>;</span>
+<span id="cb11-18"><a href="#cb11-18"></a>                dSum[i * primes[j]] = dSum[i] / facSqrSum[i] * facSqrSum[i * primes[j]];</span>
+<span id="cb11-19"><a href="#cb11-19"></a>            } <span class="cf">else</span> {</span>
+<span id="cb11-20"><a href="#cb11-20"></a>                facSqrSum[i * primes[j]] = <span class="dv">1</span> + primes[j];</span>
+<span id="cb11-21"><a href="#cb11-21"></a>                dSum[i * primes[j]] = dSum[i] * dSum[primes[j]];</span>
+<span id="cb11-22"><a href="#cb11-22"></a>            }</span>
+<span id="cb11-23"><a href="#cb11-23"></a>        }</span>
+<span id="cb11-24"><a href="#cb11-24"></a>    }</span>
+<span id="cb11-25"><a href="#cb11-25"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="迪利克雷卷积" class="section level3">
+<h3>迪利克雷卷积</h3>
+<p>记 <span class="math inline">\(\mathbb{S}\)</span> 代表全体数论函数，则对 <span class="math inline">\(f, g \in \mathbb{S}\)</span>，定义其卷积：</p>
+<p><span class="math display">\[
+(f \cdot g)(n) = \sum\limits_{d \mid n}f(d)g(\frac{n}{d})
+\]</span></p>
+<p>$, +, $ 构成一个<strong>可交换环</strong>。其中单位元为 <span class="math inline">\(e(n) = [n = 1]\)</span>。</p>
+<p>记 <span class="math inline">\(1(n) = 1, \ N(n) = n\)</span>：</p>
+<ul>
+<li><span class="math inline">\(\mu \cdot 1 = e\)</span></li>
+<li><span class="math inline">\(\varphi \cdot 1 = N\)</span></li>
+</ul>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>数论函数不一定是积性函数；</li>
+<li>积性函数的卷积仍是积性函数。</li>
+</ul>
+</div>
+<div id="杜教筛" class="section level3">
+<h3>杜教筛</h3>
+<div id="简介" class="section level4">
+<h4>简介</h4>
+<p>构造 <span class="math inline">\(f, g, h \in \mathbb{S}, \text{ s.t. } f \cdot g = h\)</span>，且其中 <span class="math inline">\(\sum{h}\)</span> 可被快速计算。记 <span class="math inline">\(S(n) = \sum\limits_{i = 1}^{n} f(i)\)</span>，则有：</p>
+<p><span class="math display">\[
+g(1)S(n) = \sum\limits_{i = 1}^{n}h(i) - \sum\limits_{d = 2}^{n}g(d)S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p>
+<p>设置阈值 <span class="math inline">\(t\)</span>，若 <span class="math inline">\(n \le t\)</span> 可用线性筛解决，大于阈值的则用上式递归解决。为了加速可将已求得的值放入 Hash Map 中。</p>
+<p><strong>注意</strong>：<span class="math inline">\(f, g, h\)</span> <strong>不一定</strong>是积性函数。</p>
+</div>
+<div id="常见应用" class="section level4">
+<h4>常见应用</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(f(i) = \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} \varphi(i)\)</span>，由 <span class="math inline">\(\varphi \cdot 1 = N\)</span>：</p>
+<p><span class="math display">\[
+S(n) = \sum\limits_{i = 1}^{n}i - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+<li><p><span class="math inline">\(f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)\)</span>，由 <span class="math inline">\(\mu \cdot 1 = e\)</span></p>
+<p><span class="math display">\[
+S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+<li><p><span class="math inline">\(f(i) = i \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i \varphi(i)\)</span>：</p>
+<p>$$
+\begin{aligned}
+h= f g &amp; = <em>{d n}f(d)g() \
+&amp; = </em>{d n} d (d)g() \
+&amp;  g = N: \
+&amp; = n_{d n}(d) \
+&amp; = n^2
+\end{aligned}</p>
+<p><span class="math display">\[
+S(n) = \sum\limits_{i = 1}^{n}i^2 - \sum\limits_{d = 2}^{n} dS(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+<li><p><span class="math inline">\(f(i) = i^2 \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i^2 \varphi(i)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+h = f \cdot g &amp; = \sum\limits_{d \mid n} f(d)g(\frac{n}{d}) \\
+&amp; = \sum\limits_{d \mid n}d^2\varphi(d)g(\frac{n}{d}) \\
+&amp; \text{let } g = N^2: \\
+&amp; = n^2\sum\limits_{d \mid n} \varphi(d) \\
+&amp; = n^3
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+S(n) = \sum\limits_{i = 1}^{n}i^3 - \sum\limits_{d = 2}^{n}d^2S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+</ol>
+<p>预处理 <span class="math inline">\(\mathcal{O}(n^\frac{2}{3})\)</span> 左右的数据则复杂度 <span class="math inline">\(\mathcal{O}(n^{\frac{2}{3}})\)</span>；若不预处理是 <span class="math inline">\(\mathcal{O}(n^\frac{3}{4})\)</span>？要记忆化！</p>
+</div>
+</div>
+<div id="min25-筛" class="section level3">
+<h3>min25 筛</h3>
+<div id="核心思想" class="section level4">
+<h4>核心思想</h4>
+<p>下文默认记 <span class="math inline">\(\mathbb{P}\)</span> 为素数集，<span class="math inline">\(P_i\)</span> 代表其中第 <span class="math inline">\(i\)</span> 大的素数并默认 <span class="math inline">\(p \in \mathbb{P}\)</span>。若函数 <span class="math inline">\(f(x)\)</span> 满足：</p>
+<ul>
+<li><span class="math inline">\(f(p)\)</span> 为多项式；</li>
+<li><span class="math inline">\(f(p^e)\)</span> 可被快速计算；</li>
+<li>若 <span class="math inline">\(a \perp b\)</span>，则 <span class="math inline">\(f(ab) = f(a)f(b)\)</span>。</li>
+</ul>
+<p>min25 筛可在 <span class="math inline">\(\mathcal{O}(\frac{n^\frac{3}{4}}{\log{n}})\)</span> 的复杂度内计算 <span class="math inline">\(\sum\limits_{i = 1}^{n} f(i)\)</span>，其核心思想即将 <span class="math inline">\([1, n]\)</span> 分为质数、<span class="math inline">\(1\)</span> 和剩余数三个部分进行讨论：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} f(i) &amp; = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + \sum\limits_{i = 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
+&amp; = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + f(1) + \sum\limits_{p \in \mathbb{P}}\sum\limits_{1 \le p^e \le n}f(p^e)\sum\limits_{i = 1}^{\left\lfloor \frac{n}{p^e} \right\rfloor}f(i)
+\end{aligned}
+\]</span></p>
+<p><strong>注</strong>：上面提到的限制条件是充分不必要条件。</p>
+</div>
+<div id="筛质数答案" class="section level4">
+<h4>筛质数答案</h4>
+<p>考虑筛出不大于 <span class="math inline">\(\sqrt{n}\)</span> 的所有素数作为 <span class="math inline">\(\mathbb{P}\)</span>。记 <span class="math inline">\(minp(x)\)</span> 代表 <span class="math inline">\(x\)</span> 的最小质因子，令：</p>
+<p><span class="math display">\[
+g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in \mathbb{P} \text{ or } minp(i) &gt; P_j \right] f(i)
+\]</span></p>
+<p>则有：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) = g(n, |P|)
+\]</span></p>
+<p>借助于埃氏筛类似的思想（考虑每次筛去了哪些数），可对 <span class="math inline">\(g\)</span> 进行如下状态转移：</p>
+<p><span class="math display">\[
+g(n, j) = 
+\begin{cases}
+g(n, j - 1) - f(P_j)\left[ g(\left\lfloor \frac{n}{P_j} \right\rfloor, j - 1) - \sum\limits_{i = 1}^{j - 1}f(P_i) \right] &amp; {P_j}^2 \le n \\
+g(n, j - 1) &amp; \text{otherwise} 
+\end{cases}
+\]</span></p>
+<p>对于初值，有 <span class="math inline">\(g(n, 0) = \sum\limits_{i = 2}^{n}f(i)\)</span>。在实现时第一维可以滚动以节约空间。</p>
+</div>
+<div id="筛合数答案" class="section level4">
+<h4>筛合数答案</h4>
+<p>令：</p>
+<p><span class="math display">\[
+s(n, j) = \sum\limits_{i = 2}^{n} \left[ minp(i) \ge P_j \right] f(i)
+\]</span></p>
+<p>则有：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n}f(i) = s(n, 1) + f(1)
+\]</span></p>
+<p>可对 <span class="math inline">\(s\)</span> 进行如下状态转移：</p>
+<p><span class="math display">\[
+\begin{aligned}
+s(n, j) &amp; = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
+&amp; = g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) + \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+\end{aligned}
+\]</span></p>
+<p>直接递归搜即可，不需要记忆化复杂度也是对的（<del>证明不来</del>），如果有多个状态可以考虑开个结构体一起转移。</p>
+</div>
+<div id="代码" class="section level4">
+<h4>代码</h4>
+<p>【洛谷模板】积性函数： <span class="math inline">\(f(p^e) = p^e (p^e - 1)\)</span></p>
+<p>注：<code>SIZE</code> 应设置为 <span class="math inline">\(2\sqrt{n}\)</span> 左右。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="pp">#define SIZE </span><span class="dv">200020</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="pp">#define EXP_SIZE </span><span class="dv">2</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="at">const</span> <span class="dt">int</span> mod = <span class="fl">1e9</span> + <span class="dv">7</span>;</span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], primesPt, lim;</span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> g[SIZE][EXP_SIZE], dsc[SIZE], pfx[SIZE][EXP_SIZE], inv2, inv3;</span>
+<span id="cb12-10"><a href="#cb12-10"></a>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt; indx[SIZE];  <span class="co">// indx[x]: index of &lt;x, n / x&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="at">const</span> pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt; csts[EXP_SIZE] = {make_pair(-<span class="dv">1</span>, <span class="dv">1</span>), make_pair(<span class="dv">1</span>, <span class="dv">2</span>)};</span>
+<span id="cb12-12"><a href="#cb12-12"></a></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> fastPow(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
+<span id="cb12-14"><a href="#cb12-14"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">1</span>; a %= mod;</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    <span class="cf">while</span> (n &gt; <span class="dv">0</span>) {</span>
+<span id="cb12-16"><a href="#cb12-16"></a>        <span class="cf">if</span> (n &amp; <span class="dv">1</span>)</span>
+<span id="cb12-17"><a href="#cb12-17"></a>            ret = (ret * a) % mod;</span>
+<span id="cb12-18"><a href="#cb12-18"></a>        a = (a * a) % mod; n &gt;&gt;= <span class="dv">1</span>;</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    }</span>
+<span id="cb12-20"><a href="#cb12-20"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb12-21"><a href="#cb12-21"></a>}</span>
+<span id="cb12-22"><a href="#cb12-22"></a></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="dt">void</span> initPrimes(<span class="dt">int</span> siz) {</span>
+<span id="cb12-24"><a href="#cb12-24"></a>    inv2 = fastPow(<span class="dv">2</span>, mod - <span class="dv">2</span>, mod); inv3 = fastPow(<span class="dv">3</span>, mod - <span class="dv">2</span>, mod);</span>
+<span id="cb12-25"><a href="#cb12-25"></a>    fill(minFac + <span class="dv">0</span>, minFac + siz + <span class="dv">1</span>, <span class="dv">0</span>); primesPt = <span class="dv">0</span>;</span>
+<span id="cb12-26"><a href="#cb12-26"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt;= siz; i++) {</span>
+<span id="cb12-27"><a href="#cb12-27"></a>        <span class="cf">if</span> (minFac[i] == <span class="dv">0</span>)</span>
+<span id="cb12-28"><a href="#cb12-28"></a>            minFac[i] = i, primes[primesPt++] = i;</span>
+<span id="cb12-29"><a href="#cb12-29"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; primesPt &amp;&amp; primes[j] &lt;= min(minFac[i], siz / i); j++)</span>
+<span id="cb12-30"><a href="#cb12-30"></a>            minFac[i * primes[j]] = primes[j];</span>
+<span id="cb12-31"><a href="#cb12-31"></a>    }</span>
+<span id="cb12-32"><a href="#cb12-32"></a></span>
+<span id="cb12-33"><a href="#cb12-33"></a>    <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-34"><a href="#cb12-34"></a>        pfx[<span class="dv">0</span>][e] = fastPow(primes[<span class="dv">0</span>], csts[e].second, mod);</span>
+<span id="cb12-35"><a href="#cb12-35"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; primesPt; i++)</span>
+<span id="cb12-36"><a href="#cb12-36"></a>        <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-37"><a href="#cb12-37"></a>            pfx[i][e] = (pfx[i - <span class="dv">1</span>][e] + fastPow(primes[i], csts[e].second, mod)) % mod;</span>
+<span id="cb12-38"><a href="#cb12-38"></a>}</span>
+<span id="cb12-39"><a href="#cb12-39"></a></span>
+<span id="cb12-40"><a href="#cb12-40"></a><span class="at">const</span> <span class="kw">auto</span> f = [](<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {</span>
+<span id="cb12-41"><a href="#cb12-41"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>;</span>
+<span id="cb12-42"><a href="#cb12-42"></a>    <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-43"><a href="#cb12-43"></a>        ret = (ret + csts[e].first * fastPow(p, csts[e].second, mod)) % mod;</span>
+<span id="cb12-44"><a href="#cb12-44"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb12-45"><a href="#cb12-45"></a>};</span>
+<span id="cb12-46"><a href="#cb12-46"></a></span>
+<span id="cb12-47"><a href="#cb12-47"></a><span class="at">const</span> <span class="kw">auto</span> sum = [](<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> exp) {</span>
+<span id="cb12-48"><a href="#cb12-48"></a>    n %= mod;</span>
+<span id="cb12-49"><a href="#cb12-49"></a>    <span class="cf">if</span> (exp == <span class="dv">0</span>)</span>
+<span id="cb12-50"><a href="#cb12-50"></a>        <span class="cf">return</span> n;</span>
+<span id="cb12-51"><a href="#cb12-51"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = n * (n + <span class="dv">1</span>) % mod * inv2 % mod;</span>
+<span id="cb12-52"><a href="#cb12-52"></a>    <span class="cf">if</span> (exp == <span class="dv">2</span>)</span>
+<span id="cb12-53"><a href="#cb12-53"></a>        <span class="cf">return</span> ret * ((n &lt;&lt; <span class="dv">1</span>) + <span class="dv">1</span>) % mod * inv3 % mod;</span>
+<span id="cb12-54"><a href="#cb12-54"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb12-55"><a href="#cb12-55"></a>};</span>
+<span id="cb12-56"><a href="#cb12-56"></a></span>
+<span id="cb12-57"><a href="#cb12-57"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> sieve(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, <span class="dt">int</span> pt, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb12-58"><a href="#cb12-58"></a>    <span class="cf">if</span> (x &lt;= <span class="dv">1</span> || primes[pt] &gt; x)</span>
+<span id="cb12-59"><a href="#cb12-59"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb12-60"><a href="#cb12-60"></a>    <span class="dt">int</span> k = x &lt;= lim ? indx[x].first : indx[n / x].second;</span>
+<span id="cb12-61"><a href="#cb12-61"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>;</span>
+<span id="cb12-62"><a href="#cb12-62"></a>    <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-63"><a href="#cb12-63"></a>        ret = (ret + csts[e].first * (g[k][e] - (pt == <span class="dv">0</span> ? <span class="dv">0</span> : pfx[pt - <span class="dv">1</span>][e])) % mod + mod) % mod;</span>
+<span id="cb12-64"><a href="#cb12-64"></a></span>
+<span id="cb12-65"><a href="#cb12-65"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = pt; i &lt; primesPt &amp;&amp; <span class="dv">1</span><span class="bu">ll</span> * primes[i] * primes[i] &lt;= x; i++) {</span>
+<span id="cb12-66"><a href="#cb12-66"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> pk = primes[i], pk1 = <span class="dv">1</span><span class="bu">ll</span> * primes[i] * primes[i];</span>
+<span id="cb12-67"><a href="#cb12-67"></a>        <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">1</span>; pk1 &lt;= x; pk = pk1, pk1 *= primes[i], e++)</span>
+<span id="cb12-68"><a href="#cb12-68"></a>            ret = (ret + f(pk) * sieve(x / pk, i + <span class="dv">1</span>, n) % mod + f(pk1)) % mod;</span>
+<span id="cb12-69"><a href="#cb12-69"></a>    }</span>
+<span id="cb12-70"><a href="#cb12-70"></a></span>
+<span id="cb12-71"><a href="#cb12-71"></a>    <span class="cf">return</span> (ret + mod) % mod;</span>
+<span id="cb12-72"><a href="#cb12-72"></a>}</span>
+<span id="cb12-73"><a href="#cb12-73"></a></span>
+<span id="cb12-74"><a href="#cb12-74"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> min25(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb12-75"><a href="#cb12-75"></a>    lim = sqrt(n); initPrimes(lim + <span class="dv">1</span>); <span class="dt">int</span> dscPt = <span class="dv">0</span>;</span>
+<span id="cb12-76"><a href="#cb12-76"></a>    <span class="cf">for</span> (<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> l = <span class="dv">1</span>, r; l &lt;= n; l = r + <span class="dv">1</span>) {</span>
+<span id="cb12-77"><a href="#cb12-77"></a>        r = n / (n / l); <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> v = n / l; dsc[dscPt] = v;</span>
+<span id="cb12-78"><a href="#cb12-78"></a>        <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-79"><a href="#cb12-79"></a>            g[dscPt][e] = sum(dsc[dscPt], csts[e].second) - <span class="dv">1</span>;</span>
+<span id="cb12-80"><a href="#cb12-80"></a>        v &lt;= lim ? indx[v].first = dscPt : indx[n / v].second = dscPt; dscPt++;</span>
+<span id="cb12-81"><a href="#cb12-81"></a>    }</span>
+<span id="cb12-82"><a href="#cb12-82"></a></span>
+<span id="cb12-83"><a href="#cb12-83"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; primesPt &amp;&amp; primes[i] &lt;= lim; i++) {</span>
+<span id="cb12-84"><a href="#cb12-84"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; dscPt &amp;&amp; <span class="dv">1</span><span class="bu">ll</span> * primes[i] * primes[i] &lt;= dsc[j]; j++) {</span>
+<span id="cb12-85"><a href="#cb12-85"></a>            <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> v = dsc[j] / primes[i];</span>
+<span id="cb12-86"><a href="#cb12-86"></a>            <span class="dt">int</span> k = v &lt;= lim ? indx[v].first : indx[n / v].second;</span>
+<span id="cb12-87"><a href="#cb12-87"></a>            <span class="cf">for</span> (<span class="dt">int</span> e = <span class="dv">0</span>; e &lt; EXP_SIZE; e++)</span>
+<span id="cb12-88"><a href="#cb12-88"></a>                g[j][e] = (g[j][e] - fastPow(primes[i], csts[e].second, mod) * (g[k][e] - (i == <span class="dv">0</span> ? <span class="dv">0</span> : pfx[i - <span class="dv">1</span>][e]) + mod) % mod + mod) % mod;</span>
+<span id="cb12-89"><a href="#cb12-89"></a>        }</span>
+<span id="cb12-90"><a href="#cb12-90"></a>    }</span>
+<span id="cb12-91"><a href="#cb12-91"></a></span>
+<span id="cb12-92"><a href="#cb12-92"></a>    <span class="cf">return</span> (sieve(n, <span class="dv">0</span>, n) + <span class="dv">1</span>) % mod;</span>
+<span id="cb12-93"><a href="#cb12-93"></a>}</span>
+<span id="cb12-94"><a href="#cb12-94"></a></span>
+<span id="cb12-95"><a href="#cb12-95"></a><span class="dt">int</span> main() {</span>
+<span id="cb12-96"><a href="#cb12-96"></a>    ios::sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb12-97"><a href="#cb12-97"></a>    cin.tie(<span class="dv">0</span>); cout.tie(<span class="dv">0</span>);</span>
+<span id="cb12-98"><a href="#cb12-98"></a></span>
+<span id="cb12-99"><a href="#cb12-99"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num; cin &gt;&gt; num;</span>
+<span id="cb12-100"><a href="#cb12-100"></a>    cout &lt;&lt; min25(num) &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</span>
+<span id="cb12-101"><a href="#cb12-101"></a></span>
+<span id="cb12-102"><a href="#cb12-102"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb12-103"><a href="#cb12-103"></a>}</span></code></pre></div>
+</div>
+<div id="灵活变化" class="section level4">
+<h4>灵活变化</h4>
+<div id="fp-是分段函数" class="section level5">
+<h5><span class="math inline">\(f(p)\)</span> 是分段函数？</h5>
+<p>Nowcoder 887K</p>
+<p><span class="math display">\[
+f(p^k) = 
+\begin{cases}
+3k + 1 &amp; p \equiv 1 \pmod 4 \\
+1 &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p>求：<span class="math inline">\(\sum\limits_{i = 1}^{n} f(i)\)</span></p>
+<ul>
+<li>把 <span class="math inline">\(2\)</span> 从素数中 “除名” 并不影响结果（即使得 <span class="math inline">\(minp(x) \ge 3\)</span>）；</li>
+<li>模 <span class="math inline">\(4\)</span> 余 <span class="math inline">\(1, 3\)</span> 的素数需要分别计算，因此考虑修改 <span class="math inline">\(g\)</span> 的定义与状态转移：
+<span class="math display">\[
+g(n, j, k) = \sum\limits_{i = 1}^{n} \left[ i \in \mathbb{P}, \ minp(p) &gt; P_j, 
+\begin{cases}
+i \equiv 1 \pmod 4 &amp; k = 0 \\
+i \equiv 3 \pmod 4 &amp; k = 1
+\end{cases}
+\ \right] f(i)
+\]</span>
+状态转移是根据余数再分别进行转移即可；对于 <span class="math inline">\(s\)</span> 最后不能忘记考虑 <span class="math inline">\(2\)</span>。</li>
+</ul>
+</div>
+<div id="f-不是积性函数" class="section level5">
+<h5><span class="math inline">\(f\)</span> 不是积性函数？</h5>
+<p>对于最后一条限制，其实只要待筛函数 <span class="math inline">\(f\)</span> 能够在对 <span class="math inline">\(s, g\)</span> 进行转移时被正确处理就可以了。</p>
+<p>即，若记 <span class="math inline">\(h = \sum f(a_i)\)</span>，且 <span class="math inline">\(\forall i, \ p \not\mid a_i\)</span>，若能快速计算出 <span class="math inline">\(h&#39; = \sum f(a_ip)\)</span>，则一般可用 min25 筛出答案。</p>
+<p>例子：<span class="math inline">\(f(ab) = f(a) + f(b)\)</span>。</p>
+</div>
+</div>
+</div>
+<div id="推式子的人生经验" class="section level3">
+<h3>推式子的人生经验</h3>
+<ol style="list-style-type: decimal">
+<li><p>遇到形如 <span class="math inline">\(\left\lfloor \frac{n}{td} \right\rfloor\)</span> 的式子时有套路：令 <span class="math inline">\(T = td\)</span> 并枚举 <span class="math inline">\(T\)</span>；</p></li>
+<li><p>经过上面一堆操作很可能化出形如 <span class="math inline">\(\sum\limits_{d \mid n} \mu(d)f^k(\frac{T}{d})\)</span> 的式子，此时往迪利克雷卷积的方向考虑即 <span class="math inline">\(f \cdot \mu\)</span>，说不定利用一下 <span class="math inline">\(\mu \cdot 1 = e\)</span> 再配合杜教筛乱搞一下就搞出来了，而杜教筛中的那个前缀和说不定就能用 min25 筛乱搞；</p></li>
+<li><p>或者我们可以利用 <span class="math inline">\(\mu\)</span> 的性质，考虑 <span class="math inline">\(d\)</span> 取何值才能使 <span class="math inline">\(\mu(d) \neq 0\)</span>，说不定就能发现什么；</p></li>
+<li><p>看到 <span class="math inline">\(\gcd(i, j)\)</span> 考虑直接枚举其值然后再套上莫比乌斯反演；</p></li>
+<li><p>带权的直接欧拉反演少走弯路；</p></li>
+<li><p>有时可考虑对求和进行拆分，可能会有意想不到的效果（在有 <span class="math inline">\(\gcd\)</span> 时贴近 <span class="math inline">\(\varphi\)</span> 的定义）：
+<span class="math display">\[
+\sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{n} = \sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{i - 1} + \sum\limits_{i = 0}^{n}[j = i] + \sum\limits_{j = 0}^{n}\sum\limits_{i = 0}^{j - 1}
+\]</span></p></li>
+</ol>
+</div>
+</div>
+<div id="逆元-n-1-pmod-p" class="section level2">
+<h2>逆元 <span class="math inline">\(n^{-1} \pmod p\)</span></h2>
+<div id="欧拉定理" class="section level3">
+<h3>欧拉定理</h3>
+<p>当 <span class="math inline">\(\gcd(a, p) = 1\)</span> 时有：
+<span class="math display">\[
+a^{\varphi(p)} \equiv 1 \pmod p
+\]</span></p>
+</div>
+<div id="拓展欧几里得" class="section level3">
+<h3>拓展欧几里得</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> inv(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, y;</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    extEuclid(a, mod, x, y);</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="cf">return</span> (x + mod) % mod;</span>
+<span id="cb13-5"><a href="#cb13-5"></a>}</span></code></pre></div>
+</div>
+<div id="线性预处理" class="section level3">
+<h3>线性预处理</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> invs[SIZE];</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="dt">void</span> initInv() {</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    invs[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; SIZE; i++)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>        invs[i] = (mod - mod / i) * invs[mod % i] % mod;</span>
+<span id="cb14-6"><a href="#cb14-6"></a>}</span></code></pre></div>
+</div>
+<div id="阶乘逆元-n-1" class="section level3">
+<h3>阶乘逆元 <span class="math inline">\((n!)^{-1}\)</span></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> invFactorials[SIZE];</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="dt">void</span> initInvFactorial() {</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    invFactorials[SIZE - <span class="dv">1</span>] = fastPow(factorials[SIZE - <span class="dv">1</span>], mod - <span class="dv">2</span>);</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = SIZE - <span class="dv">2</span>; i &gt;= <span class="dv">0</span>; i--) {</span>
+<span id="cb15-5"><a href="#cb15-5"></a>        invFactorials[i] = invFactorials[i + <span class="dv">1</span>] * (i + <span class="dv">1</span>) % mod;</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    }</span>
+<span id="cb15-7"><a href="#cb15-7"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="组合数" class="section level2">
+<h2>组合数</h2>
+<div id="简介与计算" class="section level3">
+<h3>简介与计算</h3>
+<p><span class="math display">\[
+\binom{n}{m} = \frac{n!}{m! (n - m)!} \quad (0 \le m \le n)
+\]</span></p>
+<div id="预处理逆元-mathcalo1" class="section level4">
+<h4>预处理逆元: <span class="math inline">\(\mathcal{O}(1)\)</span></h4>
+<div class="sourceCode" id="cb16"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> comb(<span class="dt">int</span> n, <span class="dt">int</span> m) {</span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="cf">if</span> (m &gt; n)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="cf">return</span> factorials[n] * invFactorials[m] % mod * invFactorials[n - m] % mod;</span>
+<span id="cb16-5"><a href="#cb16-5"></a>}</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> permu(<span class="dt">int</span> n, <span class="dt">int</span> m) {</span>
+<span id="cb16-8"><a href="#cb16-8"></a>    <span class="cf">if</span> (m &gt; n)</span>
+<span id="cb16-9"><a href="#cb16-9"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb16-10"><a href="#cb16-10"></a>    <span class="cf">return</span> fafactorials] * invFactorials[n - m] % mod;</span>
+<span id="cb16-11"><a href="#cb16-11"></a>}</span></code></pre></div>
+</div>
+<div id="朴素-mathcalonlogn" class="section level4">
+<h4>朴素: <span class="math inline">\(\mathcal{O}(n\log{n})\)</span></h4>
+<div class="sourceCode" id="cb17"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> comb(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">1</span>;</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; i++) {</span>
+<span id="cb17-4"><a href="#cb17-4"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a = (m + i - n) % mod, b = i % mod;</span>
+<span id="cb17-5"><a href="#cb17-5"></a>        ans = ans * (a * fastPow(b, mod - <span class="dv">2</span>) % mod) % mod;</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    }</span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb17-8"><a href="#cb17-8"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="性质" class="section level3">
+<h3>性质</h3>
+<p><span class="math display">\[
+\binom{n}{m} = \binom{n - 1}{m - 1} + \binom{n - 1}{m}
+\]</span></p>
+<p><span class="math display">\[
+m \cdot \binom{n}{m} = n \cdot \binom{n - 1}{m - 1}
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n} i\binom{n}{i} = n2^{n - 1}
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n} i^2\binom{n}{i} = n(n + 1)2^{n - 2}
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{i = 0}^{n} \binom{n}{i}^2 = \binom{2n}{n}
+\]</span></p>
+<p><span class="math display">\[
+\sum\limits_{i = 0}^{n} \binom{m + i}{m} = \binom{m + n + 1}{m + 1}
+\]</span></p>
+</div>
+<div id="lucas-定理" class="section level3">
+<h3>Lucas 定理</h3>
+<p><span class="math display">\[
+\binom{n}{m} \bmod p = \binom{n \bmod p}{m \bmod p} \cdot \binom{\left\lfloor\frac{n}{p}\right\rfloor}{\left\lfloor\frac{m}{p}\right\rfloor}
+\]</span></p>
+<div id="质数" class="section level4">
+<h4>质数</h4>
+<div class="sourceCode" id="cb18"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lucas(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="cf">return</span> comb(n % mod, m % mod) * lucas(n / mod, m / mod) % mod;</span>
+<span id="cb18-5"><a href="#cb18-5"></a>}</span></code></pre></div>
+</div>
+<div id="非质数" class="section level4">
+<h4>非质数</h4>
+<p>模数固定，多次询问。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">class</span> Fac {</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">public</span>:</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p, pk;</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    vector&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt; factorials, invFactorials;</span>
+<span id="cb19-5"><a href="#cb19-5"></a>};</span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co">/* Initializations */</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>vector&lt;Fac&gt; facs;</span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="dt">void</span> factorize(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num) {</span>
+<span id="cb19-9"><a href="#cb19-9"></a>    facs.clear(); facs.reserve(<span class="dv">20</span>);</span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; primesPt &amp;&amp; primes[i] * primes[i] &lt;= num; i++) {</span>
+<span id="cb19-11"><a href="#cb19-11"></a>        <span class="cf">if</span> (num % primes[i] != <span class="dv">0</span>)</span>
+<span id="cb19-12"><a href="#cb19-12"></a>            <span class="cf">continue</span>;</span>
+<span id="cb19-13"><a href="#cb19-13"></a>        Fac f = Fac{primes[i], primes[i], vector&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt;(), vector&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt;()};</span>
+<span id="cb19-14"><a href="#cb19-14"></a>        num /= primes[i];</span>
+<span id="cb19-15"><a href="#cb19-15"></a>        <span class="cf">while</span> (num % primes[i] == <span class="dv">0</span>)</span>
+<span id="cb19-16"><a href="#cb19-16"></a>            f.pk *= primes[i], num /= primes[i];</span>
+<span id="cb19-17"><a href="#cb19-17"></a>        facs.push_back(f);</span>
+<span id="cb19-18"><a href="#cb19-18"></a>    }</span>
+<span id="cb19-19"><a href="#cb19-19"></a>    <span class="cf">if</span> (num &gt; <span class="dv">1</span>)</span>
+<span id="cb19-20"><a href="#cb19-20"></a>        facs.push_back(Fac{num, num, vector&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt;(), vector&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt;()});</span>
+<span id="cb19-21"><a href="#cb19-21"></a>}</span>
+<span id="cb19-22"><a href="#cb19-22"></a><span class="dt">void</span> initFactorials() {</span>
+<span id="cb19-23"><a href="#cb19-23"></a>    <span class="cf">for</span> (<span class="kw">auto</span> &amp; f : facs) {</span>
+<span id="cb19-24"><a href="#cb19-24"></a>        <span class="kw">auto</span> &amp; v = f.factorials; v.reserve(f.pk); v.push_back(<span class="dv">1</span>);</span>
+<span id="cb19-25"><a href="#cb19-25"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; f.pk; i++)</span>
+<span id="cb19-26"><a href="#cb19-26"></a>            v.push_back(v.back() * (i % f.p == <span class="dv">0</span> ? <span class="dv">1</span> : i) % f.pk);</span>
+<span id="cb19-27"><a href="#cb19-27"></a>        <span class="kw">auto</span> &amp; vi = f.invFactorials; vi.reserve(f.pk); vi.push_back(inv(v.back(), f.pk));</span>
+<span id="cb19-28"><a href="#cb19-28"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = f.pk; i &gt;= <span class="dv">1</span>; i--)</span>
+<span id="cb19-29"><a href="#cb19-29"></a>            vi.push_back(vi.back() * (i % f.p == <span class="dv">0</span> ? <span class="dv">1</span> : i) % f.pk);</span>
+<span id="cb19-30"><a href="#cb19-30"></a>        reverse(vi.begin(), vi.end());</span>
+<span id="cb19-31"><a href="#cb19-31"></a>    }</span>
+<span id="cb19-32"><a href="#cb19-32"></a>}</span>
+<span id="cb19-33"><a href="#cb19-33"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> calc(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="at">const</span> Fac &amp; f) {</span>
+<span id="cb19-34"><a href="#cb19-34"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb19-35"><a href="#cb19-35"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb19-36"><a href="#cb19-36"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = fastPow(f.factorials[f.pk - <span class="dv">1</span>], n / f.pk, f.pk);</span>
+<span id="cb19-37"><a href="#cb19-37"></a>    <span class="cf">return</span> ret * f.factorials[n % f.pk] % f.pk * calc(n / f.p, f) % f.pk;</span>
+<span id="cb19-38"><a href="#cb19-38"></a>}</span>
+<span id="cb19-39"><a href="#cb19-39"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> calcInv(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="at">const</span> Fac &amp; f) {</span>
+<span id="cb19-40"><a href="#cb19-40"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb19-41"><a href="#cb19-41"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb19-42"><a href="#cb19-42"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = fastPow(f.invFactorials[f.pk - <span class="dv">1</span>], n / f.pk, f.pk);</span>
+<span id="cb19-43"><a href="#cb19-43"></a>    <span class="cf">return</span> ret * f.invFactorials[n % f.pk] % f.pk * calcInv(n / f.p, f) % f.pk;</span>
+<span id="cb19-44"><a href="#cb19-44"></a>}</span>
+<span id="cb19-45"><a href="#cb19-45"></a><span class="co">// Primes</span></span>
+<span id="cb19-46"><a href="#cb19-46"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> comb1(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m, <span class="at">const</span> Fac &amp; f) {</span>
+<span id="cb19-47"><a href="#cb19-47"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb19-48"><a href="#cb19-48"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb19-49"><a href="#cb19-49"></a>    <span class="at">const</span> <span class="kw">auto</span> comb = [f](<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
+<span id="cb19-50"><a href="#cb19-50"></a>        <span class="cf">return</span> m &gt; n ? <span class="dv">0</span> : f.factorials[n] * f.invFactorials[m] % f.p * f.invFactorials[n - m] % f.p;</span>
+<span id="cb19-51"><a href="#cb19-51"></a>    };</span>
+<span id="cb19-52"><a href="#cb19-52"></a>    <span class="cf">return</span> comb(n % f.p, m % f.p) * comb1(n / f.p, m / f.p, f) % f.p;</span>
+<span id="cb19-53"><a href="#cb19-53"></a>}</span>
+<span id="cb19-54"><a href="#cb19-54"></a><span class="co">// Power of primes</span></span>
+<span id="cb19-55"><a href="#cb19-55"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> comb2(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m, <span class="at">const</span> Fac &amp; f) {</span>
+<span id="cb19-56"><a href="#cb19-56"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> occ = <span class="dv">0</span>;</span>
+<span id="cb19-57"><a href="#cb19-57"></a>    <span class="cf">for</span> (<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> i = n; i &gt; <span class="dv">0</span>; i /= f.p)</span>
+<span id="cb19-58"><a href="#cb19-58"></a>        occ += i / f.p;</span>
+<span id="cb19-59"><a href="#cb19-59"></a>    <span class="cf">for</span> (<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> i = m; i &gt; <span class="dv">0</span>; i /= f.p)</span>
+<span id="cb19-60"><a href="#cb19-60"></a>        occ -= i / f.p;</span>
+<span id="cb19-61"><a href="#cb19-61"></a>    <span class="cf">for</span> (<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> i = n - m; i &gt; <span class="dv">0</span>; i /= f.p)</span>
+<span id="cb19-62"><a href="#cb19-62"></a>        occ -= i / f.p;</span>
+<span id="cb19-63"><a href="#cb19-63"></a>    <span class="cf">return</span> fastPow(f.p, occ, f.pk) * calc(n, f) % f.pk * calcInv(m, f) % f.pk * calcInv(n - m, f) % f.pk;</span>
+<span id="cb19-64"><a href="#cb19-64"></a>}</span>
+<span id="cb19-65"><a href="#cb19-65"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> extLucas(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
+<span id="cb19-66"><a href="#cb19-66"></a>    <span class="dt">int</span> equNum = <span class="dv">0</span>;</span>
+<span id="cb19-67"><a href="#cb19-67"></a>    <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> &amp; f : facs) {</span>
+<span id="cb19-68"><a href="#cb19-68"></a>        mods[equNum] = f.pk; </span>
+<span id="cb19-69"><a href="#cb19-69"></a>        csts[equNum] = f.p == f.pk ? comb1(n, m, f) : comb2(n, m, f);</span>
+<span id="cb19-70"><a href="#cb19-70"></a>        equNum++;</span>
+<span id="cb19-71"><a href="#cb19-71"></a>    }</span>
+<span id="cb19-72"><a href="#cb19-72"></a>    <span class="cf">return</span> crt(equNum);</span>
+<span id="cb19-73"><a href="#cb19-73"></a>}</span>
+<span id="cb19-74"><a href="#cb19-74"></a><span class="dt">int</span> main() {</span>
+<span id="cb19-75"><a href="#cb19-75"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, m, p; cin &gt;&gt; n &gt;&gt; m &gt;&gt; p;</span>
+<span id="cb19-76"><a href="#cb19-76"></a>    initPrimes(); factorize(p); initFactorials();</span>
+<span id="cb19-77"><a href="#cb19-77"></a>    cout &lt;&lt; extLucas(n, m) &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</span>
+<span id="cb19-78"><a href="#cb19-78"></a>}</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="高斯二项式系数" class="section level2">
+<h2>高斯二项式系数</h2>
+<div id="简介与计算-1" class="section level4">
+<h4>简介与计算</h4>
+<p><span class="math display">\[
+\binom{n}{m}_q = \frac{(1 - q ^ n)(1 - q ^ {n - 1}) \cdots (1 - q^{n - m + 1})}{(1 - q)(1 - q ^ 2) \cdots (1 - q ^ m)} \quad (0 \le m \le n)
+\]</span></p>
+<p>记：</p>
+<p><span class="math display">\[
+\left[ k \right]_q = \sum\limits_{i = 0}^{k - 1} q ^ i =
+\begin{cases}
+\frac{1 - q^k}{1 - q} &amp; k \neq 1 \\
+k  &amp; k = 1
+\end{cases}
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+\binom{n}{m}_q = \frac{\left[ n \right]_q!}{\left[m\right]_q! \left[n - m\right]_q!}
+\]</span></p>
+<p><strong>组合意义</strong>：对于长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(a\)</span>， <span class="math inline">\(a_i \in \{0, 1\}\)</span>，其中 <span class="math inline">\(0\)</span> 出现 <span class="math inline">\(m\)</span> 次，<span class="math inline">\(1\)</span> 出现 <span class="math inline">\((n - m)\)</span> 次。若在计算其全排列个数时对每一个排列乘上系数 <span class="math inline">\(q^d\)</span>，其中 <span class="math inline">\(d\)</span> 为该排列种逆序对的对数，得到的答案即：</p>
+<p><span class="math display">\[
+\frac{\left[ n \right]_q!}{\left[m\right]_q! \left[n - m\right]_q!} = \binom{n}{m}_q
+\]</span></p>
+<p>这一结论可以推广至 <span class="math inline">\(a_i \in S, \ |S| = k\)</span> 且 <span class="math inline">\(S\)</span> 种第 <span class="math inline">\(i\)</span> 个元素出现 <span class="math inline">\(c_i\)</span> 次的情形：</p>
+<p><span class="math display">\[
+\frac{\left[n\right]_q!}{\prod\limits_{i = 1}^{k}\left[c_i\right]_q!}
+\]</span></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1"></a><span class="dt">void</span> init(<span class="dt">int</span> len, <span class="dt">int</span> q) {</span>
+<span id="cb20-2"><a href="#cb20-2"></a>    numbers[<span class="dv">0</span>] = <span class="dv">0</span>; numbers[<span class="dv">1</span>] = <span class="dv">1</span>; <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cnt = q;</span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt;= len; i++) {</span>
+<span id="cb20-4"><a href="#cb20-4"></a>        numbers[i] = (numbers[i - <span class="dv">1</span>] + cnt) % mod;</span>
+<span id="cb20-5"><a href="#cb20-5"></a>        cnt = cnt * q % mod;</span>
+<span id="cb20-6"><a href="#cb20-6"></a>    }</span>
+<span id="cb20-7"><a href="#cb20-7"></a>    factorials[<span class="dv">0</span>] = <span class="dv">1</span>;</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= len; i++)</span>
+<span id="cb20-9"><a href="#cb20-9"></a>        factorials[i] = factorials[i - <span class="dv">1</span>] * numbers[i] % mod;</span>
+<span id="cb20-10"><a href="#cb20-10"></a>    invFactorials[len] = fastPow(factorials[len], mod - <span class="dv">2</span>, mod);</span>
+<span id="cb20-11"><a href="#cb20-11"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = len - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; i--)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>        invFactorials[i] = invFactorials[i + <span class="dv">1</span>] * numbers[i + <span class="dv">1</span>] % mod;</span>
+<span id="cb20-13"><a href="#cb20-13"></a>}</span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="co">// The remaining part is similar to the case with ordinary binomial coefficient</span></span></code></pre></div>
+</div>
+<div id="性质-1" class="section level4">
+<h4>性质</h4>
+<p><span class="math display">\[
+\begin{aligned}
+\binom{n}{m}_q &amp; = \binom{n - 1}{m - 1}_q + q ^ m \binom{n - 1}{m}_q \\
+&amp; = q^{n - m}\binom{n - 1}{m - 1}_q + \binom{n - 1}{m}_q
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\lim\limits_{q \rightarrow 1} \binom{n}{m}_q = \binom{n}{m}
+\]</span></p>
+<p><span class="math display">\[
+\lim\limits_{n \rightarrow +\infty} \binom{n}{m} = \frac{1}{\left[ m \right]_q!(1 - q)^m} \quad (|q| &lt; 1)
+\]</span></p>
+</div>
+</div>
+<div id="类欧几里得" class="section level2">
+<h2>类欧几里得</h2>
+<div id="常见形式" class="section level3">
+<h3>常见形式</h3>
+<div id="形式" class="section level4">
+<h4>形式</h4>
+<p><span class="math display">\[
+\begin{aligned}
+f(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor} \\
+g(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} {i \left\lfloor \frac{ai + b}{c} \right\rfloor} \\
+h(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2
+\end{aligned}
+\]</span></p>
+</div>
+<div id="结论" class="section level4">
+<h4>结论</h4>
+<p><span class="math display">\[
+\begin{aligned}
+f(a, b, c, n) = &amp;
+\begin{cases}
+\left\lfloor \frac{a}{c} \right\rfloor \frac{n(n + 1)}{2} + \left\lfloor \frac{b}{c} \right\rfloor (n + 1) + f(a \bmod c, b \bmod c, c, n) &amp; a \ge c \lor b \ge c \\
+nm - f(c, c - b - 1, a, m - 1) &amp; \text{otherwise}
+\end{cases}
+\\ \\
+g(a, b, c, n) = &amp;
+\begin{cases}
+\left\lfloor \frac{a}{c} \right\rfloor \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{b}{c} \right\rfloor \frac{1}{2}n(n + 1) + g(a \bmod c, b \bmod c, c, n) &amp; a \ge c \lor b \ge c \\
+\frac{1}{2} \left[ mn(n + 1) - h(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) \right] &amp; \text{otherwise}
+\end{cases}
+\\ \\
+h(a, b, c, n) = &amp;
+\begin{cases}
+\left\lfloor \frac{a}{c} \right\rfloor^2 \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{a}{c} \right\rfloor \left\lfloor \frac{b}{c} \right\rfloor 2n(n + 1) + \left\lfloor \frac{b}{c} \right\rfloor^2(n + 1) &amp; \\
+\ + 2\left\lfloor \frac{a}{c} \right\rfloor g(a \bmod c, b \bmod c, c, n) + 2\left\lfloor \frac{b}{c} \right\rfloor f(a \bmod c, b \bmod c, c, n) &amp; \\
+\ + h(a \bmod c, b \bmod c, c, n) &amp; a \ge c \lor b \ge c \\
+nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherwise}
+\end{cases}
+\end{aligned}
+\]</span></p>
+</div>
+<div id="代码-1" class="section level4">
+<h4>代码</h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">/* Just f */</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> quasiEuclidean(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> c, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="cf">if</span> (n &lt; <span class="dv">0</span>)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="cf">if</span> (a == <span class="dv">0</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a>        <span class="cf">return</span> (n + <span class="dv">1</span>) * (b / c);</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="cf">if</span> (a &gt;= c || b &gt;= c) {</span>
+<span id="cb21-9"><a href="#cb21-9"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> tmp = (n &amp; <span class="dv">1</span>) ? ((n + <span class="dv">1</span>) &gt;&gt; <span class="dv">1</span>) * n : (n &gt;&gt; <span class="dv">1</span>) * (n + <span class="dv">1</span>);</span>
+<span id="cb21-10"><a href="#cb21-10"></a>        <span class="cf">return</span> (a / c) * tmp + (b / c) * (n + <span class="dv">1</span>) + quasiEuclidean(a % c, b % c, c, n);</span>
+<span id="cb21-11"><a href="#cb21-11"></a>    }</span>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m = (a * n + b) / c;</span>
+<span id="cb21-13"><a href="#cb21-13"></a>    <span class="cf">return</span> n * m - quasiEuclidean(c, c - b - <span class="dv">1</span>, a, m - <span class="dv">1</span>);</span>
+<span id="cb21-14"><a href="#cb21-14"></a>}</span>
+<span id="cb21-15"><a href="#cb21-15"></a></span>
+<span id="cb21-16"><a href="#cb21-16"></a><span class="co">/* Huge Data: __int128 is preferred! */</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> quasiEuclidean(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> c, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb21-18"><a href="#cb21-18"></a>    <span class="cf">if</span> (n &lt; <span class="dv">0</span>)</span>
+<span id="cb21-19"><a href="#cb21-19"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb21-20"><a href="#cb21-20"></a>    <span class="cf">if</span> (a == <span class="dv">0</span>)</span>
+<span id="cb21-21"><a href="#cb21-21"></a>        <span class="cf">return</span> (n + <span class="dv">1</span>) % mod * ((b / c) % mod) % mod;</span>
+<span id="cb21-22"><a href="#cb21-22"></a> </span>
+<span id="cb21-23"><a href="#cb21-23"></a>    <span class="cf">if</span> (a &gt;= c || b &gt;= c) {</span>
+<span id="cb21-24"><a href="#cb21-24"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> tmp = ((n &amp; <span class="dv">1</span>) ? ((n + <span class="dv">1</span>) &gt;&gt; <span class="dv">1</span>) % mod * (n % mod) : (n &gt;&gt; <span class="dv">1</span>) % mod * ((n + <span class="dv">1</span>) % mod)) % mod;</span>
+<span id="cb21-25"><a href="#cb21-25"></a>        <span class="cf">return</span> ((a / c) % mod * (tmp % mod) % mod + (b / c) % mod * ((n + <span class="dv">1</span>) % mod) % mod + quasiEuclidean(a % c, b % c, c, n) % mod) % mod;</span>
+<span id="cb21-26"><a href="#cb21-26"></a>    }</span>
+<span id="cb21-27"><a href="#cb21-27"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m = ((<span class="dt">__int128</span>)a * n + b) / c;</span>
+<span id="cb21-28"><a href="#cb21-28"></a>    <span class="cf">return</span> (n % mod * (m % mod) % mod - quasiEuclidean(c, c - b - <span class="dv">1</span>, a, m - <span class="dv">1</span>) % mod + mod) % mod;</span>
+<span id="cb21-29"><a href="#cb21-29"></a>}</span>
+<span id="cb21-30"><a href="#cb21-30"></a></span>
+<span id="cb21-31"><a href="#cb21-31"></a><span class="co">/* f, g, h (Untested!!!) */</span></span>
+<span id="cb21-32"><a href="#cb21-32"></a><span class="kw">typedef</span> <span class="kw">struct</span> _Node {</span>
+<span id="cb21-33"><a href="#cb21-33"></a>    <span class="dt">int</span> f, g, h;</span>
+<span id="cb21-34"><a href="#cb21-34"></a>} Node;</span>
+<span id="cb21-35"><a href="#cb21-35"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> getSum(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb21-36"><a href="#cb21-36"></a>    <span class="cf">return</span> (n &amp; <span class="dv">1</span>) ? ((n + <span class="dv">1</span>) &gt;&gt; <span class="dv">1</span>) * n : (n &gt;&gt; <span class="dv">1</span>) * (n + <span class="dv">1</span>);</span>
+<span id="cb21-37"><a href="#cb21-37"></a>}</span>
+<span id="cb21-38"><a href="#cb21-38"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> getSqrSum(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
+<span id="cb21-39"><a href="#cb21-39"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ans = getSqrSum(n);</span>
+<span id="cb21-40"><a href="#cb21-40"></a>    <span class="cf">return</span> (ans % <span class="dv">3</span> == <span class="dv">0</span>) ? ans / <span class="dv">3</span> * ((n &lt;&lt; <span class="dv">1</span>) + <span class="dv">1</span>) : ((n &lt;&lt; <span class="dv">1</span>) + <span class="dv">1</span>) / <span class="dv">3</span> * ans;</span>
+<span id="cb21-41"><a href="#cb21-41"></a>}</span>
+<span id="cb21-42"><a href="#cb21-42"></a>Node quasiEuclidean(<span class="dt">int</span> a, <span class="dt">int</span> b, <span class="dt">int</span> c, <span class="dt">int</span> n) {</span>
+<span id="cb21-43"><a href="#cb21-43"></a>    <span class="cf">if</span> (n &lt; <span class="dv">0</span>)</span>
+<span id="cb21-44"><a href="#cb21-44"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb21-45"><a href="#cb21-45"></a>    <span class="cf">if</span> (a == <span class="dv">0</span> &amp;&amp; b &lt; c)</span>
+<span id="cb21-46"><a href="#cb21-46"></a>        <span class="cf">return</span> Node{<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>};</span>
+<span id="cb21-47"><a href="#cb21-47"></a></span>
+<span id="cb21-48"><a href="#cb21-48"></a>    <span class="cf">if</span> (a &gt;= c || b &gt;= c) {</span>
+<span id="cb21-49"><a href="#cb21-49"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lfa = a / c, lfb = b / c;</span>
+<span id="cb21-50"><a href="#cb21-50"></a>        Node ret = quasiEuclidean(a % c, b % c, c, n);</span>
+<span id="cb21-51"><a href="#cb21-51"></a>        ret.h += lfa * lfa * getSqrSum(n) + lfa * lfb * (getSum(n) &lt;&lt; <span class="dv">2</span>) + lfb * lfb * (n + <span class="dv">1</span>);</span>
+<span id="cb21-52"><a href="#cb21-52"></a>        ret.h += lfa * (ret.g &lt;&lt; <span class="dv">1</span>) + lfb * (ret.f &lt;&lt; <span class="dv">1</span>);</span>
+<span id="cb21-53"><a href="#cb21-53"></a>        ret.f += lfa * getSum(n) + lfb * (n + <span class="dv">1</span>);</span>
+<span id="cb21-54"><a href="#cb21-54"></a>        ret.g += lfa * getSqrSum(n) + lfb * getSum(n);</span>
+<span id="cb21-55"><a href="#cb21-55"></a>        <span class="cf">return</span> ret;</span>
+<span id="cb21-56"><a href="#cb21-56"></a>    }</span>
+<span id="cb21-57"><a href="#cb21-57"></a></span>
+<span id="cb21-58"><a href="#cb21-58"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m = (a * n + b) / c;</span>
+<span id="cb21-59"><a href="#cb21-59"></a>    Node ret = Node{<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>}, last = quasiEuclidean(c, c - b - <span class="dv">1</span>, a, m - <span class="dv">1</span>);</span>
+<span id="cb21-60"><a href="#cb21-60"></a>    ret.f = n * m - last.f;</span>
+<span id="cb21-61"><a href="#cb21-61"></a>    ret.g = m * getSum(n) - ((last.f + last.h) &gt;&gt; <span class="dv">1</span>);</span>
+<span id="cb21-62"><a href="#cb21-62"></a>    ret.h = n * m * m - (last.g &lt;&lt; <span class="dv">1</span>) - last.f;</span>
+<span id="cb21-63"><a href="#cb21-63"></a></span>
+<span id="cb21-64"><a href="#cb21-64"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb21-65"><a href="#cb21-65"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="bzoj---3817" class="section level3">
+<h3>BZOJ - 3817</h3>
+<p><span class="math display">\[
+f(a, b, c, n) = \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b}{c} \right\rfloor
+\]</span></p>
+<p>其中 <span class="math inline">\(t\)</span> 为非整数的实数（若为整数需要另外讨论）。</p>
+<p><span class="math display">\[
+f(a, b, c, n) =
+\begin{cases}
+\left\lfloor \frac{at + b}{c} \right\rfloor \frac{1}{2}n(n + 1) + f(a, b - c \left\lfloor \frac{at + b}{c} \right\rfloor, c, n) &amp; \frac{at + b}{c} \ge 1 \\
+nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1
+\end{cases}
+\]</span></p>
+</div>
+<div id="bzoj---2187" class="section level3">
+<h3>BZOJ - 2187</h3>
+<p>给定 <span class="math inline">\(a, b, c, d\)</span>，求解 <span class="math inline">\(p, q\)</span> 满足：</p>
+<p><span class="math display">\[
+\frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d}
+\]</span></p>
+<p>优先最小化 <span class="math inline">\(q\)</span>，其次最小化 <span class="math inline">\(p\)</span>。</p>
+<div id="分析" class="section level4">
+<h4>分析</h4>
+<p>记原问题的解为 <span class="math inline">\(f(a, b, c, d) = \langle p, q \rangle\)</span>，并先讨论两种可以直接得出答案的情况：</p>
+<ol style="list-style-type: decimal">
+<li>如果 <span class="math inline">\(\frac{a}{b}\)</span> 和 <span class="math inline">\(\frac{c}{d}\)</span> 间存在正整数，显然取 <span class="math inline">\(q = 1\)</span>；即满足以下条件时取 <span class="math inline">\(p = \left\lfloor \frac{a}{b} \right\rfloor + 1, q = 1\)</span> 为解。</li>
+</ol>
+<p><span class="math display">\[
+\begin{cases}
+\left\lfloor \frac{c}{d} \right\rfloor - \left\lfloor \frac{a}{b} \right\rfloor \ge 1 &amp; c \not\equiv 0 \pmod d \\
+\frac{c}{d} - 1 - \left\lfloor \frac{a}{b} \right\rfloor \ge 1 &amp; c \equiv 0 \pmod d
+\end{cases}
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>若 <span class="math inline">\(a = 0\)</span>，则取 <span class="math inline">\(p = 1, q = \left\lfloor \frac{c}{d} \right\rfloor + 1\)</span> 为解。</li>
+</ol>
+<hr />
+<p>对于剩下不能直接得出答案的情况中，若 <span class="math inline">\(a \le b\)</span> 且 <span class="math inline">\(c \le d\)</span> ，对问题进行转换：</p>
+<p><span class="math display">\[
+\frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} \Leftrightarrow \frac{d}{c} &lt; \frac{q}{p} &lt; \frac{b}{a}
+\]</span></p>
+<p>由此可以对子问题 <span class="math inline">\(f(d, c, b, a) = \langle p&#39;, q&#39; \rangle\)</span> 进行求解，并在回溯时令 <span class="math inline">\(p = q&#39;, q = p&#39;\)</span> 。</p>
+<p>接下来就只需考虑 <span class="math inline">\(c &gt; d\)</span> 的情况。如果此时出现了上面所说的 <span class="math inline">\(\frac{a}{b}\)</span> 和 <span class="math inline">\(\frac{c}{d}\)</span> 间存在正整数，那么直接回溯就好了。如果不存在，考虑对问题进行如下变换从而尽量缩小 <span class="math inline">\(a\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} \\
+&amp; \Leftrightarrow \frac{a}{b} - \left\lfloor \frac{a}{b} \right\rfloor &lt; \frac{p}{q} -\left\lfloor \frac{a}{b} \right\rfloor &lt; \frac{c}{d} - \left\lfloor \frac{a}{b} \right\rfloor \\
+&amp; \Leftrightarrow \frac{a - b\left\lfloor \frac{a}{b} \right\rfloor}{b} &lt; \frac{p - q\left\lfloor \frac{a}{b} \right\rfloor}{q} &lt; \frac{c - d\left\lfloor \frac{a}{b} \right\rfloor}{d} \\
+&amp; \Leftrightarrow \frac{a \bmod b}{b} &lt; \frac{p - q\left\lfloor \frac{a}{b} \right\rfloor}{q} &lt; \frac{c - d\left\lfloor \frac{a}{b} \right\rfloor}{d}
+\end{aligned}
+\]</span></p>
+<p>由此一来，可以对子问题 <span class="math inline">\(f(a \bmod b, b, c - d\left\lfloor \frac{a}{b} \right\rfloor, d) = \langle p&#39;&#39;, q&#39;&#39; \rangle\)</span> 求解，并在回溯时令 <span class="math inline">\(p = p&#39;&#39; + q&#39;&#39;\left\lfloor \frac{a}{b} \right\rfloor, q = q&#39;&#39;\)</span> 。</p>
+</div>
+<div id="代码-2" class="section level4">
+<h4>代码</h4>
+<div class="sourceCode" id="cb22"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1"></a><span class="dt">void</span> simplify(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; b) {</span>
+<span id="cb22-2"><a href="#cb22-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> gcd = __gcd(a, b);</span>
+<span id="cb22-3"><a href="#cb22-3"></a>    a /= gcd; b /= gcd;</span>
+<span id="cb22-4"><a href="#cb22-4"></a>}</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a>pair&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt; solve(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> c, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> d) {</span>
+<span id="cb22-7"><a href="#cb22-7"></a>    simplify(a, b); simplify(c, d);</span>
+<span id="cb22-8"><a href="#cb22-8"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> left = a / b + <span class="dv">1</span>, right = (c - <span class="dv">1</span>) / d;</span>
+<span id="cb22-9"><a href="#cb22-9"></a>    <span class="cf">if</span> (left &lt;= right)</span>
+<span id="cb22-10"><a href="#cb22-10"></a>        <span class="cf">return</span> make_pair(left, <span class="dv">1</span>);</span>
+<span id="cb22-11"><a href="#cb22-11"></a>    <span class="cf">if</span> (a == <span class="dv">0</span>)</span>
+<span id="cb22-12"><a href="#cb22-12"></a>        <span class="cf">return</span> make_pair(<span class="dv">1</span>, d / c + <span class="dv">1</span>);</span>
+<span id="cb22-13"><a href="#cb22-13"></a>    <span class="cf">if</span> (a &lt;= b &amp;&amp; c &lt;= d) {</span>
+<span id="cb22-14"><a href="#cb22-14"></a>        pair&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt; ans = solve(d, c, b, a);</span>
+<span id="cb22-15"><a href="#cb22-15"></a>        swap(ans.first, ans.second);</span>
+<span id="cb22-16"><a href="#cb22-16"></a>        <span class="cf">return</span> ans;</span>
+<span id="cb22-17"><a href="#cb22-17"></a>    }</span>
+<span id="cb22-18"><a href="#cb22-18"></a></span>
+<span id="cb22-19"><a href="#cb22-19"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> t = a / b;</span>
+<span id="cb22-20"><a href="#cb22-20"></a>    pair&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>&gt; ans = solve(a % b, b, c - t * d, d);</span>
+<span id="cb22-21"><a href="#cb22-21"></a>    ans.first = ans.first + ans.second * t;</span>
+<span id="cb22-22"><a href="#cb22-22"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb22-23"><a href="#cb22-23"></a>}</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="一次同余" class="section level2">
+<h2>一次同余</h2>
+<div id="拓展欧几里得-1" class="section level3">
+<h3>拓展欧几里得</h3>
+<p><span class="math display">\[
+ax + by = \gcd(x, y)
+\]</span></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">// ax + by = gcd(x, y)</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> extEuclid(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; x, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; y) {</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="cf">if</span> (b == <span class="dv">0</span>) {</span>
+<span id="cb23-4"><a href="#cb23-4"></a>        x = <span class="dv">1</span>, y = <span class="dv">0</span>;</span>
+<span id="cb23-5"><a href="#cb23-5"></a>        <span class="cf">return</span> a;</span>
+<span id="cb23-6"><a href="#cb23-6"></a>    }</span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> gcd = extEuclid(b, a % b, x, y), tmp = x;</span>
+<span id="cb23-8"><a href="#cb23-8"></a>    x = y; y = tmp - y * (a / b);</span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="cf">return</span> gcd;</span>
+<span id="cb23-10"><a href="#cb23-10"></a>}</span></code></pre></div>
+</div>
+<div id="一次同余方程" class="section level3">
+<h3>一次同余方程</h3>
+<p><span class="math display">\[
+ax \equiv b \pmod p
+\]</span></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1"></a> <span class="co">// ax = b (mod p)</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> linCon(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, y, gcd = extEuclid(a, p, x, y);</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    a /= gcd; p /= gcd;</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="cf">if</span> (b % gcd != <span class="dv">0</span>)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>        <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = b / gcd * x;</span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="cf">return</span> (ret % p + p) % p;</span>
+<span id="cb24-9"><a href="#cb24-9"></a>}</span></code></pre></div>
+</div>
+<div id="拓展中国剩余定理" class="section level3">
+<h3>拓展中国剩余定理</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">// x % mods[i] = csts[i]</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mods[SIZE], csts[SIZE];</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> crt(<span class="dt">int</span> equNum) {</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> modProd = mods[<span class="dv">0</span>], ans = csts[<span class="dv">0</span>];</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; equNum; i++) {</span>
+<span id="cb25-6"><a href="#cb25-6"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, y, a = modProd, b = mods[i];</span>
+<span id="cb25-7"><a href="#cb25-7"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> c = (csts[i] - ans % b + b) % b;</span>
+<span id="cb25-8"><a href="#cb25-8"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> gcd = extEuclid(a, b, x, y), bg = b / gcd;</span>
+<span id="cb25-9"><a href="#cb25-9"></a></span>
+<span id="cb25-10"><a href="#cb25-10"></a>        <span class="cf">if</span> (c % gcd != <span class="dv">0</span>)</span>
+<span id="cb25-11"><a href="#cb25-11"></a>            <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb25-12"><a href="#cb25-12"></a></span>
+<span id="cb25-13"><a href="#cb25-13"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cntAns = (c / gcd % bg * x % bg + bg) % bg;</span>
+<span id="cb25-14"><a href="#cb25-14"></a>        <span class="co">// long long int cntAns = fastMul(x, c / gcd, bg);</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a>        ans += modProd * cntAns;</span>
+<span id="cb25-16"><a href="#cb25-16"></a>        modProd *= bg;</span>
+<span id="cb25-17"><a href="#cb25-17"></a>    }</span>
+<span id="cb25-18"><a href="#cb25-18"></a></span>
+<span id="cb25-19"><a href="#cb25-19"></a>    <span class="cf">return</span> (ans % modProd + modProd) % modProd;</span>
+<span id="cb25-20"><a href="#cb25-20"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="二次剩余" class="section level2">
+<h2>二次剩余</h2>
+<p><span class="math display">\[
+x^2 \equiv n \pmod p
+\]</span></p>
+<div id="解的存在性" class="section level3">
+<h3>解的存在性</h3>
+<p>对于 <span class="math inline">\(p\)</span> 为奇素数的情形：
+<span class="math display">\[
+\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
+\begin{aligned}
+\legendre{n}{p} &amp; \equiv n^{\frac{p - 1}{2}} \pmod p \\ 
+&amp; \equiv 
+\begin{cases}
+1 &amp; \pmod p &amp; \text{such solution exists} \\
+-1 &amp; \pmod p &amp; \text{otherwise}
+\end{cases}
+\end{aligned}
+\]</span></p>
+</div>
+<div id="tonellishanks-算法" class="section level3">
+<h3>Tonelli–Shanks 算法</h3>
+<p>适用于模数为 <span class="math inline">\(p^k\)</span> 的情形，若为合数则考虑用 CRT 合并。</p>
+<pre><code>咕咕咕……</code></pre>
+</div>
+</div>
+<div id="离散对数" class="section level2">
+<h2>离散对数</h2>
+<p><span class="math display">\[
+a^x \equiv b \pmod p
+\]</span></p>
+<div id="bsgs-算法" class="section level3">
+<h3>BSGS 算法</h3>
+<p>令 <span class="math inline">\(x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)\)</span>。问题转换为：</p>
+<p><span class="math display">\[
+(a^t)^i = a^{-j}b \pmod p
+\]</span></p>
+<p>借助 Hash 表 meet in the middle 即可。<strong>为了求稳可考虑求出指数以防止出错！</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">// k * a ^ x = b (mod p), returns minimum non-negative solution</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> bsgs(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> k, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {  </span>
+<span id="cb27-3"><a href="#cb27-3"></a>    a %= p; b %= p;</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="cf">if</span> (a == <span class="dv">0</span>)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>        <span class="cf">return</span> b == <span class="dv">0</span> ? <span class="dv">1</span> : -<span class="dv">1</span>;</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    unordered_map&lt;<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>, <span class="dt">int</span>&gt; mp;</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="dt">int</span> t = sqrt(p) + <span class="dv">1</span>; <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> tmp = k % p;</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; t; j++) {</span>
+<span id="cb27-9"><a href="#cb27-9"></a>        <span class="cf">if</span> (mp.find(tmp) != mp.end())</span>
+<span id="cb27-10"><a href="#cb27-10"></a>            <span class="cf">break</span>;</span>
+<span id="cb27-11"><a href="#cb27-11"></a>        mp[tmp] = j; tmp = tmp * a % p;</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    }</span>
+<span id="cb27-13"><a href="#cb27-13"></a>    <span class="co">// phip could be replaced by ord(a, p)</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> phip = phi(p), inv = fastPow(a, phip - t % phip, p); tmp = b;</span>
+<span id="cb27-15"><a href="#cb27-15"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt;= t; i++) {</span>
+<span id="cb27-16"><a href="#cb27-16"></a>        <span class="dt">int</span> j = mp.find(tmp) == mp.end() ? -<span class="dv">1</span> : mp[tmp];</span>
+<span id="cb27-17"><a href="#cb27-17"></a>        <span class="cf">if</span> (j != -<span class="dv">1</span>) </span>
+<span id="cb27-18"><a href="#cb27-18"></a>            <span class="cf">return</span> <span class="dv">1</span><span class="bu">ll</span> * i * t + j; </span>
+<span id="cb27-19"><a href="#cb27-19"></a>        tmp = tmp * inv % p;</span>
+<span id="cb27-20"><a href="#cb27-20"></a>    }</span>
+<span id="cb27-21"><a href="#cb27-21"></a>    <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb27-22"><a href="#cb27-22"></a>}</span>
+<span id="cb27-23"><a href="#cb27-23"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> extBsgs(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {</span>
+<span id="cb27-24"><a href="#cb27-24"></a>    a %= p; b %= p;</span>
+<span id="cb27-25"><a href="#cb27-25"></a>    <span class="cf">if</span> (b == <span class="dv">1</span>)</span>
+<span id="cb27-26"><a href="#cb27-26"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb27-27"><a href="#cb27-27"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> offset = <span class="dv">0</span>, fac = <span class="dv">1</span>;</span>
+<span id="cb27-28"><a href="#cb27-28"></a>    <span class="cf">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb27-29"><a href="#cb27-29"></a>        <span class="cf">if</span> (fac == b) </span>
+<span id="cb27-30"><a href="#cb27-30"></a>            <span class="cf">return</span> offset;</span>
+<span id="cb27-31"><a href="#cb27-31"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> gcd = __gcd(a, p);</span>
+<span id="cb27-32"><a href="#cb27-32"></a>        <span class="cf">if</span> (b % gcd != <span class="dv">0</span>)</span>
+<span id="cb27-33"><a href="#cb27-33"></a>            <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb27-34"><a href="#cb27-34"></a>        <span class="cf">if</span> (gcd == <span class="dv">1</span>)</span>
+<span id="cb27-35"><a href="#cb27-35"></a>            <span class="cf">break</span>;</span>
+<span id="cb27-36"><a href="#cb27-36"></a>        offset++; p /= gcd; b /= gcd; </span>
+<span id="cb27-37"><a href="#cb27-37"></a>        fac = a / gcd * fac % p;</span>
+<span id="cb27-38"><a href="#cb27-38"></a>    }</span>
+<span id="cb27-39"><a href="#cb27-39"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = bsgs(fac, a, b, p);</span>
+<span id="cb27-40"><a href="#cb27-40"></a>    <span class="cf">return</span> ret == -<span class="dv">1</span> ? ret : ret + offset;</span>
+<span id="cb27-41"><a href="#cb27-41"></a>}</span></code></pre></div>
+</div>
+<div id="pohlighellman-算法" class="section level3">
+<h3>Pohlig–Hellman 算法</h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1"></a><span class="co">/* Baby step Giant step */</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> bsgs(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ord) { </span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="co">// Replace phip with ord</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>}</span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="co">/* Pohlig-Hellman Algorithm */</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> getOrd(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="co">// Calculate order: ord(a, p)</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>}</span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> pohligHellman(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod, </span>
+<span id="cb28-10"><a href="#cb28-10"></a>                            <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ord, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p, <span class="dt">int</span> e) {    <span class="co">// ord = p ^ e</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>;</span>
+<span id="cb28-12"><a href="#cb28-12"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> y = fastPow(a, ord / p, mod), p1 = ord / p, p2 = <span class="dv">1</span>;</span>
+<span id="cb28-13"><a href="#cb28-13"></a>    <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">0</span>; k &lt; e; k++) {</span>
+<span id="cb28-14"><a href="#cb28-14"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> inv = fastPow(fastPow(a, ord - <span class="dv">1</span>, mod), ret, mod);</span>
+<span id="cb28-15"><a href="#cb28-15"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> bk = fastPow((<span class="dt">__int128</span>)inv * b % mod, p1, mod); p1 /= p;</span>
+<span id="cb28-16"><a href="#cb28-16"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> dk = bsgs(y, bk, mod, p); <span class="co">// The last p stands for order of the group</span></span>
+<span id="cb28-17"><a href="#cb28-17"></a>        <span class="cf">if</span> (dk == -<span class="dv">1</span>)</span>
+<span id="cb28-18"><a href="#cb28-18"></a>            <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb28-19"><a href="#cb28-19"></a>        ret = (ret + p2 * dk % ord) % ord; p2 *= p;</span>
+<span id="cb28-20"><a href="#cb28-20"></a>    }</span>
+<span id="cb28-21"><a href="#cb28-21"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb28-22"><a href="#cb28-22"></a>}</span>
+<span id="cb28-23"><a href="#cb28-23"></a><span class="dt">int</span> primes[<span class="dv">2</span>] = {<span class="dv">2</span>, <span class="dv">3</span>}, primesPt = <span class="dv">2</span>;   <span class="co">// Prime factors of phi(p)</span></span>
+<span id="cb28-24"><a href="#cb28-24"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> hiCon(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p) {</span>
+<span id="cb28-25"><a href="#cb28-25"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ord = getOrd(a, p), tmp = ord; <span class="dt">int</span> equNum = <span class="dv">0</span>;</span>
+<span id="cb28-26"><a href="#cb28-26"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; primesPt; i++) {</span>
+<span id="cb28-27"><a href="#cb28-27"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> prime = primes[i];</span>
+<span id="cb28-28"><a href="#cb28-28"></a>        <span class="cf">if</span> (tmp % prime != <span class="dv">0</span>)</span>
+<span id="cb28-29"><a href="#cb28-29"></a>            <span class="cf">continue</span>;</span>
+<span id="cb28-30"><a href="#cb28-30"></a>        <span class="dt">int</span> exp = <span class="dv">1</span>; <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cnt = prime; tmp /= prime;</span>
+<span id="cb28-31"><a href="#cb28-31"></a>        <span class="cf">while</span> (tmp % prime == <span class="dv">0</span>)</span>
+<span id="cb28-32"><a href="#cb28-32"></a>            exp++, cnt *= prime, tmp /= prime;</span>
+<span id="cb28-33"><a href="#cb28-33"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ai = fastPow(a, ord / cnt, p), bi = fastPow(b, ord / cnt, p);</span>
+<span id="cb28-34"><a href="#cb28-34"></a>        csts[equNum] = pohligHellman(ai, bi, p, cnt, prime, exp);</span>
+<span id="cb28-35"><a href="#cb28-35"></a>        <span class="cf">if</span> (csts[equNum] == -<span class="dv">1</span>)</span>
+<span id="cb28-36"><a href="#cb28-36"></a>            <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb28-37"><a href="#cb28-37"></a>        mods[equNum++] = cnt;</span>
+<span id="cb28-38"><a href="#cb28-38"></a>    }</span>
+<span id="cb28-39"><a href="#cb28-39"></a>    <span class="cf">return</span> crt(equNum); <span class="co">// Chinese Remainder Theorem</span></span>
+<span id="cb28-40"><a href="#cb28-40"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="多项式" class="section level2">
+<h2>多项式</h2>
+<div id="卷积" class="section level3">
+<h3>卷积</h3>
+<p>记 <span class="math inline">\(A(x) = \sum\limits_{i = 0}^{n} a_i x^i, \ B(x) = \sum\limits_{i = 0}^{n}b_ix^i\)</span>，则其卷积：</p>
+<p><span class="math display">\[
+(A \cdot B)(x) = \sum\limits_{i = 0}^{2n}(\sum\limits_{j = 0}^{i}a_j b_{i - j})x^i
+\]</span></p>
+<div id="fft" class="section level4">
+<h4>FFT</h4>
+<div class="sourceCode" id="cb29"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1"></a><span class="at">const</span> <span class="dt">double</span> pi = acos(-<span class="fl">1.0</span>);</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">class</span> Complex {</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="kw">public</span>:</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="dt">double</span> real, imag;</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    Complex <span class="kw">operator</span> + (<span class="at">const</span> Complex &amp; snd) &amp; { <span class="cf">return</span> Complex{real + snd.real, imag + snd.imag}; };</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    Complex <span class="kw">operator</span> - (<span class="at">const</span> Complex &amp; snd) &amp; { <span class="cf">return</span> Complex{real - snd.real, imag - snd.imag}; };</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    Complex <span class="kw">operator</span> * (<span class="at">const</span> Complex &amp; snd) &amp; { <span class="cf">return</span> Complex{real * snd.real - imag * snd.imag, real * snd.imag + imag * snd.real}; };</span>
+<span id="cb29-8"><a href="#cb29-8"></a>    Complex conj() &amp; { <span class="cf">return</span> Complex{real, -imag}; }</span>
+<span id="cb29-9"><a href="#cb29-9"></a>};</span>
+<span id="cb29-10"><a href="#cb29-10"></a>Complex fst[SIZE], snd[SIZE], omg[SIZE], inv[SIZE];</span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="dt">int</span> pos[SIZE], fstLen, sndLen, len, lim;</span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="dt">void</span> init() {</span>
+<span id="cb29-13"><a href="#cb29-13"></a>    len = <span class="dv">1</span>, lim = <span class="dv">0</span>; <span class="dt">double</span> cnt = <span class="dv">0</span>;</span>
+<span id="cb29-14"><a href="#cb29-14"></a>    <span class="cf">while</span> (len &lt; fstLen + sndLen - <span class="dv">1</span>)</span>
+<span id="cb29-15"><a href="#cb29-15"></a>        len &lt;&lt;= <span class="dv">1</span>, lim++;</span>
+<span id="cb29-16"><a href="#cb29-16"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; i++, cnt += pi + pi) {</span>
+<span id="cb29-17"><a href="#cb29-17"></a>        omg[i] = {cos(cnt / len), sin(cnt / len)};</span>
+<span id="cb29-18"><a href="#cb29-18"></a>        inv[i] = omg[i].conj(); pos[i] = (pos[i &gt;&gt; <span class="dv">1</span>] &gt;&gt; <span class="dv">1</span>) | ((i &amp; <span class="dv">1</span>) &lt;&lt; (lim - <span class="dv">1</span>)) ;</span>
+<span id="cb29-19"><a href="#cb29-19"></a>    }</span>
+<span id="cb29-20"><a href="#cb29-20"></a>}</span>
+<span id="cb29-21"><a href="#cb29-21"></a><span class="dt">void</span> fft(Complex * arr, Complex * omg) {</span>
+<span id="cb29-22"><a href="#cb29-22"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; i++) </span>
+<span id="cb29-23"><a href="#cb29-23"></a>        <span class="cf">if</span> (i &lt; pos[i])</span>
+<span id="cb29-24"><a href="#cb29-24"></a>            swap(arr[i], arr[pos[i]]);</span>
+<span id="cb29-25"><a href="#cb29-25"></a>    <span class="cf">for</span> (<span class="dt">int</span> l = <span class="dv">2</span>; l &lt;= len; l &lt;&lt;= <span class="dv">1</span>) {</span>
+<span id="cb29-26"><a href="#cb29-26"></a>        <span class="dt">int</span> midPt = l &gt;&gt; <span class="dv">1</span>, step = len / l;</span>
+<span id="cb29-27"><a href="#cb29-27"></a>        <span class="cf">for</span> (Complex * p = arr; p != arr + len; p += l) {</span>
+<span id="cb29-28"><a href="#cb29-28"></a>            <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, cnt = <span class="dv">0</span>; i &lt; midPt; i++, cnt += step) {</span>
+<span id="cb29-29"><a href="#cb29-29"></a>                Complex t = omg[cnt] * p[i + midPt];</span>
+<span id="cb29-30"><a href="#cb29-30"></a>                p[i + midPt] = p[i] - t; p[i] = p[i] + t;</span>
+<span id="cb29-31"><a href="#cb29-31"></a>            }</span>
+<span id="cb29-32"><a href="#cb29-32"></a>        }</span>
+<span id="cb29-33"><a href="#cb29-33"></a>    }</span>
+<span id="cb29-34"><a href="#cb29-34"></a>}</span>
+<span id="cb29-35"><a href="#cb29-35"></a><span class="dt">void</span> multiply() {</span>
+<span id="cb29-36"><a href="#cb29-36"></a>    init(); fft(fst, omg); fft(snd, omg);</span>
+<span id="cb29-37"><a href="#cb29-37"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; i++)</span>
+<span id="cb29-38"><a href="#cb29-38"></a>        fst[i] = fst[i] * snd[i];</span>
+<span id="cb29-39"><a href="#cb29-39"></a>    fft(fst, inv);</span>
+<span id="cb29-40"><a href="#cb29-40"></a>}</span>
+<span id="cb29-41"><a href="#cb29-41"></a><span class="dt">int</span> main() {</span>
+<span id="cb29-42"><a href="#cb29-42"></a>    cin &gt;&gt; fstLen &gt;&gt; sndLen; fstLen++; sndLen++;</span>
+<span id="cb29-43"><a href="#cb29-43"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; fstLen; i++) {</span>
+<span id="cb29-44"><a href="#cb29-44"></a>        <span class="dt">int</span> cnt; cin &gt;&gt; cnt; fst[i].real = cnt;</span>
+<span id="cb29-45"><a href="#cb29-45"></a>    }</span>
+<span id="cb29-46"><a href="#cb29-46"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; sndLen; i++) {</span>
+<span id="cb29-47"><a href="#cb29-47"></a>        <span class="dt">int</span> cnt; cin &gt;&gt; cnt; snd[i].real = cnt;</span>
+<span id="cb29-48"><a href="#cb29-48"></a>    }</span>
+<span id="cb29-49"><a href="#cb29-49"></a>    multiply();</span>
+<span id="cb29-50"><a href="#cb29-50"></a>    cout &lt;&lt; (<span class="dt">int</span>)(fst[<span class="dv">0</span>].real / len + <span class="fl">0.5</span>);</span>
+<span id="cb29-51"><a href="#cb29-51"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; fstLen + sndLen - <span class="dv">1</span>; i++)</span>
+<span id="cb29-52"><a href="#cb29-52"></a>        cout &lt;&lt; <span class="ch">&#39; &#39;</span> &lt;&lt; (<span class="dt">int</span>)(fst[i].real / len + <span class="fl">0.5</span>);</span>
+<span id="cb29-53"><a href="#cb29-53"></a>    cout &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</span>
+<span id="cb29-54"><a href="#cb29-54"></a>    <span class="cf">return</span> <span class="dv">0</span>;   </span>
+<span id="cb29-55"><a href="#cb29-55"></a>}</span></code></pre></div>
+</div>
+<div id="ntt" class="section level4">
+<h4>NTT</h4>
+<div class="sourceCode" id="cb30"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">/* 咕咕咕…… */</span></span></code></pre></div>
+</div>
+</div>
+<div id="插值" class="section level3">
+<h3>插值</h3>
+<p>求作次数 <span class="math inline">\(\le n\)</span> 的多项式 <span class="math inline">\(P_n(x) = \sum\limits_{i = 0}^{n} a_ix\)</span>，使其满足 <span class="math inline">\((n + 1)\)</span> 对条件：<span class="math inline">\(P_n(x_i) = y_i\)</span>。插值法可以 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 预处理，并以不高于 <span class="math inline">\(\mathcal{O}(n\log{n})\)</span> 的复杂度回答询问 <span class="math inline">\(P_n(x)\)</span>。</p>
+<div id="拉格朗日插值" class="section level4">
+<h4>拉格朗日插值</h4>
+<p>令基函数：</p>
+<p><span class="math display">\[
+l_i(x) = \prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
+\]</span></p>
+<p>则多项式可被表示为：</p>
+<p><span class="math display">\[
+P_n(x) = \sum\limits_{i = 0}^{n} l_i(x)y_i
+\]</span></p>
+<div id="取值连续优化" class="section level5">
+<h5>取值连续优化</h5>
+<p>即给定的 <span class="math inline">\((n + 1)\)</span> 对条件恰为 <span class="math inline">\(P_n(0), P_n(1), \dots, P_n(n)\)</span>，也就是 <span class="math inline">\(x_i = i\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+P_n(x) &amp; = \sum\limits_{i = 0}^{n}y_i\prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j} \\
+&amp; = \sum\limits_{i = 0}^{n}y_i \frac{\prod\limits_{j = 0, \ j \neq i}^{n} (x - j)}{\prod\limits_{j = 0, \ j \neq i}^{n} (i - j)}
+\end{aligned}
+\]</span></p>
+<p>考虑 <span class="math inline">\(\mathcal{O}(n)\)</span> 预处理：</p>
+<p><span class="math display">\[
+\begin{cases}
+pre_i &amp; = \prod\limits_{j = 0}^{i} (x - j) \\
+suf_i &amp; = \prod\limits_{j = i}^{n} (x - j) \\
+fac_i &amp; = i!
+\end{cases}
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot (-1)^{n - i} \cdot \frac{pre_{i - 1} \cdot suf_{i + 1}}{fac_{i} \cdot fac_{n - i}}
+\]</span></p>
+<p>这样就可以把预处理的复杂度降低到 <span class="math inline">\(\mathcal{O}(n)\)</span>。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> val[SIZE], pre[SIZE], suf[SIZE], rem[SIZE];</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> factorial[SIZE], invFactorial[SIZE];</span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="dt">void</span> bruteForce(<span class="dt">int</span> len, <span class="dt">int</span> k) {</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    val[<span class="dv">0</span>] = <span class="dv">0</span>; val[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb31-6"><a href="#cb31-6"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; i &lt;= len; i++)</span>
+<span id="cb31-7"><a href="#cb31-7"></a>        val[i] = (val[i - <span class="dv">1</span>] + fastPow(i, k)) % mod;</span>
+<span id="cb31-8"><a href="#cb31-8"></a>}</span>
+<span id="cb31-9"><a href="#cb31-9"></a></span>
+<span id="cb31-10"><a href="#cb31-10"></a><span class="co">// len stands for highest exponent, y stands for val array</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lagrangeCons(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, <span class="dt">int</span> len, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> * y) {</span>
+<span id="cb31-12"><a href="#cb31-12"></a>    x %= mod; pre[<span class="dv">0</span>] = x; suf[len] = x - len;</span>
+<span id="cb31-13"><a href="#cb31-13"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= len; i++) </span>
+<span id="cb31-14"><a href="#cb31-14"></a>        pre[i] = pre[i - <span class="dv">1</span>] * (x - i) % mod;</span>
+<span id="cb31-15"><a href="#cb31-15"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = len - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; i--)</span>
+<span id="cb31-16"><a href="#cb31-16"></a>        suf[i] = suf[i + <span class="dv">1</span>] * (x - i) % mod;</span>
+<span id="cb31-17"><a href="#cb31-17"></a></span>
+<span id="cb31-18"><a href="#cb31-18"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>;</span>
+<span id="cb31-19"><a href="#cb31-19"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt;= len; i++) {</span>
+<span id="cb31-20"><a href="#cb31-20"></a>        <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cnt = y[i] * (i == <span class="dv">0</span> ? <span class="dv">1</span><span class="bu">ll</span> : pre[i - <span class="dv">1</span>]) % mod * (i == len ? <span class="dv">1</span><span class="bu">ll</span> : suf[i + <span class="dv">1</span>]) % mod;</span>
+<span id="cb31-21"><a href="#cb31-21"></a>        cnt = cnt * invFactorial[i] % mod * invFactorial[len - i] % mod;</span>
+<span id="cb31-22"><a href="#cb31-22"></a>        cnt = ((len + i) &amp; <span class="dv">1</span>) ? -cnt : cnt;</span>
+<span id="cb31-23"><a href="#cb31-23"></a>        ret = (ret + cnt + mod) % mod;</span>
+<span id="cb31-24"><a href="#cb31-24"></a>    }</span>
+<span id="cb31-25"><a href="#cb31-25"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb31-26"><a href="#cb31-26"></a>}</span></code></pre></div>
+</div>
+<div id="重心优化" class="section level5">
+<h5>重心优化</h5>
+<p><span class="math display">\[
+P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot \frac{\prod\limits_{j = 0 \ j \neq i}^{n}(x - x_j)}{\prod\limits_{j = 0, \ j \neq i}^{n}(x_i - x_j)}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+w(x) = \prod\limits_{j = 0}^{n}(x - x_j)
+\]</span></p>
+<p><span class="math display">\[
+t_i = \frac{y_i}{\prod\limits_{j = 0, \ j \neq i}^{n} (x_i - x_j)}
+\]</span></p>
+<p>则有：</p>
+<p><span class="math display">\[
+P_n(x) = w(x)\sum\limits_{i = 0}^{n}\frac{t_i}{x - x_i}
+\]</span></p>
+<p>这样一来，在插入新点时，我们只需要 <span class="math inline">\(\mathcal{O}(n)\)</span> 更新 <span class="math inline">\(t_i\)</span> 即可。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1"></a>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt; arr[SIZE]; <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lag[SIZE]; </span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="dt">void</span> initLag(<span class="dt">int</span> num) {    <span class="co">// num = highest exp</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; num; i++) {</span>
+<span id="cb32-4"><a href="#cb32-4"></a>        lag[i] = arr[i].second % mod;</span>
+<span id="cb32-5"><a href="#cb32-5"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; num; j++) {</span>
+<span id="cb32-6"><a href="#cb32-6"></a>            <span class="cf">if</span> (i == j)</span>
+<span id="cb32-7"><a href="#cb32-7"></a>                <span class="cf">continue</span>;</span>
+<span id="cb32-8"><a href="#cb32-8"></a>            lag[i] = lag[i] * fastPow(arr[i].first - arr[j].first , mod - <span class="dv">2</span>) % mod;</span>
+<span id="cb32-9"><a href="#cb32-9"></a>        }</span>
+<span id="cb32-10"><a href="#cb32-10"></a>    }</span>
+<span id="cb32-11"><a href="#cb32-11"></a>}</span>
+<span id="cb32-12"><a href="#cb32-12"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lagrange(<span class="dt">int</span> x, <span class="dt">int</span> num) {    <span class="co">// retrieve f(x)</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>;</span>
+<span id="cb32-14"><a href="#cb32-14"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; num; i++)</span>
+<span id="cb32-15"><a href="#cb32-15"></a>        ret = (ret + lag[i] * fastPow(x - arr[i].first, mod - <span class="dv">2</span>)) % mod;</span>
+<span id="cb32-16"><a href="#cb32-16"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; num; i++)</span>
+<span id="cb32-17"><a href="#cb32-17"></a>        ret = ret * (x - arr[i].first) % mod;</span>
+<span id="cb32-18"><a href="#cb32-18"></a>    <span class="cf">return</span> (ret + mod) % mod;</span>
+<span id="cb32-19"><a href="#cb32-19"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="牛顿插值" class="section level4">
+<h4>牛顿插值</h4>
+<p>拉格朗日插值法缺陷：每增加一个插值节点就需要重新计算基函数 <span class="math inline">\(l_i(x)\)</span>。</p>
+<p>定义差商：</p>
+<ul>
+<li><span class="math inline">\(f[x_i, x_j] = \frac{f(x_i) - f(x_j)}{x_i - x_j} \ (i \neq j)\)</span> 称为 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_i, \ x_j\)</span> 处的一阶差商；</li>
+<li><span class="math inline">\(f[x_i, x_j, x_k] = \frac{f[x_i, x_j] - f[x_j], x_k}{x_i - x_k} \ (i \neq j \neq k)\)</span> 称为 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_i, \ x_j, \ x_k\)</span> 处的二阶差商；</li>
+<li><span class="math inline">\(\dots\)</span></li>
+<li><span class="math inline">\(f[x_0, \dots, x_n] = \frac{f[x_0, \dots, x_{n - 1}] - f[x_1, \dots x_n]}{x_0 - x_n}\)</span> 即 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 阶差商。</li>
+</ul>
+<p>将后项不断带入前项，即可得到牛顿插值公式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) = f(x_0) &amp; + f[x_0, x_1](x - x_0) + \dots \\ 
+&amp; + f[x_0, x_1, \dots x_n](x - x_0)(x - x_1) \dots (x - x_{n - 1}) \\
+&amp; + f[x, x_0, \dots, x_n](x - x_0)(x - x_1) \dots (x - x_n)
+\end{aligned}
+\]</span></p>
+<p>最后一项带有未知数 <span class="math inline">\(x\)</span>，故当作余项并舍弃。</p>
+</div>
+</div>
+</div>
+<div id="数位-dp" class="section level2">
+<h2>数位 DP</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">// An example: Codeforces 628D (Partial)</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> dfs(<span class="dt">int</span> pos, <span class="dt">int</span> rem, <span class="dt">bool</span> isZero, <span class="dt">bool</span> hasLim) {</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="cf">if</span> (pos &lt; <span class="dv">0</span>)</span>
+<span id="cb33-4"><a href="#cb33-4"></a>        <span class="cf">return</span> !isZero &amp;&amp; rem == <span class="dv">0</span>;</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="cf">if</span> (!hasLim &amp;&amp; dp[pos][rem] != -<span class="dv">1</span>)</span>
+<span id="cb33-6"><a href="#cb33-6"></a>        <span class="cf">return</span> dp[pos][rem];</span>
+<span id="cb33-7"><a href="#cb33-7"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb33-8"><a href="#cb33-8"></a>    <span class="dt">int</span> lim = hasLim ? cntArr[pos] : <span class="dv">9</span>;</span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="co">// State transition</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt;= lim; i++) {</span>
+<span id="cb33-11"><a href="#cb33-11"></a>        <span class="co">/* Your code here</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a><span class="co">        ...</span></span>
+<span id="cb33-13"><a href="#cb33-13"></a><span class="co">        int nextRem = (rem * 10 + i) % m;</span></span>
+<span id="cb33-14"><a href="#cb33-14"></a><span class="co">        ans = (ans + dfs(pos - 1, nextRem, isZero &amp;&amp; i == 0, hasLim &amp;&amp; i == lim)) % mod;</span></span>
+<span id="cb33-15"><a href="#cb33-15"></a><span class="co">        */</span></span>
+<span id="cb33-16"><a href="#cb33-16"></a>    }</span>
+<span id="cb33-17"><a href="#cb33-17"></a>    <span class="cf">if</span> (!hasLim)</span>
+<span id="cb33-18"><a href="#cb33-18"></a>        dp[pos][rem] = ans;</span>
+<span id="cb33-19"><a href="#cb33-19"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb33-20"><a href="#cb33-20"></a>}</span>
+<span id="cb33-21"><a href="#cb33-21"></a></span>
+<span id="cb33-22"><a href="#cb33-22"></a><span class="co">// Int -&gt; array</span></span>
+<span id="cb33-23"><a href="#cb33-23"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> work(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> cnt) {</span>
+<span id="cb33-24"><a href="#cb33-24"></a>    <span class="dt">int</span> len = <span class="dv">0</span>;</span>
+<span id="cb33-25"><a href="#cb33-25"></a>    <span class="cf">while</span> (cnt) {</span>
+<span id="cb33-26"><a href="#cb33-26"></a>        cntArr[len++] = cnt % <span class="dv">10</span>;</span>
+<span id="cb33-27"><a href="#cb33-27"></a>        cnt /= <span class="dv">10</span>;</span>
+<span id="cb33-28"><a href="#cb33-28"></a>    }</span>
+<span id="cb33-29"><a href="#cb33-29"></a>    cntArr[len] = <span class="dv">0</span>;</span>
+<span id="cb33-30"><a href="#cb33-30"></a>    <span class="cf">return</span> dfs(len - <span class="dv">1</span>, <span class="dv">0</span>, <span class="kw">true</span>, <span class="kw">true</span>);</span>
+<span id="cb33-31"><a href="#cb33-31"></a>}</span>
+<span id="cb33-32"><a href="#cb33-32"></a></span>
+<span id="cb33-33"><a href="#cb33-33"></a><span class="co">// String -&gt; array</span></span>
+<span id="cb33-34"><a href="#cb33-34"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> work(string &amp; str) {</span>
+<span id="cb33-35"><a href="#cb33-35"></a>    <span class="dt">int</span> len = str.size();</span>
+<span id="cb33-36"><a href="#cb33-36"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; i++)</span>
+<span id="cb33-37"><a href="#cb33-37"></a>        cntArr[i] = str[len - i - <span class="dv">1</span>] - <span class="ch">&#39;0&#39;</span>;</span>
+<span id="cb33-38"><a href="#cb33-38"></a>    <span class="cf">return</span> dfs(len - <span class="dv">1</span>, <span class="dv">0</span>, <span class="kw">true</span>, <span class="kw">true</span>);</span>
+<span id="cb33-39"><a href="#cb33-39"></a>}</span></code></pre></div>
+</div>
+<div id="置换群" class="section level2">
+<h2>置换群</h2>
+<div id="burnside-定理" class="section level3">
+<h3>Burnside 定理</h3>
+<p>有限群 <span class="math inline">\(G\)</span> 作用于有限集合 <span class="math inline">\(S\)</span>，轨道数为：</p>
+<p><span class="math display">\[
+O = \frac{1}{|G|} \sum\limits_{g \in G} |Fix(g)|
+\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[
+Fix(g) = \{s \in S \mid g \circ s = s \}
+\]</span></p>
+</div>
+<div id="pólya-定理" class="section level3">
+<h3>Pólya 定理</h3>
+<p><span class="math display">\[
+O = \frac{1}{|G|} \sum\limits_{g \in G} m^{c(g)}
+\]</span></p>
+<p>其中 <span class="math inline">\(m\)</span> 为颜色数，<span class="math inline">\(c(g)\)</span> 为置换 <span class="math inline">\(g\)</span> 分解成轮换的个数。即：若把每个轮换内的元素都染成相同颜色，就成了不动点。</p>
+<div id="例1环" class="section level4">
+<h4>例1：环</h4>
+<p><span class="math inline">\(m\)</span> 种颜色，长为 <span class="math inline">\(n\)</span> 的环，可旋转可翻转。</p>
+<div id="旋转" class="section level5">
+<h5>旋转</h5>
+<p>考虑循环置换群 <span class="math inline">\(\mid G \mid = n\)</span>，<span class="math inline">\(g_i \in G\)</span> 代表逆时针旋转 <span class="math inline">\(\frac{2\pi i}{n}\)</span>，则有 <span class="math inline">\(g_i = {g_1}^i\)</span>。依据置换群幂的性质，<span class="math inline">\(g_i\)</span> 可以被表示为长度为 <span class="math inline">\(\gcd(n, i)\)</span> 的 <span class="math inline">\(\frac{n}{\gcd(n, i)}\)</span> 个轮换，故：</p>
+<p><span class="math display">\[
+c(g_i) = \gcd(n, i)
+\]</span></p>
+<p>可以通过枚举 <span class="math inline">\(\gcd\)</span> 的值将复杂度降至 <span class="math inline">\(\mathcal{O}(\sqrt{n})\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{|G|}\sum\limits_{i = 1}^{n}m^{\gcd(i, n)} &amp; = \frac{1}{|G|}\sum\limits_{t | n}\varphi(\frac{n}{t}) \cdot m^t
+\end{aligned}
+\]</span></p>
+</div>
+<div id="翻转" class="section level5">
+<h5>翻转</h5>
+<ul>
+<li><span class="math inline">\(n\)</span> 为偶数：
+<ul>
+<li>过点的对称轴：<span class="math inline">\(c(g) = \frac{1}{2}n + 1\)</span></li>
+<li>过边的对称轴：<span class="math inline">\(c(g) = \frac{1}{2}n\)</span></li>
+</ul></li>
+<li><span class="math inline">\(n\)</span> 为奇数：
+<ul>
+<li>既过点又过边的对称轴：<span class="math inline">\(c(g) = \frac{1}{2}(n - 1) + 1\)</span></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1"></a>getFac(n);  <span class="co">// Store all factors of n into vector&lt;int&gt;::fac</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="co">// Rotation</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="cf">for</span> (<span class="kw">auto</span> i : fac)</span>
+<span id="cb34-6"><a href="#cb34-6"></a>    ans = (ans + phi(n / i) * fastPow(m, i) % mod) % mod;</span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="co">// Inversion</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a><span class="cf">if</span> (n &amp; <span class="dv">1</span>)</span>
+<span id="cb34-9"><a href="#cb34-9"></a>    ans = (ans + n * fastPow(m, ((n - <span class="dv">1</span>) &gt;&gt; <span class="dv">1</span>) + <span class="dv">1</span>) % mod) % mod;</span>
+<span id="cb34-10"><a href="#cb34-10"></a><span class="cf">else</span></span>
+<span id="cb34-11"><a href="#cb34-11"></a>    ans = (ans + (n &gt;&gt; <span class="dv">1</span>) * (fastPow(m, (n &gt;&gt; <span class="dv">1</span>) + <span class="dv">1</span>) + fastPow(m, n &gt;&gt; <span class="dv">1</span>)) % mod) % mod;</span>
+<span id="cb34-12"><a href="#cb34-12"></a>ans = ans * fastPow(n &lt;&lt; <span class="dv">1</span>, mod - <span class="dv">2</span>) % mod;</span></code></pre></div>
+</div>
+</div>
+<div id="例2正方形" class="section level4">
+<h4>例2：正方形</h4>
+<p><span class="math inline">\(m\)</span> 种颜色，<span class="math inline">\(n \times n\)</span> 的正方形，可旋转可翻转。</p>
+<div id="旋转-1" class="section level5">
+<h5>旋转</h5>
+<p>置换群 <span class="math inline">\(G = \{ 0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ} \}\)</span>， 轮换个数 <span class="math inline">\(c(g_i)\)</span>：</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> 是奇数</p>
+<p><span class="math display">\[
+  \begin{aligned}
+  c(0^{\circ}) &amp; = n^2 \\
+  c(90^{\circ} \text{or } 270^{\circ}) &amp; = \frac{1}{4}(n^2 - 1) + 1 \\
+  c(180^{\circ}) &amp; = \frac{1}{2}(n^2 - 1) + 1
+  \end{aligned}
+  \]</span></p></li>
+<li><p><span class="math inline">\(n\)</span> 是偶数</p>
+<p><span class="math display">\[
+  \begin{aligned}
+  c(0^{\circ}) &amp; = n^2 \\
+  c(90^{\circ} \text{or } 270^{\circ}) &amp; = \frac{1}{4}n^2 \\
+  c(180^{\circ}) &amp; = \frac{1}{2}n^2
+  \end{aligned}
+  \]</span></p></li>
+</ul>
+</div>
+<div id="翻转-1" class="section level5">
+<h5>翻转</h5>
+<ul>
+<li><span class="math inline">\(n\)</span> 为偶数：
+<ul>
+<li>过对角线对称轴：<span class="math inline">\(c(g) = \frac{1}{2}(n^2 - n) + n\)</span></li>
+<li>过边中点的对称轴：<span class="math inline">\(c(g) = \frac{1}{2}n^2\)</span></li>
+</ul></li>
+<li><span class="math inline">\(n\)</span> 为奇数：<span class="math inline">\(c(g) = \frac{1}{2}(n^2 - n) + n\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="杂项" class="section level2">
+<h2>杂项</h2>
+<div id="康托展开" class="section level3">
+<h3>康托展开</h3>
+<p><span class="math inline">\(\text{permutation} \rightarrow \text{rank}\)</span></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1"></a><span class="dt">int</span> id(<span class="at">const</span> vector&lt;<span class="dt">int</span>&gt; &amp; vec) {</span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="dt">int</span> ret = <span class="dv">0</span>, fac = <span class="dv">1</span>, len = vec.size();</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = len - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; i--) {</span>
+<span id="cb35-4"><a href="#cb35-4"></a>        <span class="dt">int</span> cnt = <span class="dv">0</span>;</span>
+<span id="cb35-5"><a href="#cb35-5"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = i + <span class="dv">1</span>; j &lt; len; j++)</span>
+<span id="cb35-6"><a href="#cb35-6"></a>            cnt += (vec[i] &gt; vec[j]);</span>
+<span id="cb35-7"><a href="#cb35-7"></a>        ret += cnt * fac; fac *= (len - i);</span>
+<span id="cb35-8"><a href="#cb35-8"></a>    }</span>
+<span id="cb35-9"><a href="#cb35-9"></a>    <span class="cf">return</span> ret;</span>
+<span id="cb35-10"><a href="#cb35-10"></a>}</span></code></pre></div>
+</div>
+<div id="勒让德定理" class="section level3">
+<h3>勒让德定理</h3>
+<p>在正数 <span class="math inline">\(n!\)</span> 的素因子标准分解式中，素数 <span class="math inline">\(p\)</span> 的最高指数：</p>
+<p><span class="math display">\[
+L_p(n!) = \sum\limits_{k \ge 1} \left\lfloor \frac{n}{p^k} \right\rfloor
+\]</span></p>
+</div>
+</div>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>11080 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-10-15 19:28 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="10"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computational Thinking on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/computational-thinking/</link>
+    <description>Recent content in Computational Thinking on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 19 Aug 2017 23:03:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/computational-thinking/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算导论: 计算系统基本思维</title>
+      <link>https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/</link>
+      <pubDate>Sat, 19 Aug 2017 23:03:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/</guid>
+      <description>前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR</description>
+    </item>
+    
+  </channel>
+</rss>

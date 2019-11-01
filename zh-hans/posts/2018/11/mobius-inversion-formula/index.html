@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="浅谈莫比乌斯反演">
+<meta itemprop="description" content="简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一">
+
+
+<meta itemprop="datePublished" content="2018-11-18T13:07:42&#43;08:00" />
+<meta itemprop="dateModified" content="2018-11-18T13:07:42&#43;08:00" />
+<meta itemprop="wordCount" content="1934">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Arithmetic function," />
+<meta property="og:title" content="浅谈莫比乌斯反演" />
+<meta property="og:description" content="简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-11-18T13:07:42+08:00" />
+<meta property="article:modified_time" content="2018-11-18T13:07:42+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="浅谈莫比乌斯反演"/>
+<meta name="twitter:description" content="简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>浅谈莫比乌斯反演</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 18, 2018</span></div>
+				<h1>浅谈莫比乌斯反演</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#莫比乌斯函数">莫比乌斯函数</a><ul>
+<li><a href="#定义">定义</a></li>
+<li><a href="#性质">性质</a></li>
+</ul></li>
+<li><a href="#莫比乌斯反演">莫比乌斯反演</a><ul>
+<li><a href="#形式-1">形式 #1</a><ul>
+<li><a href="#内容">内容</a></li>
+<li><a href="#证明">证明</a></li>
+</ul></li>
+<li><a href="#形式-2">形式 #2</a><ul>
+<li><a href="#内容-1">内容</a></li>
+<li><a href="#证明-1">证明</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#应用">应用</a><ul>
+<li><a href="#与欧拉函数联系">与欧拉函数联系</a></li>
+<li><a href="#与最大公约数联系">与最大公约数联系</a></li>
+</ul></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p><del>最近经常演人/被人演，所以是时候学一学反演了。</del></p>
+<p>本文会从初等数论角度介绍 <em>莫比乌斯反演公式 (Mobius inversion formula)</em>，不过如果我们借助一点抽象代数知识引入 <em>狄利克雷卷积 (Dirichlet convolution)</em> 的话便能得到更加优雅的推导~ 因此强烈安利另一篇姊妹博文：<a href="/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/">数论函数与狄利克雷卷积</a>。</p>
+</div>
+<div id="莫比乌斯函数" class="section level1">
+<h1>莫比乌斯函数</h1>
+<div id="定义" class="section level2">
+<h2>定义</h2>
+<p>对于正整数 <span class="math inline">\(n\)</span>，若对其分解质因数有 <span class="math inline">\(n = p_1^{c_1} p_2^{c_2} \dots p_k^{c_k} \ (c_i &gt; 0)\)</span>，则：</p>
+<p><span class="math display">\[
+\mu(n) =
+\begin{cases}
+1 &amp; n = 1 \\
+0 &amp; \exists c_i &gt; 1 \\
+(-1)^k &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p>通俗地来讲，当 <span class="math inline">\(n = 1\)</span> 时，<span class="math inline">\(\mu(n) = 1\)</span>；当 <span class="math inline">\(n\)</span> 的因子中存在完全平方数时，<span class="math inline">\(\mu(n) = 0\)</span>。对于剩余情况，也就是对 <span class="math inline">\(n\)</span> 质因数分解可得到 <span class="math inline">\(n = p_1p_2 \dots p_k\)</span> 的情况，<span class="math inline">\(\mu(n) = (-1)^k\)</span>，即 <span class="math inline">\(\mu(n)\)</span> 的值取决于 <span class="math inline">\(n\)</span> 不同质因数的个数。</p>
+<p>不难发现，若 <span class="math inline">\(a, b\)</span> 互质，则有 <span class="math inline">\(\mu(ab) = \mu(a)\mu(b)\)</span>。根据线性筛那一套理论，我们可以很容易地筛出 <span class="math inline">\(\mu\)</span>。</p>
+</div>
+<div id="性质" class="section level2">
+<h2>性质</h2>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \mu(d) =
+\begin{cases}
+1 &amp; n = 1\\
+0 &amp; \text{otherwise} \\
+\end{cases}
+\]</span></p>
+<p>下面给出简要证明：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(n = 1\)</span> 时，显然有 <span class="math inline">\(\sum\limits_{d \mid n} \mu(d) = 1\)</span>；</li>
+<li><span class="math inline">\(n \neq 1\)</span> 时，有 <span class="math inline">\(k &gt; 0\)</span>。记 <span class="math inline">\(n = p_1^{c_1}p_2^{c_2} \dots p_k^{c_k} \ (c_i &gt; 0)\)</span>。对于 <span class="math inline">\(d \mid n\)</span>，<span class="math inline">\(\mu(d) \neq 0\)</span> 当且仅当 <span class="math inline">\(d\)</span> 中不存在完全平方数因子。显然，具有 <span class="math inline">\(i\)</span> 个质因数的 <span class="math inline">\(d\)</span> 有 <span class="math inline">\(\binom{k}{i}\)</span> 个。因此，<span class="math inline">\(\sum\limits_{d \mid n} \mu(d) = \sum\limits_{i = 0}^{k} (-1)^k\binom{k}{i}\)</span>。我们不难观察发现，这个式子就是一个二项式展开，即 <span class="math inline">\((1 - 1)^k\)</span>，故其值为 <span class="math inline">\(0\)</span>。</li>
+</ol>
+</div>
+</div>
+<div id="莫比乌斯反演" class="section level1">
+<h1>莫比乌斯反演</h1>
+<div id="形式-1" class="section level2">
+<h2>形式 #1</h2>
+<div id="内容" class="section level3">
+<h3>内容</h3>
+<p>定义 <span class="math inline">\(F(n), f(n)\)</span> 均为非负整数集合上的两个函数，则有：</p>
+<p><span class="math display">\[
+F(n) = \sum\limits_{d \mid n}f(d) \Leftrightarrow f(n) = \sum\limits_{d \mid n} \mu(d)F(\frac{n}{d})
+\]</span></p>
+<p>简而言之，利用莫比乌斯反演，只要我们知道 <span class="math inline">\(F(n)\)</span> 或是 <span class="math inline">\(f(n)\)</span> 中一者的定义，就可以推知另一者的具体定义。</p>
+</div>
+<div id="证明" class="section level3">
+<h3>证明</h3>
+<p>下面我们给出莫比乌斯反演的一种简要证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{d \mid n} \mu(d)F(\frac{n}{d}) = &amp; \sum\limits_{d \mid n} \mu(d) \sum\limits_{k \mid \frac{n}{d}} f(k) \\
+= &amp; \sum\limits_{k \mid n} f(k) \sum\limits_{d \mid \frac{n}{k}} \mu(d) \\
+\end{aligned}
+\]</span></p>
+<p>由前文提到的性质，当且仅当 <span class="math inline">\(\frac{n}{k} = 1\)</span> 时 <span class="math inline">\(\sum\limits_{d \mid \frac{n}{k}} \mu(d) = 1\)</span>；否则该式值为 <span class="math inline">\(0\)</span>。所以：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{d \mid n} \mu(d)F(\frac{n}{d}) = f(k)
+\end{aligned}
+\]</span></p>
+<p>得证。</p>
+</div>
+</div>
+<div id="形式-2" class="section level2">
+<h2>形式 #2</h2>
+<div id="内容-1" class="section level3">
+<h3>内容</h3>
+<p>定义 <span class="math inline">\(F(n), f(n)\)</span> 均为非负整数集合上的两个函数，则有：</p>
+<p><span class="math display">\[
+F(n) = \sum\limits_{n \mid d}f(d) \Leftrightarrow f(n) = \sum\limits_{n \mid d} \mu(\frac{d}{n})F(d)
+\]</span></p>
+<p>注意这一形式与上一形式最大的不同点，即求和条件由 <span class="math inline">\(d \mid n\)</span> 变为 <span class="math inline">\(n \mid d\)</span>。</p>
+</div>
+<div id="证明-1" class="section level3">
+<h3>证明</h3>
+<p>令 <span class="math inline">\(t = \frac{d}{n}\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{n \mid d} \mu(\frac{d}{n})F(d) = &amp; \sum\limits_{t = 1}^{+\infty}\mu(t)F(nt) \\
+= &amp; \sum\limits_{t = 1}^{+\infty}\mu(t)\sum\limits_{nt \mid k}f(k) \\
+= &amp; \sum\limits_{n \mid k}f(k)\sum\limits_{t \mid \frac{k}{n}}\mu(t)
+\end{aligned}
+\]</span></p>
+<p>由前文提到的性质，当且仅当 <span class="math inline">\(\frac{k}{n} = 1\)</span> 时 <span class="math inline">\(\sum\limits_{t \mid \frac{k}{n}}\mu(t) = 1\)</span>，否则该式值为 <span class="math inline">\(0\)</span>。所以：</p>
+<p><span class="math display">\[
+\sum\limits_{n \mid d} \mu(\frac{d}{n})F(d) = f(n)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="应用" class="section level1">
+<h1>应用</h1>
+<p>当 <span class="math inline">\(F(n)\)</span> 和 <span class="math inline">\(f(n)\)</span> 中一者容易求得，而另一着不易求得时，我们可以借助莫比乌斯反演来求得不易求得的函数。</p>
+<div id="与欧拉函数联系" class="section level2">
+<h2>与欧拉函数联系</h2>
+<p>这里我们尝试应用一下莫比乌斯反演来推导莫比乌斯函数 <span class="math inline">\(\mu(n)\)</span> 与欧拉函数 <span class="math inline">\(\varphi(n)\)</span> 间的关系。</p>
+<p>首先欧拉函数有一个性质：</p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \varphi(d) = n
+\]</span></p>
+<p>那么我们不妨令 <span class="math inline">\(F(n) = \sum\limits_{d \mid n} \varphi(d) = n\)</span>，运用莫比乌斯反演可得：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\varphi(n) = &amp; \sum\limits_{d \mid n} \mu(d)F(\frac{n}{d}) \\
+= &amp; \sum\limits_{d \mid n} \mu(d) \cdot \frac{n}{d}
+\end{aligned}
+\]</span></p>
+<p>整理后可得：</p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \frac{\mu(d)}{d} = \frac{\varphi(n)}{n}
+\]</span></p>
+<p>注：其实这个结论也可以利用 <span class="math inline">\(\varphi(n)\)</span> 的计算公式加上容斥原理得出，而在其过程中，实际上容斥系数就是 <span class="math inline">\(\mu(d)\)</span>。</p>
+</div>
+<div id="与最大公约数联系" class="section level2">
+<h2>与最大公约数联系</h2>
+<p>给定 <span class="math inline">\(n, m\)</span>，求满足 <span class="math inline">\(1 \le i \le n, \ 1 \le j \le m, \ \gcd(i, j) = 1\)</span> 的数对 <span class="math inline">\(\langle i, j \rangle\)</span> 个数（其中 <span class="math inline">\(\langle a, b \rangle\)</span> 和 <span class="math inline">\(\langle b, a \rangle\)</span> 算两个不同的数对）。</p>
+<p>换言之，即求：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{m} [\gcd(i, j) = 1]
+\]</span></p>
+<p>暴力的做法显然复杂度是 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 级别的。</p>
+<p>我们可以考虑利用莫比乌斯函数的性质：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{m} [\gcd(i, j) = 1] = &amp; \sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{m}\sum\limits_{d \mid \gcd(i, j)}\mu(d) \\
+= &amp; \sum\limits_{d = 1}^{\min(n, m)}\mu(d) \sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{m} [d  \mid  \gcd(i, j)] \\
+= &amp; \sum\limits_{d = 1}^{\min(n, m)} \mu(d)\left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor
+\end{aligned}
+\]</span></p>
+<p>我们可以用线性筛以 <span class="math inline">\(\mathcal{O}(N)\)</span> 的复杂度预处理出 <span class="math inline">\(\mu(n)\)</span> 的前缀和从而能够 <span class="math inline">\(\mathcal{O}(1)\)</span> 回答 <span class="math inline">\(\mu(n)\)</span> 的区间和。而面对询问时，我们可以用 <span class="math inline">\(\mathcal{O}(\sqrt{N})\)</span> 的复杂度进行整除分块并进行求解。</p>
+<hr />
+<p>那么如果我们要求的是 <span class="math inline">\(\gcd(i, j) = k\)</span> 怎么办？我们仅需做如下变换：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{m} [\gcd(i, j) = k] = \sum\limits_{i = 1}^{\left\lfloor \frac{n}{k} \right\rfloor}\sum\limits_{j = 1}^{\left\lfloor \frac{m}{k} \right\rfloor} [\gcd(i, j) = 1]
+\]</span></p>
+<p>接下来就跟之前的做法一样咯，所以我们能得到：</p>
+<p><span class="math display">\[
+Ans = \sum\limits_{d = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\lfloor \frac{m}{k} \right\rfloor)} \mu(d) \left\lfloor \frac{n}{kd} \right\rfloor \left\lfloor \frac{m}{kd} \right\rfloor
+\]</span></p>
+<hr />
+<p>当然，我们也可以向莫比乌斯反演的的方向进行考虑。</p>
+<p>我们不妨记 <span class="math inline">\(f(k)\)</span> 代表满足 <span class="math inline">\(\gcd(i, j) = k\)</span> 的 <span class="math inline">\(\langle i, j \rangle\)</span> 对个数。那么 <span class="math inline">\(F(k) = \sum\limits_{k \mid d}f(d)\)</span> 的意义即为满足
+<span class="math inline">\(k \mid \gcd(i, j)\)</span> 的 <span class="math inline">\(\langle i, j \rangle\)</span> 对数。而求满足 <span class="math inline">\(1 \le i \le n, \ 1 \le j \le m\)</span> 范围内 <span class="math inline">\(k \mid \gcd(i, j)\)</span> 这一条件的对数显然等价于 <span class="math inline">\(1 \le i \le \left\lfloor \frac{n}{k} \right\rfloor, \ 1 \le j \le \left\lfloor \frac{m}{k} \right\rfloor\)</span> 范围内 <span class="math inline">\(1 \mid \gcd(i, j)\)</span> 的对数（显然在此范围内的所有数对都满足这一条件）。由此我们可以很容易得到 <span class="math inline">\(F(k)\)</span> 的具体定义：</p>
+<p><span class="math display">\[
+F(k) = \left\lfloor \frac{n}{k} \right\rfloor \left\lfloor \frac{m}{k} \right\rfloor
+\]</span></p>
+<p>接下来我们就可以利用莫比乌斯反演直接得到 <span class="math inline">\(f(k)\)</span> 的具体定义了：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(k) = &amp; \sum\limits_{k \mid d} \mu(\frac{d}{k})F(d) \\
+= &amp; \sum\limits_{k \mid d} \mu(\frac{d}{k}) \left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor \\
+\end{aligned}
+\]</span></p>
+<p>不妨令 <span class="math inline">\(t = \frac{d}{k}\)</span>，我们便得到了跟之前一样的结果：</p>
+<p><span class="math display">\[
+f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\lfloor \frac{m}{k} \right\rfloor)} \mu(t) \left\lfloor \frac{n}{tk} \right\rfloor \left\lfloor \frac{m}{tk} \right\rfloor
+\]</span></p>
+<p>至于更多的应用，强烈安利这篇博文： <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a>。</p>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>Ronald L. Graham, Donald E. Knuth, Oren Patashnik - Concrete Mathematics, Second Edition</li>
+<li>peng-ym - <a href="https://www.cnblogs.com/peng-ym/p/8647856.html">莫比乌斯反演</a></li>
+<li>outer_form - <a href="https://blog.csdn.net/outer_form/article/details/50588307">莫比乌斯反演定理证明（两种形式）</a></li>
+<li>An-Amazing-Blog - <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/arithmetic-function">Arithmetic function</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1934 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-11-18 13:07 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Luogu P1829: Crash 的数字表格</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>BZOJ 2187: fraction</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="62"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

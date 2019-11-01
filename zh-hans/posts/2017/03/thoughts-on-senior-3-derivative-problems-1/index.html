@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="高考导数: “两点”问题">
+<meta itemprop="description" content="简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更">
+
+
+<meta itemprop="datePublished" content="2017-03-21T16:32:10&#43;08:00" />
+<meta itemprop="dateModified" content="2017-03-21T16:32:10&#43;08:00" />
+<meta itemprop="wordCount" content="6046">
+
+
+
+<meta itemprop="keywords" content="Mathematics,Calculus," />
+<meta property="og:title" content="高考导数: “两点”问题" />
+<meta property="og:description" content="简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2017-03-21T16:32:10+08:00" />
+<meta property="article:modified_time" content="2017-03-21T16:32:10+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="高考导数: “两点”问题"/>
+<meta name="twitter:description" content="简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>高考导数: “两点”问题</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 21, 2017</span></div>
+				<h1>高考导数: “两点”问题</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#构造新变量">构造新变量</a><ul>
+<li><a href="#利用零点极值的定义">利用零点、极值的定义</a></li>
+<li><a href="#利用韦达定理">利用韦达定理</a></li>
+<li><a href="#直接构造新变量">直接构造新变量</a></li>
+</ul></li>
+<li><a href="#消去旧变量">消去旧变量</a><ul>
+<li><a href="#利用函数单调性">利用函数单调性</a><ul>
+<li><a href="#利用新函数的单调性">利用新函数的单调性</a></li>
+<li><a href="#利用旧函数的单调性">利用旧函数的单调性</a></li>
+</ul></li>
+<li><a href="#利用韦达定理-1">利用韦达定理</a></li>
+</ul></li>
+<li><a href="#小结">小结</a></li>
+</ul>
+</div>
+
+<p>4/02 更新：修复重要错误，添加一道例题。<br />
+3/26 更新：补充新题型，调整分类逻辑，修改排版以方便阅读。</p>
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>嗯，最近疯狂地迷恋上了导数压轴题（然而还是做不来 TAT），于是就萌生了对一些有意思/有规律的导数压轴题写一些小总结的想法。</p>
+<p>这篇文章要介绍的“两点问题”（感觉这名字取得好怂），即已知 <span class="math inline">\(A(x_1,y_1), B(x_2,y_2)\)</span> 为函数 <span class="math inline">\(f(x)\)</span> 的两零点/极值/任意两点，并让你求证某个含 <span class="math inline">\(x_1, x_2\)</span> 的式子恒成立。</p>
+<p>其中，本文仅讨论 <span class="math inline">\(x_1, x_2\)</span> 均无法被直接求出或由题目中所给参数所表达出的情况。如果能求出或表达出来的话把带进去做就行了。</p>
+<p>解决该类问题的核心思想即<strong>构建单一变量的新函数</strong>。</p>
+<p>那么怎样构建单一变量的新函数呢？大致思路分两种：<strong>构造新变量</strong>或者<strong>消去旧变量</strong>。</p>
+</div>
+<div id="构造新变量" class="section level1">
+<h1>构造新变量</h1>
+<p>一般来说，如果题目中出现了对数函数（<span class="math inline">\(\ln x\)</span> 为例）或指数函数（<span class="math inline">\(e^x\)</span> 为例），我们可以考虑构造以 <span class="math inline">\(\frac{x_1}{x_2}\)</span> 为单一变量的新函数（<span class="math inline">\(\ln x_1 - \ln x_2 = \ln\frac{x_1}{x_2}\)</span>；而对于 <span class="math inline">\(e^x\)</span> 可考虑两边取对数）。由于一般题目中都会告诉你 <span class="math inline">\(x_1 \neq x_2\)</span>，那么我们可以指定两者的大小关系，如 <span class="math inline">\(x_1 &lt; x_2\)</span>，这样就有 <span class="math inline">\(\frac{x_1}{x_2} \in (0,1)\)</span>了，新函数的定义域也就自然而然地出来了。</p>
+<p>但大多数情况下直接构造是很可能是构造不出来的，故我们需要利用题目中给的其它条件来对待证明的式子进行变换以求解。</p>
+<div id="利用零点极值的定义" class="section level2">
+<h2>利用零点、极值的定义</h2>
+<p><strong>1.</strong> (2016.成外11月月考理) 已知函数<span class="math inline">\(f(x) = \ln x - x^2 + ax\)</span>，设 <span class="math inline">\(f&#39;(x)\)</span> 是 <span class="math inline">\(f(x)\)</span> 的导函数，<span class="math inline">\(x_1, x_2\)</span> 是 <span class="math inline">\(f(x)\)</span> 的两个零点，且 <span class="math inline">\(x_1 &lt; x_2\)</span>。求证： <span class="math inline">\(f&#39;(\frac{x_1+x_2}{2}) &lt; 0\)</span>。</p>
+<p><strong>证明</strong>：
+由 <span class="math inline">\(x_1, x_2\)</span> 是 <span class="math inline">\(f(x)\)</span> 的两零点：</p>
+<p><span class="math display">\[
+\begin{cases}
+\ln x_1 - x_1^2 + ax_1 = 0 \\
+\ln x_2 - x_2^2 + ax_2 = 0
+\end{cases}
+\]</span></p>
+<p>两式相减：</p>
+<p><span class="math display">\[
+\ln(\frac{x_1}{x_2}) - (x_1^2 - x_2^2) + a(x_1 - x_2) = 0
+\]</span></p>
+<p>化简得：</p>
+<p><span class="math display">\[
+x_1 + x_2 = \frac{\ln\frac{x_1}{x_2}}{x_1-x_2} + a
+\]</span></p>
+<p>由题：</p>
+<p><span class="math display">\[
+f&#39;(x) = \frac{1}{x} - 2x + a
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+f&#39;(\frac{x_1 + x_2}{2})  
+&amp; = \frac{2}{x_1 + x_2} - 2(\frac{x_1 + x_2}{2}) + a \\
+&amp; = \frac{2}{x_1 + x_2} - \frac{\ln\frac{x_1}{x_2}}{x_1 -x_2} \\
+&amp; = \frac{1}{x_1 - x_2}[\frac{2(x_1 - x_2)}{x_1 + x_2} - \ln\frac{x_1}{x_2}] \\
+&amp; = \frac{1}{x_1 - x_2}[\frac{2(\frac{x_1}{x_2} - 1)}{\frac{x_1}{x_2} + 1} - \ln\frac{x_1}{x_2}]
+\end{aligned}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+t = \frac{x_1}{x_2} \in (0,1)
+\]</span></p>
+<p><span class="math display">\[
+g(t) = \frac{2(t - 1)}{t + 1} - \ln t
+\]</span></p>
+<p>有：</p>
+<p><span class="math display">\[
+g&#39;(t) = -\frac{(t-1)^2}{t(t + 1)^2} &lt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore g(t)\)</span> 在 <span class="math inline">\((0,1)\)</span> 上单调递减，则：</p>
+<p><span class="math display">\[
+g(t) &gt; g(1) = 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore \frac{2(\frac{x_1}{x_2} - 1)}{\frac{x_1}{x_2} + 1} - \ln\frac{x_1}{x_2} &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\because x_1 &lt; x_2, \ \therefore \frac{1}{x_1 - x_2} &lt; 0\)</span>，则：</p>
+<p><span class="math display">\[
+\frac{1}{x_1 - x_2}[\frac{2(\frac{x_1}{x_2} - 1)}{\frac{x_1}{x_2} + 1} - \ln\frac{x_1}{x_2}] &lt; 0
+\]</span></p>
+<p>即 <span class="math inline">\(f&#39;(\frac{x_1+x_2}{2}) &lt; 0\)</span>，得证.</p>
+<p>从上例中我们可以看出，直接构造 <span class="math inline">\(\frac{x_1}{x_2}\)</span> 显然是不可能的，但我们从零点的定义式入手，并尝试对这些条件进行变换从而将待证明式子中的其它参数约掉（如本题中约掉了 <span class="math inline">\(a\)</span>），进而就可以造出以 <span class="math inline">\(t = \frac{x_1}{x_2}\)</span> 为单一变量的新函数了。</p>
+<p>另外，在本题中化简 <span class="math inline">\(f&#39;(\frac{x_1 + x_2}{2})\)</span> 时提出一个 <span class="math inline">\(\frac{2}{x_1 + x_2}\)</span> 也算是一个技巧吧，因为 <span class="math inline">\(\frac{x_1 - x_2}{x_1 + x_2}\)</span> 这个式子可以通过分子分母同时除以 <span class="math inline">\(x_2\)</span> 来构造出以 <span class="math inline">\(t = \frac{x_1}{x_2}\)</span> 为单一变量的式子 <span class="math inline">\(\frac{t - 1}{t + 1}\)</span>。</p>
+</div>
+<div id="利用韦达定理" class="section level2">
+<h2>利用韦达定理</h2>
+<p>上一类提到了零点与极值，而零点与极值无非就是原函数=0或导函数=0的两根。故如果它们恰恰是二次函数的话，我们便可以利用韦达定理来找出两变量间的关系，从而消去其中一者或者找出新关系。</p>
+<p><strong>2.</strong> (2016.南平高三上期中) 已知函数 <span class="math inline">\(f(x) = \ln x - mx \ (m \in R)\)</span>。当 <span class="math inline">\(m &gt;= \frac{3\sqrt{2}}{2}\)</span> 时，设 <span class="math inline">\(g(x) = 2f(x) + x^2\)</span> 的两个极值点为 <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2 \ (x_1 &lt; x_2)\)</span>，若 <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span> 恰为函数 <span class="math inline">\(h(x) = \ln x - cx^2 - bx\)</span> 的零点，求 <span class="math inline">\(y = (x_1 - x_2)h&#39;(\frac{x_1 + x_2}{2})\)</span> 的最小值。</p>
+<p><strong>解</strong>：</p>
+<p><span class="math display">\[
+h&#39;(x) = \frac{1}{x} - 2cx - b
+\]</span></p>
+<p><span class="math display">\[
+g(x) = 2\ln x - 2mx + x^2
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+g&#39;(x) &amp; = \frac{2}{x} - 2m + 2x \\
+      &amp; = \frac{2x^2 - 2mx + 2}{x}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore x_1\)</span>, <span class="math inline">\(x_2\)</span> 为 <span class="math inline">\(2x^2 - 2mx + 2 =0\)</span> 的两不等实根</p>
+<p>当 <span class="math inline">\(m &gt;= \frac{3\sqrt{2}}{2}\)</span> 时有 <span class="math inline">\(\Delta &gt; 0\)</span></p>
+<p>由韦达定理：</p>
+<p><span class="math display">\[
+\begin{cases}
+x_1 + x_2 = m \\
+x_1x_2 = 1
+\end{cases}
+\]</span></p>
+<p>故：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; (x_1 + x_2)^2 = m^2 \\
+&amp; \Rightarrow x_1^2 + x_2^2 = m^2 - 2x_1x_2 = m^2 -2 \\  
+&amp; \Rightarrow \frac{x_1^2 + x_2^2}{x_1x_2} = m^2 - 2 \ge (\frac{3\sqrt{2}}{2})^2 - 2 = \frac{5}{2} \\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \frac{x_1}{x_2} + \frac{x_2}{x_1} - \frac{5}{2} \ge 0
+\]</span></p>
+<p>令 <span class="math inline">\(t = \frac{x_1}{x_2}\)</span>, <span class="math inline">\(\therefore t \in (0,1)\)</span>，有：</p>
+<p><span class="math display">\[
+t + \frac{1}{t} - \frac{5}{2} \ge 0
+\]</span></p>
+<p>解得 <span class="math inline">\(t \ge 2\)</span> (舍去) 或 <span class="math inline">\(t \le \frac{1}{2}\)</span></p>
+<p><span class="math display">\[
+\therefore t \in (0,\frac{1}{2}]
+\]</span></p>
+<p><span class="math inline">\(\because x_1\)</span>, <span class="math inline">\(x_2\)</span> 是 <span class="math inline">\(h(x)\)</span>两零点，故：</p>
+<p><span class="math display">\[
+\begin{cases}
+\ln x_1 - cx_1^2 - bx_1 = 0 \\
+\ln x_2 - cx_2^2 - bx_2 = 0
+\end{cases}
+\]</span></p>
+<p>两式相减：</p>
+<p><span class="math display">\[
+\ln\frac{x_1}{x_2} - c(x_1^2 - x_2^2) - b(x_1 - x_2) = 0
+\]</span></p>
+<p>化简得：</p>
+<p><span class="math display">\[
+c(x_1 + x_2) + b = \frac{\ln\frac{x_1}{x_2}}{x_1 - x_2}
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y &amp; = (x_1 - x_2)h&#39;(\frac{x_1 + x_2}{2}) \\
+  &amp; = (x_1 - x_2)\left[\frac{2}{x_1 + x_2} - c(x_1 + x_2) - b\right] \\
+  &amp; = (x_1 - x_2)(\frac{2}{x_1 + x_2} - \frac{\ln\frac{x_1}{x_2}}{x_1 - x_2}) \\
+  &amp; = \frac{2(x_1 - x_2)}{x_1 + x_2} - \ln\frac{x_1}{x_2} \\
+  &amp; = \frac{2(\frac{x_1}{x_2} - 1)}{\frac{x_1}{x_2} + 1} - \ln\frac{x_1}{x_2} \\
+  &amp; = \frac{2(t - 1)}{t + 1} - \ln t \\
+\\
+\therefore y&#39; &amp; = \frac{4}{(t + 1)^2} - \frac{1}{t} \\
+   &amp; = -\frac{(t - 1)^2}{t(t + 1)^2} &lt; 0
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore y\)</span> 在 <span class="math inline">\((0,\frac{1}{2})\)</span> 单调递减</p>
+<p><span class="math inline">\(\therefore t = \frac{1}{2}\)</span> 时有最小 <span class="math inline">\(y = \ln2 - \frac{2}{3}\)</span></p>
+<p>答：<span class="math inline">\(y\)</span> 的最小值为 <span class="math inline">\(\ln2 - \frac{2}{3}\)</span>。</p>
+<p>该题稍稍有点难度的地方在于，如果直接按 1 题的方法做的话会发现 <span class="math inline">\(m\)</span> 取值范围的条件用不上，而能把 <span class="math inline">\(m\)</span> 和 <span class="math inline">\(x_1,x_2\)</span> 联系在一起的也只有韦达定理了。故该题在 1 题的基础上还利用了韦达定理作为条件。</p>
+<p><strong>注： 其实本题还可以由<span class="math inline">\(x_2 = \frac{1}{x_1}\)</span>做出</strong>。</p>
+<hr />
+<p>好的，现在我们暂且先对上面两道题做一个小结：</p>
+<ul>
+<li>对于<strong>零点</strong>: <span class="math inline">\(f(x_1) = f(x_2) = 0\)</span>，如果 <span class="math inline">\(f(x)\)</span> 是二次函数的话还有韦达定理。</li>
+<li>对于<strong>极值</strong>: <span class="math inline">\(f&#39;(x_1) = f&#39;(x_2) = 0\)</span>，如果 <span class="math inline">\(f&#39;(x)\)</span> 是二次函数的话也有韦达定理。</li>
+</ul>
+<p>接下来再对如何利用隐含条件来帮助构造以 <span class="math inline">\(\frac{x_1}{x_2}\)</span> 为单一变量新函数的方法做一个小结：</p>
+<ul>
+<li><strong>对数</strong>型（以 <span class="math inline">\(\ln x\)</span> 为例）： 两式<strong>相减</strong>构造 <span class="math inline">\(\ln\frac{x_1}{x_2}\)</span>。</li>
+<li><strong>指数</strong>型（以 <span class="math inline">\(e^x\)</span> 为例）：两式<strong>相除</strong>构造 <span class="math inline">\(e^\frac{x_1}{x_2}\)</span>，视情况可等号两边取对数（<span class="math inline">\(\ln\)</span>）以简化解题。</li>
+<li><strong>二次函数</strong>型: 先由<strong>韦达定理</strong>表示出 <span class="math inline">\(x_1 + x_2\)</span> 和 <span class="math inline">\(x_1x_2\)</span>，很容易可以表示出 <span class="math inline">\(x_1^2 + x_2^2\)</span>，然后除以 <span class="math inline">\(x_1x_2\)</span>，即 <span class="math inline">\(\frac{x_1^2 + x_2^2}{x_1x_2} = \frac{x_1}{x_2} + \frac{x_2}{x_1}\)</span>。</li>
+</ul>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>构造 <span class="math inline">\(\frac{x_1}{x_2}\)</span> 就是在构造新参数，其优点是 <span class="math inline">\(x_1\)</span> 和 <span class="math inline">\(x_2\)</span> 的大小关系往往已知，于是新参数 <span class="math inline">\(t = \frac{x_1}{x_2}\)</span> 的取值范围也就确定了【若 <span class="math inline">\(x_1 &gt; x_2\)</span> 则 <span class="math inline">\(t \in (1, +\infty)\)</span>；若 <span class="math inline">\(x_1 &lt; x_2\)</span> 则 <span class="math inline">\(t \in (0, 1]\)</span>。我个人喜欢把较小的放在分子以避免可能出现的讨论 <span class="math inline">\(x = +\infty\)</span> 的情况。</li>
+<li>另外，如果题中带求证的式子中含有 <span class="math inline">\(x_1 + x_2\)</span>、<span class="math inline">\(x_1x_2\)</span>、<span class="math inline">\(x_1^2 + x_2^2\)</span> 等不好处理的项时往往也可以用隐含条件构造它们把它们换为利于处理的式子。</li>
+</ul>
+</div>
+<div id="直接构造新变量" class="section level2">
+<h2>直接构造新变量</h2>
+<p>其实我本来想把这一小节放在第一个的，但无奈这道例题太球难算了。由于不希望读者一来就看到这道例题从而对这篇文章产生不好的印象，我选择将这一小节放在第一类方法的最后一个介绍。</p>
+<p><strong>3.</strong> (2016.成外一诊模拟文) 已知函数 <span class="math inline">\(f(x) = x\ln x\)</span>，设 <span class="math inline">\(A(x_1,f(x_1))\)</span>, <span class="math inline">\(B(x_2,f(x_2))\)</span>，且 <span class="math inline">\(x_1 \neq x_2\)</span>，求证: <span class="math inline">\(\frac{f(x_2) - f(x_1)}{x_2 - x_1} &lt; f&#39;(\frac{x_1 + x_2}{2})\)</span>。</p>
+<p><strong>证明</strong>：</p>
+<p><em>注：为了体现本人的思考流程，本题的我写的格式可能会比较奇葩，求轻喷…</em></p>
+<p>令 <span class="math inline">\(x_1 &lt; x_2\)</span>，则 <span class="math inline">\(\frac{x_1}{x_2} \in (0,1)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \frac{f(x_2) - f(x_1)}{x_2 - x_1} &lt; f&#39;(\frac{x_1 + x_2}{2}) \\
+&amp; \Leftrightarrow \frac{x_2\ln x_2 - x_1\ln x_1}{x_2 - x_1} &lt; \ln(\frac{x_1 + x_2}{2}) + 1 \\
+&amp; \Leftrightarrow \frac{\ln x_2 - \frac{x_1}{x_2}\ln x_1}{1 - \frac{x_1}{x_2}} - 1 &lt;  \ln(\frac{x_1 + x_2}{2}) \\
+&amp; \Leftrightarrow \ln x_2 - \frac{x_1}{x_2}\ln x_1 - \frac{x_1}{x_2} + 1 &lt; (1 - \frac{x_1}{x_2})\ln(\frac{x_1 + x_2}{2}) \\
+&amp; \Leftrightarrow \ln x_2 - 1 - \frac{x_1}{x_2}(\ln x_1 - 1) &lt; (1 - \frac{x_1}{x_2})\ln(\frac{x_1 + x_2}{2})
+\end{aligned}
+\]</span></p>
+<p><em>插一句话：我们发现 <span class="math inline">\(\frac{x_1 + x_2}{2}\)</span> 真是特别讨厌，无法构造出以 <span class="math inline">\(\frac{x_1}{x_2}\)</span> 为单一变量的式子。但是我们可以在不等号两边同时减去 <span class="math inline">\((1 - \frac{x_1}{x_2})\ln x_2\)</span>，使得不等号右边变为 <span class="math inline">\((1 - \frac{x_1}{x_2} )\ln(\frac{x_1 + x_2}{2x_2})\)</span>。这样就可以化为 <span class="math inline">\((1 - \frac{x_1}{x_2})\ln(\frac{\frac{x_1}{x_2} + 1}{2})\)</span>了</em>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \Leftrightarrow \ln x_2 - 1 - \frac{x_1}{x_2}(\ln x_1 - 1) - (1 - \frac{x_1}{x_2})\ln x_2 &lt; (1 - \frac{x_1}{x_2})\ln(\frac{x_1 + x_2}{2}) - (1 - \frac{x_1}{x_2})\ln x_2 \\
+&amp; \Leftrightarrow \frac{x_1}{x_2}\ln x_2 - \frac{x_1}{x_2}\ln x_1 + \frac{x_1}{x_2} - 1 &lt; (1 - \frac{x_1}{x_2})\ln(\frac{\frac{x_1}{x_2} + 1}{2}) \\
+&amp; \Leftrightarrow \frac{x_1}{x_2} - \frac{x_1}{x_2}\ln\frac{x_1}{x_2} - 1 &lt; (1 - \frac{x_1}{x_2})\ln(\frac{\frac{x_1}{x_2} + 1}{2}) \\
+&amp; \Leftrightarrow \frac{x_1}{x_2} - \frac{x_1}{x_2}\ln\frac{x_1}{x_2} - (1 - \frac{x_1}{x_2})\ln(\frac{\frac{x_1}{x_2} + 1}{2}) - 1 &lt; 0
+\end{aligned}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+t = \frac{x_1}{x_2} \in (0,1)
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+F(t) &amp; = t - t\ln t - (1-t)\ln(\frac{t+1}{2})-1 \\
+     &amp; = t\ln(\frac{t+1}{2t}) - \ln(\frac{t+1}{2}) +t - 1 \\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\therefore F&#39;(t) = \ln(\frac{t+1}{2t}) - \frac{2}{t+1} + 1
+\]</span></p>
+<p><em>再插一句话： 然而这个样子还是不好看，应当考虑再次求导法… 不过再次求导前我们先观察一下 <span class="math inline">\(F&#39;(t)\)</span> 这个式子了。很容易发现（别打我…) <span class="math inline">\(\frac{2}{t+1} = 2 - \frac{2t}{t+1} = 2 - \frac{1}{\frac{t+1}{2t}}\)</span>。 不如我们令 <span class="math inline">\(k = \frac{t+1}{2t}\)</span>，然后把 <span class="math inline">\(\frac{2}{t+1}\)</span> 表示为 <span class="math inline">\(2 - \frac{1}{k}\)</span> 来方便求导</em>。</p>
+<p>令：</p>
+<p><span class="math display">\[
+k = \frac{t+1}{2t}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \frac{2}{t+1} = 2 - \frac{1}{k}
+\]</span></p>
+<p>由 <span class="math inline">\(t \in (0,1)\)</span>，则：</p>
+<p><span class="math display">\[
+t+1 &gt; 2t, \ k &gt; 1
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+\varphi(k) = \ln k - 1 + \frac{1}{k}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \varphi&#39;(k) = \frac{1}{k} - \frac{1}{k^2} = \frac{k - 1}{k^2} &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore \varphi(k)\)</span> 在 <span class="math inline">\((1, +\infty)\)</span> 单调递增，则：</p>
+<p><span class="math display">\[
+\varphi(k) &gt; \varphi(1) = 0
+\]</span></p>
+<p><span class="math inline">\(\therefore t \in (0,1)\)</span> 时有 <span class="math inline">\(F&#39;(t) &gt; 0\)</span> 恒成立</p>
+<p><span class="math inline">\(\therefore F(t)\)</span> 在 <span class="math inline">\((0,1)\)</span> 单调递增，则：</p>
+<p><span class="math display">\[
+\therefore F(t) &lt; F(1) = 0
+\]</span></p>
+<p>即：</p>
+<p><span class="math display">\[
+\frac{x_1}{x_2} - \frac{x_1}{x_2}\ln\frac{x_1}{x_2} - (1 - \frac{x_1}{x_2})\ln(\frac{\frac{x_1}{x_2} + 1}{2}) - 1 &lt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 得证</p>
+<p>是不是很爽？不过这道题难度的确够大的，两个插话的地方都是思维难点而且我当时想了好久才想出来（怪我蠢）。这道题的思路依旧是构造以 <span class="math inline">\(t = \frac{x_1}{x_2}\)</span> 为单一变量的新函数，并化简到类似 <span class="math inline">\(F(t) &gt; 0\)</span> 的形式，然后通过对新函数求导来解决问题。</p>
+</div>
+</div>
+<div id="消去旧变量" class="section level1">
+<h1>消去旧变量</h1>
+<p>然而有些题目中即使用尽上一类题目中的条件也难以构造出新变量。这个时候我们就需要考虑能否通过消去两已有变量中的一者来构造单一变量的新函数。</p>
+<div id="利用函数单调性" class="section level2">
+<h2>利用函数单调性</h2>
+<div id="利用新函数的单调性" class="section level3">
+<h3>利用新函数的单调性</h3>
+<p><strong>4.</strong> (2016.长春监测) 已知函数 <span class="math inline">\(f(x) = \frac{1-2\ln x}{x^2}\)</span>。若对任意 <span class="math inline">\(x_1, x_2 \in (0, \frac{1}{e}]\)</span>，有 <span class="math inline">\(|\frac{f(x_1) - f(x_2)}{x_1^2 - x_2^2}| &gt; \frac{k}{x_1^2 \cdot x_2^2}\)</span>，求<span class="math inline">\(k\)</span>的取值范围。</p>
+<p><strong>解</strong>：</p>
+<p><span class="math display">\[
+f&#39;(x) = \frac{4\ln x - 4}{x^3}
+\]</span></p>
+<p><span class="math inline">\(\therefore f(x)\)</span> 在 <span class="math inline">\((0,\frac{1}{e}]\)</span> 单调递减。</p>
+<p>令 <span class="math inline">\(x_1 &lt; x_2\)</span>，有：</p>
+<p><span class="math display">\[
+x_1 - x_2 &lt; 0, \ f(x_1) &gt; f(x_2)
+\]</span></p>
+<p>由题：</p>
+<p><span class="math display">\[
+-\frac{f(x_1)-f(x_2)}{(x_1+x_2)(x_1-x_2)} &gt; \frac{k}{(x_1x_2)^2}
+\]</span></p>
+<p>化简得：</p>
+<p><span class="math display">\[
+\frac{1-2\ln x_1}{x_1^2}-\frac{k}{x_1^2} &gt; \frac{1-2\ln x_2}{x_2^2}-\frac{k}{x_2^2}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+F(x) = \frac{1-2\ln x_1-k}{x_1^2}
+\]</span></p>
+<p><span class="math display">\[
+\therefore F(x_1) &gt; F(x_2)
+\]</span></p>
+<p><span class="math inline">\(\therefore F(x)\)</span> 在 <span class="math inline">\((0,\frac{1}{e}]\)</span> 单调递减</p>
+<p><span class="math display">\[
+\therefore F&#39;(x) = \frac{4\ln x + 2k - 4}{x^3} \le 0
+\]</span></p>
+<p><span class="math display">\[
+\because x^3 &gt; 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore 4\ln x + 2k - 4 \le 0
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+\varphi(x) = 4\ln x + 2k - 4
+\]</span></p>
+<p><span class="math display">\[
+\therefore \varphi&#39;(x) = \frac{4}{x}
+\]</span></p>
+<p>当 <span class="math inline">\(x \in (0,\frac{1}{e}]\)</span> 时：</p>
+<p><span class="math display">\[
+\varphi&#39;(x) &gt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore \varphi(x)\)</span> 在 <span class="math inline">\((0,\frac{1}{e}]\)</span> 上单调递增，则：</p>
+<p><span class="math display">\[
+\varphi(x)max = \varphi(\frac{1}{e}) = 2k - 8 \le 0
+\]</span></p>
+<p>解得：</p>
+<p><span class="math display">\[
+k \in (-\infty,4]
+\]</span></p>
+<p>答：<span class="math inline">\(k\)</span> 的取值范围为 <span class="math inline">\((-\infty,4]\)</span>。</p>
+<p>我们解决这道题时<strong>将不等号两边的式子化成同一函数（即类似 <span class="math inline">\(F(x_1) &gt; F(x_2)\)</span> 的形式）</strong>，从而构造了新函数 <span class="math inline">\(F(x)\)</span>。由于 <span class="math inline">\(x_1\)</span> 和 <span class="math inline">\(x_2\)</span> 大小关系已知，故新函数 <span class="math inline">\(F(x)\)</span> 的单调性也已知，就转化成对 <span class="math inline">\(F(x)\)</span> 导数正负性讨论的问题了。</p>
+</div>
+<div id="利用旧函数的单调性" class="section level3">
+<h3>利用旧函数的单调性</h3>
+<p>能造直接造新函数已经算一种极为简单的题型了，而下面的题型就要隐蔽不少。</p>
+<p><strong>5.</strong> (2016.成外一诊模拟理) 已知a为实数，函数 <span class="math inline">\(f(x) = \ln x - ax + 1\)</span>，当 <span class="math inline">\(0 &lt; a &lt; 1\)</span> 时函数 <span class="math inline">\(f(x)\)</span> 有两个不同零点 <span class="math inline">\(x_1, x_2\)</span>，求证： <span class="math inline">\(x_1 + x_2 &gt; 2\)</span>。</p>
+<p><em>乍一看你会觉得这与题 1 貌似没什么区别，但是一旦你顺着题 1 的方法做你就会意识到要造出 <span class="math inline">\(x_1 + x_2\)</span> 必须两式相加，而一相加后又会冒出来个 <span class="math inline">\(\ln(x_1x_2)\)</span>，既消不掉又无法构建单一变量新函数。所以本题就不能以题 1 的方法做了</em>。</p>
+<p><strong>证明</strong>：</p>
+<p><span class="math display">\[
+f&#39;(x) = \frac{1}{x} - a = \frac{1 - ax}{x}
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\((0,\frac{1}{a})\)</span></th>
+<th><span class="math inline">\(\frac{1}{a}\)</span></th>
+<th><span class="math inline">\((\frac{1}{a},+\infty)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f&#39;(x)\)</span></td>
+<td>+</td>
+<td>0</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f(x)\)</span></td>
+<td>单增</td>
+<td>极大值</td>
+<td>单减</td>
+</tr>
+</tbody>
+</table>
+<p>由 <span class="math inline">\(x_1 &lt; x_2\)</span>：</p>
+<p><span class="math display">\[
+0 &lt; x_1 &lt; \frac{1}{a}, \ x_2 &gt; \frac{1}{a}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \frac{2}{a} - x_1 &gt; \frac{1}{a}
+\]</span></p>
+<p><em>插一句话： 如果我能证到 <span class="math inline">\(\frac{2}{a} - x_1 &lt; x_2\)</span>，那么就一定有 <span class="math inline">\(x_1 + x_2 &gt; \frac{2}{a} &gt; 2\)</span> 了。又因为 <span class="math inline">\((\frac{2}{a} - x_1)\)</span>和 <span class="math inline">\(x_2\)</span>都 <span class="math inline">\(\in (\frac{1}{a},+\infty)\)</span>，所以只需要证得 <span class="math inline">\(f(\frac{2}{a} - x_1) &gt; f(x_2)\)</span> 就行了。又因为 <span class="math inline">\(f(x_1) = f(x_2) = 0\)</span>，所以只需证得 <span class="math inline">\(f(\frac{2}{a} - x_1) &gt; f(x_1)\)</span> 即可。于是这样 <span class="math inline">\(x_2\)</span> 就被搞掉了，我们也就可以构造新的单一变量的新函数了</em>。</p>
+<p>令:</p>
+<p><span class="math display">\[
+\begin{aligned}
+g(x) &amp; = f(\frac{2}{a} - x) - f(x) \\
+     &amp; = \ln(\frac{2}{a} - x) - a(\frac{2}{a} - x) - \ln x + ax \quad (0 &lt; x \le \frac{1}{a}) \\
+\\
+\therefore g&#39;(x) &amp;= \frac{1}{x - \frac{2}{a}} - \frac{1}{x} + 2a \\
+      &amp; = \frac{2a(x - \frac{1}{a})^2}{x(x - \frac{2}{a})} &lt; 0
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore g(x)\)</span> 在 <span class="math inline">\((0, \frac{1}{a})\)</span> 单调递减，故：</p>
+<p><span class="math display">\[
+g(x) &gt; g(\frac{1}{a}) = 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore g(x_1) = f(\frac{2}{a} - x_1) - f(x_1) &gt; 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore f(\frac{2}{a} - x_1) &gt; f(x_1) = 0 = f(x_2)
+\]</span></p>
+<p><span class="math display">\[
+\therefore \frac{2}{a} - x_1 &lt; x_2
+\]</span></p>
+<p><span class="math display">\[
+\therefore x_1 + x_2 &gt; \frac{2}{a} &gt; 2
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 得证。</p>
+<p>从这道题我们可以看出，当我们难以通过变换 <span class="math inline">\(x_1, x_2\)</span> 隐含条件来构造出单一变量的新函数时，可以考虑<strong>从函数的单调性入手，将待证的不等式两边化为在同一单调区间内的两个式子</strong>，同时巧妙利用 <span class="math inline">\(f(x_1) = f(x_2) = 0\)</span> 或 <span class="math inline">\(f&#39;(x_1) = f&#39;(x_2) = 0\)</span> 消去 <span class="math inline">\(x_2\)</span> 进而构造出以 <span class="math inline">\(x_1\)</span> 为单一变量的新函数。</p>
+<hr />
+<p>上面一类题的构造方式相对明显，而有时我们也可以通过寻找 <span class="math inline">\(x_1\)</span> 与 <span class="math inline">\(x_2\)</span> 间的不等关系对原式进行代换/放缩来达到求证目的。</p>
+<p><strong>6.</strong>(2017.Lody的补充题) 已知 <span class="math inline">\(f(x) = x - e^{\frac{x}{a}} \ (a &gt; 0)\)</span>。<br />
+若 <span class="math inline">\(f(x_1) = f(x_2) = 0 \ (x_1 &lt; x_2)\)</span>，求证：<span class="math inline">\(\frac{x_1}{x_2} &lt; \frac{e}{a}\)</span>。</p>
+<p><strong>证明</strong> ：</p>
+<p><span class="math display">\[
+f&#39;(x) = 1 - \frac{1}{a}e^{\frac{x}{a}}
+\]</span></p>
+<p>令 <span class="math inline">\(f&#39;(x) = 0\)</span>，有：</p>
+<p><span class="math display">\[
+x = a\ln a
+\]</span></p>
+<p>由 <span class="math inline">\(f&#39;(x) &gt; 0\)</span> 得 <span class="math inline">\(x &lt; a\ln a\)</span>，由 <span class="math inline">\(f&#39;(x) &lt; 0\)</span> 得 <span class="math inline">\(x &gt; a\ln a\)</span></p>
+<p><span class="math inline">\(\therefore f(x)\)</span> 在 <span class="math inline">\((-\infty,a\ln a)\)</span> 单调递增，在 <span class="math inline">\((a\ln a,+\infty)\)</span> 单调递减</p>
+<p><span class="math display">\[
+\therefore f(x)_{max} = f(a\ln a) = a\ln a - a
+\]</span></p>
+<p>由函数有两个零点：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; f(x)_{max} &gt; 0 \\
+&amp; \Rightarrow a\ln a - a &gt; 0 \\
+&amp; \Rightarrow \ln a &gt; 1 \\
+&amp; \Rightarrow a &gt; e
+\end{aligned}
+\]</span></p>
+<p>故：</p>
+<p><span class="math display">\[
+f(a) = a - e &gt; 0
+\]</span></p>
+<p><span class="math display">\[
+\therefore x_1 &lt; a
+\]</span></p>
+<p>又由：</p>
+<p><span class="math display">\[
+x_2 &gt; a\ln a
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+x_2 - x_1 &gt; a\ln a - a
+\]</span></p>
+<p>由题：</p>
+<p><span class="math display">\[
+\begin{cases}
+x_1 - e^{\frac{x_1}{a}} = 0 \\
+x_2 - e^{\frac{x_2}{a}} = 0
+\end{cases}
+\]</span></p>
+<p>经变换：</p>
+<p><span class="math display">\[
+\begin{cases}
+x_1 = e^{\frac{x_1}{a}} \\
+x_2 = e^{\frac{x_2}{a}}
+\end{cases}
+\]</span></p>
+<p>两式相除：</p>
+<p><span class="math display">\[
+\frac{x_1}{x_2} = e^{\frac{x_1 - x_2}{a}}
+\]</span></p>
+<p>故：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{x_1}{x_2}
+&amp; = e^{\frac{x_1 - x_2}{a}} \\
+&amp; &lt; e^{\frac{a - a\ln a}{a}} \\
+&amp; = e^{1 - \ln a} \\
+&amp; = \frac{e}{a}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 得证。</p>
+<p>本题事实上也是从单调性（函数性质）入手。经过求导后我们发现 <span class="math inline">\(f(x)\)</span> 的走向其实跟开口向下二次函数比较类似，故可以分析出 <span class="math inline">\(x_1, x_2\)</span> 的大小关系。最后再利用该关系对原式进行代换即可求证。</p>
+</div>
+</div>
+<div id="利用韦达定理-1" class="section level2">
+<h2>利用韦达定理</h2>
+<p>利用韦达定理可以让我们找出两根间的关系，从而消去其中的一个变量。</p>
+<p><strong>7.</strong> (2017.成都二诊理) 已知函数 <span class="math inline">\(f(x) = a\ln x - x + \frac{1}{x}\)</span>，其中 <span class="math inline">\(a &gt; 0\)</span>。</p>
+<ol style="list-style-type: decimal">
+<li>若 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\((2, +\infty)\)</span> 上存在极值点，求 <span class="math inline">\(a\)</span> 的取值范围；<br />
+</li>
+<li>设 <span class="math inline">\(x_1 \in (0,1)\)</span>，<span class="math inline">\(x_2 \in (1,+\infty)\)</span>。若 <span class="math inline">\(f(x_2) - f(x_1)\)</span> 存在最大值，记为 <span class="math inline">\(M(a)\)</span>，则当 <span class="math inline">\(a \le e + \frac{1}{e}\)</span> 时，<span class="math inline">\(M(a)\)</span> 是否存在最大值？若存在，求出其最大值；若不存在，请说明理由.</li>
+</ol>
+<p><em>注：(1)问可以利用分离参数法或者讨论二次函数根的分布来求解，这里就略去详细过程了，我们只详细分析第(2)问</em>。</p>
+<p><strong>解</strong>： (2)</p>
+<p><span class="math display">\[
+f&#39;(x) = \frac{-(x^2 - ax +1)}{x^2}
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+\varphi(x) = x^2 - ax + 1
+\]</span></p>
+<p>① 若 <span class="math inline">\(0 &lt; a \le 2\)</span><br />
+<span class="math inline">\(f&#39;(x)\)</span> 在 <span class="math inline">\((0,+\infty)\)</span> 上恒有 <span class="math inline">\(\varphi(x) \ge 0\)</span><br />
+<span class="math inline">\(\therefore f&#39;(x) \le 0\)</span><br />
+<span class="math inline">\(\therefore f(x)\)</span> 在 <span class="math inline">\((0,+\infty)\)</span> 单调递减，有：</p>
+<p><span class="math display">\[
+f(x_2) - f(x_1) &lt; 0
+\]</span></p>
+<p><span class="math inline">\(\therefore\)</span> 不存在最大值.</p>
+<p>② 若 <span class="math inline">\(a &gt; 2\)</span></p>
+<p><span class="math inline">\(\therefore \varphi(x)\)</span> 有两不等正实根，令其为 <span class="math inline">\(m, n\)</span></p>
+<p>不妨设<span class="math inline">\(0 &lt; m &lt; 1 &lt; n\)</span></p>
+<p><span class="math inline">\(\therefore f(x)\)</span> 在 <span class="math inline">\((0,m)\)</span> 单调递减，在 <span class="math inline">\((m,n)\)</span> 单调递增，在 <span class="math inline">\((n,+\infty)\)</span> 单调递减</p>
+<p><span class="math inline">\(\therefore \forall x_1 \in (0,1)\)</span>，有 <span class="math inline">\(f(x_1) \ge f(m)\)</span>；<span class="math inline">\(\forall x_2 \in (1,+\infty)\)</span>，有 <span class="math inline">\(f(x_2) \le f(n)\)</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+[f(x_2) - f(x_1)]_{max} = f(n) - f(m)
+\]</span></p>
+<p>故：</p>
+<p><span class="math display">\[
+\begin{aligned}
+M(a) &amp; = f(n) - f(m) \\
+     &amp; = (a\ln n - n + \frac{1}{n}) - (a\ln m - m + \frac{1}{m}) \\
+     &amp; = a\ln\frac{n}{m} + (m - n) + (\frac{1}{n} - \frac{1}{m})
+\end{aligned}
+\]</span></p>
+<p>又由韦达定理：</p>
+<p><span class="math display">\[
+\begin{cases}
+m + n = a \\
+mn = 1
+\end{cases}
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+\begin{cases}
+a = m + n = \frac{1}{n} + n \\
+m = \frac{1}{n}
+\end{cases}
+\]</span></p>
+<p>代入上式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+M(a) &amp; = (\frac{1}{n} + n)\ln n^2 + 2(\frac{1}{n} - n) \\
+     &amp; = 2[(\frac{1}{n} + n)\ln n + (\frac{1}{n} - n)]
+\end{aligned}
+\]</span></p>
+<p>又 <span class="math inline">\(\because 2 &lt; a \le e + \frac{1}{e}\)</span>，故：</p>
+<p><span class="math display">\[
+\frac{1}{n} + n \le e + \frac{1}{e}, \ n&gt;1
+\]</span></p>
+<p>由 <span class="math inline">\(y = x + \frac{1}{x}\)</span> 在 <span class="math inline">\(x \in (1,+\infty)\)</span> 单调递增，故：</p>
+<p><span class="math display">\[
+n \in (1,e]
+\]</span></p>
+<p>令：</p>
+<p><span class="math display">\[
+h(x) = 2(\frac{1}{x} + x)\ln x + 2(\frac{1}{x} - x), \ x \in (1,e]
+\]</span></p>
+<p>则：</p>
+<p><span class="math display">\[
+\begin{aligned}
+h&#39;(x)
+&amp; = 2(-\frac{1}{x^2} + 1)\ln x + 2(\frac{1}{x} + x)\frac{1}{x} + 2(-\frac{1}{x^2} - 1) \\
+&amp; = 2(1 - \frac{1}{x^2})\ln x
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\therefore h(x) &gt; 0\)</span>，<span class="math inline">\(h(x)\)</span> 在 <span class="math inline">\((1, e]\)</span> 单调递增，故：</p>
+<p><span class="math display">\[
+h(x)_{max} = h(e) = 2(e + \frac{1}{e}) + 2(\frac{1}{e} - e) = \frac{4}{e}
+\]</span></p>
+<p><span class="math inline">\(\therefore M(a)\)</span> 存在最大值 <span class="math inline">\(\frac{4}{e}\)</span>。</p>
+<p>答：<span class="math inline">\(M(a)\)</span> 存在最大值 <span class="math inline">\(\frac{4}{e}\)</span>。</p>
+<p>这道题乍一看可能会使人懵逼… 然而其精巧之处在于 <span class="math inline">\(a &gt; 2\)</span> 时 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,+\infty)\)</span> 都一定有且只有一个极值点（由韦达定理可很方便地看出），这样便极大地简化了这道题的求解。不妨设两个极值点分别为 <span class="math inline">\(m,n\)</span>，<span class="math inline">\(M(a)\)</span> 的最大值无非就是 <span class="math inline">\(f(n) - f(m)\)</span>，再加之利用韦达定理可以轻松消去其中一者，单一变量的函数就这么构建出来了。剩下的就是求导和 enjoy 了。</p>
+</div>
+</div>
+<div id="小结" class="section level1">
+<h1>小结</h1>
+<p>好的，“两点”问题的几种方法我们也算是总结完了（我的年龄和所在学校也暴露完了😂）。</p>
+<p>回顾这 7 道题，我们再次感受到解决此类“两点”问题的核心即在于<strong>构建单一变量的新函数</strong>。而构造单一变量的方法无非如下两种：</p>
+<ul>
+<li>构造新变量（通常为<span class="math inline">\(\frac{x_1}{x_2}\)</span>）</li>
+<li>消去旧变量</li>
+</ul>
+<p>而利用隐含条件借助构造新变量的方法往往有：</p>
+<ul>
+<li>利用零点、极值定义</li>
+<li>利用韦达定理</li>
+<li>直接构造</li>
+</ul>
+<p>消去旧变量的方法往往有：</p>
+<ul>
+<li>构造新函数，利用新函数单调性</li>
+<li>变换待证明的不等式，利用现有函数单调性</li>
+<li>利用韦达定理消去一个变量</li>
+</ul>
+<p>另外，遇到不容易消去单个旧变量是不妨将它们整体代换或放缩为含另一参数的式子（如第 6 题）。</p>
+<p>目前而言我还暂没有发现用以上几点思路无法解决的“两点”问题，欢迎路过的学霸君提出建议或异议。</p>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/calculus">Calculus</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6046 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-03-21 16:32 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>高考导数: 优化函数以方便求解</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="2"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

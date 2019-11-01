@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="数论函数与狄利克雷卷积">
+<meta itemprop="description" content="简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有">
+
+
+<meta itemprop="datePublished" content="2019-08-06T13:18:39&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-06T13:18:39&#43;08:00" />
+<meta itemprop="wordCount" content="2419">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Abstract Algebra,Arithmetic Function,Dirichlet Convolution," />
+<meta property="og:title" content="数论函数与狄利克雷卷积" />
+<meta property="og:description" content="简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2019-08-06T13:18:39+08:00" />
+<meta property="article:modified_time" content="2019-08-06T13:18:39+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="数论函数与狄利克雷卷积"/>
+<meta name="twitter:description" content="简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>数论函数与狄利克雷卷积</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.1f7c57ad9a01da9a34eeb1ed112228ba5909326e20ffa3584467a3b131a8d352.css" integrity="sha256-H3xXrZoB2po07rHtESIoulkJMm4g/6NYRGejsTGo01I=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 6, 2019</span></div>
+				<h1>数论函数与狄利克雷卷积</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#狄利克雷卷积">狄利克雷卷积</a><ul>
+<li><a href="#定义">定义</a></li>
+<li><a href="#构造一个环">构造一个环</a></li>
+<li><a href="#有趣的性质">有趣的性质</a></li>
+<li><a href="#再谈莫比乌斯反演">再谈莫比乌斯反演？</a></li>
+</ul></li>
+<li><a href="#杜教筛">杜教筛</a><ul>
+<li><a href="#构造">构造？</a></li>
+<li><a href="#应用">应用</a></li>
+</ul></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有趣数论函数前缀和筛法（江湖人称 “杜教筛”）。</p>
+</div>
+<div id="狄利克雷卷积" class="section level1">
+<h1>狄利克雷卷积</h1>
+<p>前面的博文中我们从初等数论的角度初步领略了莫比乌斯反演，是不是感觉推导有一些小复杂…… 但是，如果我们从抽象代数的角度来对其进行研究，就会发现反演这一公式自然而又优雅。</p>
+<div id="定义" class="section level2">
+<h2>定义</h2>
+<p>我们研究的对象是诸如欧拉函数 <span class="math inline">\(\varphi\)</span>、莫比乌斯函数 <span class="math inline">\(\mu\)</span> 等等的<em>数论函数 (arithmetic function)</em>。在此我们不妨把数论函数定义为 <span class="math inline">\(\mathbb{Z}_{+} \longmapsto \mathbb{C}\)</span> 的函数（正整数集合映射至复数集）。</p>
+<p><strong>定义</strong>： 对于数论函数 <span class="math inline">\(f, g\)</span>，定义其 <em>狄利克雷卷积 (Dirichlet convolution)</em>：</p>
+<p><span class="math display">\[
+(f \cdot g)(n) = \sum\limits_{d \mid n} f(d)g(\frac{n}{d})
+\]</span></p>
+<p>注：后文常把 <span class="math inline">\((f \cdot g)(n)\)</span> 简写为 <span class="math inline">\(f \cdot g\)</span>。</p>
+</div>
+<div id="构造一个环" class="section level2">
+<h2>构造一个环</h2>
+<p><strong>定理</strong>：记 <span class="math inline">\(\mathbb{F}\)</span> 为全体数论函数构成的集合，则 <span class="math inline">\(\langle \mathbb{F}, +, \cdot \rangle\)</span> 构成可交换环。其中 <span class="math inline">\(+\)</span> 就是正常的加法，<span class="math inline">\(\cdot\)</span> 则为刚刚提到的卷积（后文中可能会将其称作“乘法”）。</p>
+<p><em>证明</em>：</p>
+<p>首先我们可以列一个证明清单：</p>
+<ol style="list-style-type: decimal">
+<li>运算的封闭性；</li>
+<li><span class="math inline">\(+\)</span>：交换律、结合律；存在零元（零函数 <span class="math inline">\(0(n) = 0\)</span>，简记为 <span class="math inline">\(0\)</span>）、负元；</li>
+<li><span class="math inline">\(\boldsymbol{\cdot}\)</span>：交换律，结合律；存在单位元（元函数 <span class="math inline">\(\epsilon(n) = n\)</span>，简记为 <span class="math inline">\(\epsilon\)</span>）；</li>
+<li><span class="math inline">\(+\)</span> 和 <span class="math inline">\(\cdot\)</span> 间满足分配律。</li>
+</ol>
+<p>第 <span class="math inline">\(1, 2\)</span> 点中的内容较为显然，这里就略去证明了。下面对 <span class="math inline">\(2, 3\)</span> 进行简要证明：</p>
+<ul>
+<li><p>乘法交换律：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f \cdot g &amp; = \sum\limits_{d | n}f(d)g(\frac{n}{d}) \\
+&amp; \text{let } k = \frac{n}{d}, \ \therefore d = \frac{n}{k} \\
+&amp; = \sum\limits_{k \mid n}f(\frac{n}{k})g(k) \\
+&amp; = g \cdot f
+\end{aligned}
+\]</span></p></li>
+<li><p>乘法结合律：</p>
+<p><span class="math display">\[
+\begin{aligned}
+(f \cdot g) \cdot h &amp; = \sum\limits_{t \mid n}\left[\sum\limits_{d \mid t} f(d)g(\frac{t}{d})\right]h(\frac{n}{t}) \\
+&amp; = \sum\limits_{t \mid n}\sum\limits_{d \mid t} f(d)g(\frac{t}{d})h(\frac{n}{t})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+f \cdot (g \cdot h) &amp; = \sum\limits_{d \mid n} f(d) \left[ \sum\limits_{t \mid \frac{n}{d}} g(t)h(\frac{n}{dt}) \right] \\
+&amp; \text{let } T = dt \\
+&amp; = \sum\limits_{d \mid n} f(d) \left[ \sum\limits_{T \mid n} g(\frac{T}{d})h(\frac{n}{T}) \right] \\
+&amp; = \sum\limits_{T \mid n}\sum\limits_{d \mid T} f(d)g(\frac{T}{d})h(\frac{n}{T})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\therefore (f \cdot g) \cdot h = f \cdot (g \cdot h)
+\]</span></p></li>
+<li><p>加法和乘法间的分配律（由于已经证明交换律，因此只证左分配律）：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f \cdot (g + h) &amp; = \sum\limits_{d \mid n} f(d) \left[ g(\frac{n}{d}) + h(\frac{n}{d}) \right] \\
+&amp; = \sum\limits_{d \mid n} f(d)g(\frac{n}{d}) + f(d)h(\frac{n}{d}) \\
+&amp; = f \cdot g + f \cdot h
+\end{aligned}
+\]</span></p></li>
+</ul>
+<p>Voilà! 于是我们便得到了一个可交换环。我们来看看用它能够发现哪些有趣的事情~</p>
+</div>
+<div id="有趣的性质" class="section level2">
+<h2>有趣的性质</h2>
+<p><strong>定义</strong>：若数论函数 <span class="math inline">\(f\)</span> 满足 <span class="math inline">\(f(1) = 1\)</span>，且 <span class="math inline">\(\forall a,b \ \text{ s.t. } \ a \perp b\)</span>（若 <span class="math inline">\(a, b\)</span> 互质）满足 <span class="math inline">\(f(ab) = f(a)f(b)\)</span>，则称 <span class="math inline">\(f\)</span> 为 <em>积性函数 (multiplicative function)</em>。</p>
+<p><strong>定理</strong>：若 <span class="math inline">\(f, g\)</span> 为积性函数，则 <span class="math inline">\(f \cdot g\)</span> 也为积性函数。</p>
+<p><em>证明</em>：</p>
+<p><span class="math inline">\(\forall a, b \in \mathbb{Z}_{+}, \text{ s.t. } a \perp b\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{cases}
+f(ab) &amp; = f(a)f(b) \\
+g(ab) &amp; = g(a)g(b)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+(f \cdot g)(a) (f \cdot g)(b) &amp; = \sum\limits_{t_1 \mid a}f(t_1)g(\frac{a}{t_1})\sum\limits_{t_2 \mid b}f(t_2)g(\frac{b}{t_2}) \\
+&amp; = \sum\limits_{t_1 \mid a}\sum\limits_{t_2 \mid b}f(t_1)f(t_2)g(\frac{a}{t_1})g(\frac{b}{t_2}) \\
+&amp; \because a \perp b, \ \therefore t_1 \perp t_2, \ \frac{a}{t_1} \perp \frac{b}{t_2} \\
+&amp; = \sum\limits_{t_1 \mid a}\sum\limits_{t_2 \mid b}f(t_1t_2)g(\frac{ab}{t_1t_2}) \\
+&amp; \text {let } d = t_1t_2\\
+&amp; = \sum\limits_{d | ab}f(d)g(\frac{ab}{d}) \\
+&amp; = (f \cdot g)(ab)
+\end{aligned}
+\]</span></p>
+<p>对最后一步进行一个补充说明，本质上是 <span class="math inline">\(\sum\limits_{t_1 \mid a}\sum\limits_{t_2 \mid b} 1 = \sum\limits_{t | ab}1\)</span>。不妨令 <span class="math inline">\(t_1\)</span> 的质因子集合为 <span class="math inline">\(S_1\)</span>，<span class="math inline">\(t_2\)</span> 的质因子集合为 <span class="math inline">\(S_2\)</span>，则 <span class="math inline">\(\because t_1 \perp t_2, \ \therefore S_1 \cap S_2 = \Phi\)</span>。因此，<span class="math inline">\(\forall t \mid ab\)</span>，一定存在唯一的 <span class="math inline">\(t_1, t_2\)</span> 满足 <span class="math inline">\(t = t_1t_2\)</span> 且 <span class="math inline">\(t_1 \perp t_2\)</span>（可用反证法容易得证）。</p>
+</div>
+<div id="再谈莫比乌斯反演" class="section level2">
+<h2>再谈莫比乌斯反演？</h2>
+<p>我们再回过头来看看 <span class="math inline">\(\mu\)</span> 的一个重要性质：</p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \mu(d) =
+\begin{cases}
+1 &amp; n = 1\\
+0 &amp; \text{otherwise} \\
+\end{cases}
+\]</span></p>
+<p>如果我们定义一个数论函数 <span class="math inline">\(1(n) = 1\)</span>，并且简记为 <span class="math inline">\(1\)</span>，那么我们可以将这一性质借助狄利克雷卷积表示为（其中 <span class="math inline">\(\epsilon\)</span> 为我们之前定义的单位元）：</p>
+<p><span class="math display">\[
+\mu \cdot 1 = \epsilon
+\]</span></p>
+<p>那么，如果有 <span class="math inline">\(f(n) = \sum\limits_{d \mid n}g(d)\)</span>，即：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f = g \cdot 1 &amp; \Rightarrow f \cdot \mu = g \cdot 1 \cdot \mu \\
+&amp; \Rightarrow f \cdot \mu = g \cdot (1 \cdot \mu) \\
+&amp; \Rightarrow f \cdot \mu = g \cdot (\mu \cdot 1) \\
+&amp; \Rightarrow f \cdot \mu = g \cdot \epsilon \\
+&amp; \Rightarrow f \cdot \mu = g 
+\end{aligned}
+\]</span></p>
+<p>于是我们得到了莫比乌斯反演：</p>
+<p><span class="math display">\[
+g(n) = \sum\limits_{d \mid n}g(d)\mu(\frac{n}{d})
+\]</span></p>
+<p>在引入了数论函数和卷积构成的代数结构后，这一证明看起来无比简单明了、清新自然~</p>
+<hr />
+<p>既然提到了莫比乌斯函数 <span class="math inline">\(\mu\)</span>，我们也不能忘了跟他一样经常出现的好基友欧拉函数 <span class="math inline">\(\varphi\)</span>。我们知道欧拉函数有一个性质：</p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \varphi(d) = n
+\]</span></p>
+<p>我们定义一个数论函数 <span class="math inline">\(N(n) = n\)</span>，并试着将上式表示成狄利克雷卷积？</p>
+<p><span class="math display">\[
+\varphi \cdot 1 = N
+\]</span></p>
+<p>我们试着对其操作一下：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\varphi \cdot 1 = N &amp; \Rightarrow \varphi \cdot 1 \cdot \mu = N \cdot \mu \\
+&amp; \Rightarrow \varphi = N \cdot \mu
+\end{aligned}
+\]</span></p>
+<p>于是我们再次发现了两者之间非同一般的关系：</p>
+<p><span class="math display">\[
+\sum\limits_{d \mid n} \frac{\mu(d)}{d} = \frac{\varphi(n)}{n}
+\]</span></p>
+<hr />
+<p>另外，除数函数也可以用狄利克雷卷积表示：</p>
+<p><span class="math display">\[
+\begin{aligned}
+d(n) = \sum\limits_{d \mid n}1 &amp; \Rightarrow d = 1 \cdot 1 \\ 
+\sigma(n) = \sum\limits_{d \mid n}d &amp; \Rightarrow \sigma = N \cdot 1
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="杜教筛" class="section level1">
+<h1>杜教筛</h1>
+<p>杜教筛之所以有趣，并不是因为其具有怎样的普适性，而是其本身就在于 “构造”。只要能构造出来，我们就可以对特定的积性函数 <span class="math inline">\(f\)</span> 求出其前缀和 <span class="math inline">\(S(n) = \sum\limits_{i = 1}^{n} f(i)\)</span>。</p>
+<div id="构造" class="section level2">
+<h2>构造？</h2>
+<p>构造两个积性函数 <span class="math inline">\(g, h \ \text{ s.t. } h = f \cdot g\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} h(i) &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{d \mid i} f(d)g(\frac{i}{d}) \\
+&amp; = \sum\limits_{d = 1}^{n} g(d) \sum\limits_{d \mid i} f(\frac{i}{d}) \\
+&amp; = \sum\limits_{d = 1}^{n} g(d) \sum\limits_{i = 1}^{\left\lfloor \frac{n}{d} \right\rfloor} f(i) \\
+&amp; = \sum\limits_{d = 1}^{n}g(d) S(\left\lfloor \frac{n}{d} \right\rfloor)
+\end{aligned}
+\]</span></p>
+<p>整理一下可得：</p>
+<p><span class="math display">\[
+g(1)S(n) = \sum\limits_{i = 1}^{n}h(i) - \sum\limits_{d = 2}^{n} g(d)S(\left\lfloor\frac{n}{d}\right\rfloor)
+\]</span></p>
+<p>这就是杜教筛的本体。换句话说，只要我们构造出的 <span class="math inline">\(\sum\limits_{i = 1}^{n}h(i)\)</span> 是可以 <span class="math inline">\(\mathcal{O}(1)\)</span> 求得的，那么结合适当的预处理和记忆化（预处理规模 <span class="math inline">\(\mathcal{O}(n ^ \frac{2}{3})\)</span>），我们可以用 <span class="math inline">\(\mathcal{O}(n ^ \frac{2}{3})\)</span> 的复杂度计算出 <span class="math inline">\(S(n)\)</span>。</p>
+<p>更具体地说，即我们应当先用线性筛预处理出前 <span class="math inline">\(\mathcal{O}(n ^ \frac{2}{3})\)</span> 左右的前缀和，然后对于大于这一阈值的前缀和递归求解。同时，每当求出一个值我们将其记忆化在哈希表里以加速未来的运算。</p>
+<p>对于这一筛法复杂度的详细证明大家可以参考这篇博文：<a href="https://blog.csdn.net/Ike940067893/article/details/84781307">杜教筛时间复杂度证明 - _Ark</a></p>
+</div>
+<div id="应用" class="section level2">
+<h2>应用</h2>
+<p>下面我们来看几点应用，感受一下杜教筛的魅力所在~</p>
+<ul>
+<li><p><span class="math inline">\(f(i) = \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} \varphi(i)\)</span>：</p>
+<p>由 <span class="math inline">\(\varphi \cdot 1 = N\)</span> （对应 <span class="math inline">\(f \cdot g = h\)</span>）：
+<span class="math display">\[
+S(n) = \sum\limits_{i = 1}^{n}i - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+<li><p><span class="math inline">\(f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)\)</span>：</p>
+<p>由 <span class="math inline">\(\mu \cdot 1 = e\)</span>（对应 <span class="math inline">\(f \cdot g = h\)</span>）：</p>
+<p><span class="math display">\[
+S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+\]</span></p></li>
+<li><p><span class="math inline">\(f(i) = i \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i \varphi(i)\)</span>：</p>
+<p><span class="math display">\[
+ \begin{aligned}
+ h= f \cdot g &amp; = \sum\limits_{d \mid n}f(d)g(\frac{n }{d}) \\
+ &amp; = \sum\limits_{d \mid n} d \varphi(d)g(\frac{n}{d}) \\
+ &amp; \text{let } g = N \\ 
+ &amp; = n\sum\limits_{d \mid n}\varphi(d) \\
+ &amp; = n^2
+ \end{aligned}
+ \]</span></p>
+<p><span class="math display">\[
+ S(n) = \sum\limits_{i = 1}^{n}i^2 - \sum\limits_{d = 2}^{n} dS(\left\lfloor \frac{n}{d} \right\rfloor)
+ \]</span></p></li>
+<li><p><span class="math inline">\(f(i) = i^2 \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i^2 \varphi(i)\)</span>：</p>
+<p><span class="math display">\[
+ \begin{aligned}
+ h = f \cdot g &amp; = \sum\limits_{d \mid n} f(d)g(\frac{n}{d}) \\
+ &amp; = \sum\limits_{d \mid n}d^2\varphi(d)g(\frac{n}{d}) \\
+ &amp; \text{let } g = N^2 \\
+ &amp; = n^2\sum\limits_{d \mid n} \varphi(d) \\
+ &amp; = n^3
+ \end{aligned}
+ \]</span></p>
+<p><span class="math display">\[
+ S(n) = \sum\limits_{i = 1}^{n}i^3 - \sum\limits_{d = 2}^{n}d^2S(\left\lfloor \frac{n}{d} \right\rfloor)
+ \]</span></p></li>
+</ul>
+<p>至于具体的代码，大家可以去试试 <a href="https://www.luogu.org/problem/P4213">洛谷 P4213: 杜教筛 (Sum)</a>，顺便提供 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4213/arithmetic_function.cpp">我的代码</a> 供参考。</p>
+<p>完结撒花~</p>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Dirichlet_convolution">Dirichlet convolution - Wikipedia</a></li>
+<li><a href="https://hanano-yuuki.github.io/2018/08/14/Dirichlet-convolution">狄利克雷卷积 - Hanano</a></li>
+<li><a href="https://www.cnblogs.com/peng-ym/p/9446555.html">杜教筛 - peng_ym</a></li>
+<li><a href="https://blog.csdn.net/Ike940067893/article/details/84781307">杜教筛时间复杂度证明 - _Ark</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/abstract-algebra">Abstract Algebra</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/arithmetic-function">Arithmetic Function</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/dirichlet-convolution">Dirichlet Convolution</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2419 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-08-06 13:18 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2019/10/hello-world/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Hello World... Again!</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈离线分治算法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="71"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>
