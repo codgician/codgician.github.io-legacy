@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2019-11-07T15:42:13&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-07T15:42:13&#43;08:00" />
-<meta itemprop="wordCount" content="12399">
+<meta itemprop="wordCount" content="12527">
 
 
 
@@ -151,7 +151,6 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 
 <div id="TOC">
 <ul>
-<li><a href="#math">Math</a><ul>
 <li><a href="#龟速乘-快速幂">龟速乘 / 快速幂</a></li>
 <li><a href="#线性递推式">线性递推式</a><ul>
 <li><a href="#矩阵快速幂">矩阵快速幂</a></li>
@@ -160,13 +159,36 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#数论分块">数论分块</a></li>
 <li><a href="#素数">素数</a></li>
 <li><a href="#数论函数">数论函数</a><ul>
-<li><a href="#欧拉函数-varphin">欧拉函数 <span class="math inline">\(\varphi(n)\)</span></a></li>
-<li><a href="#莫比乌斯函数">莫比乌斯函数</a></li>
-<li><a href="#约数个数-dn">约数个数 <span class="math inline">\(d(n)\)</span></a></li>
-<li><a href="#约数和-sigman">约数和 <span class="math inline">\(\sigma(n)\)</span></a></li>
+<li><a href="#欧拉函数-varphin">欧拉函数 <span class="math inline">\(\varphi(n)\)</span></a><ul>
+<li><a href="#朴素">朴素</a></li>
+<li><a href="#线性筛">线性筛</a></li>
+<li><a href="#性质欧拉反演基础">性质（欧拉反演基础）</a></li>
+</ul></li>
+<li><a href="#莫比乌斯函数">莫比乌斯函数</a><ul>
+<li><a href="#朴素-1">朴素</a></li>
+<li><a href="#线性筛-1">线性筛</a></li>
+<li><a href="#性质莫比乌斯反演基础">性质（莫比乌斯反演基础）</a></li>
+<li><a href="#反演">反演</a></li>
+</ul></li>
+<li><a href="#约数个数-dn">约数个数 <span class="math inline">\(d(n)\)</span></a><ul>
+<li><a href="#相关套路">相关套路</a></li>
+<li><a href="#线性筛-2">线性筛</a></li>
+</ul></li>
+<li><a href="#约数和-sigman">约数和 <span class="math inline">\(\sigma(n)\)</span></a><ul>
+<li><a href="#线性筛-3">线性筛</a></li>
+</ul></li>
 <li><a href="#狄利克雷卷积">狄利克雷卷积</a></li>
-<li><a href="#杜教筛">杜教筛</a></li>
-<li><a href="#min25-筛">min25 筛</a></li>
+<li><a href="#杜教筛">杜教筛</a><ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#常见应用">常见应用</a></li>
+</ul></li>
+<li><a href="#min25-筛">min25 筛</a><ul>
+<li><a href="#核心思想">核心思想</a></li>
+<li><a href="#筛质数答案">筛质数答案</a></li>
+<li><a href="#筛合数答案">筛合数答案</a></li>
+<li><a href="#代码">代码</a></li>
+<li><a href="#灵活变化">灵活变化</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#乱搞套路">乱搞套路</a></li>
 <li><a href="#逆元-n-1-pmod-p">逆元 <span class="math inline">\(n^{-1} \pmod p\)</span></a><ul>
@@ -176,15 +198,32 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#阶乘逆元-n-1">阶乘逆元 <span class="math inline">\((n!)^{-1}\)</span></a></li>
 </ul></li>
 <li><a href="#组合数">组合数</a><ul>
-<li><a href="#简介与计算">简介与计算</a></li>
-<li><a href="#性质">性质</a></li>
-<li><a href="#lucas-定理">Lucas 定理</a></li>
+<li><a href="#简介与计算">简介与计算</a><ul>
+<li><a href="#递推预处理">递推预处理</a></li>
+<li><a href="#取模意义下-mathcalo1">取模意义下: <span class="math inline">\(\mathcal{O}(1)\)</span></a></li>
+<li><a href="#朴素-mathcalonlogn">朴素: <span class="math inline">\(\mathcal{O}(n\log{n})\)</span></a></li>
 </ul></li>
-<li><a href="#高斯二项式系数">高斯二项式系数</a></li>
+<li><a href="#性质">性质</a></li>
+<li><a href="#lucas-定理">Lucas 定理</a><ul>
+<li><a href="#质数">质数</a></li>
+<li><a href="#非质数">非质数</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#高斯二项式系数">高斯二项式系数</a><ul>
+<li><a href="#简介与计算-1">简介与计算</a></li>
+<li><a href="#性质-1">性质</a></li>
+</ul></li>
 <li><a href="#类欧几里得">类欧几里得</a><ul>
-<li><a href="#常见形式">常见形式</a></li>
+<li><a href="#常见形式">常见形式</a><ul>
+<li><a href="#形式">形式</a></li>
+<li><a href="#结论">结论</a></li>
+<li><a href="#代码-1">代码</a></li>
+</ul></li>
 <li><a href="#bzoj---3817">BZOJ - 3817</a></li>
-<li><a href="#bzoj---2187">BZOJ - 2187</a></li>
+<li><a href="#bzoj---2187">BZOJ - 2187</a><ul>
+<li><a href="#分析">分析</a></li>
+<li><a href="#代码-2">代码</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#一次同余">一次同余</a><ul>
 <li><a href="#拓展欧几里得-1">拓展欧几里得</a></li>
@@ -200,13 +239,22 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#pohlighellman-算法">Pohlig–Hellman 算法</a></li>
 </ul></li>
 <li><a href="#多项式">多项式</a><ul>
-<li><a href="#卷积">卷积</a></li>
-<li><a href="#插值">插值</a></li>
+<li><a href="#卷积">卷积</a><ul>
+<li><a href="#fft">FFT</a></li>
+<li><a href="#ntt">NTT</a></li>
+</ul></li>
+<li><a href="#插值">插值</a><ul>
+<li><a href="#拉格朗日插值">拉格朗日插值</a></li>
+<li><a href="#牛顿插值">牛顿插值</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#数位-dp">数位 DP</a></li>
 <li><a href="#置换群">置换群</a><ul>
 <li><a href="#burnside-定理">Burnside 定理</a></li>
-<li><a href="#pólya-定理">Pólya 定理</a></li>
+<li><a href="#pólya-定理">Pólya 定理</a><ul>
+<li><a href="#例1环">例1：环</a></li>
+<li><a href="#例2正方形">例2：正方形</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#高斯整数">高斯整数</a></li>
 <li><a href="#自适应辛普森积分">自适应辛普森积分</a></li>
@@ -219,14 +267,11 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#费马平方和定理">费马平方和定理</a></li>
 <li><a href="#快速计算-2x---1-bmod-2k">快速计算 <span class="math inline">\((2x - 1)!! \bmod 2^k\)</span></a></li>
 </ul></li>
-</ul></li>
 </ul>
 </div>
 
-<div id="math" class="section level1">
-<h1>Math</h1>
-<div id="龟速乘-快速幂" class="section level2">
-<h2>龟速乘 / 快速幂</h2>
+<div id="龟速乘-快速幂" class="section level1">
+<h1>龟速乘 / 快速幂</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> fastMul(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">0</span>; a %= mod;</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">while</span> (n &gt; <span class="dv">0</span>) {</span>
@@ -246,10 +291,10 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <span id="cb1-17"><a href="#cb1-17"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb1-18"><a href="#cb1-18"></a>}</span></code></pre></div>
 </div>
-<div id="线性递推式" class="section level2">
-<h2>线性递推式</h2>
-<div id="矩阵快速幂" class="section level3">
-<h3>矩阵快速幂</h3>
+<div id="线性递推式" class="section level1">
+<h1>线性递推式</h1>
+<div id="矩阵快速幂" class="section level2">
+<h2>矩阵快速幂</h2>
 <p>可以构造矩阵来加速线性递推式第 <span class="math inline">\(n\)</span> 项的计算。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> Matrix {</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">public</span>:</span>
@@ -304,8 +349,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <span id="cb2-51"><a href="#cb2-51"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb2-52"><a href="#cb2-52"></a>}</span></code></pre></div>
 </div>
-<div id="特征方程求通项公式" class="section level3">
-<h3>特征方程求通项公式</h3>
+<div id="特征方程求通项公式" class="section level2">
+<h2>特征方程求通项公式</h2>
 <p>如果是在模 <span class="math inline">\(p\)</span> 意义下求第 <span class="math inline">\(n\)</span> 项的值，且通项公式中无理数或复数均可用二次剩余代替时可考虑直接公式求解。</p>
 <p>这里只讨论如下二阶线性递推式：</p>
 <p><span class="math display">\[
@@ -334,8 +379,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <p>代入 <span class="math inline">\(f_0 = a, \ f_1 = b\)</span> 即可得到通项公式。</p>
 </div>
 </div>
-<div id="数论分块" class="section level2">
-<h2>数论分块</h2>
+<div id="数论分块" class="section level1">
+<h1>数论分块</h1>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">// just n</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="cf">for</span> (<span class="dt">int</span> l = <span class="dv">1</span>, r; l &lt;= n; l = r + <span class="dv">1</span>) {</span>
 <span id="cb3-3"><a href="#cb3-3"></a>    r = n / (n / l);</span>
@@ -349,8 +394,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb3-11"><a href="#cb3-11"></a>    <span class="co">// Range: [l, r]</span></span>
 <span id="cb3-12"><a href="#cb3-12"></a>}</span></code></pre></div>
 </div>
-<div id="素数" class="section level2">
-<h2>素数</h2>
+<div id="素数" class="section level1">
+<h1>素数</h1>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">// Variant #1</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], primesPt;</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="dt">void</span> initPrimes() {</span>
@@ -386,16 +431,16 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb4-33"><a href="#cb4-33"></a>}</span></code></pre></div>
 <p><strong>拓展</strong>：<span class="math inline">\(\text{minFac}(x)\)</span> 记录 <span class="math inline">\(x\)</span> 的最小质因子，所以如果我们要对所有数快速分解质因子，那么一直除它的最小质因子就好了。</p>
 </div>
-<div id="数论函数" class="section level2">
-<h2>数论函数</h2>
+<div id="数论函数" class="section level1">
+<h1>数论函数</h1>
 <p><strong>注</strong>：以下默认 <span class="math inline">\(n = \prod\limits_{i = 1}^{k} p_i^{e_i}\)</span>，其中 <span class="math inline">\(p_i \in \text{PRIMES}\)</span>（<span class="math inline">\(n \geq 2\)</span>）。</p>
-<div id="欧拉函数-varphin" class="section level3">
-<h3>欧拉函数 <span class="math inline">\(\varphi(n)\)</span></h3>
+<div id="欧拉函数-varphin" class="section level2">
+<h2>欧拉函数 <span class="math inline">\(\varphi(n)\)</span></h2>
 <p><span class="math display">\[
 \varphi(n) = n\prod\limits_{i = 1}^{k}(1 - \frac{1}{p_i})
 \]</span></p>
-<div id="朴素" class="section level4">
-<h4>朴素</h4>
+<div id="朴素" class="section level3">
+<h3>朴素</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> phi(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num) {</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = num;</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; <span class="dv">1</span><span class="bu">ll</span> * i * i &lt;= num; i++) {</span>
@@ -410,8 +455,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb5-12"><a href="#cb5-12"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb5-13"><a href="#cb5-13"></a>}</span></code></pre></div>
 </div>
-<div id="线性筛" class="section level4">
-<h4>线性筛</h4>
+<div id="线性筛" class="section level3">
+<h3>线性筛</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">int</span> minFac[SIZE], primes[SIZE], phi[SIZE], primesPt;</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="dt">void</span> initPhi() {</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
@@ -432,8 +477,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb6-18"><a href="#cb6-18"></a>    }</span>
 <span id="cb6-19"><a href="#cb6-19"></a>}</span></code></pre></div>
 </div>
-<div id="性质欧拉反演基础" class="section level4">
-<h4>性质（欧拉反演基础）</h4>
+<div id="性质欧拉反演基础" class="section level3">
+<h3>性质（欧拉反演基础）</h3>
 <p><span class="math display">\[
 \varphi(ij) = \frac{\varphi(i)\varphi(j)\gcd(i, j)}{\varphi(\gcd(i, j))}
 \]</span></p>
@@ -445,8 +490,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 \]</span></p>
 </div>
 </div>
-<div id="莫比乌斯函数" class="section level3">
-<h3>莫比乌斯函数</h3>
+<div id="莫比乌斯函数" class="section level2">
+<h2>莫比乌斯函数</h2>
 <p><span class="math display">\[
 \mu(n) =
 \begin{cases}
@@ -455,8 +500,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 (-1)^k &amp; \text{otherwise}
 \end{cases}
 \]</span></p>
-<div id="朴素-1" class="section level4">
-<h4>朴素</h4>
+<div id="朴素-1" class="section level3">
+<h3>朴素</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">int</span> mu(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> num) {</span>
 <span id="cb7-2"><a href="#cb7-2"></a>    <span class="dt">int</span> ret = <span class="dv">1</span>;</span>
 <span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>; <span class="dv">1</span><span class="bu">ll</span> * i * i &lt;= num; i++) {</span>
@@ -471,8 +516,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb7-12"><a href="#cb7-12"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb7-13"><a href="#cb7-13"></a>}</span></code></pre></div>
 </div>
-<div id="线性筛-1" class="section level4">
-<h4>线性筛</h4>
+<div id="线性筛-1" class="section level3">
+<h3>线性筛</h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">int</span> minFac[SIZE], primes[SIZE], mu[SIZE], primesPt;</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="dt">void</span> initMu() {</span>
 <span id="cb8-3"><a href="#cb8-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
@@ -495,8 +540,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 <span id="cb8-20"><a href="#cb8-20"></a>    }</span>
 <span id="cb8-21"><a href="#cb8-21"></a>}</span></code></pre></div>
 </div>
-<div id="性质莫比乌斯反演基础" class="section level4">
-<h4>性质（莫比乌斯反演基础）</h4>
+<div id="性质莫比乌斯反演基础" class="section level3">
+<h3>性质（莫比乌斯反演基础）</h3>
 <p><span class="math display">\[
 \sum\limits_{d \mid n} \mu(d) = 
 \begin{cases}
@@ -505,8 +550,8 @@ f_n = c_1{x_1}^n+c_2{x_2}^n
 \end{cases}
 \]</span></p>
 </div>
-<div id="反演" class="section level4">
-<h4>反演</h4>
+<div id="反演" class="section level3">
+<h3>反演</h3>
 <p><span class="math display">\[
 \begin{aligned}
 F(n) &amp; = \sum\limits_{d \mid n}f(d) \Leftrightarrow f(n) = \sum\limits_{d \mid n} \mu(d)F(\frac{n}{d}) \\
@@ -515,13 +560,13 @@ F(n) &amp; = \sum\limits_{n \mid d}f(d) \Leftrightarrow f(n) = \sum\limits_{n \m
 \]</span></p>
 </div>
 </div>
-<div id="约数个数-dn" class="section level3">
-<h3>约数个数 <span class="math inline">\(d(n)\)</span></h3>
+<div id="约数个数-dn" class="section level2">
+<h2>约数个数 <span class="math inline">\(d(n)\)</span></h2>
 <p><span class="math display">\[
 d(n) = \prod\limits_{i = 1}^{k}(e_i + 1)
 \]</span></p>
-<div id="相关套路" class="section level4">
-<h4>相关套路</h4>
+<div id="相关套路" class="section level3">
+<h3>相关套路</h3>
 <p><span class="math display">\[
 \begin{aligned}
 \sum\limits_{i = 1}^{x} d(i) &amp; = \sum\limits_{i = 1}^{x} \left\lfloor \frac{x}{i} \right\rfloor \\
@@ -530,8 +575,8 @@ d(xyz) &amp; = \sum\limits_{i \mid x}\sum\limits_{j \mid y}\sum\limits_{k \mid z
 \end{aligned}
 \]</span></p>
 </div>
-<div id="线性筛-2" class="section level4">
-<h4>线性筛</h4>
+<div id="线性筛-2" class="section level3">
+<h3>线性筛</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], numArr[SIZE], d[SIZE], primesPt;</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="dt">void</span> initD() {</span>
 <span id="cb9-3"><a href="#cb9-3"></a>    memset(minFac, <span class="dv">0</span>, <span class="kw">sizeof</span>(minFac));</span>
@@ -557,13 +602,13 @@ d(xyz) &amp; = \sum\limits_{i \mid x}\sum\limits_{j \mid y}\sum\limits_{k \mid z
 <span id="cb9-23"><a href="#cb9-23"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="约数和-sigman" class="section level3">
-<h3>约数和 <span class="math inline">\(\sigma(n)\)</span></h3>
+<div id="约数和-sigman" class="section level2">
+<h2>约数和 <span class="math inline">\(\sigma(n)\)</span></h2>
 <p><span class="math display">\[
 \sigma(n) = \prod\limits_{i = 1}^{k}\sum\limits_{j = 0}^{e_i}p_i^j
 \]</span></p>
-<div id="线性筛-3" class="section level4">
-<h4>线性筛</h4>
+<div id="线性筛-3" class="section level3">
+<h3>线性筛</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="dt">int</span> primes[SIZE], minFac[SIZE], primesPt;</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> dSum[SIZE], facSqrSum[SIZE];</span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="dt">void</span> initDSum() {</span>
@@ -590,8 +635,8 @@ d(xyz) &amp; = \sum\limits_{i \mid x}\sum\limits_{j \mid y}\sum\limits_{k \mid z
 <span id="cb10-24"><a href="#cb10-24"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="狄利克雷卷积" class="section level3">
-<h3>狄利克雷卷积</h3>
+<div id="狄利克雷卷积" class="section level2">
+<h2>狄利克雷卷积</h2>
 <p>记 <span class="math inline">\(\mathbb{S}\)</span> 代表全体数论函数，则对 <span class="math inline">\(f, g \in \mathbb{S}\)</span>，定义其卷积：</p>
 <p><span class="math display">\[
 (f \cdot g)(n) = \sum\limits_{d \mid n}f(d)g(\frac{n}{d})
@@ -610,10 +655,10 @@ d(xyz) &amp; = \sum\limits_{i \mid x}\sum\limits_{j \mid y}\sum\limits_{k \mid z
 <li>积性函数的卷积仍是积性函数。</li>
 </ul>
 </div>
-<div id="杜教筛" class="section level3">
-<h3>杜教筛</h3>
-<div id="简介" class="section level4">
-<h4>简介</h4>
+<div id="杜教筛" class="section level2">
+<h2>杜教筛</h2>
+<div id="简介" class="section level3">
+<h3>简介</h3>
 <p>构造 <span class="math inline">\(f, g, h \in \mathbb{S}, \text{ s.t. } f \cdot g = h\)</span>，且其中 <span class="math inline">\(\sum{h}\)</span> 可被快速计算。记 <span class="math inline">\(S(n) = \sum\limits_{i = 1}^{n} f(i)\)</span>，则有：</p>
 <p><span class="math display">\[
 g(1)S(n) = \sum\limits_{i = 1}^{n}h(i) - \sum\limits_{d = 2}^{n}g(d)S(\left\lfloor \frac{n}{d} \right\rfloor)
@@ -621,8 +666,8 @@ g(1)S(n) = \sum\limits_{i = 1}^{n}h(i) - \sum\limits_{d = 2}^{n}g(d)S(\left\lflo
 <p>设置阈值 <span class="math inline">\(t\)</span>，若 <span class="math inline">\(n \le t\)</span> 可用线性筛解决，大于阈值的则用上式递归解决。为了加速可将已求得的值放入 Hash Map 中。</p>
 <p><strong>注意</strong>：<span class="math inline">\(f, g, h\)</span> <strong>不一定</strong>是积性函数。</p>
 </div>
-<div id="常见应用" class="section level4">
-<h4>常见应用</h4>
+<div id="常见应用" class="section level3">
+<h3>常见应用</h3>
 <ul>
 <li><p><span class="math inline">\(f(i) = \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} \varphi(i)\)</span>：</p>
 <p>由 <span class="math inline">\(\varphi \cdot 1 = N\)</span> （对应 <span class="math inline">\(f \cdot g = h\)</span>）：
@@ -664,10 +709,10 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 <p>预处理 <span class="math inline">\(\mathcal{O}(n^\frac{2}{3})\)</span> 左右的数据则复杂度 <span class="math inline">\(\mathcal{O}(n^{\frac{2}{3}})\)</span>；若不预处理是 <span class="math inline">\(\mathcal{O}(n^\frac{3}{4})\)</span>？要记忆化！</p>
 </div>
 </div>
-<div id="min25-筛" class="section level3">
-<h3>min25 筛</h3>
-<div id="核心思想" class="section level4">
-<h4>核心思想</h4>
+<div id="min25-筛" class="section level2">
+<h2>min25 筛</h2>
+<div id="核心思想" class="section level3">
+<h3>核心思想</h3>
 <p>下文默认记 <span class="math inline">\(\mathbb{P}\)</span> 为素数集，<span class="math inline">\(P_i\)</span> 代表其中第 <span class="math inline">\(i\)</span> 大的素数并默认 <span class="math inline">\(p \in \mathbb{P}\)</span>。若函数 <span class="math inline">\(f(x)\)</span> 满足：</p>
 <ul>
 <li><span class="math inline">\(f(p)\)</span> 为多项式；</li>
@@ -683,8 +728,8 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 \]</span></p>
 <p><strong>注</strong>：上面提到的限制条件是充分不必要条件。</p>
 </div>
-<div id="筛质数答案" class="section level4">
-<h4>筛质数答案</h4>
+<div id="筛质数答案" class="section level3">
+<h3>筛质数答案</h3>
 <p>考虑筛出不大于 <span class="math inline">\(\sqrt{n}\)</span> 的所有素数作为 <span class="math inline">\(\mathbb{P}\)</span>。记 <span class="math inline">\(minp(x)\)</span> 代表 <span class="math inline">\(x\)</span> 的最小质因子，令：</p>
 <p><span class="math display">\[
 g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in \mathbb{P} \text{ or } minp(i) &gt; P_j \right] f(i)
@@ -703,8 +748,8 @@ g(n, j - 1) &amp; \text{otherwise}
 \]</span></p>
 <p>对于初值，有 <span class="math inline">\(g(n, 0) = \sum\limits_{i = 2}^{n}f(i)\)</span>。在实现时第一维可以滚动以节约空间。</p>
 </div>
-<div id="筛合数答案" class="section level4">
-<h4>筛合数答案</h4>
+<div id="筛合数答案" class="section level3">
+<h3>筛合数答案</h3>
 <p>令：</p>
 <p><span class="math display">\[
 s(n, j) = \sum\limits_{i = 2}^{n} \left[ minp(i) \ge P_j \right] f(i)
@@ -722,8 +767,8 @@ s(n, j) &amp; = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i
 \]</span></p>
 <p>直接递归搜即可，不需要记忆化复杂度也是对的（<del>证明不来</del>），如果有多个状态可以考虑开个结构体一起转移。</p>
 </div>
-<div id="代码" class="section level4">
-<h4>代码</h4>
+<div id="代码" class="section level3">
+<h3>代码</h3>
 <p>【洛谷模板】积性函数： <span class="math inline">\(f(p^e) = p^e (p^e - 1)\)</span></p>
 <p>注：<code>SIZE</code> 应设置为 <span class="math inline">\(2\sqrt{n}\)</span> 左右。</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
@@ -830,10 +875,10 @@ s(n, j) &amp; = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i
 <span id="cb11-102"><a href="#cb11-102"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb11-103"><a href="#cb11-103"></a>}</span></code></pre></div>
 </div>
-<div id="灵活变化" class="section level4">
-<h4>灵活变化</h4>
-<div id="fp-是分段函数" class="section level5">
-<h5><span class="math inline">\(f(p)\)</span> 是分段函数？</h5>
+<div id="灵活变化" class="section level3">
+<h3>灵活变化</h3>
+<div id="fp-是分段函数" class="section level4">
+<h4><span class="math inline">\(f(p)\)</span> 是分段函数？</h4>
 <p>Nowcoder 887K</p>
 <p><span class="math display">\[
 f(p^k) = 
@@ -857,8 +902,8 @@ i \equiv 3 \pmod 4 &amp; k = 1
 状态转移是根据余数再分别进行转移即可；对于 <span class="math inline">\(s\)</span> 最后不能忘记考虑 <span class="math inline">\(2\)</span>。</li>
 </ul>
 </div>
-<div id="f-不是积性函数" class="section level5">
-<h5><span class="math inline">\(f\)</span> 不是积性函数？</h5>
+<div id="f-不是积性函数" class="section level4">
+<h4><span class="math inline">\(f\)</span> 不是积性函数？</h4>
 <p>对于最后一条限制，其实只要待筛函数 <span class="math inline">\(f\)</span> 能够在对 <span class="math inline">\(s, g\)</span> 进行转移时被正确处理就可以了。</p>
 <p>即，若记 <span class="math inline">\(h = \sum f(a_i)\)</span>，且 <span class="math inline">\(\forall i, \ p \not\mid a_i\)</span>，若能快速计算出 <span class="math inline">\(h&#39; = \sum f(a_ip)\)</span>，则一般可用 min25 筛出答案。</p>
 <p>例子：<span class="math inline">\(f(ab) = f(a) + f(b)\)</span>。</p>
@@ -866,8 +911,8 @@ i \equiv 3 \pmod 4 &amp; k = 1
 </div>
 </div>
 </div>
-<div id="乱搞套路" class="section level2">
-<h2>乱搞套路</h2>
+<div id="乱搞套路" class="section level1">
+<h1>乱搞套路</h1>
 <p><span class="math display">\[
 f(n) = \sum\limits_{d \mid n} g(d)
 \]</span></p>
@@ -907,25 +952,25 @@ f(n) = \sum\limits_{d \mid n} g(d)
 \]</span></p></li>
 </ol>
 </div>
-<div id="逆元-n-1-pmod-p" class="section level2">
-<h2>逆元 <span class="math inline">\(n^{-1} \pmod p\)</span></h2>
-<div id="欧拉定理" class="section level3">
-<h3>欧拉定理</h3>
+<div id="逆元-n-1-pmod-p" class="section level1">
+<h1>逆元 <span class="math inline">\(n^{-1} \pmod p\)</span></h1>
+<div id="欧拉定理" class="section level2">
+<h2>欧拉定理</h2>
 <p>当 <span class="math inline">\(\gcd(a, p) = 1\)</span> 时有：
 <span class="math display">\[
 a^{\varphi(p)} \equiv 1 \pmod p
 \]</span></p>
 </div>
-<div id="拓展欧几里得" class="section level3">
-<h3>拓展欧几里得</h3>
+<div id="拓展欧几里得" class="section level2">
+<h2>拓展欧几里得</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> inv(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mod) {</span>
 <span id="cb13-2"><a href="#cb13-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> x, y;</span>
 <span id="cb13-3"><a href="#cb13-3"></a>    extEuclid(a, mod, x, y);</span>
 <span id="cb13-4"><a href="#cb13-4"></a>    <span class="cf">return</span> (x + mod) % mod;</span>
 <span id="cb13-5"><a href="#cb13-5"></a>}</span></code></pre></div>
 </div>
-<div id="线性预处理" class="section level3">
-<h3>线性预处理</h3>
+<div id="线性预处理" class="section level2">
+<h2>线性预处理</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> invs[SIZE];</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="dt">void</span> initInv() {</span>
 <span id="cb14-3"><a href="#cb14-3"></a>    invs[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
@@ -933,8 +978,8 @@ a^{\varphi(p)} \equiv 1 \pmod p
 <span id="cb14-5"><a href="#cb14-5"></a>        invs[i] = (mod - mod / i) * invs[mod % i] % mod;</span>
 <span id="cb14-6"><a href="#cb14-6"></a>}</span></code></pre></div>
 </div>
-<div id="阶乘逆元-n-1" class="section level3">
-<h3>阶乘逆元 <span class="math inline">\((n!)^{-1}\)</span></h3>
+<div id="阶乘逆元-n-1" class="section level2">
+<h2>阶乘逆元 <span class="math inline">\((n!)^{-1}\)</span></h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> invFactorials[SIZE];</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="dt">void</span> initInvFactorial() {</span>
 <span id="cb15-3"><a href="#cb15-3"></a>    invFactorials[SIZE - <span class="dv">1</span>] = fastPow(factorials[SIZE - <span class="dv">1</span>], mod - <span class="dv">2</span>);</span>
@@ -944,15 +989,15 @@ a^{\varphi(p)} \equiv 1 \pmod p
 <span id="cb15-7"><a href="#cb15-7"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="组合数" class="section level2">
-<h2>组合数</h2>
-<div id="简介与计算" class="section level3">
-<h3>简介与计算</h3>
+<div id="组合数" class="section level1">
+<h1>组合数</h1>
+<div id="简介与计算" class="section level2">
+<h2>简介与计算</h2>
 <p><span class="math display">\[
 \binom{n}{m} = \frac{n!}{m! (n - m)!} \quad (0 \le m \le n)
 \]</span></p>
-<div id="递推预处理" class="section level4">
-<h4>递推预处理</h4>
+<div id="递推预处理" class="section level3">
+<h3>递推预处理</h3>
 <p><span class="math display">\[
 \binom{n}{m} = \binom{n - 1}{m - 1} + \binom{n - 1}{m}
 \]</span></p>
@@ -965,8 +1010,8 @@ a^{\varphi(p)} \equiv 1 \pmod p
 <span id="cb16-7"><a href="#cb16-7"></a>    }</span>
 <span id="cb16-8"><a href="#cb16-8"></a>}</span></code></pre></div>
 </div>
-<div id="取模意义下-mathcalo1" class="section level4">
-<h4>取模意义下: <span class="math inline">\(\mathcal{O}(1)\)</span></h4>
+<div id="取模意义下-mathcalo1" class="section level3">
+<h3>取模意义下: <span class="math inline">\(\mathcal{O}(1)\)</span></h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> binom(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
 <span id="cb17-2"><a href="#cb17-2"></a>    <span class="cf">return</span> m &gt; n ? <span class="dv">0</span> : factorial[n] * invFactorial[m] % mod * invFactorial[n - m] % mod;</span>
 <span id="cb17-3"><a href="#cb17-3"></a>}</span>
@@ -974,8 +1019,8 @@ a^{\varphi(p)} \equiv 1 \pmod p
 <span id="cb17-5"><a href="#cb17-5"></a>    <span class="cf">return</span> m &gt; n ? <span class="dv">0</span> : factorials[n] * invFactorials[n - m] % mod;</span>
 <span id="cb17-6"><a href="#cb17-6"></a>}</span></code></pre></div>
 </div>
-<div id="朴素-mathcalonlogn" class="section level4">
-<h4>朴素: <span class="math inline">\(\mathcal{O}(n\log{n})\)</span></h4>
+<div id="朴素-mathcalonlogn" class="section level3">
+<h3>朴素: <span class="math inline">\(\mathcal{O}(n\log{n})\)</span></h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> binom(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
 <span id="cb18-2"><a href="#cb18-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ret = <span class="dv">1</span>;</span>
 <span id="cb18-3"><a href="#cb18-3"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; i++) {</span>
@@ -986,8 +1031,8 @@ a^{\varphi(p)} \equiv 1 \pmod p
 <span id="cb18-8"><a href="#cb18-8"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="性质" class="section level3">
-<h3>性质</h3>
+<div id="性质" class="section level2">
+<h2>性质</h2>
 <p><span class="math display">\[
 m \cdot \binom{n}{m} = n \cdot \binom{n - 1}{m - 1}
 \]</span></p>
@@ -1004,19 +1049,19 @@ m \cdot \binom{n}{m} = n \cdot \binom{n - 1}{m - 1}
 \sum\limits_{i = 0}^{n} \binom{m + i}{m} = \binom{m + n + 1}{m + 1}
 \]</span></p>
 </div>
-<div id="lucas-定理" class="section level3">
-<h3>Lucas 定理</h3>
+<div id="lucas-定理" class="section level2">
+<h2>Lucas 定理</h2>
 <p><span class="math display">\[
 \binom{n}{m} \bmod p = \binom{n \bmod p}{m \bmod p} \cdot \binom{\left\lfloor\frac{n}{p}\right\rfloor}{\left\lfloor\frac{m}{p}\right\rfloor}
 \]</span></p>
-<div id="质数" class="section level4">
-<h4>质数</h4>
+<div id="质数" class="section level3">
+<h3>质数</h3>
 <div class="sourceCode" id="cb19"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> lucas(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> m) {</span>
 <span id="cb19-2"><a href="#cb19-2"></a>    <span class="cf">return</span> n == <span class="dv">0</span> ? <span class="dv">1</span> : binom(n % mod, m % mod) * lucas(n / mod, m / mod) % mod;</span>
 <span id="cb19-3"><a href="#cb19-3"></a>}</span></code></pre></div>
 </div>
-<div id="非质数" class="section level4">
-<h4>非质数</h4>
+<div id="非质数" class="section level3">
+<h3>非质数</h3>
 <p>模数固定，多次询问。</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">class</span> Fac {</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="kw">public</span>:</span>
@@ -1099,10 +1144,10 @@ m \cdot \binom{n}{m} = n \cdot \binom{n - 1}{m - 1}
 </div>
 </div>
 </div>
-<div id="高斯二项式系数" class="section level2">
-<h2>高斯二项式系数</h2>
-<div id="简介与计算-1" class="section level4">
-<h4>简介与计算</h4>
+<div id="高斯二项式系数" class="section level1">
+<h1>高斯二项式系数</h1>
+<div id="简介与计算-1" class="section level3">
+<h3>简介与计算</h3>
 <p><span class="math display">\[
 \binom{n}{m}_q = \frac{(1 - q ^ n)(1 - q ^ {n - 1}) \cdots (1 - q^{n - m + 1})}{(1 - q)(1 - q ^ 2) \cdots (1 - q ^ m)} \quad (0 \le m \le n)
 \]</span></p>
@@ -1141,8 +1186,8 @@ k  &amp; k = 1
 <span id="cb21-13"><a href="#cb21-13"></a>}</span>
 <span id="cb21-14"><a href="#cb21-14"></a><span class="co">// The remaining part is similar to the case with ordinary binomial coefficient</span></span></code></pre></div>
 </div>
-<div id="性质-1" class="section level4">
-<h4>性质</h4>
+<div id="性质-1" class="section level3">
+<h3>性质</h3>
 <p><span class="math display">\[
 \begin{aligned}
 \binom{n}{m}_q &amp; = \binom{n - 1}{m - 1}_q + q ^ m \binom{n - 1}{m}_q \\
@@ -1157,12 +1202,12 @@ k  &amp; k = 1
 \]</span></p>
 </div>
 </div>
-<div id="类欧几里得" class="section level2">
-<h2>类欧几里得</h2>
-<div id="常见形式" class="section level3">
-<h3>常见形式</h3>
-<div id="形式" class="section level4">
-<h4>形式</h4>
+<div id="类欧几里得" class="section level1">
+<h1>类欧几里得</h1>
+<div id="常见形式" class="section level2">
+<h2>常见形式</h2>
+<div id="形式" class="section level3">
+<h3>形式</h3>
 <p><span class="math display">\[
 \begin{aligned}
 f(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor} \\
@@ -1171,8 +1216,8 @@ h(a, b, c, n) &amp; = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \ri
 \end{aligned}
 \]</span></p>
 </div>
-<div id="结论" class="section level4">
-<h4>结论</h4>
+<div id="结论" class="section level3">
+<h3>结论</h3>
 <p><span class="math display">\[
 \begin{aligned}
 f(a, b, c, n) = &amp;
@@ -1197,8 +1242,8 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherw
 \end{aligned}
 \]</span></p>
 </div>
-<div id="代码-1" class="section level4">
-<h4>代码</h4>
+<div id="代码-1" class="section level3">
+<h3>代码</h3>
 <div class="sourceCode" id="cb22"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">/* Just f */</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> quasiEuclidean(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> c, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> n) {</span>
 <span id="cb22-3"><a href="#cb22-3"></a>    <span class="cf">if</span> (n &lt; <span class="dv">0</span>)</span>
@@ -1266,8 +1311,8 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherw
 <span id="cb22-65"><a href="#cb22-65"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="bzoj---3817" class="section level3">
-<h3>BZOJ - 3817</h3>
+<div id="bzoj---3817" class="section level2">
+<h2>BZOJ - 3817</h2>
 <p><span class="math display">\[
 f(a, b, c, n) = \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b}{c} \right\rfloor
 \]</span></p>
@@ -1280,15 +1325,15 @@ nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1
 \end{cases}
 \]</span></p>
 </div>
-<div id="bzoj---2187" class="section level3">
-<h3>BZOJ - 2187</h3>
+<div id="bzoj---2187" class="section level2">
+<h2>BZOJ - 2187</h2>
 <p>给定 <span class="math inline">\(a, b, c, d\)</span>，求解 <span class="math inline">\(p, q\)</span> 满足：</p>
 <p><span class="math display">\[
 \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d}
 \]</span></p>
 <p>优先最小化 <span class="math inline">\(q\)</span>，其次最小化 <span class="math inline">\(p\)</span>。</p>
-<div id="分析" class="section level4">
-<h4>分析</h4>
+<div id="分析" class="section level3">
+<h3>分析</h3>
 <p>记原问题的解为 <span class="math inline">\(f(a, b, c, d) = \langle p, q \rangle\)</span>，并先讨论两种可以直接得出答案的情况：</p>
 <ol style="list-style-type: decimal">
 <li>如果 <span class="math inline">\(\frac{a}{b}\)</span> 和 <span class="math inline">\(\frac{c}{d}\)</span> 间存在正整数，显然取 <span class="math inline">\(q = 1\)</span>；即满足以下条件时取 <span class="math inline">\(p = \left\lfloor \frac{a}{b} \right\rfloor + 1, q = 1\)</span> 为解。</li>
@@ -1319,8 +1364,8 @@ nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1
 \]</span></p>
 <p>由此一来，可以对子问题 <span class="math inline">\(f(a \bmod b, b, c - d\left\lfloor \frac{a}{b} \right\rfloor, d) = \langle p&#39;&#39;, q&#39;&#39; \rangle\)</span> 求解，并在回溯时令 <span class="math inline">\(p = p&#39;&#39; + q&#39;&#39;\left\lfloor \frac{a}{b} \right\rfloor, q = q&#39;&#39;\)</span> 。</p>
 </div>
-<div id="代码-2" class="section level4">
-<h4>代码</h4>
+<div id="代码-2" class="section level3">
+<h3>代码</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1"></a><span class="dt">void</span> simplify(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> &amp; b) {</span>
 <span id="cb23-2"><a href="#cb23-2"></a>    <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> gcd = __gcd(a, b);</span>
 <span id="cb23-3"><a href="#cb23-3"></a>    a /= gcd; b /= gcd;</span>
@@ -1347,10 +1392,10 @@ nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1
 </div>
 </div>
 </div>
-<div id="一次同余" class="section level2">
-<h2>一次同余</h2>
-<div id="拓展欧几里得-1" class="section level3">
-<h3>拓展欧几里得</h3>
+<div id="一次同余" class="section level1">
+<h1>一次同余</h1>
+<div id="拓展欧几里得-1" class="section level2">
+<h2>拓展欧几里得</h2>
 <p><span class="math display">\[
 ax + by = \gcd(x, y)
 \]</span></p>
@@ -1365,8 +1410,8 @@ ax + by = \gcd(x, y)
 <span id="cb24-9"><a href="#cb24-9"></a>    <span class="cf">return</span> gcd;</span>
 <span id="cb24-10"><a href="#cb24-10"></a>}</span></code></pre></div>
 </div>
-<div id="一次同余方程" class="section level3">
-<h3>一次同余方程</h3>
+<div id="一次同余方程" class="section level2">
+<h2>一次同余方程</h2>
 <p><span class="math display">\[
 ax \equiv b \pmod p
 \]</span></p>
@@ -1380,8 +1425,8 @@ ax \equiv b \pmod p
 <span id="cb25-8"><a href="#cb25-8"></a>    <span class="cf">return</span> (ret % p + p) % p;</span>
 <span id="cb25-9"><a href="#cb25-9"></a>}</span></code></pre></div>
 </div>
-<div id="拓展中国剩余定理" class="section level3">
-<h3>拓展中国剩余定理</h3>
+<div id="拓展中国剩余定理" class="section level2">
+<h2>拓展中国剩余定理</h2>
 <div class="sourceCode" id="cb26"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">// x % mods[i] = csts[i]</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> mods[SIZE], csts[SIZE];</span>
 <span id="cb26-3"><a href="#cb26-3"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> crt(<span class="dt">int</span> equNum) {</span>
@@ -1404,13 +1449,13 @@ ax \equiv b \pmod p
 <span id="cb26-20"><a href="#cb26-20"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="二次剩余" class="section level2">
-<h2>二次剩余</h2>
+<div id="二次剩余" class="section level1">
+<h1>二次剩余</h1>
 <p><span class="math display">\[
 x^2 \equiv n \pmod p
 \]</span></p>
-<div id="解的存在性" class="section level3">
-<h3>解的存在性</h3>
+<div id="解的存在性" class="section level2">
+<h2>解的存在性</h2>
 <p>对于 <span class="math inline">\(p\)</span> 为奇素数的情形：</p>
 <p><span class="math display">\[
 \newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
@@ -1424,19 +1469,19 @@ x^2 \equiv n \pmod p
 \end{aligned}
 \]</span></p>
 </div>
-<div id="tonellishanks-算法" class="section level3">
-<h3>Tonelli–Shanks 算法</h3>
+<div id="tonellishanks-算法" class="section level2">
+<h2>Tonelli–Shanks 算法</h2>
 <p>适用于模数为 <span class="math inline">\(p^k\)</span> 的情形，若为合数则考虑用 CRT 合并。</p>
 <pre class="gugu"><code>咕咕咕……</code></pre>
 </div>
 </div>
-<div id="离散对数" class="section level2">
-<h2>离散对数</h2>
+<div id="离散对数" class="section level1">
+<h1>离散对数</h1>
 <p><span class="math display">\[
 a^x \equiv b \pmod p
 \]</span></p>
-<div id="bsgs-算法" class="section level3">
-<h3>BSGS 算法</h3>
+<div id="bsgs-算法" class="section level2">
+<h2>BSGS 算法</h2>
 <p>令 <span class="math inline">\(x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)\)</span>。问题转换为：</p>
 <p><span class="math display">\[
 (a^t)^i = a^{-j}b \pmod p
@@ -1484,8 +1529,8 @@ a^x \equiv b \pmod p
 <span id="cb28-40"><a href="#cb28-40"></a>    <span class="cf">return</span> ret == -<span class="dv">1</span> ? ret : ret + offset;</span>
 <span id="cb28-41"><a href="#cb28-41"></a>}</span></code></pre></div>
 </div>
-<div id="pohlighellman-算法" class="section level3">
-<h3>Pohlig–Hellman 算法</h3>
+<div id="pohlighellman-算法" class="section level2">
+<h2>Pohlig–Hellman 算法</h2>
 <div class="sourceCode" id="cb29"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">/* Baby step Giant step */</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> bsgs(<span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> a, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> b, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> p, <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> ord) { </span>
 <span id="cb29-3"><a href="#cb29-3"></a>    <span class="co">// Replace phip with ord</span></span>
@@ -1528,16 +1573,16 @@ a^x \equiv b \pmod p
 <span id="cb29-40"><a href="#cb29-40"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="多项式" class="section level2">
-<h2>多项式</h2>
-<div id="卷积" class="section level3">
-<h3>卷积</h3>
+<div id="多项式" class="section level1">
+<h1>多项式</h1>
+<div id="卷积" class="section level2">
+<h2>卷积</h2>
 <p>记 <span class="math inline">\(A(x) = \sum\limits_{i = 0}^{n} a_i x^i, \ B(x) = \sum\limits_{i = 0}^{n}b_ix^i\)</span>，则其卷积：</p>
 <p><span class="math display">\[
 (A \cdot B)(x) = \sum\limits_{i = 0}^{2n}(\sum\limits_{j = 0}^{i}a_j b_{i - j})x^i
 \]</span></p>
-<div id="fft" class="section level4">
-<h4>FFT</h4>
+<div id="fft" class="section level3">
+<h3>FFT</h3>
 <div class="sourceCode" id="cb30"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1"></a><span class="at">const</span> <span class="dt">double</span> pi = acos(-<span class="fl">1.0</span>);</span>
 <span id="cb30-2"><a href="#cb30-2"></a><span class="kw">class</span> Complex {</span>
 <span id="cb30-3"><a href="#cb30-3"></a><span class="kw">public</span>:</span>
@@ -1594,16 +1639,16 @@ a^x \equiv b \pmod p
 <span id="cb30-54"><a href="#cb30-54"></a>    <span class="cf">return</span> <span class="dv">0</span>;   </span>
 <span id="cb30-55"><a href="#cb30-55"></a>}</span></code></pre></div>
 </div>
-<div id="ntt" class="section level4">
-<h4>NTT</h4>
+<div id="ntt" class="section level3">
+<h3>NTT</h3>
 <div class="sourceCode" id="cb31"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">/* 咕咕咕…… */</span></span></code></pre></div>
 </div>
 </div>
-<div id="插值" class="section level3">
-<h3>插值</h3>
+<div id="插值" class="section level2">
+<h2>插值</h2>
 <p>求作次数 <span class="math inline">\(\le n\)</span> 的多项式 <span class="math inline">\(P_n(x) = \sum\limits_{i = 0}^{n} a_ix\)</span>，使其满足 <span class="math inline">\((n + 1)\)</span> 对条件：<span class="math inline">\(P_n(x_i) = y_i\)</span>。插值法可以 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 预处理，并以不高于 <span class="math inline">\(\mathcal{O}(n\log{n})\)</span> 的复杂度回答询问 <span class="math inline">\(P_n(x)\)</span>。</p>
-<div id="拉格朗日插值" class="section level4">
-<h4>拉格朗日插值</h4>
+<div id="拉格朗日插值" class="section level3">
+<h3>拉格朗日插值</h3>
 <p>令基函数：</p>
 <p><span class="math display">\[
 l_i(x) = \prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
@@ -1612,8 +1657,8 @@ l_i(x) = \prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
 <p><span class="math display">\[
 P_n(x) = \sum\limits_{i = 0}^{n} l_i(x)y_i
 \]</span></p>
-<div id="取值连续优化" class="section level5">
-<h5>取值连续优化</h5>
+<div id="取值连续优化" class="section level4">
+<h4>取值连续优化</h4>
 <p>即给定的 <span class="math inline">\((n + 1)\)</span> 对条件恰为 <span class="math inline">\(P_n(0), P_n(1), \dots, P_n(n)\)</span>，也就是 <span class="math inline">\(x_i = i\)</span>。</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1661,8 +1706,8 @@ P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot (-1)^{n - i} \cdot \frac{pre_{i - 1} \
 <span id="cb32-25"><a href="#cb32-25"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb32-26"><a href="#cb32-26"></a>}</span></code></pre></div>
 </div>
-<div id="重心优化" class="section level5">
-<h5>重心优化</h5>
+<div id="重心优化" class="section level4">
+<h4>重心优化</h4>
 <p><span class="math display">\[
 P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot \frac{\prod\limits_{j = 0 \ j \neq i}^{n}(x - x_j)}{\prod\limits_{j = 0, \ j \neq i}^{n}(x_i - x_j)}
 \]</span></p>
@@ -1699,8 +1744,8 @@ P_n(x) = w(x)\sum\limits_{i = 0}^{n}\frac{t_i}{x - x_i}
 <span id="cb33-19"><a href="#cb33-19"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="牛顿插值" class="section level4">
-<h4>牛顿插值</h4>
+<div id="牛顿插值" class="section level3">
+<h3>牛顿插值</h3>
 <p>拉格朗日插值法缺陷：每增加一个插值节点就需要重新计算基函数 <span class="math inline">\(l_i(x)\)</span>。</p>
 <p>定义差商：</p>
 <ul>
@@ -1721,8 +1766,8 @@ f(x) = f(x_0) &amp; + f[x_0, x_1](x - x_0) + \dots \\
 </div>
 </div>
 </div>
-<div id="数位-dp" class="section level2">
-<h2>数位 DP</h2>
+<div id="数位-dp" class="section level1">
+<h1>数位 DP</h1>
 <div class="sourceCode" id="cb34"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">// An example: Codeforces 628D (Partial)</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a><span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span> dfs(<span class="dt">int</span> pos, <span class="dt">int</span> rem, <span class="dt">bool</span> isZero, <span class="dt">bool</span> hasLim) {</span>
 <span id="cb34-3"><a href="#cb34-3"></a>    <span class="cf">if</span> (pos &lt; <span class="dv">0</span>)</span>
@@ -1763,10 +1808,10 @@ f(x) = f(x_0) &amp; + f[x_0, x_1](x - x_0) + \dots \\
 <span id="cb34-38"><a href="#cb34-38"></a>    <span class="cf">return</span> dfs(len - <span class="dv">1</span>, <span class="dv">0</span>, <span class="kw">true</span>, <span class="kw">true</span>);</span>
 <span id="cb34-39"><a href="#cb34-39"></a>}</span></code></pre></div>
 </div>
-<div id="置换群" class="section level2">
-<h2>置换群</h2>
-<div id="burnside-定理" class="section level3">
-<h3>Burnside 定理</h3>
+<div id="置换群" class="section level1">
+<h1>置换群</h1>
+<div id="burnside-定理" class="section level2">
+<h2>Burnside 定理</h2>
 <p>有限群 <span class="math inline">\(G\)</span> 作用于有限集合 <span class="math inline">\(S\)</span>，轨道数为：</p>
 <p><span class="math display">\[
 O = \frac{1}{|G|} \sum\limits_{g \in G} |Fix(g)|
@@ -1776,17 +1821,17 @@ O = \frac{1}{|G|} \sum\limits_{g \in G} |Fix(g)|
 Fix(g) = \{s \in S \mid g \circ s = s \}
 \]</span></p>
 </div>
-<div id="pólya-定理" class="section level3">
-<h3>Pólya 定理</h3>
+<div id="pólya-定理" class="section level2">
+<h2>Pólya 定理</h2>
 <p><span class="math display">\[
 O = \frac{1}{|G|} \sum\limits_{g \in G} m^{c(g)}
 \]</span></p>
 <p>其中 <span class="math inline">\(m\)</span> 为颜色数，<span class="math inline">\(c(g)\)</span> 为置换 <span class="math inline">\(g\)</span> 分解成轮换的个数。即：若把每个轮换内的元素都染成相同颜色，就成了不动点。</p>
-<div id="例1环" class="section level4">
-<h4>例1：环</h4>
+<div id="例1环" class="section level3">
+<h3>例1：环</h3>
 <p><span class="math inline">\(m\)</span> 种颜色，长为 <span class="math inline">\(n\)</span> 的环，可旋转可翻转。</p>
-<div id="旋转" class="section level5">
-<h5>旋转</h5>
+<div id="旋转" class="section level4">
+<h4>旋转</h4>
 <p>考虑循环置换群 <span class="math inline">\(\mid G \mid = n\)</span>，<span class="math inline">\(g_i \in G\)</span> 代表逆时针旋转 <span class="math inline">\(\frac{2\pi i}{n}\)</span>，则有 <span class="math inline">\(g_i = {g_1}^i\)</span>。依据置换群幂的性质，<span class="math inline">\(g_i\)</span> 可以被表示为长度为 <span class="math inline">\(\gcd(n, i)\)</span> 的 <span class="math inline">\(\frac{n}{\gcd(n, i)}\)</span> 个轮换，故：</p>
 <p><span class="math display">\[
 c(g_i) = \gcd(n, i)
@@ -1798,8 +1843,8 @@ c(g_i) = \gcd(n, i)
 \end{aligned}
 \]</span></p>
 </div>
-<div id="翻转" class="section level5">
-<h5>翻转</h5>
+<div id="翻转" class="section level4">
+<h4>翻转</h4>
 <ul>
 <li><span class="math inline">\(n\)</span> 为偶数：
 <ul>
@@ -1824,11 +1869,11 @@ c(g_i) = \gcd(n, i)
 <span id="cb35-11"><a href="#cb35-11"></a>ans = ans * fastPow(n &lt;&lt; <span class="dv">1</span>, mod - <span class="dv">2</span>) % mod;</span></code></pre></div>
 </div>
 </div>
-<div id="例2正方形" class="section level4">
-<h4>例2：正方形</h4>
+<div id="例2正方形" class="section level3">
+<h3>例2：正方形</h3>
 <p><span class="math inline">\(m\)</span> 种颜色，<span class="math inline">\(n \times n\)</span> 的正方形，可旋转可翻转。</p>
-<div id="旋转-1" class="section level5">
-<h5>旋转</h5>
+<div id="旋转-1" class="section level4">
+<h4>旋转</h4>
 <p>置换群 <span class="math inline">\(G = \{ 0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ} \}\)</span>， 轮换个数 <span class="math inline">\(c(g_i)\)</span>：</p>
 <ul>
 <li><p><span class="math inline">\(n\)</span> 是奇数</p>
@@ -1849,8 +1894,8 @@ c(g_i) = \gcd(n, i)
   \]</span></p></li>
 </ul>
 </div>
-<div id="翻转-1" class="section level5">
-<h5>翻转</h5>
+<div id="翻转-1" class="section level4">
+<h4>翻转</h4>
 <ul>
 <li><span class="math inline">\(n\)</span> 为偶数：
 <ul>
@@ -1863,8 +1908,8 @@ c(g_i) = \gcd(n, i)
 </div>
 </div>
 </div>
-<div id="高斯整数" class="section level2">
-<h2>高斯整数</h2>
+<div id="高斯整数" class="section level1">
+<h1>高斯整数</h1>
 <ul>
 <li><span class="math inline">\(\Z [i] = \{a + bi \  \mid \ a, b \in \Z \} \ \text{ where }i^2 = -1\)</span>，构成可交换环。</li>
 <li><span class="math inline">\(x = a + bi\)</span> 的范 <span class="math inline">\(N(x) = (a + bi)(a - bi) = a^2 + b^2\)</span>；</li>
@@ -1877,8 +1922,8 @@ c(g_i) = \gcd(n, i)
 </ul></li>
 </ul>
 </div>
-<div id="自适应辛普森积分" class="section level2">
-<h2>自适应辛普森积分</h2>
+<div id="自适应辛普森积分" class="section level1">
+<h1>自适应辛普森积分</h1>
 <p>用二次函数来拟合，其中二次函数通过 <span class="math inline">\(l, mid, r\)</span> 三点确定：
 <span class="math display">\[
 \int_{l}^{r} f(x)dx \approx \frac{r - l}{6}\left[f(l) + 4f(\frac{l + r}{2}) + f(r)\right]
@@ -1897,8 +1942,8 @@ c(g_i) = \gcd(n, i)
 <span id="cb36-11"><a href="#cb36-11"></a>}</span>
 <span id="cb36-12"><a href="#cb36-12"></a>adaptiveSimpson(l, r, simpson(l, r));</span></code></pre></div>
 </div>
-<div id="多项式相关" class="section level2">
-<h2>多项式相关</h2>
+<div id="多项式相关" class="section level1">
+<h1>多项式相关</h1>
 <div class="sourceCode" id="cb37"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">class</span> Polyn {</span>
 <span id="cb37-2"><a href="#cb37-2"></a><span class="kw">public</span>:</span>
 <span id="cb37-3"><a href="#cb37-3"></a>    vector&lt;<span class="dt">int</span>&gt; vec;</span>
@@ -1924,10 +1969,10 @@ c(g_i) = \gcd(n, i)
 <span id="cb37-23"><a href="#cb37-23"></a>    }</span>
 <span id="cb37-24"><a href="#cb37-24"></a>};</span></code></pre></div>
 </div>
-<div id="杂项" class="section level2">
-<h2>杂项</h2>
-<div id="计算星期几" class="section level3">
-<h3>计算星期几</h3>
+<div id="杂项" class="section level1">
+<h1>杂项</h1>
+<div id="计算星期几" class="section level2">
+<h2>计算星期几</h2>
 <div class="sourceCode" id="cb38"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">// 1582AD+, Returns [1, 7]: Monday -&gt; Sunday</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="dt">int</span> getDay(Date d) {</span>
 <span id="cb38-3"><a href="#cb38-3"></a>    <span class="cf">if</span> (d.month &lt; <span class="dv">3</span>)</span>
@@ -1935,8 +1980,8 @@ c(g_i) = \gcd(n, i)
 <span id="cb38-5"><a href="#cb38-5"></a>    <span class="cf">return</span> (d.day + ((d.month + <span class="dv">1</span>) * <span class="dv">26</span>) / <span class="dv">10</span> + d.year + d.year / <span class="dv">4</span> + <span class="dv">6</span> * (d.year / <span class="dv">100</span>) + d.year / <span class="dv">400</span> + <span class="dv">5</span>) % <span class="dv">7</span> + <span class="dv">1</span>;</span>
 <span id="cb38-6"><a href="#cb38-6"></a>}</span></code></pre></div>
 </div>
-<div id="康托展开" class="section level3">
-<h3>康托展开</h3>
+<div id="康托展开" class="section level2">
+<h2>康托展开</h2>
 <p><span class="math inline">\(\text{permutation} \rightarrow \text{rank}\)</span></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb39-1"><a href="#cb39-1"></a><span class="dt">int</span> id(<span class="at">const</span> vector&lt;<span class="dt">int</span>&gt; &amp; vec) {</span>
 <span id="cb39-2"><a href="#cb39-2"></a>    <span class="dt">int</span> ret = <span class="dv">0</span>, fac = <span class="dv">1</span>, len = vec.size();</span>
@@ -1949,26 +1994,26 @@ c(g_i) = \gcd(n, i)
 <span id="cb39-9"><a href="#cb39-9"></a>    <span class="cf">return</span> ret;</span>
 <span id="cb39-10"><a href="#cb39-10"></a>}</span></code></pre></div>
 </div>
-<div id="勒让德定理" class="section level3">
-<h3>勒让德定理</h3>
+<div id="勒让德定理" class="section level2">
+<h2>勒让德定理</h2>
 <p>在正数 <span class="math inline">\(n!\)</span> 的素因子标准分解式中，素数 <span class="math inline">\(p\)</span> 的最高指数：</p>
 <p><span class="math display">\[
 L_p(n!) = \sum\limits_{k \ge 1} \left\lfloor \frac{n}{p^k} \right\rfloor
 \]</span></p>
 </div>
-<div id="威尔逊定理" class="section level3">
-<h3>威尔逊定理</h3>
+<div id="威尔逊定理" class="section level2">
+<h2>威尔逊定理</h2>
 <p>当且仅当 <span class="math inline">\(p\)</span> 是素数时，有：</p>
 <p><span class="math display">\[
 (p - 1)! = -1 \pmod p
 \]</span></p>
 </div>
-<div id="费马平方和定理" class="section level3">
-<h3>费马平方和定理</h3>
+<div id="费马平方和定理" class="section level2">
+<h2>费马平方和定理</h2>
 <p>奇素数 <span class="math inline">\(p\)</span> 能被表示成 <span class="math inline">\(p = a^2 + b^2\)</span> 的充要条件为 <span class="math inline">\(p \equiv 1 \pmod 4\)</span>。</p>
 </div>
-<div id="快速计算-2x---1-bmod-2k" class="section level3">
-<h3>快速计算 <span class="math inline">\((2x - 1)!! \bmod 2^k\)</span></h3>
+<div id="快速计算-2x---1-bmod-2k" class="section level2">
+<h2>快速计算 <span class="math inline">\((2x - 1)!! \bmod 2^k\)</span></h2>
 <p><span class="math display">\[
 (2x - 1)!! = \prod\limits_{i = 1}^{x} (2i - 1)
 \]</span></p>
@@ -2018,12 +2063,11 @@ P_{k + 1}(x) &amp; = (2x + 2k + 1)P_k(x) \\
 <span id="cb40-35"><a href="#cb40-35"></a>}</span></code></pre></div>
 </div>
 </div>
-</div>
 
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>12399 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>12527 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-07 15:42 &#43;0800</p>
 			</footer>
 		</article>
