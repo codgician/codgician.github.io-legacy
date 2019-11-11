@@ -94,7 +94,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 
 <p>Hello World… Again!</p>
 <p>After days of work I have finally managed to migrate my blog from Hexo to Blogdown + Hugo, and it actually went harder than I expected. Now with the power of Hugo, I shall enjoy faster rendering speed and much better i18n support. Plus, with the power of RMarkdown, it is now possible to create graphs and diagram in a more elegant way.</p>
-<p>The new blog is themed with a modified version of <a href="https://github.com/Track3/Hermit">Hermit</a>, which is a tremendous theme and I would highly recommend to dark theme enthusiasts. I tuned its styles to match my own flavor and performed some dirty little hacks for better compatibility with Blogdown. Anyway now it looks quite good to me now.</p>
+<p>The new blog is themed with a modified version of <a href="https://github.com/Track3/Hermit">Hermit</a>, which is a tremendous theme and I would highly recommend to dark theme enthusiasts. I tuned its styles to match my own flavor and performed some dirty little hacks for better compatibility with Blogdown. Anyway it looks quite good to me now.</p>
 <p>Like before, the source of this blog will be open-sourced in the <code>source</code> branch of its <a href="https://github.com/codgician/codgician.github.io">repo</a>. Check it out if you are interested. You can also leave your comment below on what you think.</p>
 <hr />
 <p>Check out below to see the power of this new combination! You can view table of contents by clicking its icon in the menu bar if you are on desktop.</p>
