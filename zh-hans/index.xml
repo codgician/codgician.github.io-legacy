@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 07 Nov 2019 15:42:13 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 08:59:35 +0800</lastBuildDate>
     
 	<atom:link href="https://codgician.me/zh-hans/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Math</title>
       <link>https://codgician.me/zh-hans/icpc/templates/math/</link>
-      <pubDate>Thu, 07 Nov 2019 15:42:13 +0800</pubDate>
+      <pubDate>Fri, 08 Nov 2019 08:59:35 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/icpc/templates/math/</guid>
       <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>

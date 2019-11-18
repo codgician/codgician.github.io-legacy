@@ -1,3 +1,1 @@
 User-agent: *
-Sitemap: https://codgician.me/sitemap.xml
-Disallow:
