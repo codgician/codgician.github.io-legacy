@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://codgician.me/zh-hans/</loc>
-    <lastmod>2019-11-08T08:59:35+08:00</lastmod>
+    <lastmod>2019-11-18T09:10:17+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -18,12 +18,27 @@
   </url>
   
   <url>
-    <loc>https://codgician.me/zh-hans/icpc/templates/math/</loc>
-    <lastmod>2019-11-08T08:59:35+08:00</lastmod>
+    <loc>https://codgician.me/zh-hans/icpc/templates/offline-algorithms/</loc>
+    <lastmod>2019-11-18T09:10:17+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://codgician.me/zh-hans/icpc/templates/</loc>
+    <lastmod>2019-11-18T09:10:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/icpc/templates/data-structure/</loc>
+    <lastmod>2019-11-18T09:07:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/icpc/templates/graph-theory/</loc>
+    <lastmod>2019-11-18T09:02:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/icpc/templates/math/</loc>
     <lastmod>2019-11-08T08:59:35+08:00</lastmod>
   </url>
   

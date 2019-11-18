@@ -7,37 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 18 Nov 2019 09:10:17 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2019 14:28:28 +0800</lastBuildDate>
     
 	<atom:link href="https://codgician.me/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Offline Algorithms</title>
-      <link>https://codgician.me/icpc/templates/offline-algorithms.zh_hans/</link>
-      <pubDate>Mon, 18 Nov 2019 09:10:17 +0800</pubDate>
-      
-      <guid>https://codgician.me/icpc/templates/offline-algorithms.zh_hans/</guid>
-      <description>莫队算法 普通莫队 typedef struct _Query { int id, qLeftPt, qRightPt; } Query; Query qArr[SIZE]; int arr[SIZE], ans[SIZE], len, qNum, pos[SIZE]; int main() { /* Some code here... */ // Partition int blockSize = sqrt(len); for (int i = 0; i &amp;lt; len; i++) pos[i] = i / blockSize; // Sort sort(qArr + 0, qArr + qNum, [](const Query &amp;amp; fst, const Query &amp;amp; snd)</description>
-    </item>
-    
-    <item>
-      <title>Data Structure</title>
-      <link>https://codgician.me/icpc/templates/data-structure.zh_hans/</link>
-      <pubDate>Mon, 18 Nov 2019 09:07:21 +0800</pubDate>
-      
-      <guid>https://codgician.me/icpc/templates/data-structure.zh_hans/</guid>
-      <description>ST 表 朴素 RMQ pair&amp;lt;long long int, long long int&amp;gt; stArr[SIZE][20]; // Min, Max pair&amp;lt;long long int, long long int&amp;gt; minMax(const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; fst, const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; snd) { return make_pair(min(fst.first, snd.first), max(fst.second, snd.second)); } void initSt() { int logLim = log2(len) + 1; for (int i = 0; i &amp;lt; len; i++) stArr[i][0] = make_pair(arr[i], arr[i]); for (int</description>
-    </item>
-    
-    <item>
-      <title>Graph Theory</title>
-      <link>https://codgician.me/icpc/templates/graph-theory.zh_hans/</link>
-      <pubDate>Mon, 18 Nov 2019 09:02:35 +0800</pubDate>
-      
-      <guid>https://codgician.me/icpc/templates/graph-theory.zh_hans/</guid>
-      <description>最短路 Dijkstra long long int dist[VERTEX_SIZE]; bool vis[VERTEX_SIZE]; void dijkstra(int startPt) { for (int i = 0; i &amp;lt; vertexNum; i++) vis[i] = false, dist[i] = LLONG_MAX; priority_queue&amp;lt;pair&amp;lt;long long int, int&amp;gt; &amp;gt; pq; pq.push(make_pair(0, startPt)); dist[startPt] = 0; while (!pq.empty()) { int cntPt = pq.top().second; pq.pop(); if (vis[cntPt]) continue; vis[cntPt] = true; for (int i = head[cntPt]; i != -1; i = edges[i].next) { int nextPt = edges[i].to;</description>
-    </item>
     
     <item>
       <title>Hello World... Again!</title>
