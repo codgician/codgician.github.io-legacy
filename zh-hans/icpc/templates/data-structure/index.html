@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2019-11-18T09:07:21&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-18T09:07:21&#43;08:00" />
-<meta itemprop="wordCount" content="3610">
+<meta itemprop="wordCount" content="3615">
 
 
 
@@ -114,7 +114,7 @@
 </code></pre></div>
 <h3 id="约束-rmq">约束 RMQ<a href="#约束-rmq" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
-<p>对于序列 $a$，满足 $\forall i \in [2, n], \  |a<em>i - a</em>{i - 1}| = 1$。此时预处理部分可以优化至 $\mathcal{O}(1)$。大致思想是分块，块内分别搞一次 RMQ，块间最值再搞一次 RMQ。</p>
+<p>对于序列 $a$，满足 $\forall i \in [2, n]$，$|a<em>i - a</em>{i - 1}| = 1$。此时预处理部分可以优化至 $\mathcal{O}(1)$。大致思想是分块，块内分别搞一次 RMQ，块间最值再搞一次 RMQ。</p>
 
 <p>设块大小 $b = \frac{1}{2} \log{n}$，则块数 $d = \lceil \frac{n}{b} \rceil$。由于相邻两个数只可能 $\pm 1$，故块内情况只有 $2^b = \sqrt{n}$ 种不同情况。预处理时直接对所有情况进行预处理，复杂度不会超过线性。处理好后带上 offset 搞就好了。询问的时候左右不完整块内部查询，中间块外部查询。</p>
 
@@ -906,7 +906,7 @@
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3610 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3615 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-18 09:07 &#43;0800</p>
 			</footer>
 		</article>

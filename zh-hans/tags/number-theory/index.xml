@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 06 Aug 2019 13:18:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 13:07:42 +0800</lastBuildDate>
     
 	<atom:link href="https://codgician.me/zh-hans/tags/number-theory/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅谈 Min25 筛</title>
+      <link>https://codgician.me/zh-hans/posts/2019/09/min25-sieve/</link>
+      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/09/min25-sieve/</guid>
+      <description>前言 Min25 筛 核心思想 筛素数答案 筛非质数答案 应用 模板 类积性函数？ 带条件的前缀和？ 前缀积？ 小结 前言 Min25 筛是一种对于满足特定条件积性函数的前缀和的亚线性</description>
+    </item>
     
     <item>
       <title>数论函数与狄利克雷卷积</title>

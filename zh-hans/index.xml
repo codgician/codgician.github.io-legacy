@@ -42,7 +42,7 @@
     <item>
       <title>Math</title>
       <link>https://codgician.me/zh-hans/icpc/templates/math/</link>
-      <pubDate>Fri, 08 Nov 2019 08:59:35 +0800</pubDate>
+      <pubDate>Mon, 18 Nov 2019 08:59:35 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/icpc/templates/math/</guid>
       <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
@@ -55,6 +55,15 @@
       
       <guid>https://codgician.me/zh-hans/posts/2019/10/hello-world/</guid>
       <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+    <item>
+      <title>浅谈 Min25 筛</title>
+      <link>https://codgician.me/zh-hans/posts/2019/09/min25-sieve/</link>
+      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/09/min25-sieve/</guid>
+      <description>前言 Min25 筛 核心思想 筛素数答案 筛非质数答案 应用 模板 类积性函数？ 带条件的前缀和？ 前缀积？ 小结 前言 Min25 筛是一种对于满足特定条件积性函数的前缀和的亚线性</description>
     </item>
     
     <item>
