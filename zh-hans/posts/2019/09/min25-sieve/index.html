@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2019-09-01T13:07:42&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-01T13:07:42&#43;08:00" />
-<meta itemprop="wordCount" content="3570">
+<meta itemprop="wordCount" content="3585">
 
 
 
@@ -307,7 +307,7 @@ s(n, j) = \prod\limits_{i = 2}^{n} \left[ minp(i) \ge P_j \right] d(i)
 <p><span class="math display">\[
 s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cdot \prod\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] d(i) 
 \]</span></p>
-<p>对于第一部分，由于 <span class="math inline">\(d(p) = 2\)</span>，因此第一部分就是 <span class="math inline">\(2^{n - P_j - 1}\)</span>。因此我们依然没有必要魔改 <span class="math inline">\(g\)</span>，只需要通过 <span class="math inline">\(g\)</span> 筛出质数个数即可。</p>
+<p>对于第一部分，由于 <span class="math inline">\(d(p) = 2\)</span>，因此第一部分就是 <span class="math inline">\(2^{m}\)</span>，其中 <span class="math inline">\(m\)</span> 为对应区间中质数个数。因此我们依然没有必要魔改 <span class="math inline">\(g\)</span>，只需要通过 <span class="math inline">\(g\)</span> 筛出质数个数即可。</p>
 <p>对于第二部分，需要解决的变成了由 <span class="math inline">\(\prod\limits_{p^e \perp k} f(k)\)</span> 快速得出 <span class="math inline">\(\prod\limits_{p^e \perp k} f(p^e \cdot k)\)</span> 的问题。有：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -330,7 +330,7 @@ s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cd
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/arithmetic-function">Arithmetic function</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3570 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3585 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-09-01 13:07 &#43;0800</p>
 			</footer>
 		</article>
@@ -345,7 +345,7 @@ s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cd
 		<div id="comments" class="thin">
     <script defer src="https://utteranc.es/client.js"
         repo="codgician/homepage-comments"
-        issue-number="72"
+        issue-number="70"
         label=""
         theme="photon-dark"
         crossorigin="anonymous"

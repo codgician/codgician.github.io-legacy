@@ -27,7 +27,7 @@
       <pubDate>Mon, 18 Nov 2019 09:07:21 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/icpc/templates/data-structure/</guid>
-      <description>ST 表 朴素 RMQ pair&amp;lt;long long int, long long int&amp;gt; stArr[SIZE][20]; // Min, Max pair&amp;lt;long long int, long long int&amp;gt; minMax(const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; fst, const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; snd) { return make_pair(min(fst.first, snd.first), max(fst.second, snd.second)); } void initSt() { int logLim = log2(len) + 1; for (int i = 0; i &amp;lt; len; i++) stArr[i][0] = make_pair(arr[i], arr[i]); for (int</description>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
     </item>
     
     <item>

@@ -103,6 +103,24 @@
     </item>
     
     <item>
+      <title>HDUOJ 6434: Count</title>
+      <link>https://codgician.me/zh-hans/posts/2018/08/hduoj-6434/</link>
+      <pubDate>Thu, 23 Aug 2018 13:53:46 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6434/</guid>
+      <description>题面 分析 题面 本题有 \(T\) 个询问，对于每个询问 \(n\)，你需要计算： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{i - 1} \left[ \gcd(i + j, i - j) = 1 \right] \] 数据范围：\(1 \le T \le 10^5, 1 \le n \le 2 \times</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 6372: sacul</title>
+      <link>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</link>
+      <pubDate>Fri, 10 Aug 2018 16:02:23 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</guid>
+      <description>题面 分析 %%% 题面 某巨犇发现了一种叫做海绵宝宝 \(\text{HMBB}\) 的神奇矩阵。 给定 \(i\)，记 \(p\) 是第 \(i\) 个质数。 矩阵 \(\text{HMBB}_{n}\) 的大小为 \(p^n \times p^n\)，同时： \[ \text{HMBB}_{n}[i][j] = \begin{cases} 0 &amp;amp; \binom{i}{j}</description>
+    </item>
+    
+    <item>
       <title>浅谈无旋转 Treap</title>
       <link>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</link>
       <pubDate>Sat, 28 Jul 2018 15:15:01 +0800</pubDate>

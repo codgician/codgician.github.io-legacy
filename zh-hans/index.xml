@@ -27,7 +27,7 @@
       <pubDate>Mon, 18 Nov 2019 09:07:21 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/icpc/templates/data-structure/</guid>
-      <description>ST 表 朴素 RMQ pair&amp;lt;long long int, long long int&amp;gt; stArr[SIZE][20]; // Min, Max pair&amp;lt;long long int, long long int&amp;gt; minMax(const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; fst, const pair&amp;lt;long long int, long long int&amp;gt; &amp;amp; snd) { return make_pair(min(fst.first, snd.first), max(fst.second, snd.second)); } void initSt() { int logLim = log2(len) + 1; for (int i = 0; i &amp;lt; len; i++) stArr[i][0] = make_pair(arr[i], arr[i]); for (int</description>
+      <description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
     </item>
     
     <item>
@@ -163,6 +163,24 @@
       
       <guid>https://codgician.me/zh-hans/posts/2018/10/icpc-2018-asia-nanjing-regional-travel-notes/</guid>
       <description>Day 0 国庆六场模拟赛场场自闭，导致比赛前一周状态不佳。抱着打铁的心态随便整理了一下模板。本来打算当天就整理好并打出来的结果转念一想去南航找复印</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 6434: Count</title>
+      <link>https://codgician.me/zh-hans/posts/2018/08/hduoj-6434/</link>
+      <pubDate>Thu, 23 Aug 2018 13:53:46 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6434/</guid>
+      <description>题面 分析 题面 本题有 \(T\) 个询问，对于每个询问 \(n\)，你需要计算： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{i - 1} \left[ \gcd(i + j, i - j) = 1 \right] \] 数据范围：\(1 \le T \le 10^5, 1 \le n \le 2 \times</description>
+    </item>
+    
+    <item>
+      <title>HDUOJ 6372: sacul</title>
+      <link>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</link>
+      <pubDate>Fri, 10 Aug 2018 16:02:23 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</guid>
+      <description>题面 分析 %%% 题面 某巨犇发现了一种叫做海绵宝宝 \(\text{HMBB}\) 的神奇矩阵。 给定 \(i\)，记 \(p\) 是第 \(i\) 个质数。 矩阵 \(\text{HMBB}_{n}\) 的大小为 \(p^n \times p^n\)，同时： \[ \text{HMBB}_{n}[i][j] = \begin{cases} 0 &amp;amp; \binom{i}{j}</description>
     </item>
     
     <item>

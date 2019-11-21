@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Combinatorics on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/combinatorics/</link>
+    <description>Recent content in Combinatorics on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 10 Aug 2018 16:02:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/combinatorics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HDUOJ 6372: sacul</title>
+      <link>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</link>
+      <pubDate>Fri, 10 Aug 2018 16:02:23 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</guid>
+      <description>题面 分析 %%% 题面 某巨犇发现了一种叫做海绵宝宝 \(\text{HMBB}\) 的神奇矩阵。 给定 \(i\)，记 \(p\) 是第 \(i\) 个质数。 矩阵 \(\text{HMBB}_{n}\) 的大小为 \(p^n \times p^n\)，同时： \[ \text{HMBB}_{n}[i][j] = \begin{cases} 0 &amp;amp; \binom{i}{j}</description>
+    </item>
+    
+  </channel>
+</rss>
