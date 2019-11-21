@@ -1,16 +1,15 @@
 ---
-gitalk: 38cb3acc-d855-11e8-986b-7f9ab86c62e9
 title: "Hello World... Again!"
 date: 2019-10-15T14:28:28+08:00
 math: true
-isCJKLanguage: true
+utterances: 1
+category: Life
+tags:
+  - Hello
 output:
   blogdown::html_page:
     toc: true
     highlight: zenburn
-category: Life
-tags:
-  - Hello
 ---
 
 你好，世界…… 又来一次~

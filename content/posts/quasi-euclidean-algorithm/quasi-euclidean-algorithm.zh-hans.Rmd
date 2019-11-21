@@ -1,7 +1,7 @@
 ---
-gitalk: 21bc567e-d858-11e8-a31c-cf1dc3b4e650
 title: 浅谈类欧几里德算法
 date: 2018-10-18T22:54:39+08:00
+utterances: 58
 math: true
 category: Notes
 tags: 
@@ -136,12 +136,13 @@ $$
 $$
 f(a, b, c, n) =
 \begin{cases}
-\left\lfloor \frac{a}{c} \right\rfloor \frac{n(n + 1)}{2} + \left\lfloor \frac{b}{c} \right\rfloor (n + 1) + f(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
+\left\lfloor \frac{a}{c} \right\rfloor \frac{n(n + 1)}{2} + \left\lfloor \frac{b}{c} \right\rfloor (n + 1) & \\
++ f(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
 nm - f(c, c - b - 1, a, m - 1) & \text{otherwise}
 \end{cases}
 $$
 
-# g  式
+# g 式
 
 ## 形式
 
@@ -170,14 +171,7 @@ g(a, b, c, n) & = \sum\limits_{i = 0}^{n} {i \left\lfloor \frac{ai + b}{c} \righ
 & = \sum\limits_{i = 0}^{n} \sum\limits_{j = 0}^{\left\lfloor \frac{ai + b}{c} \right\rfloor - 1} {i} \\
 & = \sum_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {i \cdot (j \le \left\lfloor \frac{ai + b}{c} \right\rfloor - 1)} \\
 & = \sum_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {i \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)}
-\end{aligned}
-$$
-
-我们依然记 $m = \left\lfloor \frac{an + b}{c} \right\rfloor$，则有：
-
-$$
-\begin{aligned}
-g(a, b, c, n)
+& \text{let } m = \left\lfloor \frac{an + b}{c} \right\rfloor \\
 & = \sum_{j = 0}^{m - 1} \sum\limits_{i = 0}^{n} {i \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)} \\
 & = \sum_{j = 0}^{m - 1} \sum\limits_{i = 0}^{n} {i \cdot \left[ cj < (ai + b) - c + 1 \right]} \\
 & = \sum_{j = 0}^{m - 1} \sum\limits_{i = 0}^{n} {i \cdot (i > \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor)}
@@ -188,8 +182,7 @@ $$
 
 $$
 \begin{aligned}
-g(a, b, c, n)
-& = \sum\limits_{j = 0}^{m - 1} {\frac{1}{2} (\left\lfloor
+g(a, b, c, n) & = \sum\limits_{j = 0}^{m - 1} {\frac{1}{2} (\left\lfloor
 \frac{cj + c - b - 1}{a} \right\rfloor + n + 1) \cdot (n - \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor)} \\
 & = \frac{1}{2} \sum\limits_{j = 0}^{m - 1} {\left[ n(n + 1) - {\left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor}^2 - \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor \right]} \\
 & = \frac{1}{2} \left[ \sum\limits_{j = 0}^{m - 1} {n(n + 1)} - \sum\limits_{j = 0}^{m - 1} {\left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor}^2 - \sum\limits_{j = 0}^{m - 1} {\left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor} \right] \\
@@ -206,7 +199,8 @@ $$
 $$
 g(a, b, c, n) =
 \begin{cases}
-\left\lfloor \frac{a}{c} \right\rfloor \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{b}{c} \right\rfloor \frac{1}{2}n(n + 1) + g(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
+\left\lfloor \frac{a}{c} \right\rfloor \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{b}{c} \right\rfloor \frac{1}{2}n(n + 1) & \\
+ + g(a \bmod c, b \bmod c, c, n) & a \ge c \lor b \ge c \\
 \frac{1}{2} \left[ mn(n + 1) - h(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) \right] & \text{otherwise}
 \end{cases}
 $$
@@ -225,14 +219,14 @@ $$
 
 $$
 \begin{aligned}
-h(a, b, c, n) = & \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2 \\
-= & \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor + \left\lfloor \frac{(a \bmod c)i + (b \bmod c)}{c} \right\rfloor)^2} \\
-= & \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor)^2} + 2 \sum\limits_{i = 0}^{n} (\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor) \cdot \left\lfloor \frac{(a \bmod c)i + (b \bmod c)}{c} \right\rfloor \\
+h(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2 \\
+& = \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor + \left\lfloor \frac{(a \bmod c)i + (b \bmod c)}{c} \right\rfloor)^2} \\
+& = \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor)^2} + 2 \sum\limits_{i = 0}^{n} (\left\lfloor \frac{a}{c} \right\rfloor i + \left\lfloor \frac{b}{c} \right\rfloor) \cdot \left\lfloor \frac{(a \bmod c)i + (b \bmod c)}{c} \right\rfloor \\
 & + \sum\limits_{i = 0}^{n} {\left\lfloor \frac{(a \bmod c)i + (b \bmod c)}{c} \right\rfloor}^2
 \end{aligned}
 $$
 
-为了方便展示，我们分开化简这三项：
+为了方便展示，分开化简这三项：
 
 $$
 \begin{aligned}
@@ -254,8 +248,9 @@ $$
 $$
 \begin{aligned}
 h & (a, b, c, n) \\
-= & \left\lfloor \frac{a}{c} \right\rfloor^2 \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{a}{c} \right\rfloor \left\lfloor \frac{b}{c} \right\rfloor 2n(n + 1) + \left\lfloor \frac{b}{c} \right\rfloor^2 (n + 1) \\
-& + 2\left\lfloor \frac{a}{c} \right\rfloor g(a \bmod c, b \bmod c, c, n) + 2\left\lfloor \frac{b}{c} \right\rfloor f(a \bmod c, b \bmod c, c, n) + h(a \bmod c, b \bmod c, c, n)
+& =  \left\lfloor \frac{a}{c} \right\rfloor^2 \frac{1}{6}n(n + 1)(2n + 1) + \left\lfloor \frac{a}{c} \right\rfloor \left\lfloor \frac{b}{c} \right\rfloor 2n(n + 1) + \left\lfloor \frac{b}{c} \right\rfloor^2 (n + 1) \\
+& + 2\left\lfloor \frac{a}{c} \right\rfloor g(a \bmod c, b \bmod c, c, n) + 2\left\lfloor \frac{b}{c} \right\rfloor f(a \bmod c, b \bmod c, c, n) \\
+& + h(a \bmod c, b \bmod c, c, n)
 \end{aligned}
 $$
 
@@ -263,34 +258,27 @@ $$
 
 $$
 \begin{aligned}
-h(a, b, c, n) = & \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2 \\
-= & \sum\limits_{i = 0}^{n} (2 \sum\limits_{j= 0}^{\left\lfloor \frac{ai + b}{c} \right\rfloor - 1} {j} + \left\lfloor \frac{ai + b}{c} \right\rfloor) \\
-= & 2\sum\limits_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {j \cdot (j \le \left\lfloor \frac{ai + b}{c} \right\rfloor - 1)} + \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor} \\
-= & 2\sum\limits_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {j \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)} + f(a, b, c, n)
+h(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor}^2 \\
+& = \sum\limits_{i = 0}^{n} (2 \sum\limits_{j= 0}^{\left\lfloor \frac{ai + b}{c} \right\rfloor - 1} {j} + \left\lfloor \frac{ai + b}{c} \right\rfloor) \\
+& = 2\sum\limits_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {j \cdot (j \le \left\lfloor \frac{ai + b}{c} \right\rfloor - 1)} + \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\rfloor} \\
+& = 2\sum\limits_{j = 0}^{\left\lfloor \frac{an + b}{c} \right\rfloor - 1} \sum\limits_{i = 0}^{n} {j \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)} + f(a, b, c, n) \\
+& \text{let } m = \left\lfloor \frac{an + b}{c} \right\rfloor \\
+& = 2\sum\limits_{j = 0}^{m - 1} \sum\limits_{i = 0}^{n} {j \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)} + f(a, b, c, n) \\
+& = 2\sum\limits_{j = 0}^{m - 1} j \cdot \sum\limits_{i = 0}^{n} {\left[ cj < (ai + b) - c + 1 \right]} + f(a, b, c, n) \\
+& = 2\sum\limits_{j = 0}^{m - 1} j \cdot \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor < i)} + f(a, b, c, n) \\
+& = 2\sum\limits_{j = 0}^{m - 1} j \cdot (n - \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor) + f(a, b, c, n) \\
+& = 2n\sum\limits_{j = 0}^{m - 1} {j} - 2\sum\limits_{j = 0}^{m - 1} {j \cdot \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor} + f(a, b, c, n) \\
+& = 2n \cdot \frac{1}{2}(m - 1)m - 2g(c, c - b - 1, a, m - 1) + f(a, b, c, n)
 \end{aligned}
 $$
 
-我们依然记 $m = \left\lfloor \frac{an + b}{c} \right\rfloor$，则有：
+带入之前推 $f$ 式得到的结论可得：
 
 $$
 \begin{aligned}
-h(a, b, c, n)
-= & 2\sum\limits_{j = 0}^{m - 1} \sum\limits_{i = 0}^{n} {j \cdot (j < \left\lfloor \frac{ai + b}{c} \right\rfloor)} + f(a, b, c, n) \\
-= & 2\sum\limits_{j = 0}^{m - 1} j \cdot \sum\limits_{i = 0}^{n} {\left[ cj < (ai + b) - c + 1 \right]} + f(a, b, c, n) \\
-= & 2\sum\limits_{j = 0}^{m - 1} j \cdot \sum\limits_{i = 0}^{n} {(\left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor < i)} + f(a, b, c, n) \\
-= & 2\sum\limits_{j = 0}^{m - 1} j \cdot (n - \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor) + f(a, b, c, n) \\
-= & 2n\sum\limits_{j = 0}^{m - 1} {j} - 2\sum\limits_{j = 0}^{m - 1} {j \cdot \left\lfloor \frac{cj + c - b - 1}{a} \right\rfloor} + f(a, b, c, n) \\
-= & 2n \cdot \frac{1}{2}(m - 1)m - 2g(c, c - b - 1, a, m - 1) + f(a, b, c, n)
-\end{aligned}
-$$
-
-我们带入之前推 $f$ 式得到的结论可得：
-
-$$
-\begin{aligned}
-h(a, b, c, n)
-= & n(m - 1)m - 2g(c, c - b - 1, a, m - 1) + nm - f(c, c - b - 1, a, m - 1) \\
-= & nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1)
+h(a, b, c, n) & = n(m - 1)m - 2g(c, c - b - 1, a, m - 1) \\
+& + nm - f(c, c - b - 1, a, m - 1) \\
+& = nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1)
 \end{aligned}
 $$
 
@@ -313,7 +301,8 @@ $$
 ## 仅 f 式
 
 ```cpp
-long long int quasiEuclidean(long long int a, long long int b, long long int c, long long int n) {
+long long int quasiEuclidean(long long int a, long long int b, 
+                            long long int c, long long int n) {
     if (a == 0) {
         return (n + 1) * (b / c);
     }

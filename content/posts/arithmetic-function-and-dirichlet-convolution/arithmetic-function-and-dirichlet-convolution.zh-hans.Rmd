@@ -1,7 +1,7 @@
 ---
-gitalk: 4b714c8c-f1c4-11e9-8856-073afd36f6ac
 title: 数论函数与狄利克雷卷积
 date: 2019-08-06T13:18:39+08:00
+utterances: 71
 math: true
 category: Notes
 tags: 
@@ -10,8 +10,8 @@ tags:
   - Mathematics
   - Number Theory
   - Abstract Algebra
-  - Arithmetic function
-  - Dirichlet convolution
+  - Arithmetic Function
+  - Dirichlet Convolution
 output:
   blogdown::html_page:
     toc: true
@@ -51,7 +51,7 @@ $$
 3. $\boldsymbol{\cdot}$：交换律，结合律；存在单位元（元函数 $\epsilon(n) = n$，简记为 $\epsilon$）；
 4. $+$ 和 $\cdot$ 间满足分配律。
 
-第 $1, 2$ 点中的内容较为显然，这里就略去证明了。下面对 $2, 3$ 进行简要证明：
+第 $1, 2$ 点中的内容较为显然，这里就略去证明了。下面对 $3, 4$ 进行简要证明：
 
 - 乘法交换律：
   
@@ -159,7 +159,7 @@ f = g \cdot 1 & \Rightarrow f \cdot \mu = g \cdot 1 \cdot \mu \\
 \end{aligned}
 $$
 
-这不就是莫比乌斯反演的式子吗：
+于是我们得到了莫比乌斯反演：
 
 $$
 g(n) = \sum\limits_{d \mid n}g(d)\mu(\frac{n}{d})
@@ -181,7 +181,7 @@ $$
 \varphi \cdot 1 = N
 $$
 
-我们再试着乱搞一波来探究一番好基友间的基情：
+我们试着对其操作一下：
 
 $$
 \begin{aligned}
@@ -194,6 +194,17 @@ $$
 
 $$
 \sum\limits_{d \mid n} \frac{\mu(d)}{d} = \frac{\varphi(n)}{n}
+$$
+
+---
+
+另外，除数函数也可以用狄利克雷卷积表示：
+
+$$
+\begin{aligned}
+d(n) = \sum\limits_{d \mid n}1 & \Rightarrow d = 1 \cdot 1 \\ 
+\sigma(n) = \sum\limits_{d \mid n}d & \Rightarrow \sigma = N \cdot 1
+\end{aligned}
 $$
 
 # 杜教筛
@@ -221,7 +232,7 @@ $$
 
 这就是杜教筛的本体。换句话说，只要我们构造出的 $\sum\limits_{i = 1}^{n}h(i)$ 是可以 $\mathcal{O}(1)$ 求得的，那么结合适当的预处理和记忆化（预处理规模 $\mathcal{O}(n ^ \frac{2}{3})$），我们可以用 $\mathcal{O}(n ^ \frac{2}{3})$ 的复杂度计算出 $S(n)$。
 
-更具体地说，即我们应当先用线性筛预处理出前 $\mathcal{O})(n ^ \frac{2}{3})$ 左右的前缀和，然后对于大于这一阈值的前缀和递归求解。同时，每当求出一个值我们将其记忆化在哈希表里以加速未来的运算。
+更具体地说，即我们应当先用线性筛预处理出前 $\mathcal{O}(n ^ \frac{2}{3})$ 左右的前缀和，然后对于大于这一阈值的前缀和递归求解。同时，每当求出一个值我们将其记忆化在哈希表里以加速未来的运算。
 
 对于这一筛法复杂度的详细证明大家可以参考这篇博文：[杜教筛时间复杂度证明 - _Ark](https://blog.csdn.net/Ike940067893/article/details/84781307)
 
@@ -250,7 +261,7 @@ $$
    \begin{aligned}
    h= f \cdot g & = \sum\limits_{d \mid n}f(d)g(\frac{n }{d}) \\
    & = \sum\limits_{d \mid n} d \varphi(d)g(\frac{n}{d}) \\
-   & \text{let } g = N: \\ 
+   & \text{let } g = N \\ 
    & = n\sum\limits_{d \mid n}\varphi(d) \\
    & = n^2
    \end{aligned}
@@ -266,7 +277,7 @@ $$
    \begin{aligned}
    h = f \cdot g & = \sum\limits_{d \mid n} f(d)g(\frac{n}{d}) \\
    & = \sum\limits_{d \mid n}d^2\varphi(d)g(\frac{n}{d}) \\
-   & \text{let } g = N^2: \\
+   & \text{let } g = N^2 \\
    & = n^2\sum\limits_{d \mid n} \varphi(d) \\
    & = n^3
    \end{aligned}

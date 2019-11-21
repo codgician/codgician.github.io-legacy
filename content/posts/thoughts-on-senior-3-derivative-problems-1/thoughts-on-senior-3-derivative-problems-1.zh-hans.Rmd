@@ -1,7 +1,7 @@
 ---
-gitalk: e921b1e0-d859-11e8-9322-d7185fcce90b
-title: 高考导数 - “两点”问题
+title: "高考导数: “两点”问题"
 date: 2017-03-21T16:32:10+08:00
+utterances: 2
 math: true
 category: Notes
 tags: 

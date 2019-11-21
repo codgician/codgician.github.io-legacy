@@ -1,8 +1,8 @@
 ---
-gitalk: 72defb64-d859-11e8-843f-df8b2e3e10e3
 title: Competitive Programming
 layout: single
 comments: true
+utterances: 4
 ---
 
 Time flies very fast. 

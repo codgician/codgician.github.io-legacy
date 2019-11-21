@@ -1,7 +1,7 @@
 ---
-gitalk: a006ff1a-d859-11e8-8b2e-0b9c310e8239
-title: 高考导数 - 洛必达法则
+title: "高考导数: 洛必达法则"
 date: 2017-04-08T20:26:59+08:00
+utterances: 5
 math: true
 category: Notes
 tags: 

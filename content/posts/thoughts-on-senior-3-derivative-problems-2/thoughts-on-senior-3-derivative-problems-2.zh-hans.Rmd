@@ -1,7 +1,7 @@
 ---
-gitalk: ef89a35e-d858-11e8-8678-d7b4529af90f
-title: 高考导数 - 优化函数以方便求解
+title: "高考导数: 优化函数以方便求解"
 date: 2017-04-08T20:21:50+08:00
+utterances: 3
 math: true
 category: Notes
 tags: 

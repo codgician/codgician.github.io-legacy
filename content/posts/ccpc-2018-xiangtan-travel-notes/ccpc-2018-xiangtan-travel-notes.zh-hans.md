@@ -1,7 +1,9 @@
 ---
-gitalk: f39de338-d84e-11e8-a6b7-87ff6eae0548
 title: "CCPC 2018 湘潭邀请赛游记"
 date: 2018-05-16T13:19:35+08:00
+utterances: 33
+math: true
+toc: true
 category: Life
 tags: 
   - Competitive Programming

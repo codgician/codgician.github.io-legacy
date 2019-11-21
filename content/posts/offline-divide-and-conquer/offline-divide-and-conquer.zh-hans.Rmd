@@ -1,7 +1,7 @@
 ---
-gitalk: 7217c780-211d-11e9-aad4-a3c7ba8d0937
 title: 浅谈离线分治算法
 date: 2019-07-22T20:25:56+08:00
+utterances: 67
 math: true
 category: Notes
 tags:

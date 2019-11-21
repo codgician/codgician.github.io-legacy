@@ -18,7 +18,7 @@ author:
 permalinks:
   posts: '/posts/:year/:month/:filename/'
 enableEmoji: true
-googleAnalytics: UA-97035940-4
+googleAnalytics: UA-97035940-1
 params:
   dateform: 'Jan 2, 2006'
   dateformShort: Jan 2
@@ -42,15 +42,10 @@ params:
       url: 'mailto:gutomata@outlook.com'
   code_copy_button: false
   katex: true
-  gitalk:
-    enabled: true
-    clientID: b24412b0a2836501e222
-    clientSecret: fc4a05db9b930f4424d0bd845fb448fcd168bbb9
-    repo: homepage-comments
-    owner: codgician
-    admin:
-      - codgician
-    distractionFreeMode: false
+  utterances:
+    repo: codgician/homepage-comments
+    label:
+    theme: photon-dark
 
 # Multi-lingual
 languages:

@@ -2,6 +2,12 @@
 {{ template "_internal/disqus.html" . }}
 {{- end }}
 
-{{- if and .Site.Params.Gitalk .Page.Params.Gitalk }}
-    <div id="gitalk-container"></div>
+{{- if and .Site.Params.Utterances .Page.Params.Utterances }}
+    <script defer src="https://utteranc.es/client.js"
+        repo="{{- .Site.Params.Utterances.Repo -}}"
+        issue-number="{{- .Page.Params.Utterances -}}"
+        label="{{- .Site.Params.Utterances.Label -}}"
+        theme="{{- .Site.Params.Utterances.Theme -}}"
+        crossorigin="anonymous"
+    ></script>
 {{- end }}

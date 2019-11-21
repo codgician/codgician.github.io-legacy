@@ -1,19 +1,17 @@
 ---
-gitalk: 73563b7c-d857-11e8-abe1-ef28ffcb62ca
 title: "Math"
 type: posts
 layout: single
+utterances: 10
 math: true
-date: 2019-10-15T19:28:28+08:00
+date: 2019-11-18T08:59:35+08:00
 output:
   blogdown::html_page:
     toc: true
     highlight: zenburn
 ---
 
-# Math
-
-## 龟速乘  / 快速幂
+# 龟速乘  / 快速幂
 
 ```cpp
 long long int fastMul(long long int a, long long int n, long long int mod) {
@@ -25,7 +23,6 @@ long long int fastMul(long long int a, long long int n, long long int mod) {
     }
     return ret;
 }
-
 long long int fastPow(long long int a, long long int n, long long int mod) {
     long long int ret = 1; a %= mod;
     while (n > 0) {
@@ -37,9 +34,9 @@ long long int fastPow(long long int a, long long int n, long long int mod) {
 }
 ```
 
-## 线性递推式
+# 线性递推式
 
-### 矩阵快速幂
+## 矩阵快速幂
 
 可以构造矩阵来加速线性递推式第 $n$ 项的计算。
 
@@ -48,12 +45,10 @@ class Matrix {
 public:
     int row, col;
     long long int arr[SIZE][SIZE];
-
     Matrix(int r, int c) {
         row = r; col = c;
         memset(arr, 0, sizeof(arr));
     }
-
     void operator += (const Matrix & b) {
         // assert(row == b.row && col == b.col);
         for (int i = 0; i < row; i++) {
@@ -64,7 +59,6 @@ public:
             }
         }
     }
-
     Matrix operator * (const Matrix & snd) const {
         // assert(col == snd.row);
         Matrix ret(row, snd.col);
@@ -80,14 +74,12 @@ public:
         }
         return ret;
     }
-
     Matrix & operator = (const Matrix & snd) {
         row = snd.row; col = snd.col;
         memcpy(arr, snd.arr, sizeof(snd.arr));
         return *this;
     }
 };
-
 Matrix matFastPow(Matrix mat, long long int n) {
     // assert(mat.row == mat.col);
     Matrix ret(mat.row, mat.col);
@@ -103,7 +95,7 @@ Matrix matFastPow(Matrix mat, long long int n) {
 }
 ```
 
-### 特征方程求通项公式
+## 特征方程求通项公式
 
 如果是在模 $p$ 意义下求第 $n$ 项的值，且通项公式中无理数或复数均可用二次剩余代替时可考虑直接公式求解。
 
@@ -141,7 +133,7 @@ $$
 
 代入 $f_0 = a, \ f_1 = b$ 即可得到通项公式。
 
-## 数论分块
+# 数论分块
 
 ```cpp
 // just n
@@ -158,7 +150,7 @@ for (int l = 1, r; l <= n; l = r + 1) {
 }
 ```
 
-## 素数
+# 素数
 
 ```cpp
 // Variant #1
@@ -198,17 +190,18 @@ void initPrimes() {
 
 **拓展**：$\text{minFac}(x)$  记录 $x$ 的最小质因子，所以如果我们要对所有数快速分解质因子，那么一直除它的最小质因子就好了。
 
-## 数论函数
 
-以下均令 $n = \prod\limits_{i = 1}^{k} p_i^{e_i}$，其中 $p_i \in \text{PRIMES}$（$n \geq 2$）。
+# 数论函数
 
-### 欧拉函数 $\varphi(n)$
+**注**：以下默认 $n = \prod\limits_{i = 1}^{k} p_i^{e_i}$，其中 $p_i \in \text{PRIMES}$（$n \geq 2$）。
+
+## 欧拉函数 $\varphi(n)$
 
 $$
 \varphi(n) = n\prod\limits_{i = 1}^{k}(1 - \frac{1}{p_i})
 $$
 
-#### 朴素
+### 朴素
 
 ```cpp
 long long int phi(long long int num) {
@@ -226,7 +219,7 @@ long long int phi(long long int num) {
 }
 ```
 
-#### 线性筛
+### 线性筛
 
 ```cpp
 int minFac[SIZE], primes[SIZE], phi[SIZE], primesPt;
@@ -250,7 +243,7 @@ void initPhi() {
 }
 ```
 
-#### 性质（欧拉反演基础）
+### 性质（欧拉反演基础）
 
 $$
 \varphi(ij) = \frac{\varphi(i)\varphi(j)\gcd(i, j)}{\varphi(\gcd(i, j))}
@@ -264,7 +257,7 @@ $$
 \sum\limits_{d \mid n} \frac{\mu(d)}{d} = \frac{\varphi(n)}{n}
 $$
 
-### 莫比乌斯函数 
+## 莫比乌斯函数 
 
 $$
 \mu(n) =
@@ -275,7 +268,7 @@ $$
 \end{cases}
 $$
 
-#### 朴素
+### 朴素
 
 ```cpp
 int mu(long long int num) {
@@ -293,7 +286,7 @@ int mu(long long int num) {
 }
 ```
 
-#### 线性筛
+### 线性筛
 
 ```cpp
 int minFac[SIZE], primes[SIZE], mu[SIZE], primesPt;
@@ -319,7 +312,7 @@ void initMu() {
 }
 ```
 
-#### 性质（莫比乌斯反演基础）
+### 性质（莫比乌斯反演基础）
 
 $$
 \sum\limits_{d \mid n} \mu(d) = 
@@ -329,28 +322,38 @@ $$
 \end{cases}
 $$
 
-#### 反演[WIP]
+### 反演
 
-```
-咕咕咕……
-```
+$$
+\begin{aligned}
+F(n) & = \sum\limits_{d \mid n}f(d) \Leftrightarrow f(n) = \sum\limits_{d \mid n} \mu(d)F(\frac{n}{d}) \\
+F(n) & = \sum\limits_{n \mid d}f(d) \Leftrightarrow f(n) = \sum\limits_{n \mid d} \mu(\frac{d}{n})F(d)
+\end{aligned}
+$$
 
-
-
-### 约数个数 $d(n)$
+## 约数个数 $d(n)$
 
 $$
 d(n) = \prod\limits_{i = 1}^{k}(e_i + 1)
 $$
 
-#### 线性筛
+### 相关套路
+
+$$
+\begin{aligned}
+\sum\limits_{i = 1}^{x} d(i) & = \sum\limits_{i = 1}^{x} \left\lfloor \frac{x}{i} \right\rfloor \\
+d(xy) & = \sum\limits_{i \mid x}\sum\limits_{j \mid y} [(i, j) = 1] \\
+d(xyz) & = \sum\limits_{i \mid x}\sum\limits_{j \mid y}\sum\limits_{k \mid z} [(i, j) = 1][(i, k) = 1][(j, k) = 1]
+\end{aligned}
+$$
+
+### 线性筛
 
 ```cpp
 int primes[SIZE], minFac[SIZE], numArr[SIZE], d[SIZE], primesPt;
 void initD() {
     memset(minFac, 0, sizeof(minFac));
-    primesPt = 0;
-    d[1] = 1;
+    primesPt = 0; d[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
             minFac[i] = i;
@@ -372,21 +375,20 @@ void initD() {
 }
 ```
 
-### 约数和 $ds(n)$
+## 约数和 $\sigma(n)$
 
 $$
-ds(n) = \prod\limits_{i = 1}^{k}\sum\limits_{j = 0}^{e_i}p_i^j
+\sigma(n) = \prod\limits_{i = 1}^{k}\sum\limits_{j = 0}^{e_i}p_i^j
 $$
 
-#### 线性筛
+### 线性筛
 
 ```cpp
 int primes[SIZE], minFac[SIZE], primesPt;
 long long int dSum[SIZE], facSqrSum[SIZE];
 void initDSum() {
     memset(minFac, 0, sizeof(minFac));
-    primesPt = 0;
-    facSqrSum[1] = 1; dSum[1] = 1;
+    primesPt = 0; facSqrSum[1] = 1; dSum[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
             minFac[i] = i;
@@ -408,7 +410,7 @@ void initDSum() {
 }
 ```
 
-### 迪利克雷卷积
+## 狄利克雷卷积
 
 记 $\mathbb{S}$ 代表全体数论函数，则对 $f, g \in \mathbb{S}$，定义其卷积：
 
@@ -422,15 +424,17 @@ $\lang \mathbb{S}, +, \cdot \rang $ 构成一个**可交换环**。其中单位�
 
 - $\mu \cdot 1 = e$
 - $\varphi \cdot 1 = N$ 
+- $d = 1 \cdot 1$
+- $\sigma = N \cdot 1$
 
 **注意**：
 
 - 数论函数不一定是积性函数；
 - 积性函数的卷积仍是积性函数。
 
-### 杜教筛
+## 杜教筛
 
-#### 简介
+### 简介
 
 构造 $f, g, h \in \mathbb{S}, \text{ s.t. } f \cdot g = h$，且其中 $\sum{h}$ 可被快速计算。记 $S(n) = \sum\limits_{i = 1}^{n} f(i)$，则有： 
 
@@ -442,42 +446,46 @@ $$
 
 **注意**：$f, g, h$ **不一定**是积性函数。
 
-#### 常见应用
+### 常见应用
 
-1. $f(i) = \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} \varphi(i)$，由 $\varphi \cdot 1 = N$：
+- $f(i) = \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} \varphi(i)$：
+  
+  由 $\varphi \cdot 1 = N$ （对应 $f \cdot g = h$）：
+  $$
+  S(n) = \sum\limits_{i = 1}^{n}i - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+  $$
 
-   $$
-S(n) = \sum\limits_{i = 1}^{n}i - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
-   $$
+- $f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)$：
 
-2. $f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)$，由 $\mu \cdot 1 = e$
+  由 $\mu \cdot 1 = e$（对应 $f \cdot g = h$）：
 
-   $$
-S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
-   $$
+  $$
+  S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
+  $$
 
-3. $f(i) = i \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i  \varphi(i)$：
+- $f(i) = i \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i  \varphi(i)$：
 
    $$
    \begin{aligned}
    h= f \cdot g & = \sum\limits_{d \mid n}f(d)g(\frac{n }{d}) \\
    & = \sum\limits_{d \mid n} d \varphi(d)g(\frac{n}{d}) \\
-   & \text{let } g = N: \\ 
+   & \text{let } g = N \\ 
    & = n\sum\limits_{d \mid n}\varphi(d) \\
    & = n^2
    \end{aligned}
-   
+   $$
+
    $$
    S(n) = \sum\limits_{i = 1}^{n}i^2 - \sum\limits_{d = 2}^{n} dS(\left\lfloor \frac{n}{d} \right\rfloor)
    $$
    
-4. $f(i) = i^2 \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i^2 \varphi(i)$
+- $f(i) = i^2 \varphi(i), \ S(n) = \sum\limits_{i = 1}^{n} i^2 \varphi(i)$：
 
    $$
    \begin{aligned}
    h = f \cdot g & = \sum\limits_{d \mid n} f(d)g(\frac{n}{d}) \\
    & = \sum\limits_{d \mid n}d^2\varphi(d)g(\frac{n}{d}) \\
-   & \text{let } g = N^2: \\
+   & \text{let } g = N^2 \\
    & = n^2\sum\limits_{d \mid n} \varphi(d) \\
    & = n^3
    \end{aligned}
@@ -489,9 +497,9 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 
 预处理 $\mathcal{O}(n^\frac{2}{3})$ 左右的数据则复杂度 $\mathcal{O}(n^{\frac{2}{3}})$；若不预处理是 $\mathcal{O}(n^\frac{3}{4})$？要记忆化！
 
-### min25 筛
+## min25 筛
 
-#### 核心思想
+### 核心思想
 
 下文默认记 $\mathbb{P}$ 为素数集，$P_i$ 代表其中第 $i$ 大的素数并默认 $p \in \mathbb{P}$。若函数 $f(x)$ 满足：
 
@@ -499,7 +507,7 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 - $f(p^e)$ 可被快速计算；
 - 若 $a \perp b$，则 $f(ab) = f(a)f(b)$。
 
-min25 筛可在 $\mathcal{O}(\frac{n^\frac{3}{4}}{\log{n}})$ 的复杂度内计算 $\sum\limits_{i = 1}^{n} f(i)$，其核心思想即将 $[1, n]$ 分为质数、$1$ 和剩余数三个部分进行讨论：
+min25 筛可在 $\mathcal{O}(\frac{n^\frac{3}{4}}{\log{n}})$ 的复杂度内计算 $\sum\limits_{i = 1}^{n} f(i)$，其核心思想即将 $[1, n]$ 分为素数、$1$ 和剩余数三个部分进行讨论：
 
 $$
 \begin{aligned}
@@ -510,7 +518,7 @@ $$
 
 **注**：上面提到的限制条件是充分不必要条件。
 
-#### 筛质数答案
+### 筛素数答案
 
 考虑筛出不大于 $\sqrt{n}$ 的所有素数作为 $\mathbb{P}$。记 $minp(x)$ 代表 $x$ 的最小质因子，令：
 
@@ -536,7 +544,7 @@ $$
 
 对于初值，有 $g(n, 0) = \sum\limits_{i = 2}^{n}f(i)$。在实现时第一维可以滚动以节约空间。
 
-#### 筛合数答案
+### 筛非素数答案
 
 令：
 
@@ -561,7 +569,7 @@ $$
 
 直接递归搜即可，不需要记忆化复杂度也是对的（~~证明不来~~），如果有多个状态可以考虑开个结构体一起转移。
 
-#### 代码
+### 代码
 
 【洛谷模板】积性函数： $f(p^e) = p^e (p^e - 1)$
 
@@ -673,9 +681,9 @@ int main() {
 }
 ```
 
-#### 灵活变化
+### 灵活变化
 
-##### $f(p)$ 是分段函数？
+#### $f(p)$ 是分段函数？
 
 Nowcoder 887K
 
@@ -701,7 +709,7 @@ $$
   $$
   状态转移是根据余数再分别进行转移即可；对于 $s$ 最后不能忘记考虑 $2$。
 
-##### $f$ 不是积性函数？
+#### $f$ 不是积性函数？
 
 对于最后一条限制，其实只要待筛函数 $f$ 能够在对 $s, g$ 进行转移时被正确处理就可以了。
 
@@ -709,33 +717,77 @@ $$
 
 例子：$f(ab) = f(a) + f(b)$。
 
-### 推式子的人生经验
+# 乱搞套路
+
+$$
+f(n) = \sum\limits_{d \mid n} g(d)
+$$
+
+```cpp
+for (int i = 1; i <= n; i++)
+    g[i] = f[i];
+for (int i = 1; i <= n; i++)
+    for (int j = i + 1; j <= n; j += i)
+        g[j] -= g[i];
+```
+
+---
+
+$$
+\begin{aligned}
+\sum\limits_{x \mid d} \left\lfloor \frac{A}{d} \right\rfloor
+& = \sum\limits_{t = 1}^{\left\lfloor \frac{A}{x} \right\rfloor} \left\lfloor \frac{A}{xt} \right\rfloor \\
+& = \sum\limits_{t = 1}^{\left\lfloor \frac{A}{x} \right\rfloor} \left\lfloor \frac{\left\lfloor \frac{A}{x} \right\rfloor}{t} \right\rfloor \\
+& = \sum\limits_{t = 1}^{\left\lfloor \frac{A}{x} \right\rfloor} d(t)
+\end{aligned}
+$$
+
+---
+
+$$
+\begin{aligned}
+\sum\limits_{i = 1}^{n}\sum\limits_{d \mid i}f(d) & = \sum\limits_{d = 1}^{n}\sum\limits_{i = 1}^{n}f(d) \cdot [\gcd(d, i) = d] \\
+& = \sum\limits_{d = 1}^{n} f(d )\sum\limits_{i = 1}^{\left\lfloor \frac{n}{d} \right\rfloor}[\gcd(d, i) = 1] \\
+& = \sum\limits_{d = 1}^{n}f(d) \left\lfloor \frac{n}{d} \right\rfloor
+\end{aligned}
+$$
+
+如果有多层和式，可以一层一层按照上面的套路化简。
+
+---
 
 1. 遇到形如 $\left\lfloor \frac{n}{td} \right\rfloor$ 的式子时有套路：令 $T = td$ 并枚举 $T$；
-
 2. 经过上面一堆操作很可能化出形如 $\sum\limits_{d \mid n} \mu(d)f^k(\frac{T}{d})$ 的式子，此时往迪利克雷卷积的方向考虑即 $f \cdot \mu$，说不定利用一下 $\mu \cdot 1 = e$ 再配合杜教筛乱搞一下就搞出来了，而杜教筛中的那个前缀和说不定就能用 min25 筛乱搞；
-
 3. 或者我们可以利用 $\mu$ 的性质，考虑 $d$ 取何值才能使 $\mu(d) \neq 0$，说不定就能发现什么；
-
 4. 看到 $\gcd(i, j)$ 考虑直接枚举其值然后再套上莫比乌斯反演；
-
 5. 带权的直接欧拉反演少走弯路；
-
 6. 有时可考虑对求和进行拆分，可能会有意想不到的效果（在有 $\gcd$ 时贴近 $\varphi$ 的定义）：
    $$
    \sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{n} = \sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{i - 1} + \sum\limits_{i = 0}^{n}[j = i] + \sum\limits_{j = 0}^{n}\sum\limits_{i = 0}^{j - 1}
    $$
 
-## 逆元   $n^{-1} \pmod p$
+# 逆元   $n^{-1} \pmod p$
 
-### 欧拉定理
+## 欧拉定理
 
 当 $\gcd(a, p) = 1$ 时有：
+
 $$
 a^{\varphi(p)} \equiv 1 \pmod p
 $$
 
-### 拓展欧几里得
+## 欧拉降幂
+
+$$
+a^b = 
+\begin{cases}
+a^{b \bmod \varphi(p)} & \gcd(a, p ) = 1 \\
+a^b & \gcd(a, p) \neq 1, \ b < \varphi(p) \\
+a^{(b \bmod \varphi(p)) + \varphi(p)} & \gcd(a, p) \neq 1, \ b \ge \varphi(p)
+\end{cases}
+$$
+
+## 拓展欧几里得
 
 ```cpp
 long long int inv(long long int a, long long int mod) {
@@ -745,7 +797,7 @@ long long int inv(long long int a, long long int mod) {
 }
 ```
 
-### 线性预处理
+## 线性预处理
 
 ```cpp
 long long int invs[SIZE];
@@ -756,7 +808,7 @@ void initInv() {
 }
 ```
 
-### 阶乘逆元 $(n!)^{-1}$
+## 阶乘逆元 $(n!)^{-1}$
 
 ```cpp
 long long int invFactorials[SIZE];
@@ -768,34 +820,46 @@ void initInvFactorial() {
 }
 ```
 
-## 组合数
+# 二项式系数
 
-### 简介与计算
+## 简介与计算
 
 $$
 \binom{n}{m} = \frac{n!}{m! (n - m)!} \quad (0 \le m \le n)
 $$
 
-#### 预处理逆元:     $\mathcal{O}(1)$ 
+### 递推预处理
+
+$$
+\binom{n}{m} = \binom{n - 1}{m - 1} + \binom{n - 1}{m}
+$$
 
 ```cpp
-long long int comb(int n, int m) {
-    if (m > n)
-        return 0;
-    return factorials[n] * invFactorials[m] % mod * invFactorials[n - m] % mod;
-}
-
-long long int permu(int n, int m) {
-    if (m > n)
-        return 0;
-    return fafactorials] * invFactorials[n - m] % mod;
+void initBinom() {
+    binom[0][0] = 1;
+    for (int i = 1; i < SIZE; i++) {
+        binom[i][0] = 1; binom[i][i] = 1;
+        for (int j = 1; j < i; j++)
+            binom[i][j] = binom[i - 1][j - 1] + binom[i - 1][j];
+    }
 }
 ```
 
-#### 朴素:    $\mathcal{O}(n\log{n})$ 
+### 取模意义下:     $\mathcal{O}(1)$ 
 
 ```cpp
-long long int comb(long long int n, long long int m) {
+long long int binom(long long int n, long long int m) {
+    return m > n ? 0 : factorial[n] * invFactorial[m] % mod * invFactorial[n - m] % mod;
+}
+long long int permu(int n, int m) {
+    return m > n ? 0 : factorials[n] * invFactorials[n - m] % mod;
+}
+```
+
+### 朴素:    $\mathcal{O}(n\log{n})$ 
+
+```cpp
+long long int binom(long long int n, long long int m) {
     long long int ret = 1;
     for (int i = 1; i <= n; i++) {
         long long int a = (m + i - n) % mod, b = i % mod;
@@ -805,50 +869,34 @@ long long int comb(long long int n, long long int m) {
 }
 ```
 
-### 性质
+## 性质
 
 $$
-\binom{n}{m} = \binom{n - 1}{m - 1} + \binom{n - 1}{m}
+\begin{aligned}
+m \cdot \binom{n}{m} & = n \cdot \binom{n - 1}{m - 1} \\
+\sum\limits_{i = 1}^{n} i\binom{n}{i} & = n2^{n - 1} \\
+\sum\limits_{i = 1}^{n} i^2\binom{n}{i} & = n(n + 1)2^{n - 2} \\
+\sum\limits_{i = 0}^{n} \binom{n}{i}^2 & = \binom{2n}{n} \\
+\sum\limits_{i = 0}^{n} \binom{m + i}{m} & = \binom{m + n + 1}{m + 1} \\
+\sum\limits_{i = 0}^{k}(-1)^i \binom{n}{i} & = (-1)^k\binom{n - 1}{k}
+\end{aligned}
 $$
 
-$$
-m \cdot \binom{n}{m} = n \cdot \binom{n - 1}{m - 1}
-$$
-
-$$
-\sum\limits_{i = 1}^{n} i\binom{n}{i} = n2^{n - 1}
-$$
-
-$$
-\sum\limits_{i = 1}^{n} i^2\binom{n}{i} = n(n + 1)2^{n - 2}
-$$
-
-$$
-\sum\limits_{i = 0}^{n} \binom{n}{i}^2 = \binom{2n}{n}
-$$
-
-$$
-\sum\limits_{i = 0}^{n} \binom{m + i}{m} = \binom{m + n + 1}{m + 1}
-$$
-
-
-### Lucas 定理
+## Lucas 定理
 
 $$
 \binom{n}{m} \bmod p = \binom{n \bmod p}{m \bmod p} \cdot \binom{\left\lfloor\frac{n}{p}\right\rfloor}{\left\lfloor\frac{m}{p}\right\rfloor}
 $$
 
-#### 质数
+### 素数
 
 ```cpp
 long long int lucas(long long int n, long long int m) {
-    if (n == 0)
-        return 1;
-    return comb(n % mod, m % mod) * lucas(n / mod, m / mod) % mod;
+    return n == 0 ? 1 : binom(n % mod, m % mod) * lucas(n / mod, m / mod) % mod;
 }
 ```
 
-#### 非质数
+### 非素数
 
 模数固定，多次询问。
 
@@ -933,9 +981,54 @@ int main() {
 }
 ```
 
-## 高斯二项式系数
+## 二项式反演
 
-#### 简介与计算
+$$
+f(n) = \sum\limits_{i = 0}^{n} (-1)^i \cdot \binom{n}{i}\cdot g(i) \Leftrightarrow g(n) = \sum\limits_{i = 0}^{n}(-1)^i \cdot \binom{n}{i} \cdot f(i)
+$$
+
+更常用的形式：
+$$
+f(n) = \sum\limits_{i = 0}^{n} \binom{n}{i} \cdot g(i) \Leftrightarrow g(n) = \sum\limits_{i = 0}^{n}(-1)^{n - i} \cdot \binom{n}{i} \cdot f(i)
+$$
+
+### 错排问题
+
+$n$ 封信对应 $n$ 封信封，求**恰好**所有信都装错的方案数。
+
+令 $f(i)$ 代表恰好装错 $i$ 封的方案数，$g(i)$ 代表至多装错 $i$ 封的方案数。显然 $g(i) = i!$，且：
+
+$$
+g(n) = \sum\limits_{i = 0}^{n} \binom{n}{i} \cdot f(i)
+$$
+
+由二项式反演：
+
+$$
+\begin{aligned}
+f(n) & = \sum\limits_{i = 0}^{n} (-1)^{n - i} \cdot \binom{n}{i} \cdot g(i) \\
+& = \sum\limits_{i = 0}^{n} (-1)^{n - i} \cdot \frac{n!}{i!(n - i)!} \cdot i! \\
+&= n!\sum\limits_{i = 0}^{n} \frac{(-1)^i}{i!}
+\end{aligned}
+$$
+
+### 球染色问题
+
+用 $k$ 种颜色给 $n$ 个球进行染色，要求相邻两球颜色不同，且每种颜色至少用一次。
+
+令 $f(i)$ 代表恰好使用 $i$ 种颜色的方案数，$g(i)$ 代表至多使用 $i$ 种颜色的方案数。显然 $g(i) = i(i - 1)^{n - 1}$，且：
+
+$$
+g(k) = \sum\limits_{i = 0}^{k} \binom{k}{i} \cdot f(i)
+$$
+
+由二项式反演：
+
+$$
+f(k) = \sum\limits_{i = 0}^{k} (-1)^{k - i} \cdot \binom{k}{i} \cdot g(i)
+$$
+
+# 高斯二项式系数
 
 $$
 \binom{n}{m}_q = \frac{(1 - q ^ n)(1 - q ^ {n - 1}) \cdots (1 - q^{n - m + 1})}{(1 - q)(1 - q ^ 2) \cdots (1 - q ^ m)} \quad (0 \le m \le n)
@@ -986,28 +1079,20 @@ void init(int len, int q) {
 // The remaining part is similar to the case with ordinary binomial coefficient
 ```
 
-#### 性质
+---
 
 $$
 \begin{aligned}
 \binom{n}{m}_q & = \binom{n - 1}{m - 1}_q + q ^ m \binom{n - 1}{m}_q \\
-& = q^{n - m}\binom{n - 1}{m - 1}_q + \binom{n - 1}{m}_q
+& = q^{n - m}\binom{n - 1}{m - 1}_q + \binom{n - 1}{m}_q \\
+\lim\limits_{q \rightarrow 1} \binom{n}{m}_q & = \binom{n}{m} \\
+\lim\limits_{n \rightarrow +\infty} \binom{n}{m} & = \frac{1}{\left[ m \right]_q!(1 - q)^m} \quad (|q| < 1)
 \end{aligned}
 $$
 
-$$
-\lim\limits_{q \rightarrow 1} \binom{n}{m}_q = \binom{n}{m}
-$$
+# 类欧几里得
 
-$$
-\lim\limits_{n \rightarrow +\infty} \binom{n}{m} = \frac{1}{\left[ m \right]_q!(1 - q)^m} \quad (|q| < 1)
-$$
-
-## 类欧几里得
-
-### 常见形式
-
-#### 形式
+## 常见形式
 
 $$
 \begin{aligned}
@@ -1017,7 +1102,7 @@ h(a, b, c, n) & = \sum\limits_{i = 0}^{n} {\left\lfloor \frac{ai + b}{c} \right\
 \end{aligned}
 $$
 
-#### 结论
+---
 
 $$
 \begin{aligned}
@@ -1043,7 +1128,7 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) & \text{otherwise}
 \end{aligned}
 $$
 
-#### 代码
+---
 
 ```cpp
 /* Just f */
@@ -1113,7 +1198,7 @@ Node quasiEuclidean(int a, int b, int c, int n) {
 }
 ```
 
-### BZOJ  - 3817
+## BZOJ  - 3817
 
 $$
 f(a, b, c, n) = \sum\limits_{i = 0}^{n} \left\lfloor i \cdot \frac{at + b}{c} \right\rfloor
@@ -1129,7 +1214,7 @@ nm - f(ac, -bc, a^2t^2 - b^2, m) & \frac{at + b}{c} < 1
 \end{cases}
 $$
 
-### BZOJ -  2187
+## BZOJ -  2187
 
 给定 $a, b, c, d$，求解 $p, q$ 满足：
 
@@ -1139,7 +1224,7 @@ $$
 
 优先最小化 $q$，其次最小化 $p$。
 
-#### 分析
+---
 
 记原问题的解为 $f(a, b, c, d) = \langle p, q \rangle$，并先讨论两种可以直接得出答案的情况：
 
@@ -1153,8 +1238,6 @@ $$
 $$
 
 2. 若 $a = 0$，则取 $p = 1, q = \left\lfloor \frac{c}{d} \right\rfloor + 1$ 为解。
-
----
 
 对于剩下不能直接得出答案的情况中，若 $a \le b$ 且 $c \le d$ ，对问题进行转换：
 
@@ -1177,7 +1260,7 @@ $$
 
 由此一来，可以对子问题 $f(a \bmod b, b, c - d\left\lfloor \frac{a}{b} \right\rfloor, d) = \langle p'', q'' \rangle$ 求解，并在回溯时令 $p = p'' + q''\left\lfloor \frac{a}{b} \right\rfloor, q = q''$ 。
 
-#### 代码
+---
 
 ```cpp
 void simplify(long long int & a, long long int & b) {
@@ -1205,9 +1288,9 @@ pair<long long int, long long int> solve(long long int a, long long int b, long 
 }
 ```
 
-## 一次同余
+# 线性同余
 
-### 拓展欧几里得
+## 拓展欧几里得
 
 $$
 ax + by = \gcd(x, y)
@@ -1226,7 +1309,7 @@ long long int extEuclid(long long int a, long long int b, long long int & x, lon
 }
 ```
 
-### 一次同余方程
+## 一次同余方程
 
 $$
 ax \equiv b \pmod p
@@ -1244,7 +1327,25 @@ long long int linCon(long long int a, long long int b, long long int p) {
 }
 ```
 
-### 拓展中国剩余定理
+## 中国剩余定理
+
+对于线性同余方程组：
+$$
+\begin{cases}
+x \equiv b_1 & \pmod {p_1} \\
+x \equiv b_2 & \pmod {p_2} \\
+\dots & \\
+x_n \equiv b_n & \pmod {p_n}
+\end{cases}
+$$
+
+若 $p_1, p_2, \dots p_n$ 两两互素，则可使用中国剩余定理。令 $M = \prod\limits_{i = 1}^{n} p_i, \ m_i = \frac{M}{p_i}$，则方程组有解：
+
+$$
+x \equiv \sum\limits_{i = 1}^{n} b_im_im_i^{-1} \pmod M
+$$
+
+## 拓展中国剩余定理
 
 ```cpp
 // x % mods[i] = csts[i]
@@ -1255,29 +1356,27 @@ long long int crt(int equNum) {
         long long int x, y, a = modProd, b = mods[i];
         long long int c = (csts[i] - ans % b + b) % b;
         long long int gcd = extEuclid(a, b, x, y), bg = b / gcd;
-
         if (c % gcd != 0)
             return -1;
-
         long long int cntAns = (c / gcd % bg * x % bg + bg) % bg;
         // long long int cntAns = fastMul(x, c / gcd, bg);
         ans += modProd * cntAns;
         modProd *= bg;
     }
-
     return (ans % modProd + modProd) % modProd;
 }
 ```
 
-## 二次剩余
+# 二次剩余
 
 $$
 x^2 \equiv n \pmod p
 $$
 
-### 解的存在性
+## 解的存在性
 
 对于 $p$ 为奇素数的情形：
+
 $$
 \newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
 \begin{aligned}
@@ -1290,21 +1389,21 @@ $$
 \end{aligned}
 $$
 
-### Tonelli–Shanks 算法
+## Tonelli–Shanks 算法
 
 适用于模数为 $p^k$ 的情形，若为合数则考虑用 CRT 合并。
 
-```
-咕咕咕……
+```cpp
+/* 见 Claris 模板 */
 ```
 
-## 离散对数
+# 离散对数
 
 $$
 a^x \equiv b \pmod p
 $$
 
-### BSGS 算法
+## BSGS 算法
 
 令 $x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)$。问题转换为：
 
@@ -1358,7 +1457,7 @@ long long int extBsgs(long long int a, long long int b, long long int p) {
 }
 ```
 
-### Pohlig–Hellman 算法
+## Pohlig–Hellman 算法
 
 ```cpp
 /* Baby step Giant step */
@@ -1403,17 +1502,46 @@ long long int hiCon(long long int a, long long int b, long long int p) {
 }
 ```
 
-## 多项式
+# 多项式
 
-### 卷积
+## 积分
 
-记 $A(x) = \sum\limits_{i = 0}^{n} a_i x^i, \ B(x) = \sum\limits_{i = 0}^{n}b_ix^i$，则其卷积：
+```cpp
+class Polyn {
+public:
+    vector<int> vec;
+    Polyn(int siz = 0) { vec.resize(siz); }
+    Polyn operator * (const Polyn & snd) const {
+        Polyn ret(vec.size() + snd.vec.size() - 1); 
+        for (int i = 0; i < (int)vec.size(); i++)
+            for (int j = 0; j < (int)snd.vec.size(); j++)
+                ret.vec[i + j] = (ret.vec[i + j] + 1ll * vec[i] * snd.vec[j] % mod) % mod;
+        return ret;
+    }
+    Polyn integrate() {
+        Polyn ret(vec.size() + 1);
+        for (int i = 0; i < (int)vec.size(); i++)
+            ret.vec[i + 1] = vec[i] * fastPow(i + 1, mod - 2, mod) % mod;
+        return ret;
+    }
+    long long int calc(long long int x) {
+        long long int ret = 0, xe = 1;
+        for (int i = 0; i < (int)vec.size(); i++)
+            ret = (ret + xe * vec[i] % mod) % mod, xe = xe * x % mod;
+        return ret;
+    }
+};
+```
+
+## 卷积
+
+记 $A(x) = \sum\limits_{i = 0}^{d} a_i x^i, \ B(x) = \sum\limits_{i = 0}^{d}b_ix^i$，则其卷积：
 
 $$
-(A \cdot B)(x) = \sum\limits_{i = 0}^{2n}(\sum\limits_{j = 0}^{i}a_j b_{i - j})x^i
+(A \cdot B)(x) = \sum\limits_{i = 0}^{2d}(\sum\limits_{j = 0}^{i}a_j b_{i - j})x^i
 $$
 
-#### FFT
+### FFT
 
 ```cpp
 const double pi = acos(-1.0);
@@ -1473,38 +1601,166 @@ int main() {
 }
 ```
 
-#### NTT
+### NTT
 
 ```cpp
-/* 咕咕咕…… */
+const int mod = 998244353;
+const int pr = 3;
+long long int fst[SIZE], snd[SIZE], omg[SIZE], inv[SIZE];
+long long int pos[SIZE], fstLen, sndLen, len, lim;
+long long int fastPow(long long int a, long long int n, long long int mod) {
+    long long int ret = 1; a %= mod;
+    while (n > 0) {
+        if (n & 1)
+            ret = (ret * a) % mod;
+        a = (a * a) % mod; n >>= 1;
+    }
+    return ret;
+}
+void init() {
+    len = 1, lim = 0;
+    while (len < fstLen + sndLen - 1)
+        len <<= 1, lim++;
+    omg[0] = 1; inv[0] = 1; 
+    long long int w =  fastPow(pr, (mod - 1) / len, mod);
+    for (int i = 1; i < len; i++) {
+        omg[i] = omg[i - 1] * w % mod;
+        inv[len - i] = omg[i];
+        pos[i] = (pos[i >> 1] >> 1) | ((i & 1) << (lim - 1));
+    }
+}
+void ntt(long long int * arr, long long int * omg) {
+    for (int i = 0; i < len; i++) 
+        if (i < pos[i])
+            swap(arr[i], arr[pos[i]]);
+    for (int l = 2; l <= len; l <<= 1) {
+        int midPt = l >> 1, step = len / l;
+        for (long long int * p = arr; p != arr + len; p += l) {
+            for (int i = 0, cnt = 0; i < midPt; i++, cnt += step) {
+                long long int t = omg[cnt] * p[i + midPt] % mod;
+                p[i + midPt] = (p[i] - t + mod) % mod; 
+                p[i] = (p[i] + t) % mod;
+            }
+        }
+    }
+}
+void multiply() {
+    init();
+    ntt(fst, omg); ntt(snd, omg);
+    for (int i = 0; i < len; i++)
+        fst[i] = fst[i] * snd[i] % mod;
+    ntt(fst, inv);
+}
+int main() {
+    cin >> fstLen >> sndLen; fstLen++; sndLen++;
+    for (int i = 0; i < fstLen; i++)
+        cin >> fst[i];
+    for (int i = 0; i < sndLen; i++)
+        cin >> snd[i];
+    multiply();
+    long long int lenInv = fastPow(len, mod - 2, mod);
+    cout << fst[0] * lenInv % mod;
+    for (int i = 1; i < fstLen + sndLen - 1; i++)
+        cout << ' ' << fst[i] * lenInv % mod;
+    cout << '\n';
+    return 0;   
+}
 ```
 
-### 插值
+---
 
-求作次数 $\le n$ 的多项式 $P_n(x) = \sum\limits_{i = 0}^{n} a_ix$，使其满足 $(n + 1)$ 对条件：$P_n(x_i) = y_i$。插值法可以 $\mathcal{O}(n^2)$ 预处理，并以不高于 $\mathcal{O}(n\log{n})$ 的复杂度回答询问 $P_n(x)$。
+**任意模数 NTT**：选 $3$ 个大模数然后 CRT 合并答案，常取 $998244353, \ 1004535809, \ 469762049$ 因为它们原根都是 $3$。
 
-#### 拉格朗日插值
+为了防止爆 `long long`，可首先对前两项进行合并（可能需要快速乘），得到如下式子：
+
+$$
+\begin{cases}
+x \equiv A & \pmod M \\
+x \equiv b_3 & \pmod {p_3}
+\end{cases}
+$$
+
+直接令答案 $x = kM + A$，则有：
+
+$$
+kM + a \equiv b_3 \pmod {p_3} \Rightarrow k \equiv (b_3 - A)M^{-1} \pmod {p_3}
+$$
+
+直接求 $k$，然后求 $x$ 即可。
+
+## 插值
+
+求作次数 $\le d$ 的多项式 $P_d(x) = \sum\limits_{i = 0}^{d} a_ix$，使其满足 $(d + 1)$ 对条件：$P_d(x_i) = y_i$。插值法可以不高于 $\mathcal{O}(d^2)$ 预处理，并以不高于 $\mathcal{O}(d \log{d})$ 的复杂度回答询问 $P_d(x)$。
+
+### 拉格朗日插值
 
 令基函数：
 
 $$
-l_i(x) = \prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
+l_i(x) = \prod\limits_{j = 0, \ j \neq i}^{d} \frac{x - x_j}{x_i - x_j}
 $$
 
 则多项式可被表示为：
 
 $$
-P_n(x) = \sum\limits_{i = 0}^{n} l_i(x)y_i
+P_d(x) = \sum\limits_{i = 0}^d l_i(x)y_i
 $$
 
-##### 取值连续优化
+---
 
-即给定的 $(n + 1)$ 对条件恰为 $P_n(0), P_n(1), \dots, P_n(n)$，也就是 $x_i = i$。
+可以引入重心以对拉格朗日插值进行优化：
+$$
+P_d(x) = \sum\limits_{i = 0}^{d}y_i \cdot \frac{\prod\limits_{j = 0 \ j \neq i}^{d}(x - x_j)}{\prod\limits_{j = 0, \ j \neq i}^{d}(x_i - x_j)}
+$$
+
+令：
+
+$$
+w(x) = \prod\limits_{j = 0}^{d}(x - x_j)
+$$
+
+$$
+t_i = \frac{y_i}{\prod\limits_{j = 0, \ j \neq i}^{d} (x_i - x_j)}
+$$
+
+则有：
+
+$$
+P_d(x) = w(x)\sum\limits_{i = 0}^{d}\frac{t_i}{x - x_i}
+$$
+
+这样一来，在插入新点时，只需 $\mathcal{O}(d)$ 更新 $t_i$ 即可。
+
+```cpp
+pair<int, int> arr[SIZE]; long long int lag[SIZE]; 
+void initLag(int num) {    // num = highest exp
+    for (int i = 0; i < num; i++) {
+        lag[i] = arr[i].second % mod;
+        for (int j = 0; j < num; j++) {
+            if (i == j)
+                continue;
+            lag[i] = lag[i] * fastPow(arr[i].first - arr[j].first , mod - 2) % mod;
+        }
+    }
+}
+long long int lagrange(int x, int num) {    // retrieve f(x)
+    long long int ret = 0;
+    for (int i = 0; i < num; i++)
+        ret = (ret + lag[i] * fastPow(x - arr[i].first, mod - 2)) % mod;
+    for (int i = 0; i < num; i++)
+        ret = ret * (x - arr[i].first) % mod;
+    return (ret + mod) % mod;
+}
+```
+
+### 线性插值
+
+已知 $d$ 次多项式 $F(x)$ 在整点 $0, 1, \dots, d$ 处的值，我们可以 $\mathcal{O}(d)$ 时间复杂度求出 $F(x)$ 或以 $\mathcal{O}(d \log d)$ 复杂度求出原多项式 $F(x)$。
 
 $$
 \begin{aligned}
-P_n(x) & = \sum\limits_{i = 0}^{n}y_i\prod\limits_{j = 0, \ j \neq i}^{n} \frac{x - x_j}{x_i - x_j} \\
-& = \sum\limits_{i = 0}^{n}y_i \frac{\prod\limits_{j = 0, \ j \neq i}^{n} (x - j)}{\prod\limits_{j = 0, \ j \neq i}^{n} (i - j)}
+P_d(x) & = \sum\limits_{i = 0}^{d}y_i\prod\limits_{j = 0, \ j \neq i}^{d} \frac{x - x_j}{x_i - x_j} \\
+& = \sum\limits_{i = 0}^{d}y_i \frac{\prod\limits_{j = 0, \ j \neq i}^{d} (x - j)}{\prod\limits_{j = 0, \ j \neq i}^{d} (i - j)}
 \end{aligned}
 $$
 
@@ -1513,7 +1769,7 @@ $$
 $$
 \begin{cases}
 pre_i & = \prod\limits_{j = 0}^{i} (x - j) \\
-suf_i & = \prod\limits_{j = i}^{n} (x - j) \\
+suf_i & = \prod\limits_{j = i}^{d} (x - j) \\
 fac_i & = i!
 \end{cases}
 $$
@@ -1521,7 +1777,7 @@ $$
 则：
 
 $$
-P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot (-1)^{n - i} \cdot \frac{pre_{i - 1} \cdot suf_{i + 1}}{fac_{i} \cdot fac_{n - i}}
+P_d(x) = \sum\limits_{i = 0}^{d}y_i \cdot (-1)^{d - i} \cdot \frac{pre_{i - 1} \cdot suf_{i + 1}}{fac_{i} \cdot fac_{d - i}}
 $$
 
 这样就可以把预处理的复杂度降低到 $\mathcal{O}(n)$。
@@ -1555,53 +1811,74 @@ long long int lagrangeCons(long long int x, int len, long long int * y) {
 }
 ```
 
-##### 重心优化
+---
 
+我们也可以借助二项式反演得到这一结论。注意到 $\binom{x}{0}, \binom{x}{1}, \dots \binom{x}{d}$ 次数不同，并且线性无关。不妨令：
 $$
-P_n(x) = \sum\limits_{i = 0}^{n}y_i \cdot \frac{\prod\limits_{j = 0 \ j \neq i}^{n}(x - x_j)}{\prod\limits_{j = 0, \ j \neq i}^{n}(x_i - x_j)}
-$$
-
-令：
-
-$$
-w(x) = \prod\limits_{j = 0}^{n}(x - x_j)
+F(x) = \sum\limits_{i = 0}^{d} \binom{x}{i} \cdot a_i
 $$
 
-$$
-t_i = \frac{y_i}{\prod\limits_{j = 0, \ j \neq i}^{n} (x_i - x_j)}
-$$
-
-则有：
+由二项式反演：
 
 $$
-P_n(x) = w(x)\sum\limits_{i = 0}^{n}\frac{t_i}{x - x_i}
+\begin{aligned}
+a_k & = \sum\limits_{i = 0}^{k} (-1)^{k - i} \binom{k}{i} \cdot F(i) \\
+\frac{p_k}{k!} & = \sum\limits_{i = 0}^{k} \frac{F(i)}{i!} \cdot \frac{(-1)^{k - i}}{(k - i)!}
+\end{aligned}
 $$
 
-这样一来，在插入新点时，我们只需要 $\mathcal{O}(n)$ 更新 $t_i$ 即可。
+可以构造两个多项式：
 
-```cpp
-pair<int, int> arr[SIZE]; long long int lag[SIZE]; 
-void initLag(int num) {    // num = highest exp
-    for (int i = 0; i < num; i++) {
-        lag[i] = arr[i].second % mod;
-        for (int j = 0; j < num; j++) {
-            if (i == j)
-                continue;
-            lag[i] = lag[i] * fastPow(arr[i].first - arr[j].first , mod - 2) % mod;
-        }
-    }
-}
-long long int lagrange(int x, int num) {    // retrieve f(x)
-    long long int ret = 0;
-    for (int i = 0; i < num; i++)
-        ret = (ret + lag[i] * fastPow(x - arr[i].first, mod - 2)) % mod;
-    for (int i = 0; i < num; i++)
-        ret = ret * (x - arr[i].first) % mod;
-    return (ret + mod) % mod;
-}
-```
+$$
+A(x) = \sum\limits_{i = 0}^{d}\frac{F(i)}{i!}x^i, \ B(x) = \sum\limits_{i = 0}^{d} \frac{(-1)^i}{i!}x^i
+$$
 
-#### 牛顿插值
+两者 FFT 卷积一下就可以求出每一项系数，复杂度 $\mathcal{O}(d \log d)$。
+
+---
+
+对于 $x > d$ 的 $F(x)$，有：
+
+$$
+\begin{aligned}
+F(x) 
+& = \sum\limits_{i = 0}^{d} \binom{x}{i} \cdot a_i \\
+& = \sum\limits_{i = 0}^{d} \binom{x}{i} \left[ \sum\limits_{j = 0}^{i} (-1)^{i - j} \binom{i}{j}F(j) \right] \\
+& = \sum\limits_{j = 0}^{d} F(j) \sum\limits_{i = j}^{d} (-1)^{i - j} \binom{x}{i} \binom{i}{j} \\
+\end{aligned}
+$$
+
+其中：
+
+$$
+\begin{aligned}
+\sum\limits_{i = j}^{d}(-1)^{i - j} \cdot \binom{x}{i}\binom{i}{j}
+& = \sum\limits_{i = j}^{d} (-1)^{i - j} \frac{x!}{(x - i)!i!} \cdot \frac{i!}{j!(i - j)!} \\
+& = \sum\limits_{i = j}^{d} (-1)^{i - j}\frac{x!}{j!(x - j)!} \cdot \frac{(x - j)!}{(x - i)!(i - j)!} \\
+& = \sum\limits_{i = j}^{d} (-1)^{i - j} \binom{x}{j}\binom{x - j}{i - j} \\
+& = \binom{x}{j} \sum\limits_{k = 0}^{d - j} (-1)^k \binom{x - j}{k}
+\end{aligned}
+$$
+
+又由于：
+
+$$
+\sum\limits_{i = 0}^{k} (-1)^i \binom{n}{i} = (-1)^k \binom{n - 1}{k}
+$$
+
+因此：
+
+$$
+\begin{aligned}
+F(x) & = \sum\limits_{j = 0}^{d}F(j)\binom{x}{j}(-1)^{d - j} \binom{x - j - 1}{d - j} \\
+& = \sum\limits_{j = 0}^{d}(-1)^{d - j}F(j) \frac{x!(x - j - 1)!}{j!(x - j)!(x - d - 1)!(d - j)!} \\
+& = \sum\limits_{j = 0}^{d} (-1)^{d - j} F(j) \frac{x(x - 1) \dots (x - d)}{(d - j)!j!(x - j)}
+\end{aligned}
+$$
+
+于是我们得到了跟最开始一样的结论。
+
+### 牛顿插值
 
 拉格朗日插值法缺陷：每增加一个插值节点就需要重新计算基函数 $l_i(x)$。
 
@@ -1610,24 +1887,55 @@ long long int lagrange(int x, int num) {    // retrieve f(x)
 - $f[x_i, x_j] = \frac{f(x_i) - f(x_j)}{x_i - x_j} \ (i \neq j)$ 称为 $f(x)$ 在点 $x_i, \ x_j$ 处的一阶差商； 
 - $f[x_i, x_j, x_k] = \frac{f[x_i, x_j] - f[x_j], x_k}{x_i - x_k} \ (i \neq j \neq k)$ 称为 $f(x)$ 在点 $x_i, \ x_j, \ x_k$ 处的二阶差商；
 - $\dots$
--  $f[x_0, \dots, x_n] = \frac{f[x_0, \dots, x_{n - 1}] - f[x_1, \dots x_n]}{x_0 - x_n}$ 即 $f(x)$ 的 $n$ 阶差商。
+-  $f[x_0, \dots, x_d] = \frac{f[x_0, \dots, x_{d - 1}] - f[x_1, \dots x_d]}{x_0 - x_d}$ 即 $f(x)$ 的 $d$ 阶差商。
 
 将后项不断带入前项，即可得到牛顿插值公式：
 
 $$
 \begin{aligned}
 f(x) = f(x_0) & + f[x_0, x_1](x - x_0) + \dots \\ 
-& + f[x_0, x_1, \dots x_n](x - x_0)(x - x_1) \dots (x - x_{n - 1}) \\
-& + f[x, x_0, \dots, x_n](x - x_0)(x - x_1) \dots (x - x_n)
+& + f[x_0, x_1, \dots x_d](x - x_0)(x - x_1) \dots (x - x_{d - 1}) \\
+& + f[x, x_0, \dots, x_d](x - x_0)(x - x_1) \dots (x - x_d)
 \end{aligned}
 $$
 
 最后一项带有未知数 $x$，故当作余项并舍弃。
 
-## 数位 DP
+下例代码中，给定 $n$ 个点，$q$ 次询问，每次询问要求使用第 $[l, r]$ 个点进行插值。
 
 ```cpp
-// An example: Codeforces 628D (Partial)
+pair<int, int> arr[SIZE];
+long long int delta[SIZE][SIZE], inv[INV_SIZE];
+/* Initialize inversions ... */
+int main() {
+    int num;
+    while (cin >> num) {
+        for (int i = 0; i < num; i++)
+            cin >> arr[i].first >> arr[i].second;
+        for (int i = 0; i < num; i++)
+            delta[i][i] = arr[i].second;
+        for (int d = 1; d < num; d++)
+            for (int i = 0; i + d < num; i++)
+                delta[i][i + d] = (delta[i][i + d - 1] - delta[i + 1][i + d]) * getInv(arr[i].first - arr[i + d].first) % mod;
+        int qNum; cin >> qNum;
+        while (qNum--) {
+            int l, r, x; cin >> l >> r >> x; l--; r--;
+            long long int ans = 0, prod = 1;
+            for (int i = l; i <= r; i++) {
+                ans = (ans + prod * delta[l][i]) % mod;
+                prod = prod * (x - arr[i].second) % mod;
+            }
+            cout << (ans + mod) % mod << '\n';
+        }
+    }
+    return 0;
+}
+```
+
+# 数位 DP
+
+```cpp
+/* An example: Codeforces 628D (Partial) */
 long long int dfs(int pos, int rem, bool isZero, bool hasLim) {
     if (pos < 0)
         return !isZero && rem == 0;
@@ -1647,7 +1955,6 @@ long long int dfs(int pos, int rem, bool isZero, bool hasLim) {
         dp[pos][rem] = ans;
     return ans;
 }
-
 // Int -> array
 long long int work(long long int cnt) {
     int len = 0;
@@ -1658,7 +1965,6 @@ long long int work(long long int cnt) {
     cntArr[len] = 0;
     return dfs(len - 1, 0, true, true);
 }
-
 // String -> array
 long long int work(string & str) {
     int len = str.size();
@@ -1668,7 +1974,18 @@ long long int work(string & str) {
 }
 ```
 
-## 置换群
+# 置换群
+
+## 运算
+
+### 整数幂
+
+若置换 $T$ 可表示为 $1$ 个长度为 $n$ 的轮换 $c$，可用如下算法求出 $T^e$ 轮换乘积形式：
+
+- $T^e$ 可表示为 $\gcd(n, e)$ 个长度为 $\frac{n}{\gcd(n, e)}$ 的轮换 $c'$；
+- 对于第 $i$ 个轮换 $c'_i$：$c'_i[j] = c[(ej + i) \bmod n]$。
+
+## 计数
 
 ### Burnside 定理
 
@@ -1692,13 +2009,11 @@ $$
 
 其中 $m$ 为颜色数，$c(g)$ 为置换 $g$ 分解成轮换的个数。即：若把每个轮换内的元素都染成相同颜色，就成了不动点。
 
-#### 例1：环
+---
 
-$m$ 种颜色，长为 $n$ 的环，可旋转可翻转。
+**Example 1**：$m$ 种颜色，长为 $n$ 的环，可旋转可翻转。
 
-##### 旋转
-
-考虑循环置换群 $\mid G \mid = n$，$g_i \in G$ 代表逆时针旋转 $\frac{2\pi i}{n}$，则有 $g_i = {g_1}^i$。依据置换群幂的性质，$g_i$ 可以被表示为长度为 $\gcd(n, i)$ 的 $\frac{n}{\gcd(n, i)}$ 个轮换，故：
+*旋转*：考虑循环置换群 $\mid G \mid = n$，$g_i \in G$ 代表逆时针旋转 $\frac{2\pi i}{n}$，则有 $g_i = {g_1}^i$。依据置换群幂的性质，$g_i$ 可以被表示为长度为 $\gcd(n, i)$ 的 $\frac{n}{\gcd(n, i)}$ 个轮换，故：
 
 $$
 c(g_i) = \gcd(n, i)
@@ -1712,7 +2027,7 @@ $$
 \end{aligned}
 $$
 
-##### 翻转
+*翻转*：
 
 * $n$ 为偶数：
   * 过点的对称轴：$c(g) = \frac{1}{2}n + 1$
@@ -1722,10 +2037,9 @@ $$
 
 ```cpp
 getFac(n);  // Store all factors of n into vector<int>::fac
-
 long long int ans = 0;
 // Rotation
-for (auto i : fac)
+for (const auto & i : facs)
     ans = (ans + phi(n / i) * fastPow(m, i) % mod) % mod;
 // Inversion
 if (n & 1)
@@ -1735,15 +2049,11 @@ else
 ans = ans * fastPow(n << 1, mod - 2) % mod;
 ```
 
-#### 例2：正方形
+**Example 2**：$m$ 种颜色，$n \times n$ 的正方形，可旋转可翻转。
 
-$m$ 种颜色，$n \times n$ 的正方形，可旋转可翻转。
+*旋转*：置换群 $G = \{ 0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ} \}$， 轮换个数 $c(g_i)$：
 
-##### 旋转
-
-置换群 $G = \{ 0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ} \}$， 轮换个数 $c(g_i)$：
-
-- $n$ 是奇数
+- $n$ 是奇数：
 
     $$
     \begin{aligned}
@@ -1753,7 +2063,7 @@ $m$ 种颜色，$n \times n$ 的正方形，可旋转可翻转。
     \end{aligned}
     $$
     
-- $n$ 是偶数
+- $n$ 是偶数：
 
     $$
     \begin{aligned}
@@ -1763,16 +2073,63 @@ $m$ 种颜色，$n \times n$ 的正方形，可旋转可翻转。
     \end{aligned}
     $$
     
-##### 翻转
+
+*翻转*：
 
 - $n$ 为偶数：
   - 过对角线对称轴：$c(g) = \frac{1}{2}(n^2 - n) + n$
   - 过边中点的对称轴：$c(g) = \frac{1}{2}n^2$
 - $n$ 为奇数：$c(g) = \frac{1}{2}(n^2 - n) + n$
 
-## 杂项
+# 高斯整数
 
-### 康托展开
+- $\Z [i] = \{a + bi \  \mid \ a, b \in \Z \} \ \text{ where }i^2 = -1$，构成可交换环。
+- $x = a + bi$ 的范 $N(x) = (a + bi)(a - bi) = a^2 + b^2$；
+- 若 $\exist t \text{ s.t. } xt = 1$，则 $t$ 是高斯整数中的可逆元。$x$ 是可逆元的充要条件为 $N(x) = 1$，只有 $4$ 个：$\pm 1, \ \pm i$；
+- 范是积性的：$N(zw) = N(z)N(w)$，且一定非负。
+- $x = a + bi$ 为素数当且仅当：
+  - $a, b$ 中有一个是 $0$，且另一个数的绝对值是形如 $4n + 3$ 的素数；
+  - $a, b$ 均不为 $0$，且 $a^2 + b^2$ 是素数。
+
+# 自适应辛普森积分
+
+用二次函数来拟合，其中二次函数通过 $l, mid, r$ 三点确定：
+
+$$
+\int_{l}^{r} f(x)dx \approx \frac{r - l}{6}\left[f(l) + 4f(\frac{l + r}{2}) + f(r)\right]
+$$
+
+直接拟合显然精度糟糕，因此可考虑通过分治缩小拟合规模多次拟合从而提升精度。$eps$ 往死里面设！。
+
+```cpp
+double simpson(double l, double r) {
+    double mid = (l + r) / 2;
+    return (r - l) / 6 * (f(l) + 4 * f(mid) + f(r));
+}
+double adaptiveSimpson(double l, double r, double sp) {
+    double mid = (l + r) / 2;
+    double lsp = simpson(l, mid), rsp = simpson(mid, r);
+    if (abs(sp - lsp - rsp) < eps)
+        return lsp + rsp;
+    return adaptiveSimpson(l, mid, lsp) + adaptiveSimpson(mid, r, rsp);
+}
+adaptiveSimpson(l, r, simpson(l, r));
+```
+
+# 杂项
+
+## 计算星期几
+
+```cpp
+// 1582AD+, Returns [1, 7]: Monday -> Sunday
+int getDay(Date d) {
+    if (d.month < 3)
+        d.month += 12, d.year--;
+    return (d.day + ((d.month + 1) * 26) / 10 + d.year + d.year / 4 + 6 * (d.year / 100) + d.year / 400 + 5) % 7 + 1;
+}
+```
+
+## 康托展开
 
 $\text{permutation} \rightarrow \text{rank}$
 
@@ -1789,10 +2146,96 @@ int id(const vector<int> & vec) {
 }
 ```
 
-### 勒让德定理
+## 勒让德定理
 
 在正数 $n!$ 的素因子标准分解式中，素数 $p$ 的最高指数：
 
 $$
 L_p(n!) = \sum\limits_{k \ge 1} \left\lfloor \frac{n}{p^k} \right\rfloor
+$$
+
+## 威尔逊定理
+
+当且仅当 $p$ 是素数时，有：
+
+$$
+(p - 1)! = -1 \pmod p
+$$
+
+## 费马平方和定理
+
+奇素数 $p$ 能被表示成 $p = a^2 + b^2$ 的充要条件为 $p \equiv 1 \pmod 4$。 
+
+## 快速计算 $(2x - 1)!! \bmod 2^k$
+
+$$
+(2x - 1)!! = \prod\limits_{i = 1}^{x} (2i - 1)
+$$
+
+令 $P_k(x) = \prod\limits_{i = 1}^{k}(2i + 2x - 1)$，则所求即为 $P_x(0)$。利用下面三个性质即可：
+
+$$
+\begin{aligned}
+P_{1}(x) &= 2x + 1 \\
+P_{2k}(x) & = P_k(x) \cdot P_k(x + k) \\
+P_{k + 1}(x) & = (2x + 2k + 1)P_k(x) \\
+\end{aligned}
+$$
+
+由于 $x$ 的系数是 $2$，所以只需要维护前 $k$ 项就好了。
+
+```cpp
+#define SIZE 64
+class Polyn {
+public:
+    vector<unsigned long long int> vec;
+    Polyn(int siz = 0) { vec.resize(siz); }
+    Polyn operator * (const Polyn & snd) const {
+        Polyn ret(min(SIZE, (int)(vec.size() + snd.vec.size() - 1)));
+        for (int i = 0; i < min(SIZE, (int)vec.size()); i++)
+            for (int j = 0; j < min(SIZE - i, (int)snd.vec.size()); j++)
+                ret.vec[i + j] += vec[i] * snd.vec[j];
+        return ret;
+    }
+    Polyn xAdd(unsigned long long int inc) {
+        Polyn ret(vec.size());
+        for (int i = 0; i < (int)vec.size(); i++)
+            for (int j = 0; j <= i; j++)
+                ret.vec[j] += vec[i] * binom[i][j] * fastPow(inc, i - j);
+        return ret;
+    }
+};
+
+Polyn solve(unsigned long long int x) {
+    if (x == 0) {
+        Polyn ret; ret.vec.push_back(1);
+        return ret;
+    }
+    if (x & 1) {
+        Polyn qaq; 
+        qaq.vec.push_back((x << 1) - 1);
+        qaq.vec.push_back(2);
+        return qaq * solve(x - 1);
+    }
+    auto ret = solve(x >> 1);
+    return ret * ret.xAdd(x >> 1);
+}
+```
+
+## 欧拉级数
+
+$$
+\sum\limits_{n \ge 1} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+
+**任意两个正整数互质概率**：记 $p_i$ 为第 $i$ 大素数，则任意正整数可被 $p_i$ 整除概率为 $\frac{1}{p_i}$，任选两个正整数都被 $p_i$ 整除概率 $\frac{1}{p_i^2}$，则两个正整数互质概率：
+
+$$
+\begin{aligned}
+\prod\limits_{i \in \mathbb{N}^{+}} (1 - \frac{1}{p_i^2}) 
+& = \frac{1}{\prod\limits_{i \in \mathbb{N}^{+}} \frac{1}{1 -\frac{1}{p_i^2}}} \\
+& = \frac{1}{\prod\limits_{i \in \mathbb{N}^{+}}(1 + \frac{1}{p_i^2} + \frac{1}{p_i^4} + \dots) }\\
+& = \frac{1}{\sum\limits_{n \in \mathbb{N}^{+}} \frac{1}{n^2}} \\
+& =\frac{6}{\pi^2}
+\end{aligned}
 $$

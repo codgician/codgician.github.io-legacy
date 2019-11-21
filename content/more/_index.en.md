@@ -1,8 +1,8 @@
 ---
-gitalk: 9d3d7398-d85b-11e8-96ff-d71103bac7fc
 title: More
 layout: single
 comments: true
+utterances: 12
 ---
 
 This site is available in two languages (posts may differ): [English](/) | [简体中文](/zh-hans).
@@ -23,5 +23,12 @@ Under construction~
 - [Hanano](https://hanano-yuuki.github.io/)
 - [Reminiscent](https://www.cnblogs.com/HDUjackyan/)
 - [Changer-qyz](https://www.cnblogs.com/changer-qyz/)
+- [Li4n0](https://0n0.fun/)
 - [Critizero](https://critizero.github.io/)
+- [Foesa](http://fenguyu.github.io/)
 - [K0u1e](http://www.koule2333.top/)
+- [syh0313](https://blog.csdn.net/syh0313)
+- [Zarxdy34](http://www.zarxdy34.top/)
+- [BinGoo0o0o](https://blog.csdn.net/BinGoo0o0o/)
+- [whdsunny](https://www.cnblogs.com/whdsunny/)
+- [Edwiv](https://edwiv.com/)

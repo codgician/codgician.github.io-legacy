@@ -1,7 +1,7 @@
 ---
-gitalk: f1938e70-ef33-11e8-afb7-57a5196bdf02
 title: ICPC 2018 亚洲区域赛北京站游记
 date: 2018-11-26T22:58:00+08:00
+utterances: 65
 toc: true
 math: true
 category: Life

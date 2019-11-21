@@ -1,7 +1,7 @@
 ---
-gitalk: 62cef164-d856-11e8-86b3-578a617cd77c
 title: 乱谈整型与浮点
 date: 2017-08-18T22:43:10+08:00
+utterances: 8
 toc: true
 math: true
 category: Notes
