@@ -103,6 +103,15 @@
     </item>
     
     <item>
+      <title>HDUOJ 6275: Mod, Xor and Everything</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/hduoj-6275/</link>
+      <pubDate>Thu, 25 Oct 2018 18:10:23 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/hduoj-6275/</guid>
+      <description>题面 分析 %%% 题面 对于给定的 \(n\)，计算： \[ (n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)] \] 其中 \(\oplus\) 表示按位异或。 数据范围： \(n \le 10^{12}\) 题面链接：CCPC2018 Hangzhou</description>
+    </item>
+    
+    <item>
       <title>浅谈类欧几里德算法</title>
       <link>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</link>
       <pubDate>Thu, 18 Oct 2018 22:54:39 +0800</pubDate>

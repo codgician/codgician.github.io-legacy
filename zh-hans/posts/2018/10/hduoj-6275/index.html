@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="HDUOJ 6275: Mod, Xor and Everything">
+<meta itemprop="description" content="题面 分析 %%% 题面 对于给定的 \(n\)，计算： \[ (n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)] \] 其中 \(\oplus\) 表示按位异或。 数据范围： \(n \le 10^{12}\) 题面链接：CCPC2018 Hangzhou">
+
+
+<meta itemprop="datePublished" content="2018-10-25T18:10:23&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-25T18:10:23&#43;08:00" />
+<meta itemprop="wordCount" content="879">
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Quasi-Euclidean Algorithm,HDUOJ," />
+<meta property="og:title" content="HDUOJ 6275: Mod, Xor and Everything" />
+<meta property="og:description" content="题面 分析 %%% 题面 对于给定的 \(n\)，计算： \[ (n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)] \] 其中 \(\oplus\) 表示按位异或。 数据范围： \(n \le 10^{12}\) 题面链接：CCPC2018 Hangzhou" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/10/hduoj-6275/" />
+
+<meta property="og:image" content="https://codgician.me/" />
+<meta property="article:published_time" content="2018-10-25T18:10:23+08:00" />
+<meta property="article:modified_time" content="2018-10-25T18:10:23+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="HDUOJ 6275: Mod, Xor and Everything"/>
+<meta name="twitter:description" content="题面 分析 %%% 题面 对于给定的 \(n\)，计算： \[ (n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)] \] 其中 \(\oplus\) 表示按位异或。 数据范围： \(n \le 10^{12}\) 题面链接：CCPC2018 Hangzhou"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>HDUOJ 6275: Mod, Xor and Everything</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.b30187625a7d423c3fce439bfc630ffb0606aaa670b860811f7cbea5cdd3a2ec.css" integrity="sha256-swGHYlp9Qjw/zkOb/GMP+wYGqqZwuGCBH3y+pc3Touw=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 25, 2018</span></div>
+				<h1>HDUOJ 6275: Mod, Xor and Everything</h1>
+			</header>
+			<div class="content">
+				
+
+<div id="TOC">
+<ul>
+<li><a href="#题面">题面</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#section">%%%</a></li>
+</ul>
+</div>
+
+<div id="题面" class="section level1">
+<h1>题面</h1>
+<p>对于给定的 <span class="math inline">\(n\)</span>，计算：</p>
+<p><span class="math display">\[
+(n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)]
+\]</span></p>
+<p>其中 <span class="math inline">\(\oplus\)</span> 表示按位异或。</p>
+<p><strong>数据范围</strong>： <span class="math inline">\(n \le 10^{12}\)</span></p>
+<p><strong>题面链接</strong>：<a href="http://acm.hdu.edu.cn/downloads/CCPC2018-Hangzhou-ProblemSet.pdf">CCPC2018 Hangzhou Problemset</a>（L 题）</p>
+<p><strong>提交链接</strong>：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6275">HDUOJ 6275: Mod, Xor and Everything</a></p>
+<p>由于 HDUOJ 卡常丧心病狂，建议读者前往 <a href="https://loj.ac/problem/6344">LibreOJ 6344: 异或和</a> 提交（注意输入格式略微存在出入）。</p>
+</div>
+<div id="分析" class="section level1">
+<h1>分析</h1>
+<p>对于异或运算，我们不妨依据位运算的位独立性对于其二进制下的每一位逐位考虑。</p>
+<p>对于数 <span class="math inline">\(n\)</span>，其二进制第 <span class="math inline">\(k\)</span> 位上的值为：</p>
+<p><span class="math display">\[
+\left\lfloor \frac{n}{2^k} \right\rfloor \pmod 2
+\]</span></p>
+<p>那么，对于第 <span class="math inline">\(k\)</span> 位，经过题目中异或运算后这一位上的答案为：</p>
+<p><span class="math display">\[
+\sum\limits_{i = 1}^{n} \left\lfloor \frac{n \bmod i}{2^k} \right\rfloor \pmod 2
+\]</span></p>
+<p>我们对其做一点小小的变换：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sum\limits_{i = 1}^{n} \left\lfloor \frac{n \bmod i}{2^k} \right\rfloor \pmod 2 \\
+= &amp; \sum\limits_{i = 1}^{n} \left\lfloor \frac{n - \left\lfloor \frac{n}{i} \right\rfloor i}{2^k} \right\rfloor \pmod 2
+\end{aligned}
+\]</span></p>
+<p>我们发现这个式子非常类似于类欧几里德可解决的 <span class="math inline">\(f\)</span> 式子（有一点不一样，但是后文会通过一些变换使其一样）。有关类欧几里德算法的相关内容可参考我的另一篇博客：<a href="https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/">浅谈类欧几里德算法</a>。</p>
+<p>至于 <span class="math inline">\(\left\lfloor \frac{n}{i} \right\rfloor\)</span>，我们可以对其进行整除分块。</p>
+<p>对于满足 <span class="math inline">\(\left\lfloor \frac{n}{i} \right\rfloor = t\)</span> 的某一块，我们记块的最左端为 <span class="math inline">\(l\)</span>，最右端为 <span class="math inline">\(r\)</span>，显然有：</p>
+<p><span class="math display">\[
+\left\lfloor \frac{n}{l} \right\rfloor = \left\lfloor \frac{n}{r} \right\rfloor = t
+\]</span></p>
+<p>以及：</p>
+<p><span class="math display">\[
+\begin{aligned}
+n \bmod r &amp; = n - \left\lfloor \frac{n}{r} \right\rfloor r \\
+&amp; = n - tr \\
+\end{aligned}
+\]</span></p>
+<p>那么对于这一块内求和：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = l}^{r} \left\lfloor \frac{-ti + n}{2^k} \right\rfloor = &amp; \sum\limits_{i = -r}^{-l} \left\lfloor \frac{ti + n}{2^k} \right\rfloor \\
+= &amp; \sum\limits_{i = 0}^{r - l} \left\lfloor \frac{t(i - r) + n}{2^k} \right\rfloor \\
+= &amp; \sum\limits_{i = 0}^{r - l} \left\lfloor \frac{ti + (n - tr)}{2^k} \right\rfloor \\
+= &amp; \sum\limits_{i = 0}^{r - l} \left\lfloor \frac{ti + (n \bmod r)}{2^k} \right\rfloor \\
+= &amp; f(t, n \bmod r, 2^k, r - l)
+\end{aligned}
+\]</span></p>
+<p>简而言之，我们首先通过整除分块得到每一块的 <span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span>，并求出这一段中每一位对应的结果，最后将所有段的结果求和并将不同位“组装”起来就是最终答案了。</p>
+<p>复杂度：<span class="math inline">\(\mathcal{O}(\sqrt{n}\log{n})\)</span>。</p>
+<hr />
+<p>这道题卡常呜呜呜。</p>
+<p>在 <span class="math inline">\(n\)</span> 比较小的时候，<span class="math inline">\(\mathcal{O}(n)\)</span> 暴力是比类欧 <span class="math inline">\(\mathcal{O}(\sqrt{n}\log{n})\)</span> 跑得还要快的…… 故考虑设定一个阈值 <span class="math inline">\(lim\)</span>，当 <span class="math inline">\(i\)</span> 不大于 <span class="math inline">\(lim\)</span> 的时候跑暴力，大于 <span class="math inline">\(lim\)</span> 的时候跑类欧。对于本弱写的代码，实测得到 <span class="math inline">\(lim\)</span> 大致取值在 <span class="math inline">\(2 \times 10^7 \sim 4 \times 10^7\)</span> 范围内时可以在 HDUOJ 上卡进时限。而在 LibreOJ 上这个范围就要宽很多了。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/HDUOJ/6275/quasi_euclidean.cpp">我的代码</a> 以供参考。</p>
+</div>
+<div id="section" class="section level1">
+<h1>%%%</h1>
+<ul>
+<li>rzO_KQP_Orz - <a href="https://blog.csdn.net/rzO_KQP_Orz/article/details/83120181?utm_source=blogxgwz0">【hdu6275】【2017ccpc杭州L】Mod, Xor and Everything 题解</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/quasi-euclidean-algorithm">Quasi-Euclidean Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/hduoj">HDUOJ</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>879 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-10-25 18:10 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>BZOJ 3817: Sum</span>
+			</a>
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈类欧几里德算法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script defer src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="59"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>
