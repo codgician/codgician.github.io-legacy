@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2019-09-01T13:07:42&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-01T13:07:42&#43;08:00" />
-<meta itemprop="wordCount" content="3585">
+<meta itemprop="wordCount" content="3633">
 
 
 
@@ -273,6 +273,7 @@ s(n, j)
 <p><span class="math display">\[
 \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \]</span></p>
+<p>当然，这会让这一部分的复杂度多一个快速幂带来的 <span class="math inline">\(\mathcal{O}(\log{n})\)</span>。</p>
 <p>接下来就是怎么确定 <span class="math inline">\(m\)</span> 了，不难发现这就是求对于函数 <span class="math inline">\(y(n) = 1\)</span> 的 <span class="math inline">\(s\)</span> 值。因此我们只需要在处理函数 <span class="math inline">\(f\)</span> 时，同时处理函数 <span class="math inline">\(y\)</span>，并且在对函数 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(s\)</span> 进行转移时借助函数 <span class="math inline">\(y\)</span> 转移过来的 <span class="math inline">\(s\)</span> 即可。实现的时候开一个结构体一起搜就好了。</p>
 <p>具体的实现可以参考一下 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Jisuanke/A2243/min25_sieve.cpp">我的代码</a>。</p>
 </div>
@@ -287,7 +288,7 @@ s(n, j)
 </div>
 <div id="前缀积" class="section level2">
 <h2>前缀积？</h2>
-<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
+<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="https://www.luogu.org/problem/U87823">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
 <p>由乘法原理，题目本质即求解：</p>
 <p><span class="math display">\[
 \prod\limits_{i = 1}^{n} d(i) \pmod {10^9 + 7}
@@ -330,7 +331,7 @@ s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cd
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/arithmetic-function">Arithmetic function</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3585 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3633 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-09-01 13:07 &#43;0800</p>
 			</footer>
 		</article>

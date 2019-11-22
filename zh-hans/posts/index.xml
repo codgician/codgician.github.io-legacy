@@ -326,6 +326,7 @@ s(n, j)
 <p><span class="math display">\[
 \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \]</span></p>
+<p>当然，这会让这一部分的复杂度多一个快速幂带来的 <span class="math inline">\(\mathcal{O}(\log{n})\)</span>。</p>
 <p>接下来就是怎么确定 <span class="math inline">\(m\)</span> 了，不难发现这就是求对于函数 <span class="math inline">\(y(n) = 1\)</span> 的 <span class="math inline">\(s\)</span> 值。因此我们只需要在处理函数 <span class="math inline">\(f\)</span> 时，同时处理函数 <span class="math inline">\(y\)</span>，并且在对函数 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(s\)</span> 进行转移时借助函数 <span class="math inline">\(y\)</span> 转移过来的 <span class="math inline">\(s\)</span> 即可。实现的时候开一个结构体一起搜就好了。</p>
 <p>具体的实现可以参考一下 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Jisuanke/A2243/min25_sieve.cpp">我的代码</a>。</p>
 </div>
@@ -340,7 +341,7 @@ s(n, j)
 </div>
 <div id="前缀积" class="section level2">
 <h2>前缀积？</h2>
-<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
+<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="https://www.luogu.org/problem/U87823">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
 <p>由乘法原理，题目本质即求解：</p>
 <p><span class="math display">\[
 \prod\limits_{i = 1}^{n} d(i) \pmod {10^9 + 7}
@@ -588,7 +589,7 @@ g(1)S(n) = \sum\limits_{i = 1}^{n}h(i) - \sum\limits_{d = 2}^{n} g(d)S(\left\lfl
 S(n) = \sum\limits_{i = 1}^{n}i - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 \]</span></p></li>
 <li><p><span class="math inline">\(f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)\)</span>：</p>
-<p>由 <span class="math inline">\(\mu \cdot 1 = e\)</span>（对应 <span class="math inline">\(f \cdot g = h\)</span>）：</p>
+<p>由 <span class="math inline">\(\mu \cdot 1 = \epsilon\)</span>（对应 <span class="math inline">\(f \cdot g = h\)</span>）：</p>
 <p><span class="math display">\[
 S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 \]</span></p></li>
