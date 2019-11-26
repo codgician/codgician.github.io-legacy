@@ -15,22 +15,21 @@
 			<pubDate>Tue, 15 Oct 2019 14:28:28 +0800</pubDate>
 			
 			<guid>https://codgician.me/zh-hans/posts/2019/10/hello-world/</guid>
-			<description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -49,7 +48,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -84,7 +83,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 
 <div id="TOC">
 <ul>
-<li><a href="#三个代表">三个代表</a><ul>
+<li><a href="#三个代表">三个代表</a>
+<ul>
 <li><a href="#一点微小的代码">一点微小的代码</a></li>
 <li><a href="#一点微小的公式">一点微小的公式</a></li>
 <li><a href="#一点微小的图表">一点微小的图表</a></li>
@@ -142,12 +142,14 @@ Figure 1: What is inside me?
 <div id="TOC">
 <ul>
 <li><a href="#前言">前言</a></li>
-<li><a href="#min25-筛">Min25 筛</a><ul>
+<li><a href="#min25-筛">Min25 筛</a>
+<ul>
 <li><a href="#核心思想">核心思想</a></li>
 <li><a href="#筛素数答案">筛素数答案</a></li>
 <li><a href="#筛非质数答案">筛非质数答案</a></li>
 </ul></li>
-<li><a href="#应用">应用</a><ul>
+<li><a href="#应用">应用</a>
+<ul>
 <li><a href="#模板">模板</a></li>
 <li><a href="#类积性函数">类积性函数？</a></li>
 <li><a href="#带条件的前缀和">带条件的前缀和？</a></li>
@@ -392,13 +394,15 @@ s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cd
 <div id="TOC">
 <ul>
 <li><a href="#简介">简介</a></li>
-<li><a href="#狄利克雷卷积">狄利克雷卷积</a><ul>
+<li><a href="#狄利克雷卷积">狄利克雷卷积</a>
+<ul>
 <li><a href="#定义">定义</a></li>
 <li><a href="#构造一个环">构造一个环</a></li>
 <li><a href="#有趣的性质">有趣的性质</a></li>
 <li><a href="#再谈莫比乌斯反演">再谈莫比乌斯反演？</a></li>
 </ul></li>
-<li><a href="#杜教筛">杜教筛</a><ul>
+<li><a href="#杜教筛">杜教筛</a>
+<ul>
 <li><a href="#构造">构造？</a></li>
 <li><a href="#应用">应用</a></li>
 </ul></li>
@@ -642,22 +646,21 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 			<pubDate>Mon, 22 Jul 2019 20:25:56 +0800</pubDate>
 			
 			<guid>https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/</guid>
-			<description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -676,7 +679,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -713,21 +716,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <ul>
 <li><a href="#简介">简介</a></li>
 <li><a href="#分治思想">分治思想</a></li>
-<li><a href="#基于时间的离线分治">基于时间的离线分治</a><ul>
-<li><a href="#cdq-分治">CDQ 分治</a><ul>
+<li><a href="#基于时间的离线分治">基于时间的离线分治</a>
+<ul>
+<li><a href="#cdq-分治">CDQ 分治</a>
+<ul>
 <li><a href="#从归并排序讲起">从归并排序讲起</a></li>
 <li><a href="#偏序问题">偏序问题</a></li>
 <li><a href="#动态数据结构问题">动态数据结构问题？</a></li>
 <li><a href="#优化动态规划">优化动态规划</a></li>
 <li><a href="#小结">小结</a></li>
 </ul></li>
-<li><a href="#线段树分治">线段树分治</a><ul>
+<li><a href="#线段树分治">线段树分治</a>
+<ul>
 <li><a href="#动态二分图判定">动态二分图判定</a></li>
 <li><a href="#虚假的强制在线">虚假的强制在线</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#基于数值的离线分治">基于数值的离线分治</a><ul>
-<li><a href="#整体二分">整体二分</a><ul>
+<li><a href="#基于数值的离线分治">基于数值的离线分治</a>
+<ul>
+<li><a href="#整体二分">整体二分</a>
+<ul>
 <li><a href="#静态区间第-k-小">静态区间第 <span class="math inline">\(k\)</span> 小</a></li>
 <li><a href="#动态区间第-k-小">动态区间第 <span class="math inline">\(k\)</span> 小</a></li>
 </ul></li>
@@ -1492,21 +1500,26 @@ F(a) \cdot F(b) = &amp; \sum\limits_{i \mid a}i\mu(i)\sum\limits_{j \mid b}j\mu(
 <div id="TOC">
 <ul>
 <li><a href="#简介">简介</a></li>
-<li><a href="#莫比乌斯函数">莫比乌斯函数</a><ul>
+<li><a href="#莫比乌斯函数">莫比乌斯函数</a>
+<ul>
 <li><a href="#定义">定义</a></li>
 <li><a href="#性质">性质</a></li>
 </ul></li>
-<li><a href="#莫比乌斯反演">莫比乌斯反演</a><ul>
-<li><a href="#形式-1">形式 #1</a><ul>
+<li><a href="#莫比乌斯反演">莫比乌斯反演</a>
+<ul>
+<li><a href="#形式-1">形式 #1</a>
+<ul>
 <li><a href="#内容">内容</a></li>
 <li><a href="#证明">证明</a></li>
 </ul></li>
-<li><a href="#形式-2">形式 #2</a><ul>
+<li><a href="#形式-2">形式 #2</a>
+<ul>
 <li><a href="#内容-1">内容</a></li>
 <li><a href="#证明-1">证明</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#应用">应用</a><ul>
+<li><a href="#应用">应用</a>
+<ul>
 <li><a href="#与欧拉函数联系">与欧拉函数联系</a></li>
 <li><a href="#与最大公约数联系">与最大公约数联系</a></li>
 </ul></li>
@@ -1964,22 +1977,21 @@ n \bmod r &amp; = n - \left\lfloor \frac{n}{r} \right\rfloor r \\
 			<pubDate>Thu, 18 Oct 2018 22:54:39 +0800</pubDate>
 			
 			<guid>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</guid>
-			<description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -1998,7 +2010,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -2035,22 +2047,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <ul>
 <li><a href="#简介">简介</a></li>
 <li><a href="#引理">引理</a></li>
-<li><a href="#f-式">f 式</a><ul>
+<li><a href="#f-式">f 式</a>
+<ul>
 <li><a href="#形式">形式</a></li>
 <li><a href="#推导">推导</a></li>
 <li><a href="#结论">结论</a></li>
 </ul></li>
-<li><a href="#g-式">g 式</a><ul>
+<li><a href="#g-式">g 式</a>
+<ul>
 <li><a href="#形式-1">形式</a></li>
 <li><a href="#推导-1">推导</a></li>
 <li><a href="#结论-1">结论</a></li>
 </ul></li>
-<li><a href="#h-式">h 式</a><ul>
+<li><a href="#h-式">h 式</a>
+<ul>
 <li><a href="#形式-2">形式</a></li>
 <li><a href="#推导-2">推导</a></li>
 <li><a href="#结论-2">结论</a></li>
 </ul></li>
-<li><a href="#代码实现">代码实现</a><ul>
+<li><a href="#代码实现">代码实现</a>
+<ul>
 <li><a href="#仅-f-式">仅 f 式</a></li>
 <li><a href="#f-g-h-式">f, g, h 式</a></li>
 </ul></li>
@@ -2829,22 +2845,21 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 			<pubDate>Fri, 09 Mar 2018 12:52:01 +0800</pubDate>
 			
 			<guid>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</guid>
-			<description>code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -2863,7 +2878,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -2899,25 +2914,30 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <div id="TOC">
 <ul>
 <li><a href="#前言">前言</a></li>
-<li><a href="#几点概念">几点概念</a><ul>
+<li><a href="#几点概念">几点概念</a>
+<ul>
 <li><a href="#二分图">二分图</a></li>
 <li><a href="#匹配">匹配</a></li>
 <li><a href="#增广路径">增广路径</a></li>
 </ul></li>
-<li><a href="#无权二分图最大匹配">无权二分图最大匹配</a><ul>
+<li><a href="#无权二分图最大匹配">无权二分图最大匹配</a>
+<ul>
 <li><a href="#思想">思想</a></li>
 <li><a href="#正确性">正确性</a></li>
 <li><a href="#代码-c">代码 (C++)</a></li>
 </ul></li>
-<li><a href="#数个名词">数个名词</a><ul>
+<li><a href="#数个名词">数个名词</a>
+<ul>
 <li><a href="#交错树">交错树</a></li>
 <li><a href="#顶标">顶标</a></li>
 <li><a href="#相等子图">相等子图</a></li>
 </ul></li>
-<li><a href="#带权二分图最大匹配">带权二分图最大匹配</a><ul>
+<li><a href="#带权二分图最大匹配">带权二分图最大匹配</a>
+<ul>
 <li><a href="#思想-1">思想</a></li>
 <li><a href="#几点变形">几点变形</a></li>
-<li><a href="#代码-c-1">代码 (C++)</a><ul>
+<li><a href="#代码-c-1">代码 (C++)</a>
+<ul>
 <li><a href="#dfs-版本">DFS 版本</a></li>
 <li><a href="#bfs-版本">BFS 版本</a></li>
 </ul></li>
@@ -3348,23 +3368,28 @@ A_i + B_j = w(i, j)
 <div id="TOC">
 <ul>
 <li><a href="#前言">前言</a></li>
-<li><a href="#逻辑运算">逻辑运算</a><ul>
-<li><a href="#基本逻辑运算">基本逻辑运算</a><ul>
+<li><a href="#逻辑运算">逻辑运算</a>
+<ul>
+<li><a href="#基本逻辑运算">基本逻辑运算</a>
+<ul>
 <li><a href="#与运算-and逻辑乘法">“与”运算 AND：逻辑乘法</a></li>
 <li><a href="#或运算-or逻辑加法">“或”运算 OR：逻辑加法</a></li>
 <li><a href="#非运算-not逻辑否定">“非”运算 NOT：逻辑否定</a></li>
 </ul></li>
-<li><a href="#复合逻辑运算">复合逻辑运算</a><ul>
+<li><a href="#复合逻辑运算">复合逻辑运算</a>
+<ul>
 <li><a href="#与非运算-nand">“与非”运算 NAND</a></li>
 <li><a href="#或非运算-nor">“或非”运算 NOR</a></li>
 <li><a href="#异或运算-xor">“异或”运算 XOR</a></li>
 <li><a href="#同或运算-xnor">“同或”运算 XNOR</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#二进制与算术运算">二进制与算术运算</a><ul>
+<li><a href="#二进制与算术运算">二进制与算术运算</a>
+<ul>
 <li><a href="#数值表示">数值表示</a></li>
 <li><a href="#符号表示">符号表示</a></li>
-<li><a href="#数值运算">数值运算</a><ul>
+<li><a href="#数值运算">数值运算</a>
+<ul>
 <li><a href="#加法实现原理">加法实现原理</a></li>
 <li><a href="#减法实现原理">减法实现原理</a></li>
 <li><a href="#乘法实现原理">乘法实现原理</a></li>
@@ -4821,13 +4846,16 @@ F(x) = \frac{e^x}{x} + (1 - e) - \ln x - \frac{1}{x}
 <div id="TOC">
 <ul>
 <li><a href="#简介">简介</a></li>
-<li><a href="#构造新变量">构造新变量</a><ul>
+<li><a href="#构造新变量">构造新变量</a>
+<ul>
 <li><a href="#利用零点极值的定义">利用零点、极值的定义</a></li>
 <li><a href="#利用韦达定理">利用韦达定理</a></li>
 <li><a href="#直接构造新变量">直接构造新变量</a></li>
 </ul></li>
-<li><a href="#消去旧变量">消去旧变量</a><ul>
-<li><a href="#利用函数单调性">利用函数单调性</a><ul>
+<li><a href="#消去旧变量">消去旧变量</a>
+<ul>
+<li><a href="#利用函数单调性">利用函数单调性</a>
+<ul>
 <li><a href="#利用新函数的单调性">利用新函数的单调性</a></li>
 <li><a href="#利用旧函数的单调性">利用旧函数的单调性</a></li>
 </ul></li>

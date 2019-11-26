@@ -8,18 +8,18 @@
 	<meta name="theme-color" content="#292a2d">
 	<meta name="msapplication-TileColor" content="#292a2d">
 <meta itemprop="name" content="浅谈匈牙利算法">
-<meta itemprop="description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+<meta itemprop="description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
 
 
 <meta itemprop="datePublished" content="2018-03-09T12:52:01&#43;08:00" />
 <meta itemprop="dateModified" content="2018-03-09T12:52:01&#43;08:00" />
-<meta itemprop="wordCount" content="6422">
+<meta itemprop="wordCount" content="6423">
 
 
 
 <meta itemprop="keywords" content="Algorithm,Competitive Programming,Graph Theory,Bipartite Matching,Hungarian Algorithm," />
 <meta property="og:title" content="浅谈匈牙利算法" />
-<meta property="og:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/" />
 
@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://codgician.me/"/>
 
 <meta name="twitter:title" content="浅谈匈牙利算法"/>
-<meta name="twitter:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+<meta name="twitter:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -85,19 +85,18 @@
 			<div class="content">
 				
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +115,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -152,25 +151,30 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <div id="TOC">
 <ul>
 <li><a href="#前言">前言</a></li>
-<li><a href="#几点概念">几点概念</a><ul>
+<li><a href="#几点概念">几点概念</a>
+<ul>
 <li><a href="#二分图">二分图</a></li>
 <li><a href="#匹配">匹配</a></li>
 <li><a href="#增广路径">增广路径</a></li>
 </ul></li>
-<li><a href="#无权二分图最大匹配">无权二分图最大匹配</a><ul>
+<li><a href="#无权二分图最大匹配">无权二分图最大匹配</a>
+<ul>
 <li><a href="#思想">思想</a></li>
 <li><a href="#正确性">正确性</a></li>
 <li><a href="#代码-c">代码 (C++)</a></li>
 </ul></li>
-<li><a href="#数个名词">数个名词</a><ul>
+<li><a href="#数个名词">数个名词</a>
+<ul>
 <li><a href="#交错树">交错树</a></li>
 <li><a href="#顶标">顶标</a></li>
 <li><a href="#相等子图">相等子图</a></li>
 </ul></li>
-<li><a href="#带权二分图最大匹配">带权二分图最大匹配</a><ul>
+<li><a href="#带权二分图最大匹配">带权二分图最大匹配</a>
+<ul>
 <li><a href="#思想-1">思想</a></li>
 <li><a href="#几点变形">几点变形</a></li>
-<li><a href="#代码-c-1">代码 (C++)</a><ul>
+<li><a href="#代码-c-1">代码 (C++)</a>
+<ul>
 <li><a href="#dfs-版本">DFS 版本</a></li>
 <li><a href="#bfs-版本">BFS 版本</a></li>
 </ul></li>
@@ -593,7 +597,7 @@ A_i + B_j = w(i, j)
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/graph-theory">Graph Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/bipartite-matching">Bipartite Matching</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/hungarian-algorithm">Hungarian Algorithm</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6422 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6423 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-03-09 12:52 &#43;0800</p>
 			</footer>
 		</article>
@@ -606,7 +610,7 @@ A_i + B_j = w(i, j)
 			</a>
 		</div>
 		<div id="comments" class="thin">
-    <script defer src="https://utteranc.es/client.js"
+    <script async src="https://utteranc.es/client.js"
         repo="codgician/homepage-comments"
         issue-number="22"
         label=""
@@ -639,8 +643,8 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        <script async src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
         onload="
             renderMathInElement(document.body, {
                 delimiters: [

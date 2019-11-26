@@ -8,18 +8,18 @@
 	<meta name="theme-color" content="#292a2d">
 	<meta name="msapplication-TileColor" content="#292a2d">
 <meta itemprop="name" content="浅谈类欧几里德算法">
-<meta itemprop="description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+<meta itemprop="description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
 
 
 <meta itemprop="datePublished" content="2018-10-18T22:54:39&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-18T22:54:39&#43;08:00" />
-<meta itemprop="wordCount" content="3423">
+<meta itemprop="wordCount" content="3424">
 
 
 
 <meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Number Theory,Quasi-Euclidean Algorithm," />
 <meta property="og:title" content="浅谈类欧几里德算法" />
-<meta property="og:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/" />
 
@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://codgician.me/"/>
 
 <meta name="twitter:title" content="浅谈类欧几里德算法"/>
-<meta name="twitter:description" content="code.sourceCode span { display: inline-block; line-height: 1.25; } code.sourceCode span { color: inherit; text-decoration: inherit; } code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+<meta name="twitter:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -85,19 +85,18 @@
 			<div class="content">
 				
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +115,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -153,22 +152,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <ul>
 <li><a href="#简介">简介</a></li>
 <li><a href="#引理">引理</a></li>
-<li><a href="#f-式">f 式</a><ul>
+<li><a href="#f-式">f 式</a>
+<ul>
 <li><a href="#形式">形式</a></li>
 <li><a href="#推导">推导</a></li>
 <li><a href="#结论">结论</a></li>
 </ul></li>
-<li><a href="#g-式">g 式</a><ul>
+<li><a href="#g-式">g 式</a>
+<ul>
 <li><a href="#形式-1">形式</a></li>
 <li><a href="#推导-1">推导</a></li>
 <li><a href="#结论-1">结论</a></li>
 </ul></li>
-<li><a href="#h-式">h 式</a><ul>
+<li><a href="#h-式">h 式</a>
+<ul>
 <li><a href="#形式-2">形式</a></li>
 <li><a href="#推导-2">推导</a></li>
 <li><a href="#结论-2">结论</a></li>
 </ul></li>
-<li><a href="#代码实现">代码实现</a><ul>
+<li><a href="#代码实现">代码实现</a>
+<ul>
 <li><a href="#仅-f-式">仅 f 式</a></li>
 <li><a href="#f-g-h-式">f, g, h 式</a></li>
 </ul></li>
@@ -472,7 +475,7 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherw
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/number-theory">Number Theory</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/quasi-euclidean-algorithm">Quasi-Euclidean Algorithm</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3423 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3424 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-10-18 22:54 &#43;0800</p>
 			</footer>
 		</article>
@@ -485,7 +488,7 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherw
 			</a>
 		</div>
 		<div id="comments" class="thin">
-    <script defer src="https://utteranc.es/client.js"
+    <script async src="https://utteranc.es/client.js"
         repo="codgician/homepage-comments"
         issue-number="58"
         label=""
@@ -518,8 +521,8 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        <script async src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
         onload="
             renderMathInElement(document.body, {
                 delimiters: [
