@@ -249,7 +249,7 @@ $$
 
 - $f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)$：
 
-  由 $\mu \cdot 1 = e$（对应 $f \cdot g = h$）：
+  由 $\mu \cdot 1 = \epsilon$（对应 $f \cdot g = h$）：
 
   $$
   S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)

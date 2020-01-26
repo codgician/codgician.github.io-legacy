@@ -4,31 +4,44 @@ type: posts
 layout: single
 utterances: 10
 math: true
-date: 2019-11-18T08:59:35+08:00
+date: 2019-12-12T20:29:35+08:00
 output:
   blogdown::html_page:
     toc: true
     highlight: zenburn
 ---
 
-# 龟速乘  / 快速幂
+# 基础运算
+
+## 快速幂
 
 ```cpp
-long long int fastMul(long long int a, long long int n, long long int mod) {
-    long long int ret = 0; a %= mod;
-    while (n > 0) {
-        if (n & 1)
-            ret = (ret + a) % mod;
-        a = (a << 1) % mod; n >>= 1;
-    }
-    return ret;
-}
 long long int fastPow(long long int a, long long int n, long long int mod) {
     long long int ret = 1; a %= mod;
     while (n > 0) {
         if (n & 1)
-            ret = (ret * a) % mod;
-        a = (a * a) % mod; n >>= 1;
+            ret = ret * a % mod;
+        a = a * a % mod; n >>= 1;
+    }
+    return ret;
+}
+```
+
+## 防爆乘法
+
+对于无法使用 `__int128` 的情况：
+
+```cpp
+long long int dblMul(long long int a, long long int b, long long int mod) {
+    return (a * b - (long long int)((long double) a / mod * b) * mod + mod) % mod;
+}
+
+long long int slowMul(long long int a, long long int b, long long int mod) {
+    long long int ret = 0; a %= mod;
+    while (b > 0) {
+        if (b & 1)
+            ret = (ret + b) % mod;
+        b = (b << 1) % mod; n >>= 1;
     }
     return ret;
 }
@@ -44,42 +57,39 @@ long long int fastPow(long long int a, long long int n, long long int mod) {
 class Matrix {
 public:
     int row, col;
-    long long int arr[SIZE][SIZE];
+    long long int arr[MAT_SIZE][MAT_SIZE];
     Matrix(int r, int c) {
         row = r; col = c;
         memset(arr, 0, sizeof(arr));
     }
+    
     void operator += (const Matrix & b) {
         // assert(row == b.row && col == b.col);
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                arr[i][j] += b.arr[i][j];
-                if (arr[i][j] >= mod)
-                    arr[i][j] %= mod;
-            }
-        }
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++)
+                arr[i][j] = (arr[i][j] + b.arr[i][j]) % mod;
     }
+    
     Matrix operator * (const Matrix & snd) const {
         // assert(col == snd.row);
         Matrix ret(row, snd.col);
         for (int i = 0; i < row; i++) {
             for (int k = 0; k < col; k++) {
                 long long int cnt = arr[i][k];
-                for (int j = 0; j < col; j++) {
-                    ret.arr[i][j] += cnt * snd.arr[k][j];
-                    if (ret.arr[i][j] >= mod)
-                        ret.arr[i][j] %= mod;
-                }
+                for (int j = 0; j < col; j++)
+                    ret.arr[i][j] = (ret.arr[i][j] + cnt * snd.arr[k][j]) % mod;
             }
         }
         return ret;
     }
+    
     Matrix & operator = (const Matrix & snd) {
         row = snd.row; col = snd.col;
         memcpy(arr, snd.arr, sizeof(snd.arr));
         return *this;
     }
 };
+
 Matrix matFastPow(Matrix mat, long long int n) {
     // assert(mat.row == mat.col);
     Matrix ret(mat.row, mat.col);
@@ -88,8 +98,7 @@ Matrix matFastPow(Matrix mat, long long int n) {
     while (n > 0) {
         if (n & 1)
             ret = ret * mat;
-        mat = mat * mat;
-        n >>= 1;
+        mat = mat * mat; n >>= 1;
     }
     return ret;
 }
@@ -136,51 +145,46 @@ $$
 # 数论分块
 
 ```cpp
-// just n
+/* n only */
 for (int l = 1, r; l <= n; l = r + 1) {
     r = n / (n / l);
-    // Range: [l, r]
+    // range = [l, r]
 }
-// n and m
-if (n > m)
-    swap(n, m);
+/* n and m */
+tie(n, m) = make_tuple(min(n, m), max(n, m));
 for (int l = 1, r; l <= n; l = r + 1) {
     r = min(n / (n / l), m / (m / l));
-    // Range: [l, r]
+    // range = [l, r]
 }
 ```
 
 # 素数
 
+## 线性筛
+
 ```cpp
-// Variant #1
+/* Variant #1 */
 int primes[SIZE], minFac[SIZE], primesPt;
 void initPrimes() {
-    memset(minFac, 0, sizeof(minFac));
-    primesPt = 0;
+    memset(minFac, 0, sizeof(minFac)); primesPt = 0;
     for (int i = 2; i < SIZE; i++) {
-        if (minFac[i] == 0) {
-            minFac[i] = i;
-            primes[primesPt++] = i;
-        }
-        for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++) {
+        if (minFac[i] == 0)
+            minFac[i] = i, primes[primesPt++] = i;
+        for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++)
             minFac[i * primes[j]] = primes[j];
-        }
     }
 }
-
-// Variant #2
-int primes[SIZE], primesPt; bool hasSieved[SIZE];
+/* Variant #2 */
+int primes[SIZE], primesPt; bool sieved[SIZE];
 void initPrimes() {
-    memset(hasSieved, false, sizeof(hasSieved));
-    primesPt = 0;
+    memset(sieved, false, sizeof(sieved)); primesPt = 0;
     for (int i = 2; i < SIZE; i++) {
-        if (!hasSieved[i])
+        if (!sieved[i])
             primes[primesPt++] = i;
         for (int j = 0; j < primesPt; j++) {
             if (primes[j] * i > SIZE - 1)
                 break;
-            hasSieved[i * primes[j]] =  true;
+            sieved[i * primes[j]] =  true;
             if (i % primes[j] == 0)
                 break;
         }
@@ -188,7 +192,101 @@ void initPrimes() {
 }
 ```
 
-**拓展**：$\text{minFac}(x)$  记录 $x$ 的最小质因子，所以如果我们要对所有数快速分解质因子，那么一直除它的最小质因子就好了。
+**拓展**：$\text{minFac}(x)$  记录 $x$ 最小质因子，若要对所有数快速分解质因子，则一直除其最小质因子即可。
+
+## Miller-Robin 素性测试
+
+代码见 Pollard-Rho 质因数分解一节。
+
+- 对于 $n < 3.4 \times 10^{14}$，选取 $\{ 2, 3, 5, 7, 11, 13, 17 \}$ 即可保证正确性；
+- 对于 $n < 3.8 \times 10^{18}$，选取 $\{ 2, 3, 5, 7, 11, 13, 17, 19, 23 \}$ 即可保证正确性；
+- 对于 $n < 3.1 \times 10^{23}$，选取 $\{ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37\}$ 即可保证正确性。
+
+## Pollard-Rho 质因数分解
+
+```cpp
+#define MR_SIZE 9
+const int mr[MR_SIZE] = {2, 3, 5, 7, 11, 13, 17, 19, 23};
+
+long long int fastPow(__int128 a, long long int n, long long int mod) {
+    __int128 ret = 1; a %= mod;
+    while (n > 0) {
+        if (n & 1)
+            ret = ret * a % mod;
+        a = a * a % mod; n >>= 1;
+    }
+    return ret;
+}
+
+bool millerRobin(long long int n, int p) {
+    for (long long int k = n - 1; k > 0; k >>= 1) {
+        long long int cnt = fastPow(p, k, n);
+        if (cnt != 1 && cnt != n - 1)
+            return false;
+        if ((k & 1) == 1 || cnt == n - 1)
+            return true;
+    }
+    return true;
+}
+
+bool isPrime(long long int n) {
+    if (n < 2)
+        return false;
+    for (int i = 0; i < MR_SIZE; i++)
+        if (n % mr[i] == 0)
+            return n == mr[i];
+    bool ret = true;
+    for (int i = 0; i < MR_SIZE && ret; i++)
+        ret &= millerRobin(n, mr[i]);
+    return ret;
+}
+
+long long int func(long long int x, long long int c, long long int md) {
+    return ((__int128)x * x + c) % md;
+}
+
+long long int findFac(long long int n) {
+    for (int i = 0; i < MR_SIZE; i++)
+        if (n % mr[i] == 0)
+            return mr[i];
+    long long int c = rand() % (n - 1) + 1;
+    long long int s = 0, t = 0, val = 1;
+    for (long long int lim = 2; lim <<= 1; s = t, val = 1) {
+        for (long long int i = 1; i <= lim; i++) {
+            t = func(t, c, n);
+            val = (__int128)val * abs(t - s) % n;
+            if (i % 127 == 0) {
+                long long int gcd = __gcd(val, n);
+                if (gcd > 1)
+                    return gcd;
+            }
+        }
+        long long int gcd = __gcd(n, val);
+        if (gcd > 1)
+            return gcd;
+    }
+    assert(false); return n;
+}
+
+unordered_map<long long int, int> mp;
+void pollardRho(long long int n) {
+    if (n < 2)
+        return;
+    if (isPrime(n)) {
+        mp[n]++;
+        return;
+    }
+    long long int p = findFac(n);
+    while (p >= n)
+        p = findFac(p);
+    pollardRho(p); pollardRho(n / p);
+}
+
+int main() {
+    srand(time(0));
+    mp.clear(); pollardRho(n);
+}
+```
 
 
 # 数论函数
@@ -228,16 +326,16 @@ void initPhi() {
     primesPt = 0; phi[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
-            minFac[i] = i;
-            primes[primesPt++] = i;
             phi[i] = i - 1;
+            minFac[i] = i, primes[primesPt++] = i;
         }
         for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++) {
             minFac[i * primes[j]] = primes[j];
-            if (minFac[i] == primes[j])
+            if (minFac[i] == primes[j]) {
                 phi[i * primes[j]] = phi[i] * primes[j];
-            else
+            } else {
                 phi[i * primes[j]] = phi[i] * (primes[j] - 1);
+            }
         }
     }
 }
@@ -296,9 +394,8 @@ void initMu() {
     mu[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
-            minFac[i] = i;
             mu[i] = -1;
-            primes[primesPt++] = i;
+            minFac[i] = i, primes[primesPt++] = i;
         }
         for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++) {
             minFac[i * primes[j]] = primes[j];
@@ -356,10 +453,8 @@ void initD() {
     primesPt = 0; d[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
-            minFac[i] = i;
-            numArr[i] = 1;
-            d[i] = 2;
-            primes[primesPt++] = i;
+            numArr[i] = 1, d[i] = 2;
+            minFac[i] = i, primes[primesPt++] = i;
         }
         for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++) {
             minFac[i * primes[j]] = primes[j];
@@ -391,10 +486,8 @@ void initDSum() {
     primesPt = 0; facSqrSum[1] = 1; dSum[1] = 1;
     for (int i = 2; i < SIZE; i++) {
         if (minFac[i] == 0) {
-            minFac[i] = i;
-            primes[primesPt++] = i;
-            facSqrSum[i] = 1 + i;
-            dSum[i] = 1 + i;
+            facSqrSum[i] = 1 + i, dSum[i] = 1 + i;
+            minFac[i] = i, primes[primesPt++] = i;
         }
         for (int j = 0; j < primesPt && primes[j] <= min(minFac[i], (SIZE - 1) / i); j++) {
             minFac[i * primes[j]] = primes[j];
@@ -418,11 +511,11 @@ $$
 (f \cdot g)(n) = \sum\limits_{d \mid n}f(d)g(\frac{n}{d})
 $$
 
-$\lang \mathbb{S}, +, \cdot \rang $ 构成一个**可交换环**。其中单位元为 $e(n) = [n = 1]$。
+$\lang \mathbb{S}, +, \cdot \rang $ 构成一个**可交换环**。其中单位元为 $\epsilon(n) = [n = 1]$。
 
 记 $1(n) = 1, \ N(n) = n$：
 
-- $\mu \cdot 1 = e$
+- $\mu \cdot 1 = \epsilon$
 - $\varphi \cdot 1 = N$ 
 - $d = 1 \cdot 1$
 - $\sigma = N \cdot 1$
@@ -457,7 +550,7 @@ $$
 
 - $f(i) = \mu(i), \ S(n) = \sum\limits_{i = 1}^{n} \mu(i)$：
 
-  由 $\mu \cdot 1 = e$（对应 $f \cdot g = h$）：
+  由 $\mu \cdot 1 = \epsilon$（对应 $f \cdot g = h$）：
 
   $$
   S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
@@ -498,6 +591,9 @@ $$
 预处理 $\mathcal{O}(n^\frac{2}{3})$ 左右的数据则复杂度 $\mathcal{O}(n^{\frac{2}{3}})$；若不预处理是 $\mathcal{O}(n^\frac{3}{4})$？要记忆化！
 
 ## min25 筛
+
+> - 当 $n \ge 10^{12}$ 时首先想想有没有其他做法！
+> - 如果是求区间和注意 $R - L$ 有没有范围！
 
 ### 核心思想
 
@@ -576,13 +672,10 @@ $$
 注：`SIZE` 应设置为 $2\sqrt{n}$ 左右。
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
 #define SIZE 200020
 #define EXP_SIZE 2
-
 const int mod = 1e9 + 7;
+
 int primes[SIZE], minFac[SIZE], primesPt, lim;
 long long int g[SIZE][EXP_SIZE], dsc[SIZE], pfx[SIZE][EXP_SIZE], inv2, inv3;
 pair<int, int> indx[SIZE];  // indx[x]: index of <x, n / x>
@@ -666,18 +759,12 @@ long long int min25(long long int n) {
                 g[j][e] = (g[j][e] - fastPow(primes[i], csts[e].second, mod) * (g[k][e] - (i == 0 ? 0 : pfx[i - 1][e]) + mod) % mod + mod) % mod;
         }
     }
-
     return (sieve(n, 0, n) + 1) % mod;
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);
-
     long long int num; cin >> num;
     cout << min25(num) << '\n';
-
-    return 0;
 }
 ```
 
@@ -711,13 +798,9 @@ $$
 
 #### $f$ 不是积性函数？
 
-对于最后一条限制，其实只要待筛函数 $f$ 能够在对 $s, g$ 进行转移时被正确处理就可以了。
+对于最后一条限制，其实只要待筛函数 $f$ 能够在对 $s, g$ 进行转移时被正确处理就可以了。若记 $h = \sum f(a_i)$，且 $\forall i, \ p \not\mid a_i$，若能快速计算出 $h' = \sum f(a_ip)$，则一般可用 min25 筛出答案。如：$\forall a \perp b, \ f(ab) = f(a) + f(b)$。
 
-即，若记 $h = \sum f(a_i)$，且 $\forall i, \ p \not\mid a_i$，若能快速计算出 $h' = \sum f(a_ip)$，则一般可用 min25 筛出答案。
-
-例子：$f(ab) = f(a) + f(b)$。
-
-# 乱搞套路
+## 乱搞套路
 
 $$
 f(n) = \sum\limits_{d \mid n} g(d)
@@ -766,15 +849,15 @@ $$
    \sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{n} = \sum\limits_{i = 0}^{n}\sum\limits_{j = 0}^{i - 1} + \sum\limits_{i = 0}^{n}[j = i] + \sum\limits_{j = 0}^{n}\sum\limits_{i = 0}^{j - 1}
    $$
 
-# 逆元   $n^{-1} \pmod p$
+# 逆元与降幂
 
 ## 欧拉定理
 
-当 $\gcd(a, p) = 1$ 时有：
-
+若 $\gcd(a, p) = 1$，则：
 $$
 a^{\varphi(p)} \equiv 1 \pmod p
 $$
+
 
 ## 欧拉降幂
 
@@ -791,8 +874,7 @@ $$
 
 ```cpp
 long long int inv(long long int a, long long int mod) {
-    long long int x, y;
-    extEuclid(a, mod, x, y);
+    long long int x, y; extEuclid(a, mod, x, y);
     return (x + mod) % mod;
 }
 ```
@@ -808,15 +890,217 @@ void initInv() {
 }
 ```
 
-## 阶乘逆元 $(n!)^{-1}$
+# 线性同余
+
+## 拓展欧几里得
+
+$$
+ax + by = \gcd(x, y)
+$$
 
 ```cpp
-long long int invFactorials[SIZE];
-void initInvFactorial() {
-    invFactorials[SIZE - 1] = fastPow(factorials[SIZE - 1], mod - 2);
-    for (int i = SIZE - 2; i >= 0; i--) {
-        invFactorials[i] = invFactorials[i + 1] * (i + 1) % mod;
+/* ax + by = gcd(x, y) */
+long long int extEuclid(long long int a, long long int b, long long int & x, long long int & y) {
+    if (b == 0) {
+        x = 1, y = 0;
+        return a;
     }
+    long long int gcd = extEuclid(b, a % b, x, y), tmp = x;
+    x = y; y = tmp - y * (a / b);
+    return gcd;
+}
+```
+
+## 一次同余方程
+
+$$
+ax \equiv b \pmod p
+$$
+
+```cpp
+ /* ax = b (mod p) */
+long long int linCon(long long int a, long long int b, long long int p) {
+    long long int x, y, gcd = extEuclid(a, p, x, y);
+    a /= gcd; p /= gcd;
+    if (b % gcd != 0)
+        return -1;
+    long long int ret = b / gcd * x;
+    return (ret % p + p) % p;
+}
+```
+
+## 中国剩余定理
+
+对于线性同余方程组：
+$$
+\begin{cases}
+x \equiv b_1 & \pmod {p_1} \\
+x \equiv b_2 & \pmod {p_2} \\
+\dots & \\
+x_n \equiv b_n & \pmod {p_n}
+\end{cases}
+$$
+
+若 $p_1, p_2, \dots p_n$ 两两互素，则可使用中国剩余定理。令 $M = \prod\limits_{i = 1}^{n} p_i, \ m_i = \frac{M}{p_i}, \ m_im_i' \equiv 1 \pmod {p_i}$，则方程组有解：
+
+$$
+x \equiv \sum\limits_{i = 1}^{n} b_im_im_i' \pmod M
+$$
+
+## 拓展中国剩余定理
+
+```cpp
+// x % mods[i] = csts[i]
+long long int mods[SIZE], csts[SIZE];
+long long int crt(int equNum) {
+    long long int modProd = mods[0], ans = csts[0];
+    for (int i = 1; i < equNum; i++) {
+        long long int x, y, a = modProd, b = mods[i];
+        long long int c = (csts[i] - ans % b + b) % b;
+        long long int gcd = extEuclid(a, b, x, y), bg = b / gcd;
+        if (c % gcd != 0)
+            return -1;
+        long long int cntAns = (c / gcd % bg * x % bg + bg) % bg;
+        // long long int cntAns = fastMul(x, c / gcd, bg);
+        ans += modProd * cntAns;
+        modProd *= bg;
+    }
+    return (ans % modProd + modProd) % modProd;
+}
+```
+
+# 二次剩余
+
+$$
+x^2 \equiv n \pmod p
+$$
+
+## 解的存在性
+
+对于 $p$ 为奇素数的情形：
+
+$$
+\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
+\begin{aligned}
+\legendre{n}{p} & \equiv n^{\frac{p - 1}{2}} \pmod p \\ 
+& \equiv 
+\begin{cases}
+1 & \pmod p & \text{such solution exists} \\
+-1 & \pmod p & \text{otherwise}
+\end{cases}
+\end{aligned}
+$$
+
+## Tonelli–Shanks 算法
+
+适用于模数为 $p^k$ 的情形，若为合数则考虑用 CRT 合并。
+
+```cpp
+/* 见 Claris 模板 */
+```
+
+# 离散对数
+
+$$
+a^x \equiv b \pmod p
+$$
+
+## BSGS 算法
+
+令 $x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)$。问题转换为：
+
+$$
+(a^t)^i = a^{-j}b \pmod p
+$$
+
+借助 Hash 表 meet in the middle 即可。**为了求稳可考虑求出指数以防止出错！**
+
+```cpp
+// k * a ^ x = b (mod p), returns minimum non-negative solution
+long long int bsgs(long long int k, long long int a, long long int b, long long int p) {  
+    a %= p; b %= p;
+    if (a == 0)
+        return b == 0 ? 1 : -1;
+    unordered_map<long long int, int> mp;
+    int t = sqrt(p) + 1; long long int tmp = k % p;
+    for (int j = 0; j < t; j++) {
+        if (mp.find(tmp) != mp.end())
+            break;
+        mp[tmp] = j; tmp = tmp * a % p;
+    }
+    // phip could be replaced by ord(a, p)
+    long long int phip = phi(p), inv = fastPow(a, phip - t % phip, p); tmp = b;
+    for (int i = 0; i <= t; i++) {
+        int j = mp.find(tmp) == mp.end() ? -1 : mp[tmp];
+        if (j != -1) 
+            return 1ll * i * t + j; 
+        tmp = tmp * inv % p;
+    }
+    return -1;
+}
+long long int extBsgs(long long int a, long long int b, long long int p) {
+    a %= p; b %= p;
+    if (b == 1)
+        return 0;
+    long long int offset = 0, fac = 1;
+    while (true) {
+        if (fac == b) 
+            return offset;
+        long long int gcd = __gcd(a, p);
+        if (b % gcd != 0)
+            return -1;
+        if (gcd == 1)
+            break;
+        offset++; p /= gcd; b /= gcd; 
+        fac = a / gcd * fac % p;
+    }
+    long long int ret = bsgs(fac, a, b, p);
+    return ret == -1 ? ret : ret + offset;
+}
+```
+
+## Pohlig–Hellman 算法
+
+```cpp
+/* Baby step Giant step */
+long long int bsgs(long long int a, long long int b, long long int p, long long int ord) { 
+    // Replace phip with ord
+}
+/* Pohlig-Hellman Algorithm */
+long long int getOrd(long long int a, long long int p) {
+    // Calculate order: ord(a, p)
+}
+long long int pohligHellman(long long int a, long long int b, long long int mod, 
+                            long long int ord, long long int p, int e) {    // ord = p ^ e
+    long long int ret = 0;
+    long long int y = fastPow(a, ord / p, mod), p1 = ord / p, p2 = 1;
+    for (int k = 0; k < e; k++) {
+        long long int inv = fastPow(fastPow(a, ord - 1, mod), ret, mod);
+        long long int bk = fastPow((__int128)inv * b % mod, p1, mod); p1 /= p;
+        long long int dk = bsgs(y, bk, mod, p); // The last p stands for order of the group
+        if (dk == -1)
+            return -1;
+        ret = (ret + p2 * dk % ord) % ord; p2 *= p;
+    }
+    return ret;
+}
+int primes[2] = {2, 3}, primesPt = 2;   // Prime factors of phi(p)
+long long int hiCon(long long int a, long long int b, long long int p) {
+    long long int ord = getOrd(a, p), tmp = ord; int equNum = 0;
+    for (int i = 0; i < primesPt; i++) {
+        long long int prime = primes[i];
+        if (tmp % prime != 0)
+            continue;
+        int exp = 1; long long int cnt = prime; tmp /= prime;
+        while (tmp % prime == 0)
+            exp++, cnt *= prime, tmp /= prime;
+        long long int ai = fastPow(a, ord / cnt, p), bi = fastPow(b, ord / cnt, p);
+        csts[equNum] = pohligHellman(ai, bi, p, cnt, prime, exp);
+        if (csts[equNum] == -1)
+            return -1;
+        mods[equNum++] = cnt;
+    }
+    return crt(equNum); // Chinese Remainder Theorem
 }
 ```
 
@@ -848,8 +1132,8 @@ void initBinom() {
 ### 取模意义下:     $\mathcal{O}(1)$ 
 
 ```cpp
-long long int binom(long long int n, long long int m) {
-    return m > n ? 0 : factorial[n] * invFactorial[m] % mod * invFactorial[n - m] % mod;
+long long int binom(int n, int m) {
+    return m > n ? 0 : factorials[n] * invFactorials[m] % mod * invFactorials[n - m] % mod;
 }
 long long int permu(int n, int m) {
     return m > n ? 0 : factorials[n] * invFactorials[n - m] % mod;
@@ -945,7 +1229,7 @@ long long int calcInv(long long int n, const Fac & f) {
     long long int ret = fastPow(f.invFactorials[f.pk - 1], n / f.pk, f.pk);
     return ret * f.invFactorials[n % f.pk] % f.pk * calcInv(n / f.p, f) % f.pk;
 }
-// Primes
+/* Primes */
 long long int comb1(long long int n, long long int m, const Fac & f) {
     if (n == 0)
         return 1;
@@ -954,7 +1238,7 @@ long long int comb1(long long int n, long long int m, const Fac & f) {
     };
     return comb(n % f.p, m % f.p) * comb1(n / f.p, m / f.p, f) % f.p;
 }
-// Power of primes
+/* Power of primes */
 long long int comb2(long long int n, long long int m, const Fac & f) {
     long long int occ = 0;
     for (long long int i = n; i > 0; i /= f.p)
@@ -1137,7 +1421,6 @@ long long int quasiEuclidean(long long int a, long long int b, long long int c, 
         return 0;
     if (a == 0)
         return (n + 1) * (b / c);
-
     if (a >= c || b >= c) {
         long long int tmp = (n & 1) ? ((n + 1) >> 1) * n : (n >> 1) * (n + 1);
         return (a / c) * tmp + (b / c) * (n + 1) + quasiEuclidean(a % c, b % c, c, n);
@@ -1145,14 +1428,12 @@ long long int quasiEuclidean(long long int a, long long int b, long long int c, 
     long long int m = (a * n + b) / c;
     return n * m - quasiEuclidean(c, c - b - 1, a, m - 1);
 }
-
 /* Huge Data: __int128 is preferred! */
 long long int quasiEuclidean(long long int a, long long int b, long long int c, long long int n) {
     if (n < 0)
         return 0;
     if (a == 0)
         return (n + 1) % mod * ((b / c) % mod) % mod;
- 
     if (a >= c || b >= c) {
         long long int tmp = ((n & 1) ? ((n + 1) >> 1) % mod * (n % mod) : (n >> 1) % mod * ((n + 1) % mod)) % mod;
         return ((a / c) % mod * (tmp % mod) % mod + (b / c) % mod * ((n + 1) % mod) % mod + quasiEuclidean(a % c, b % c, c, n) % mod) % mod;
@@ -1160,11 +1441,11 @@ long long int quasiEuclidean(long long int a, long long int b, long long int c, 
     long long int m = ((__int128)a * n + b) / c;
     return (n % mod * (m % mod) % mod - quasiEuclidean(c, c - b - 1, a, m - 1) % mod + mod) % mod;
 }
-
 /* f, g, h (Untested!!!) */
-typedef struct _Node {
+class Node {
+public:
     int f, g, h;
-} Node;
+};
 long long int getSum(long long int n) {
     return (n & 1) ? ((n + 1) >> 1) * n : (n >> 1) * (n + 1);
 }
@@ -1172,12 +1453,11 @@ long long int getSqrSum(long long int n) {
     long long int ans = getSqrSum(n);
     return (ans % 3 == 0) ? ans / 3 * ((n << 1) + 1) : ((n << 1) + 1) / 3 * ans;
 }
-Node quasiEuclidean(int a, int b, int c, int n) {
+Node quasiEuclidean(long long int a, long long int b, long long int c, long long int n) {
     if (n < 0)
         return 0;
     if (a == 0 && b < c)
         return Node{0, 0, 0};
-
     if (a >= c || b >= c) {
         long long int lfa = a / c, lfb = b / c;
         Node ret = quasiEuclidean(a % c, b % c, c, n);
@@ -1187,13 +1467,11 @@ Node quasiEuclidean(int a, int b, int c, int n) {
         ret.g += lfa * getSqrSum(n) + lfb * getSum(n);
         return ret;
     }
-
     long long int m = (a * n + b) / c;
     Node ret = Node{0, 0, 0}, last = quasiEuclidean(c, c - b - 1, a, m - 1);
     ret.f = n * m - last.f;
     ret.g = m * getSum(n) - ((last.f + last.h) >> 1);
     ret.h = n * m * m - (last.g << 1) - last.f;
-
     return ret;
 }
 ```
@@ -1267,7 +1545,6 @@ void simplify(long long int & a, long long int & b) {
     long long int gcd = __gcd(a, b);
     a /= gcd; b /= gcd;
 }
-
 pair<long long int, long long int> solve(long long int a, long long int b, long long int c, long long int d) {
     simplify(a, b); simplify(c, d);
     long long int left = a / b + 1, right = (c - 1) / d;
@@ -1288,219 +1565,18 @@ pair<long long int, long long int> solve(long long int a, long long int b, long 
 }
 ```
 
-# 线性同余
+---
 
-## 拓展欧几里得
+**应用**：对于 $ab^{-1} \equiv x \pmod p$，给定 $x, p$（$p$ 为质数），求解最小的满足 $0 < a < b$ 的 $a, b$。
 
+有 $a = bx - pt \ (t > 0)$，因此：
 $$
-ax + by = \gcd(x, y)
-$$
-
-```cpp
-// ax + by = gcd(x, y)
-long long int extEuclid(long long int a, long long int b, long long int & x, long long int & y) {
-    if (b == 0) {
-        x = 1, y = 0;
-        return a;
-    }
-    long long int gcd = extEuclid(b, a % b, x, y), tmp = x;
-    x = y; y = tmp - y * (a / b);
-    return gcd;
-}
-```
-
-## 一次同余方程
-
-$$
-ax \equiv b \pmod p
-$$
-
-```cpp
- // ax = b (mod p)
-long long int linCon(long long int a, long long int b, long long int p) {
-    long long int x, y, gcd = extEuclid(a, p, x, y);
-    a /= gcd; p /= gcd;
-    if (b % gcd != 0)
-        return -1;
-    long long int ret = b / gcd * x;
-    return (ret % p + p) % p;
-}
-```
-
-## 中国剩余定理
-
-对于线性同余方程组：
-$$
-\begin{cases}
-x \equiv b_1 & \pmod {p_1} \\
-x \equiv b_2 & \pmod {p_2} \\
-\dots & \\
-x_n \equiv b_n & \pmod {p_n}
-\end{cases}
-$$
-
-若 $p_1, p_2, \dots p_n$ 两两互素，则可使用中国剩余定理。令 $M = \prod\limits_{i = 1}^{n} p_i, \ m_i = \frac{M}{p_i}$，则方程组有解：
-
-$$
-x \equiv \sum\limits_{i = 1}^{n} b_im_im_i^{-1} \pmod M
-$$
-
-## 拓展中国剩余定理
-
-```cpp
-// x % mods[i] = csts[i]
-long long int mods[SIZE], csts[SIZE];
-long long int crt(int equNum) {
-    long long int modProd = mods[0], ans = csts[0];
-    for (int i = 1; i < equNum; i++) {
-        long long int x, y, a = modProd, b = mods[i];
-        long long int c = (csts[i] - ans % b + b) % b;
-        long long int gcd = extEuclid(a, b, x, y), bg = b / gcd;
-        if (c % gcd != 0)
-            return -1;
-        long long int cntAns = (c / gcd % bg * x % bg + bg) % bg;
-        // long long int cntAns = fastMul(x, c / gcd, bg);
-        ans += modProd * cntAns;
-        modProd *= bg;
-    }
-    return (ans % modProd + modProd) % modProd;
-}
-```
-
-# 二次剩余
-
-$$
-x^2 \equiv n \pmod p
-$$
-
-## 解的存在性
-
-对于 $p$ 为奇素数的情形：
-
-$$
-\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
 \begin{aligned}
-\legendre{n}{p} & \equiv n^{\frac{p - 1}{2}} \pmod p \\ 
-& \equiv 
-\begin{cases}
-1 & \pmod p & \text{such solution exists} \\
--1 & \pmod p & \text{otherwise}
-\end{cases}
+& 0 < bx - pt < b \\
+\Rightarrow & \frac{p}{x} < \frac{b}{t} < \frac{p}{x - 1} \\
 \end{aligned}
 $$
-
-## Tonelli–Shanks 算法
-
-适用于模数为 $p^k$ 的情形，若为合数则考虑用 CRT 合并。
-
-```cpp
-/* 见 Claris 模板 */
-```
-
-# 离散对数
-
-$$
-a^x \equiv b \pmod p
-$$
-
-## BSGS 算法
-
-令 $x = it + j, \text{ s.t. } i \in [0, \frac{p}{t}], \ j \in [0, t)$。问题转换为：
-
-$$
-(a^t)^i = a^{-j}b \pmod p
-$$
-
-借助 Hash 表 meet in the middle 即可。**为了求稳可考虑求出指数以防止出错！**
-
-```cpp
-// k * a ^ x = b (mod p), returns minimum non-negative solution
-long long int bsgs(long long int k, long long int a, long long int b, long long int p) {  
-    a %= p; b %= p;
-    if (a == 0)
-        return b == 0 ? 1 : -1;
-    unordered_map<long long int, int> mp;
-    int t = sqrt(p) + 1; long long int tmp = k % p;
-    for (int j = 0; j < t; j++) {
-        if (mp.find(tmp) != mp.end())
-            break;
-        mp[tmp] = j; tmp = tmp * a % p;
-    }
-    // phip could be replaced by ord(a, p)
-    long long int phip = phi(p), inv = fastPow(a, phip - t % phip, p); tmp = b;
-    for (int i = 0; i <= t; i++) {
-        int j = mp.find(tmp) == mp.end() ? -1 : mp[tmp];
-        if (j != -1) 
-            return 1ll * i * t + j; 
-        tmp = tmp * inv % p;
-    }
-    return -1;
-}
-long long int extBsgs(long long int a, long long int b, long long int p) {
-    a %= p; b %= p;
-    if (b == 1)
-        return 0;
-    long long int offset = 0, fac = 1;
-    while (true) {
-        if (fac == b) 
-            return offset;
-        long long int gcd = __gcd(a, p);
-        if (b % gcd != 0)
-            return -1;
-        if (gcd == 1)
-            break;
-        offset++; p /= gcd; b /= gcd; 
-        fac = a / gcd * fac % p;
-    }
-    long long int ret = bsgs(fac, a, b, p);
-    return ret == -1 ? ret : ret + offset;
-}
-```
-
-## Pohlig–Hellman 算法
-
-```cpp
-/* Baby step Giant step */
-long long int bsgs(long long int a, long long int b, long long int p, long long int ord) { 
-    // Replace phip with ord
-}
-/* Pohlig-Hellman Algorithm */
-long long int getOrd(long long int a, long long int p) {
-    // Calculate order: ord(a, p)
-}
-long long int pohligHellman(long long int a, long long int b, long long int mod, 
-                            long long int ord, long long int p, int e) {    // ord = p ^ e
-    long long int ret = 0;
-    long long int y = fastPow(a, ord / p, mod), p1 = ord / p, p2 = 1;
-    for (int k = 0; k < e; k++) {
-        long long int inv = fastPow(fastPow(a, ord - 1, mod), ret, mod);
-        long long int bk = fastPow((__int128)inv * b % mod, p1, mod); p1 /= p;
-        long long int dk = bsgs(y, bk, mod, p); // The last p stands for order of the group
-        if (dk == -1)
-            return -1;
-        ret = (ret + p2 * dk % ord) % ord; p2 *= p;
-    }
-    return ret;
-}
-int primes[2] = {2, 3}, primesPt = 2;   // Prime factors of phi(p)
-long long int hiCon(long long int a, long long int b, long long int p) {
-    long long int ord = getOrd(a, p), tmp = ord; int equNum = 0;
-    for (int i = 0; i < primesPt; i++) {
-        long long int prime = primes[i];
-        if (tmp % prime != 0)
-            continue;
-        int exp = 1; long long int cnt = prime; tmp /= prime;
-        while (tmp % prime == 0)
-            exp++, cnt *= prime, tmp /= prime;
-        long long int ai = fastPow(a, ord / cnt, p), bi = fastPow(b, ord / cnt, p);
-        csts[equNum] = pohligHellman(ai, bi, p, cnt, prime, exp);
-        if (csts[equNum] == -1)
-            return -1;
-        mods[equNum++] = cnt;
-    }
-    return crt(equNum); // Chinese Remainder Theorem
-}
-```
+应用上述算法即可求出 $b, t$，进而求出 $a$。
 
 # 多项式
 
@@ -1604,10 +1680,9 @@ int main() {
 ### NTT
 
 ```cpp
-const int mod = 998244353;
-const int pr = 3;
+const int mod = 998244353, pr = 3;
 long long int fst[SIZE], snd[SIZE], omg[SIZE], inv[SIZE];
-long long int pos[SIZE], fstLen, sndLen, len, lim;
+int pos[SIZE], fstLen, sndLen, len, lim;
 long long int fastPow(long long int a, long long int n, long long int mod) {
     long long int ret = 1; a %= mod;
     while (n > 0) {
@@ -1645,11 +1720,13 @@ void ntt(long long int * arr, long long int * omg) {
     }
 }
 void multiply() {
-    init();
+    init(); int lenInv = fastPow(len, mod - 2, mod);
     ntt(fst, omg); ntt(snd, omg);
     for (int i = 0; i < len; i++)
         fst[i] = fst[i] * snd[i] % mod;
     ntt(fst, inv);
+    for (int i = 0; i < fstLen + sndLen - 1; i++)
+        fst[i] = fst[i] * lenInv % mod;
 }
 int main() {
     cin >> fstLen >> sndLen; fstLen++; sndLen++;
@@ -1659,9 +1736,9 @@ int main() {
         cin >> snd[i];
     multiply();
     long long int lenInv = fastPow(len, mod - 2, mod);
-    cout << fst[0] * lenInv % mod;
+    cout << fst[0];
     for (int i = 1; i < fstLen + sndLen - 1; i++)
-        cout << ' ' << fst[i] * lenInv % mod;
+        cout << ' ' << fst[i];
     cout << '\n';
     return 0;   
 }
@@ -1687,6 +1764,10 @@ kM + a \equiv b_3 \pmod {p_3} \Rightarrow k \equiv (b_3 - A)M^{-1} \pmod {p_3}
 $$
 
 直接求 $k$，然后求 $x$ 即可。
+
+---
+
+`SIZE` 建议设置为最高幂次的 $3 \sim 4$ 倍，如果有多个式子相乘则可以类似启发式合并将复杂度降低为 $\mathcal{O}(\log{n})$。
 
 ## 插值
 
@@ -1784,27 +1865,24 @@ $$
 
 ```cpp
 long long int val[SIZE], pre[SIZE], suf[SIZE], rem[SIZE];
-long long int factorial[SIZE], invFactorial[SIZE];
+long long int factorials[SIZE], invFactorials[SIZE];
 
-void bruteForce(int len, int k) {
-    val[0] = 0; val[1] = 1;
-    for (int i = 2; i <= len; i++)
-        val[i] = (val[i - 1] + fastPow(i, k)) % mod;
-}
+// Initialize factorials + f(0) -> f(exp)
+void init() {}
 
-// len stands for highest exponent, y stands for val array
-long long int lagrangeCons(long long int x, int len, long long int * y) {
-    x %= mod; pre[0] = x; suf[len] = x - len;
-    for (int i = 1; i <= len; i++) 
+// exp stands for highest exponent, y stands for val array
+long long int lagrangeCons(long long int x, int exp, long long int * y) {
+    x %= mod; pre[0] = x; suf[exp] = x - exp;
+    for (int i = 1; i <= exp; i++) 
         pre[i] = pre[i - 1] * (x - i) % mod;
-    for (int i = len - 1; i >= 0; i--)
+    for (int i = exp - 1; i >= 0; i--)
         suf[i] = suf[i + 1] * (x - i) % mod;
 
     long long int ret = 0;
-    for (int i = 0; i <= len; i++) {
-        long long int cnt = y[i] * (i == 0 ? 1ll : pre[i - 1]) % mod * (i == len ? 1ll : suf[i + 1]) % mod;
-        cnt = cnt * invFactorial[i] % mod * invFactorial[len - i] % mod;
-        cnt = ((len + i) & 1) ? -cnt : cnt;
+    for (int i = 0; i <= exp; i++) {
+        long long int cnt = y[i] * (i == 0 ? 1ll : pre[i - 1]) % mod * (i == exp ? 1ll : suf[i + 1]) % mod;
+        cnt = cnt * invFactorials[i] % mod * invFactorials[exp - i] % mod;
+        cnt = ((exp + i) & 1) ? -cnt : cnt;
         ret = (ret + cnt + mod) % mod;
     }
     return ret;
@@ -1941,12 +2019,9 @@ long long int dfs(int pos, int rem, bool isZero, bool hasLim) {
         return !isZero && rem == 0;
     if (!hasLim && dp[pos][rem] != -1)
         return dp[pos][rem];
-    long long int ans = 0;
-    int lim = hasLim ? cntArr[pos] : 9;
-    // State transition
+    long long int ans = 0; int lim = hasLim ? cntArr[pos] : 9;
     for (int i = 0; i <= lim; i++) {
-        /* Your code here
-        ...
+        /* Your code here...
         int nextRem = (rem * 10 + i) % m;
         ans = (ans + dfs(pos - 1, nextRem, isZero && i == 0, hasLim && i == lim)) % mod;
         */
@@ -2011,9 +2086,9 @@ $$
 
 ---
 
-**Example 1**：$m$ 种颜色，长为 $n$ 的环，可旋转可翻转。
+**Example 1**：长为 $n$ 的环，$m$ 种颜色，可旋转可翻转。
 
-*旋转*：考虑循环置换群 $\mid G \mid = n$，$g_i \in G$ 代表逆时针旋转 $\frac{2\pi i}{n}$，则有 $g_i = {g_1}^i$。依据置换群幂的性质，$g_i$ 可以被表示为长度为 $\gcd(n, i)$ 的 $\frac{n}{\gcd(n, i)}$ 个轮换，故：
+*旋转*：考虑循环置换群 $\mid G \mid = n$，$g_i \in G$ 代表逆时针旋转 $\frac{2\pi i}{n}$，则有 $g_i = {g_1}^i$。依据置换群幂的性质：
 
 $$
 c(g_i) = \gcd(n, i)
@@ -2023,9 +2098,11 @@ $$
 
 $$
 \begin{aligned}
-\frac{1}{|G|}\sum\limits_{i = 1}^{n}m^{\gcd(i, n)} & = \frac{1}{|G|}\sum\limits_{t | n}\varphi(\frac{n}{t}) \cdot m^t
+\frac{1}{|G|}\sum\limits_{i = 1}^{n}m^{\gcd(n, i)} & = \frac{1}{|G|}\sum\limits_{t | n}\varphi(\frac{n}{t}) \cdot m^t
 \end{aligned}
 $$
+
+另外，旋转 $t$ 位的置换下，第 $i$ 个元素一定出现于第 $(i \bmod \gcd(n, t)) + 1$ 个轮换中。而不动点的充要条件即轮换内所有元素颜色相同，故只需考虑前 $\gcd(n, t)$ 个元素的染色方案即为不动点个数。因此若带有额外限制可用 DP 解决。
 
 *翻转*：
 
@@ -2049,7 +2126,9 @@ else
 ans = ans * fastPow(n << 1, mod - 2) % mod;
 ```
 
-**Example 2**：$m$ 种颜色，$n \times n$ 的正方形，可旋转可翻转。
+---
+
+**Example 2**：边长为 $n$ 正方形，$m$ 种颜色，可旋转可翻转。
 
 *旋转*：置换群 $G = \{ 0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ} \}$， 轮换个数 $c(g_i)$：
 
@@ -2081,6 +2160,43 @@ ans = ans * fastPow(n << 1, mod - 2) % mod;
   - 过边中点的对称轴：$c(g) = \frac{1}{2}n^2$
 - $n$ 为奇数：$c(g) = \frac{1}{2}(n^2 - n) + n$
 
+---
+
+**Example 3**：边长为 $n$ 正方体，$m$ 种颜色，可旋转。
+
+- 保持不动：$8$ 个长为 $1$ 的轮换：$1$ 种；
+- 绕对立面中心转：
+  - $90^{\circ}, 270^{\circ}$：$2$ 个长为 $4$ 的轮换：$3 \times 2 = 6$ 种；
+  - $180^{\circ}$：$4$ 个长为 $2$ 的轮换：$3$ 种；
+- 绕对立边中心转 $180^{\circ}$：$4$ 个长为 $2$ 的轮换： $6 \times 1 = 6$ 种；
+- 绕对角点转 $120^{\circ}, 240^{\circ}$：$4$ 个长度为 $2$ 的轮换： $4 \times 2 = 8$ 种。
+
+综上：$O = \frac{1}{24} \left[m^8 + (3 + 6 + 8)m^4 + 6m^2\right]$ 
+
+---
+
+**Example 4**：$n$ 个点无向完全图，$m$ 种颜色，求本质不同无向完全图个数。
+
+两张图若对点重标号后可以重合即为同构。对点的置换群即 $n$ 阶对称群 $S_n$，$|S_n| = n!$。每个点置换可以被表示成若干点轮换的乘积，而该点置换下，边两端的两点有两种情况：在同一个轮换里，或在两个不同轮换里（注意接下来考虑的是轮换，那么对应的操作就是循环右移）。
+
+- 两点在同一轮换里的边：记点轮换大小为 $x$，则可构成 $\left\lfloor \frac{x}{2} \right\rfloor$ 个边轮换。
+
+  考虑 $x$ 个点构成的完全图，将点等距离放在圆周上，则显然长度相等的线段构成一个边轮换，共 $\left\lfloor \frac{x}{2} \right\rfloor$ 个。
+
+- 两点在不同轮换里的边：记点轮换大小分别为 $x, y$，则可构成 $\gcd(x, y)$ 个边轮换。
+
+  需要移 $\text{lcm}(x, y)$ 次才能转回原图形，发现每个轮换大小均为 $\text{lcm}(x, y)$。共 $xy$ 条边，则轮换个数 $\frac{xy}{\text{lcm}(x, y)} = \gcd(x, y)$ 个。 
+
+由于置换群规模较大，故考虑剪枝。考虑对 $n$ 的每一种拆分方案：$n = \sum\limits_{i = 1}^{k} t_i a_i$，其中 $a_i$ 代表点轮换大小，$t_i$ 为该大小的点轮换个数。则满足上述条件的点置换个数为：
+
+$$
+\frac{n!}{\prod\limits_{i = 1}^{k} t_i! \cdot a_i^{t_i}}
+$$
+
+其中除去 $a_i^{t_i}$ 的原因是因为每个大小为 $a_i$ 的点轮换会被重复算 $a_i$ 次。
+
+爆搜所有的拆分方案即可，同一边轮换内的边都应当同色，运用一下 Pólya 定理即可。
+
 # 高斯整数
 
 - $\Z [i] = \{a + bi \  \mid \ a, b \in \Z \} \ \text{ where }i^2 = -1$，构成可交换环。
@@ -2099,7 +2215,7 @@ $$
 \int_{l}^{r} f(x)dx \approx \frac{r - l}{6}\left[f(l) + 4f(\frac{l + r}{2}) + f(r)\right]
 $$
 
-直接拟合显然精度糟糕，因此可考虑通过分治缩小拟合规模多次拟合从而提升精度。$eps$ 往死里面设！。
+直接拟合精度糟糕，因此考虑通过分治缩小拟合规模多次拟合从而提升精度。$eps$ 往死里面设！
 
 ```cpp
 double simpson(double l, double r) {
@@ -2235,7 +2351,50 @@ $$
 \prod\limits_{i \in \mathbb{N}^{+}} (1 - \frac{1}{p_i^2}) 
 & = \frac{1}{\prod\limits_{i \in \mathbb{N}^{+}} \frac{1}{1 -\frac{1}{p_i^2}}} \\
 & = \frac{1}{\prod\limits_{i \in \mathbb{N}^{+}}(1 + \frac{1}{p_i^2} + \frac{1}{p_i^4} + \dots) }\\
-& = \frac{1}{\sum\limits_{n \in \mathbb{N}^{+}} \frac{1}{n^2}} \\
-& =\frac{6}{\pi^2}
+& = \frac{1}{\sum\limits_{n \in \mathbb{N}^{+}} \frac{1}{n^2}} = \frac{6}{\pi^2}
 \end{aligned}
+$$
+
+## 因数集的最大互质子集
+
+令 $n = \prod\limits_{i = 1}^{k} {p_i}^{e_i}$，求 $n$ 的因数集 $\mathbb{F}$ 的最大互质子集的大小。
+
+记 $\deg(n) = \sum\limits_{i = 1}^{k} e_i$，构造集合 $\mathbb{S} = \{ d \mid d \in \mathbb{F} \ \land \ \deg(d) = \left\lfloor \frac{\deg(n)}{2} \right\rfloor \}$，则 $\mathbb{S}$ 则为所求作集合。
+
+## Fibonacci 与 GCD
+
+记 $F_i$ 代表 Fibonacci 数列的第 $i$ 项，则有：
+
+$$
+\gcd(F_n, F_m) = F_{\gcd(n, m)}
+$$
+
+## n-维球面上的整点个数
+
+记 $f(d)$ 代表 $n$ 维坐标系中离原点距离为 $d$ 的整点个数，则 $\frac{f(d)}{2n}$ 为积性函数。 
+
+## 异或和
+
+$$
+\oplus_{i = 1}^{n} i =
+\begin{cases}
+n & i \equiv 0 \pmod 4 \\
+1 & i \equiv 1 \pmod 4 \\
+n + 1 & i \equiv 2 \pmod 4 \\
+0 & i \equiv 3 \pmod 4
+\end{cases}
+$$
+
+---
+
+另外可以按位考虑，记 $\oplus_{i = 1}^{n} a_i$ 的二进制表示下第 $k$ 低位上的值为 $f(n, k)$，则：
+
+$$
+f(n, k) = \sum\limits_{i = 1}^{n} \left\lfloor \frac{a_i}{2^k} \right\rfloor \pmod 2
+$$
+
+## $x^i $ 关于 $i$ 的前缀和
+
+$$
+\sum\limits_{i = 0}^{k}x^i = \frac{x^{i + 1} - 1}{x - 1}
 $$

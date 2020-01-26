@@ -3,7 +3,7 @@
 {{- end }}
 
 {{- if and .Site.Params.Utterances .Page.Params.Utterances }}
-    <script defer src="https://utteranc.es/client.js"
+    <script async src="https://utteranc.es/client.js"
         repo="{{- .Site.Params.Utterances.Repo -}}"
         issue-number="{{- .Page.Params.Utterances -}}"
         label="{{- .Site.Params.Utterances.Label -}}"

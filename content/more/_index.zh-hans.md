@@ -26,7 +26,7 @@ utterances: 12
 - [Li4n0](https://0n0.fun/)
 - [Critizero](https://critizero.github.io/)
 - [Foesa](http://fenguyu.github.io/)
-- [K0u1e](http://www.koule2333.top/)
+- [K0u1e](https://blog.nowcoder.net/wcyctmd)
 - [syh0313](https://blog.csdn.net/syh0313)
 - [Zarxdy34](http://www.zarxdy34.top/)
 - [BinGoo0o0o](https://blog.csdn.net/BinGoo0o0o/)
