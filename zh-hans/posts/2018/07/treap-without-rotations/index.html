@@ -80,14 +80,14 @@
 				<h1>浅谈无旋转 Treap</h1>
 			</header>
 			<div class="content">
-				<h1 id="heading">简介<a href="#heading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+				<h1 id="简介">简介<a href="#简介" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <p><strong>Treap = Tree + Heap</strong>。Treap 是一种<strong>弱平衡</strong>的二叉查找树。</p>
 <p>我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够有效防止前者退化成一条链的情况。平衡二叉树有很多种，比如 AVL、红黑树、SBT、Splay 等等， 而 Treap 是其中相对好写的一种。</p>
 <p>顾名思义，<strong>Treap 通过二叉堆的性质来维护二叉树的平衡</strong>。一个二叉（大根）堆满足这样的性质：一个节点的两个儿子的值都小于节点本身。但是这样的规定看似与二叉搜索树的性质矛盾…… 解决这个问题的办法只有一个 —— 让每个节点有两个键值，其中一个满足二叉堆性质，另一个满足二叉搜索树性质。</p>
 <p>因此，Treap 中的每个节点含有两个键值 $key$ 和 $value$，其中 $key$ 满足二叉堆的性质，而 $value$ 满足二叉搜索树的性质。$value$ 的值我们显然是无法随便改变的（因为它取决于用户输入），因此为了维护平衡性我们只能在 $key$ 上做文章。我们可以考虑给每个节点的 $key$ 都赋上随机值。由于主流的随机数生成算法（比如大素数取模）很难出现完全单调的序列，因此这样一来我们可以保证 Treap “基本平衡“。</p>
 <p>你可能会发现 Treap 和 笛卡尔树 存在很多相似之处。的确，不过这两者最显著的区别是，Treap 的 $key$ 是随机值，而笛卡尔树的不是。</p>
-<h1 id="-treap">无旋转的 Treap<a href="#-treap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-1">两个核心函数<a href="#heading-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h1 id="无旋转的-treap">无旋转的 Treap<a href="#无旋转的-treap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="两个核心函数">两个核心函数<a href="#两个核心函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>一般的 Treap 是带有旋转操作的（正如大部分平衡树一样），而旋转操作的实现往往是我这种蒟蒻的噩梦。而无旋转的 Treap 却喜闻乐见地不通过旋转来维护其平衡性，所以相比普通的 Treap 要好写不少（也暴力不少）。下面我们首先来介绍无旋转 Treap 的两个核心操作：</p>
 <ul>
 <li><strong>merge (A, B)</strong>：合并两棵子树（它们的根节点分别是 $A$ 和 $B$），复杂度 $\mathcal{O}(\log{n})$；</li>
@@ -95,10 +95,10 @@
 </ul>
 <p><strong>注意：合并操作的前提是其中一棵 Treap 上的所有键值（即 $value$）小于另一棵 Treap 上的键值，否则只能启发式合并</strong>！</p>
 <p>有了这两个操作，我们就可以实现平衡树的大部分功能了。但在此之前，让我们先来看看如何实现这两个核心函数。</p>
-<h3 id="heading-2">合并<a href="#heading-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="合并">合并<a href="#合并" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们假设现在维护的是满足<strong>小根堆</strong>性质的 Treap，记将被合并的两棵子树的根节点为 $A$ 和 $B$。</p>
 <p>我们比较 $A$ 和 $B$ 的 $key$，谁的 $key$ 小谁就留在当前位置并成为另一者的祖先（小根堆性质）。我们假设 $A$ 的 $key$ 较小，那么 $A$ 的左子树显然不需要变动了（二叉搜索树性质），所以我们需要把 $A$ 的右子树和 $B$ 合并在一起并将得到的树作为 $A$ 的新右子树。合并完后还需要更新一下以 $A$ 为根子树的大小。</p>
-<h3 id="heading-3">分裂<a href="#heading-3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="分裂">分裂<a href="#分裂" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>分裂其实有两种方式：</p>
 <ul>
 <li>按排名分裂：前 $k$ 大的数构成一棵子树，剩余的构成另一棵；</li>
@@ -106,7 +106,7 @@
 </ul>
 <p>接下来我们主要演示按权值分裂（按排名分裂基本同理）。</p>
 <p>我们考虑到当前点 $cntPt$，我们只需要考虑 $cntPt$ 是需要跟左子树拆成一堆还是跟右子树拆成一堆。如果我们发现当前点的权值小于等于 $k$，那么它和它的左子树都应该被并入小于等于 $k$ 的数构成的子树。接下来，我们还需要在它的右子树中把小于等于 $k$ 的部分拆出来，递归下去。</p>
-<h2 id="heading-4">运用核心函数<a href="#heading-4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="运用核心函数">运用核心函数<a href="#运用核心函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>我们不妨先直接拉一道家喻户晓的模板题来举个例子：<a href="https://loj.ac/problem/104">普通平衡树 - 题目 - LibreOJ</a>。</p>
 <p>题目中要求我们实现 $6$ 类操作：</p>
 <ol>
@@ -118,22 +118,22 @@
 <li>求 $x$ 的后继（即大于 $x$ 的数中的最小值）。</li>
 </ol>
 <p>下面我们就试着主要靠两个核心函数来解决上述 $6$ 个问题。</p>
-<h3 id="heading-5">插入<a href="#heading-5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="插入">插入<a href="#插入" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>首先我们将带插入节点的 $key$ 赋成随机值，然后按 $x$ 将 Treap <strong>split</strong> （按权值分裂） 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$。我们不妨把待插入的 $x$ 看成一棵只含一个节点的 Treap，先将其与 $A$ <strong>merge</strong>，再得到的 Treap 与 $B$ <strong>merge</strong>，就完成插入了。</p>
-<h3 id="heading-6">删除<a href="#heading-6" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="删除">删除<a href="#删除" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>与插入类似，首先我们按 $x$ 将 Treap <strong>split</strong> 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$，再将 $A$ <strong>split</strong> 成小于等于 $x - 1$ 的 $C$ 和大于 $x - 1$（即等于 $x$）的 $D$。接下来，我们将 $B$ 和 $C$ <strong>merge</strong> 在一起即可。</p>
 <p>上述操作会把所有等于 $x$ 的数全部删掉。如果题目只要求删掉一个 $x$，可以考虑将 $D$ 的左子树和右子树合并在一起得到 $E$。这样一来就等于舍弃了 $D$ 的根节点，使得 $D$ 中等于 $x$ 的数少了一个。最后再把 $E$ 也 <strong>merge</strong> 进答案。</p>
-<h3 id="heading-7">查询数的排名<a href="#heading-7" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="查询数的排名">查询数的排名<a href="#查询数的排名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>实际上就是查询有多少个数比 $x$ 小，然后将结果加 $1$ 即是排名。</p>
 <p>考虑现按 $x - 1$ 将 Treap <strong>split</strong> 成 $A$ 和 $B$，这样一来 $A$ 的大小加上 $1$ 就是我们需要的答案。查询完后再将 $A$ 和 $B$ <strong>merge</strong> 起来恢复原状即可。</p>
-<h3 id="heading-8">查询排名对应的数<a href="#heading-8" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="查询排名对应的数">查询排名对应的数<a href="#查询排名对应的数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们只需要实现按排名分裂，就可以跟上面类似直接 <strong>split</strong> 一下就好了。</p>
-<h3 id="heading-9">查询前驱或后继<a href="#heading-9" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="查询前驱或后继">查询前驱或后继<a href="#查询前驱或后继" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>这里我们以查询前驱为例（后继完全同理）：</p>
 <p>我们考虑先将 Treap 按 $x - 1$ <strong>split</strong> 成 $A$ 和 $B$，那么 $A$ 树中最大的数（即第 $A.size$ 大）就是我们要查询的答案。借用上面的查询排名对应数的函数即可实现。</p>
-<h3 id="heading-10">参考代码<a href="#heading-10" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="参考代码">参考代码<a href="#参考代码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>大家可以看看 <a href="https://github.com/codgician/Competitive-Programming/blob/master/LOJ/104/treap_without_rotations.cpp">我的代码</a> 来对照理解一番~</p>
-<h1 id="heading-11">%%%<a href="#heading-11" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="heading">%%%<a href="#heading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <ul>
 <li>chen_tr - <a href="https://blog.csdn.net/chen_tr/article/details/50924073">偷懒专用平衡树——Treap</a></li>
 <li>LadyLex - <a href="https://www.cnblogs.com/LadyLex/p/7182491.html">无旋treap：从好奇到入门</a></li>
@@ -154,20 +154,20 @@
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#heading-1">两个核心函数</a>
+    <li><a href="#两个核心函数">两个核心函数</a>
       <ul>
-        <li><a href="#heading-2">合并</a></li>
-        <li><a href="#heading-3">分裂</a></li>
+        <li><a href="#合并">合并</a></li>
+        <li><a href="#分裂">分裂</a></li>
       </ul>
     </li>
-    <li><a href="#heading-4">运用核心函数</a>
+    <li><a href="#运用核心函数">运用核心函数</a>
       <ul>
-        <li><a href="#heading-5">插入</a></li>
-        <li><a href="#heading-6">删除</a></li>
-        <li><a href="#heading-7">查询数的排名</a></li>
-        <li><a href="#heading-8">查询排名对应的数</a></li>
-        <li><a href="#heading-9">查询前驱或后继</a></li>
-        <li><a href="#heading-10">参考代码</a></li>
+        <li><a href="#插入">插入</a></li>
+        <li><a href="#删除">删除</a></li>
+        <li><a href="#查询数的排名">查询数的排名</a></li>
+        <li><a href="#查询排名对应的数">查询排名对应的数</a></li>
+        <li><a href="#查询前驱或后继">查询前驱或后继</a></li>
+        <li><a href="#参考代码">参考代码</a></li>
       </ul>
     </li>
   </ul>
@@ -193,7 +193,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

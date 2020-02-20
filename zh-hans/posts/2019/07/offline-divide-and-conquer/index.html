@@ -81,6 +81,8 @@
 			</header>
 			<div class="content">
 				
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -286,7 +288,7 @@ T(n) \le \mathcal{O}(f(n) \log{n})
 <p>接下来，我们再来仔细考虑一下之前为了方便引入的限制。如果不满足不同元素间同一维上的值互不相同会引入什么问题？</p>
 <p>问题依然是出在第 <span class="math inline">\(4\)</span> 步。在这一步时，我们只能保证左区间 <span class="math inline">\(a\)</span> 维<strong>小于等于</strong>右区间，而不能保证<strong>严格小于</strong>。换言之，在对 <span class="math inline">\(b\)</span> 维进行分治时，可能出现对于右区间某元素，左区间中存在某个元素使得两者 <span class="math inline">\(a\)</span> 维相等。读者可以先自行思考一下如何解决这一问题~</p>
 <p>这里提供一种解决方法以供参考：先将 <span class="math inline">\(a\)</span> 维离散化，在双指针处理时开一个数组来记录某个 <span class="math inline">\(a\)</span> 维值对应的左区间中的元素的个数，在统计时减掉 <span class="math inline">\(a\)</span> 维相等的情况。</p>
-<p>最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： <a href="https://www.luogu.org/problem/P3810">洛谷 P3810: 陌上花开</a>。顺便附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
+<p>最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： <a href="https://www.luogu.com.cn/problem/P3810">洛谷 P3810: 陌上花开</a>。顺便附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
 </div>
 <div id="四维偏序" class="section level4">
 <h4>四维偏序？</h4>
@@ -366,7 +368,7 @@ Q(x_L, y_L, x_R, y_R) = &amp; F(x_R, y_R) + F(x_L − 1, y_L − 1) \\
 <li>查询区间 <span class="math inline">\([L, R]\)</span> 内不同的数有多少种。</li>
 </ul>
 <p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, \ q \le 10^5\)</span>。</p>
-<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problemnew/show/P1903">Luogu P1903: 数颜色</a></p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.com.cn/problemnew/show/P1903">Luogu P1903: 数颜色</a></p>
 <hr />
 <p>下面给出一点提示：</p>
 <ul>
@@ -387,7 +389,7 @@ Q(x_L, y_L, x_R, y_R) = &amp; F(x_R, y_R) + F(x_L − 1, y_L − 1) \\
 <li>查询距离 <span class="math inline">\((x_A, y_A)\)</span> 曼哈顿距离最接近的点。</li>
 </ul>
 <p><strong>数据范围</strong>：均为 <span class="math inline">\(10^5\)</span> 数量级。</p>
-<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problem/P4169">洛谷 P4169: 天使玩偶</a></p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.com.cn/problem/P4169">洛谷 P4169: 天使玩偶</a></p>
 <hr />
 <p><span class="math inline">\(A, B\)</span> 两点之间的曼哈顿距离：</p>
 <p><span class="math display">\[
@@ -613,7 +615,7 @@ T(C, S) = \mathcal{O}(nS)
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

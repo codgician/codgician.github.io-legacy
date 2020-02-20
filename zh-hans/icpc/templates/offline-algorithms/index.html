@@ -80,8 +80,8 @@
 				<h1>Offline Algorithms</h1>
 			</header>
 			<div class="content">
-				<h1 id="heading">莫队算法<a href="#heading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-1">普通莫队<a href="#heading-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+				<h1 id="莫队算法">莫队算法<a href="#莫队算法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="普通莫队">普通莫队<a href="#普通莫队" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_Query</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">qLeftPt</span><span class="p">,</span> <span class="n">qRightPt</span><span class="p">;</span>
 <span class="p">}</span> <span class="n">Query</span><span class="p">;</span>
@@ -132,7 +132,7 @@
     <span class="p">}</span>
     <span class="cm">/* Some code here... */</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="cdq-">CDQ 分治<a href="#cdq-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="cdq-分治">CDQ 分治<a href="#cdq-分治" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <p>$solve(l, r)$：$\forall k \in [l, r]$，若第 $k$ 项操作是查询，则计算 $[l, k - 1]$ 中修改对其造成的影响：</p>
 <ul>
 <li>$mid = \frac{1}{2}(l + r)$；</li>
@@ -141,7 +141,7 @@
 <li>计算第 $[l, mid]$ 项操作中所有修改对 $[mid + 1, r]$ 中所有查询造成的影响。</li>
 </ul>
 <p>动态问题 $\rightarrow$ 静态问题。</p>
-<h2 id="heading-2">三维偏序<a href="#heading-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="三维偏序">三维偏序<a href="#三维偏序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">divideConquer</span><span class="p">(</span><span class="kt">int</span> <span class="n">headPt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">tailPt</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">headPt</span> <span class="o">=</span><span class="o">=</span> <span class="n">tailPt</span><span class="p">)</span>
         <span class="k">return</span><span class="p">;</span>
@@ -161,7 +161,7 @@
 
     <span class="n">inplace_merge</span><span class="p">(</span><span class="n">arr</span> <span class="o">+</span> <span class="n">headPt</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">midPt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">tailPt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cmpSnd</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="heading-3">四维偏序<a href="#heading-3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="四维偏序">四维偏序<a href="#四维偏序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">divideConquer2</span><span class="p">(</span><span class="kt">int</span> <span class="n">headPt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">tailPt</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">headPt</span> <span class="o">=</span><span class="o">=</span> <span class="n">tailPt</span><span class="p">)</span>
         <span class="k">return</span><span class="p">;</span>
@@ -200,7 +200,7 @@
     <span class="n">divideConquer2</span><span class="p">(</span><span class="n">headPt</span><span class="p">,</span> <span class="n">tailPt</span><span class="p">)</span><span class="p">;</span>
     <span class="n">copy</span><span class="p">(</span><span class="n">tmp</span> <span class="o">+</span> <span class="n">headPt</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">tailPt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">headPt</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="luogu-p1903">Luogu P1903：数颜色<a href="#luogu-p1903" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="luogu-p1903数颜色">Luogu P1903：数颜色<a href="#luogu-p1903数颜色" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Query</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">type</span><span class="p">;</span>   <span class="c1">// 0: Query+, 1: Query-, 2: Modify
@@ -319,7 +319,7 @@
         <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\n</span><span class="sc">&#39;</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="luogu-p4169">Luogu P4169：天使玩偶<a href="#luogu-p4169" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="luogu-p4169天使玩偶">Luogu P4169：天使玩偶<a href="#luogu-p4169天使玩偶" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Query</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
@@ -423,7 +423,7 @@
         <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\n</span><span class="sc">&#39;</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="heading-4">线段树分治<a href="#heading-4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="线段树分治">线段树分治<a href="#线段树分治" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <h2 id="bzoj-4025">BZOJ 4025<a href="#bzoj-4025" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>给定一张 $n$ 个点的图，在 $T$ 时间内一些边会在 $s_i$ 时刻出现，并在 $t_i$ 时刻消失。询问每一个时刻该图是否是二分图。</p>
 <hr>
@@ -659,8 +659,8 @@
     <span class="n">divideConquer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qNum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ques</span><span class="p">)</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="heading-5">整体二分<a href="#heading-5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="-k-">静态区间第 $k$ 小<a href="#-k-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h1 id="整体二分">整体二分<a href="#整体二分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="静态区间第-k-小">静态区间第 $k$ 小<a href="#静态区间第-k-小" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// POJ 2104
 </span><span class="c1"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -760,7 +760,7 @@
     <span class="p">}</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="-k--1">动态区间第 $k$ 小<a href="#-k--1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="动态区间第-k-小">动态区间第 $k$ 小<a href="#动态区间第-k-小" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ZOJ 2112
 </span><span class="c1"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -887,7 +887,7 @@
     <span class="p">}</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="-mst">分治解决动态 MST<a href="#-mst" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="分治解决动态-mst">分治解决动态 MST<a href="#分治解决动态-mst" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <p>$n$ 个点，$m$ 条有权边，$q$ 次操作。每次操作修改一条边的边权，动态维护 MST 大小。</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -1037,14 +1037,14 @@
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#heading-1">普通莫队</a></li>
+    <li><a href="#普通莫队">普通莫队</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-2">三维偏序</a></li>
-    <li><a href="#heading-3">四维偏序</a></li>
-    <li><a href="#luogu-p1903">Luogu P1903：数颜色</a></li>
-    <li><a href="#luogu-p4169">Luogu P4169：天使玩偶</a></li>
+    <li><a href="#三维偏序">三维偏序</a></li>
+    <li><a href="#四维偏序">四维偏序</a></li>
+    <li><a href="#luogu-p1903数颜色">Luogu P1903：数颜色</a></li>
+    <li><a href="#luogu-p4169天使玩偶">Luogu P4169：天使玩偶</a></li>
   </ul>
 
   <ul>
@@ -1053,8 +1053,8 @@
   </ul>
 
   <ul>
-    <li><a href="#-k-">静态区间第 $k$ 小</a></li>
-    <li><a href="#-k--1">动态区间第 $k$ 小</a></li>
+    <li><a href="#静态区间第-k-小">静态区间第 $k$ 小</a></li>
+    <li><a href="#动态区间第-k-小">动态区间第 $k$ 小</a></li>
   </ul>
 </nav>
 		</aside>
@@ -1078,7 +1078,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -80,7 +80,7 @@
 				<h1>Graph Theory</h1>
 			</header>
 			<div class="content">
-				<h1 id="heading">最短路<a href="#heading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+				<h1 id="最短路">最短路<a href="#最短路" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <h2 id="dijkstra">Dijkstra<a href="#dijkstra" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">dist</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">;</span>
@@ -153,8 +153,8 @@ $$</p>
     <span class="n">dijkstra</span><span class="p">(</span><span class="n">st</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>如果要求斯坦纳森林，则需要再 DP 一次。记 $f[st] = \min { dp[st][i] }$，然后再按题意对 $f$ 进行合并即可。例如：必须保证相同频率的频道相连，就可以对于每个 $st$ 枚举 $subst$，然后分别检查 $subst$ 和 $st \oplus subst$ 是否合法。如果合法，则进行合并。</p>
-<h1 id="--">最大团 / 极大团<a href="#--" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-1">最大团<a href="#heading-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h1 id="最大团--极大团">最大团 / 极大团<a href="#最大团--极大团" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="最大团">最大团<a href="#最大团" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">arr</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">path</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span> <span class="c1">// dp[i]: number of vertices in maximum clique of G{i ~ N}
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">vertexNum</span><span class="p">,</span> <span class="n">ans</span><span class="p">;</span>	<span class="c1">// Size of maximum clinque
@@ -183,7 +183,7 @@ $$</p>
         <span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="heading-2">极大团<a href="#heading-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="极大团">极大团<a href="#极大团" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">arr</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">all</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">some</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">none</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">ans</span><span class="p">;</span>	<span class="c1">// Number of maximal clinques
@@ -218,7 +218,7 @@ $$</p>
         <span class="n">some</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vertexNum</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="heading-3">拓补排序<a href="#heading-3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="拓补排序">拓补排序<a href="#拓补排序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vertexNum</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
@@ -238,7 +238,7 @@ $$</p>
         <span class="n">head</span><span class="p">[</span><span class="n">cntPt</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="heading-4">差分约束<a href="#heading-4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="差分约束">差分约束<a href="#差分约束" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <ul>
 <li>最大解：形如 $x_i - x_j \le c_k$，连边 $j \rightarrow i$ 权值 $c_k$，并且用 SPFA 算最短路；</li>
 <li>最小解：形如 $x_i - x_j \ge c_k$，连边 $j \rightarrow i$ 权值 $c_k$，并且用 SPFA 算最长路；</li>
@@ -273,10 +273,10 @@ $$</p>
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><h1 id="2-sat">2-SAT<a href="#2-sat" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-5">建图<a href="#heading-5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="建图">建图<a href="#建图" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>对命题 $i$ 假/真 拆点成 $P_i, \ P_i'$；若 $i$ 为真则 $j$ 为真建有向边：$P_i \rightarrow P_j$。</p>
 <p>本模板中 <code>FALSE: (i &lt;&lt; 1); TRUE: (i &lt;&lt; 1 | 1)</code>。</p>
-<h2 id="heading-6">字典序最小/大解<a href="#heading-6" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="字典序最小大解">字典序最小/大解<a href="#字典序最小大解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>复杂度：$\mathcal{O}(N^2)$</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Lexicographically smallest variant
 </span><span class="c1"></span><span class="kt">bool</span> <span class="n">sel</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">;</span>
@@ -315,7 +315,7 @@ $$</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="heading-7">任意解<a href="#heading-7" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="任意解">任意解<a href="#任意解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>建正图和反图，在正图中跑 Tarjan SCC，同一 SCC 中的所有点必然同时取或不取。如果同一命题的两种状态在同一 SCC 中说明无解。若有解则在反图中按照拓补序构造方案（取正图中拓补序较大者为真）。</p>
 <p>复杂度：$\mathcal{O}(N)$</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Edge</span> <span class="p">{</span>
@@ -369,8 +369,8 @@ $$</p>
 <span class="c1">// Output solution
 </span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
     <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="n">sccId</span><span class="p">[</span><span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sccId</span><span class="p">[</span><span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">1</span><span class="p">]</span> <span class="o">?</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">false</span><span class="s">&#34;</span> <span class="o">:</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">true</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h1 id="-tarjan">连通性 (Tarjan)<a href="#-tarjan" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-8">无向图双连通分量<a href="#heading-8" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h1 id="连通性-tarjan">连通性 (Tarjan)<a href="#连通性-tarjan" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="无向图双连通分量">无向图双连通分量<a href="#无向图双连通分量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="e-dcc">e-DCC<a href="#e-dcc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">dfn</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">low</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">cntTime</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">edccId</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">edccNum</span><span class="p">;</span>
@@ -491,7 +491,7 @@ $$</p>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="heading-9">有向图强连通分量<a href="#heading-9" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="有向图强连通分量">有向图强连通分量<a href="#有向图强连通分量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">dfn</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">low</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">cntTime</span><span class="p">;</span>
 <span class="kt">bool</span> <span class="n">inStack</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">;</span> <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">sccId</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">sccSize</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">sccNum</span><span class="p">;</span>
@@ -528,9 +528,9 @@ $$</p>
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vertexNum</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">dfn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">tarjan</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h1 id="heading-10">图的匹配<a href="#heading-10" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-11">二分图<a href="#heading-11" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<h3 id="-hungarian">无权 Hungarian<a href="#-hungarian" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h1 id="图的匹配">图的匹配<a href="#图的匹配" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="二分图">二分图<a href="#二分图" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="无权-hungarian">无权 Hungarian<a href="#无权-hungarian" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">arr</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">sndVisited</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">sndMatch</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">fstNum</span><span class="p">,</span> <span class="n">sndNum</span><span class="p">;</span>
@@ -557,7 +557,7 @@ $$</p>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="c1">// DON&#39;T FORGET TO SET fstNum and sndNum
-</span></code></pre></div><h3 id="-km--based-on-bfs">带权 KM (必须完备匹配): Based on BFS<a href="#-km--based-on-bfs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</span></code></pre></div><h3 id="带权-km-必须完备匹配-based-on-bfs">带权 KM (必须完备匹配): Based on BFS<a href="#带权-km-必须完备匹配-based-on-bfs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">fstNum</span><span class="p">,</span> <span class="n">sndNum</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">fstEx</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">sndEx</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">sndMatch</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">sndNeed</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">pre</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
@@ -698,11 +698,11 @@ $$</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="heading-12">一般图<a href="#heading-12" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="一般图">一般图<a href="#一般图" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/* 带花树 */</span>
 <span class="cm">/* 咕咕咕 */</span>
-</code></pre></div><h1 id="heading-13">网络流<a href="#heading-13" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="-dinic">最大流 Dinic<a href="#-dinic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h1 id="网络流">网络流<a href="#网络流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="最大流-dinic">最大流 Dinic<a href="#最大流-dinic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Edge</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">to</span><span class="p">,</span> <span class="n">next</span><span class="p">,</span> <span class="n">cap</span><span class="p">;</span>
@@ -777,7 +777,7 @@ $$</p>
 
 <span class="c1">// DON&#39;T FORGET TO SET vertexNum
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">dinic</span><span class="p">(</span><span class="n">srcPt</span><span class="p">,</span> <span class="n">snkPt</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h2 id="-ek">最小费用最大流 EK<a href="#-ek" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="最小费用最大流-ek">最小费用最大流 EK<a href="#最小费用最大流-ek" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_Edge</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">to</span><span class="p">,</span> <span class="n">next</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="n">cost</span><span class="p">;</span>
@@ -850,7 +850,7 @@ $$</p>
 <span class="c1">// DON&#39;T FORGET TO SET vertexNum
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">flow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="n">edmondsKarp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">vertexNum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flow</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h2 id="-zkw">最小费用最大流 zkw<a href="#-zkw" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="最小费用最大流-zkw">最小费用最大流 zkw<a href="#最小费用最大流-zkw" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_Edge</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">to</span><span class="p">,</span> <span class="n">next</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="n">cost</span><span class="p">;</span>
@@ -935,7 +935,7 @@ $$</p>
 <span class="c1">// DON&#39;T FORGET TO SET vertexNum
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">flow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="n">zkw</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">vertexNum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flow</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h1 id="heading-14">仙人掌上找环<a href="#heading-14" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre></div><h1 id="仙人掌上找环">仙人掌上找环<a href="#仙人掌上找环" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span>
 <span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">inStack</span><span class="p">[</span><span class="n">VERTEX_SIZE</span><span class="p">]</span><span class="p">;</span>
 
@@ -964,8 +964,8 @@ $$</p>
         <span class="n">inStack</span><span class="p">[</span><span class="n">cntPt</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h1 id="heading-15">三元环计数<a href="#heading-15" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-16">无向图三元环计数<a href="#heading-16" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h1 id="三元环计数">三元环计数<a href="#三元环计数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="无向图三元环计数">无向图三元环计数<a href="#无向图三元环计数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <ul>
 <li>记 $d_i$ 为点 $i$ 的度数。对于无向边 $\langle u, v \rangle$，改连成 $d$ 较小的连向 $d$ 较大的，若相等则标号小的连向标号大的；</li>
 <li>对于每个点 $u$：
@@ -981,11 +981,11 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="heading-17">有向图三元环计数<a href="#heading-17" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="有向图三元环计数">有向图三元环计数<a href="#有向图三元环计数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <ul>
 <li>当成无向图算，然后暴力检验。</li>
 </ul>
-<h1 id="heading-18">树上倍增<a href="#heading-18" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="树上倍增">树上倍增<a href="#树上倍增" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <h2 id="lca">LCA<a href="#lca" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">depth</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">dist</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">anc</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">vertexNum</span><span class="p">,</span> <span class="n">maxDepth</span><span class="p">;</span>
@@ -1061,8 +1061,8 @@ $$</p>
 <span class="p">}</span>
 
 <span class="n">maxDepth</span> <span class="o">=</span> <span class="n">log2</span><span class="p">(</span><span class="n">vertexNum</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h1 id="heading-19">剖分<a href="#heading-19" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-20">轻重链剖分<a href="#heading-20" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h1 id="剖分">剖分<a href="#剖分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="轻重链剖分">轻重链剖分<a href="#轻重链剖分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">father</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">depth</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">siz</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">top</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">hson</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">id</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">orig</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="p">,</span> <span class="n">cntId</span><span class="p">;</span>
 
@@ -1139,8 +1139,8 @@ $$</p>
 <span class="n">dfs1</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span> <span class="n">dfs2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 </code></pre></div><p>**基环树？**用并查集找出环上的一条边，把它拿出来另外维护，记其为 $\langle u, v \rangle$。
 查询 $\langle s, t \rangle$ 的时候，先查询不经过这条边的答案 <code>ans1</code>，再查询经过这条边的答案 <code>ans2</code>：$\langle s, v \rangle + \langle u, t \rangle$ 或者 $\langle s, u \rangle + \langle v, t \rangle$。</p>
-<h1 id="heading-21">动态树<a href="#heading-21" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<h2 id="heading-22">代码<a href="#heading-22" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h1 id="动态树">动态树<a href="#动态树" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="代码">代码<a href="#代码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LinkCutTree</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">sum</span><span class="p">;</span> <span class="c1">// Value on vertex, sum of route to root
@@ -1260,12 +1260,12 @@ $$</p>
 
 <span class="c1">// Note that index 0 is the blank node, and index of vertices starts from 1
 </span><span class="c1"></span><span class="n">fill</span><span class="p">(</span><span class="n">lct</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lct</span> <span class="o">+</span> <span class="n">vertexNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">LinkCutTree</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h2 id="heading-23">高级应用<a href="#heading-23" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<h3 id="heading-24">维护边上信息<a href="#heading-24" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h2 id="高级应用">高级应用<a href="#高级应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="维护边上信息">维护边上信息<a href="#维护边上信息" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>对于边 $u \rightarrow v$，新建记录其信息的点 $p'$ ，并连边 $u \rightarrow p&rsquo; \rightarrow v$。</p>
-<h3 id="-mst">维护动态 MST<a href="#-mst" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="维护动态-mst">维护动态 MST<a href="#维护动态-mst" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>下面举两个例子。</p>
-<h4 id="heading-25">最小差值生成树<a href="#heading-25" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<h4 id="最小差值生成树">最小差值生成树<a href="#最小差值生成树" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>最小化最大权值与最小权值之差：将所有边按边权从大到小排序，同时 LCT 里维护最大权边。由于从大到小加边，因此加入的边一定是当前的最小权值。如果加边前两端已经联通 （即：<code>root(e.from) == root(e.to)</code>），则 <code>cut</code> 掉权值最大的边再加入当前边就好了。</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LinkCutTree</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -1329,7 +1329,7 @@ $$</p>
     <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">ans</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\n</span><span class="sc">&#39;</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h4 id="heading-26">双权值最小生成树<a href="#heading-26" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+</code></pre></div><h4 id="双权值最小生成树">双权值最小生成树<a href="#双权值最小生成树" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>每条边有两个权值 $\langle a_i, b_i \rangle$，需最小化 $\max{a_i} + \max{b_i}$：将边先按照 $a$ 维从小到大排序，同时 LCT 里维护 $b$ 的最大值。由于按 $a$ 从小到大加边，因此加入的边一定是当前最大的 $a$。如果加边前两端已经联通，并且当前边的 $b$ 还大于等于树中最大 $b$，那还加个卵，否则就加。</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/* Maintain the same values as the previous example in LCT */</span>
 
@@ -1386,46 +1386,46 @@ $$</p>
   </ul>
 
   <ul>
-    <li><a href="#heading-1">最大团</a></li>
-    <li><a href="#heading-2">极大团</a></li>
+    <li><a href="#最大团">最大团</a></li>
+    <li><a href="#极大团">极大团</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-5">建图</a></li>
-    <li><a href="#heading-6">字典序最小/大解</a></li>
-    <li><a href="#heading-7">任意解</a></li>
+    <li><a href="#建图">建图</a></li>
+    <li><a href="#字典序最小大解">字典序最小/大解</a></li>
+    <li><a href="#任意解">任意解</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-8">无向图双连通分量</a>
+    <li><a href="#无向图双连通分量">无向图双连通分量</a>
       <ul>
         <li><a href="#e-dcc">e-DCC</a></li>
         <li><a href="#v-dcc">v-DCC</a></li>
       </ul>
     </li>
-    <li><a href="#heading-9">有向图强连通分量</a></li>
+    <li><a href="#有向图强连通分量">有向图强连通分量</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-11">二分图</a>
+    <li><a href="#二分图">二分图</a>
       <ul>
-        <li><a href="#-hungarian">无权 Hungarian</a></li>
-        <li><a href="#-km--based-on-bfs">带权 KM (必须完备匹配): Based on BFS</a></li>
+        <li><a href="#无权-hungarian">无权 Hungarian</a></li>
+        <li><a href="#带权-km-必须完备匹配-based-on-bfs">带权 KM (必须完备匹配): Based on BFS</a></li>
         <li><a href="#hopcroft-karp">Hopcroft-Karp</a></li>
       </ul>
     </li>
-    <li><a href="#heading-12">一般图</a></li>
+    <li><a href="#一般图">一般图</a></li>
   </ul>
 
   <ul>
-    <li><a href="#-dinic">最大流 Dinic</a></li>
-    <li><a href="#-ek">最小费用最大流 EK</a></li>
-    <li><a href="#-zkw">最小费用最大流 zkw</a></li>
+    <li><a href="#最大流-dinic">最大流 Dinic</a></li>
+    <li><a href="#最小费用最大流-ek">最小费用最大流 EK</a></li>
+    <li><a href="#最小费用最大流-zkw">最小费用最大流 zkw</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-16">无向图三元环计数</a></li>
-    <li><a href="#heading-17">有向图三元环计数</a></li>
+    <li><a href="#无向图三元环计数">无向图三元环计数</a></li>
+    <li><a href="#有向图三元环计数">有向图三元环计数</a></li>
   </ul>
 
   <ul>
@@ -1433,15 +1433,15 @@ $$</p>
   </ul>
 
   <ul>
-    <li><a href="#heading-20">轻重链剖分</a></li>
+    <li><a href="#轻重链剖分">轻重链剖分</a></li>
   </ul>
 
   <ul>
-    <li><a href="#heading-22">代码</a></li>
-    <li><a href="#heading-23">高级应用</a>
+    <li><a href="#代码">代码</a></li>
+    <li><a href="#高级应用">高级应用</a>
       <ul>
-        <li><a href="#heading-24">维护边上信息</a></li>
-        <li><a href="#-mst">维护动态 MST</a></li>
+        <li><a href="#维护边上信息">维护边上信息</a></li>
+        <li><a href="#维护动态-mst">维护动态 MST</a></li>
       </ul>
     </li>
   </ul>
@@ -1464,7 +1464,7 @@ $$</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

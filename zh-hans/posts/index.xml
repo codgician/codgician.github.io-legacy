@@ -17,6 +17,8 @@
 			<guid>https://codgician.me/zh-hans/posts/2019/10/hello-world/</guid>
 			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -138,6 +140,8 @@ Figure 1: What is inside me?
 			<description>前言 Min25 筛 核心思想 筛素数答案 筛非质数答案 应用 模板 类积性函数？ 带条件的前缀和？ 前缀积？ 小结 前言 Min25 筛是一种对于满足特定条件积性函数的前缀和的亚线性</description>
 			<content type="html"><![CDATA[ 
 
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -167,7 +171,7 @@ Figure 1: What is inside me?
 <h1>Min25 筛</h1>
 <div id="核心思想" class="section level2">
 <h2>核心思想</h2>
-<p>下文默认记 <span class="math inline">\(\mathbb{P}\)</span> 为素数集，<span class="math inline">\(P_i\)</span> 代表其中第 <span class="math inline">\(i\)</span> 大的素数并默认 <span class="math inline">\(p \in \mathbb{P}\)</span>。若函数 <span class="math inline">\(f(x)\)</span> 满足：</p>
+<p>下文默认记 <span class="math inline">\(P\)</span> 为素数集，<span class="math inline">\(P_i\)</span> 代表其中第 <span class="math inline">\(i\)</span> 大的素数并默认 <span class="math inline">\(p \in P\)</span>。若函数 <span class="math inline">\(f(x)\)</span> 满足：</p>
 <ul>
 <li><span class="math inline">\(f(p)\)</span> 存在多项式表示；</li>
 <li><span class="math inline">\(f(p^e)\)</span> 可被快速计算；</li>
@@ -176,8 +180,8 @@ Figure 1: What is inside me?
 <p>Min25 筛可在 <span class="math inline">\(\mathcal{O}(\frac{n^\frac{3}{4}}{\log{n}})\)</span> 的复杂度内计算 <span class="math inline">\(\sum\limits_{i = 1}^{n} f(i)\)</span>，其核心思想即将 <span class="math inline">\([1, n]\)</span> 分为质数、<span class="math inline">\(1\)</span> 和剩余数三个部分进行讨论：</p>
 <p><span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} f(i) &amp; = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + \sum\limits_{i = 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
-&amp; = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + f(1) + \sum\limits_{p \in \mathbb{P}}\sum\limits_{1 \le p^e \le n}f(p^e)\sum\limits_{i = 1}^{\left\lfloor \frac{n}{p^e} \right\rfloor}f(i)
+\sum\limits_{i = 1}^{n} f(i) &amp; = \sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) + \sum\limits_{i = 1}^{n} \left[i \not \in P \right] f(i) \\
+&amp; = \sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) + f(1) + \sum\limits_{p \in P}\sum\limits_{1 \le p^e \le n}f(p^e)\sum\limits_{i = 1}^{\left\lfloor \frac{n}{p^e} \right\rfloor}f(i)
 \end{aligned}
 \]</span></p>
 </div>
@@ -186,15 +190,15 @@ Figure 1: What is inside me?
 <p>既然前面提到了在素数处 <span class="math inline">\(f\)</span> 应有多项式表示，那么我们可以对每个幂次分开考虑。即我们可以把问题简化为计算 <span class="math inline">\(f(p) = p^k\)</span> 的情形，只要对所有的 <span class="math inline">\(k\)</span> 分别计算出结果再乘上对应系数即可。</p>
 <p>首先我们考虑求解：</p>
 <p><span class="math display">\[
-\sum\limits_{i = 1}^{n} [i \in \mathbb{P}] f(i)
+\sum\limits_{i = 1}^{n} [i \in P] f(i)
 \]</span></p>
-<p>考虑先线性筛出不大于 <span class="math inline">\(\sqrt{n}\)</span> 的所有素数作为 <span class="math inline">\(\mathbb{P}\)</span>。记 <span class="math inline">\(minp(x)\)</span> 代表 <span class="math inline">\(x\)</span> 的最小素因子，令：</p>
+<p>考虑先线性筛出不大于 <span class="math inline">\(\sqrt{n}\)</span> 的所有素数作为 <span class="math inline">\(P\)</span>。记 <span class="math inline">\(minp(x)\)</span> 代表 <span class="math inline">\(x\)</span> 的最小素因子，令：</p>
 <p><span class="math display">\[
-g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in \mathbb{P} \text{ or } minp(i) &gt; P_j \right] f(i)
+g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in P \text{ or } minp(i) &gt; P_j \right] f(i)
 \]</span></p>
 <p>则有：</p>
 <p><span class="math display">\[
-\sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) = g(n, |P|)
+\sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) = g(n, |P|)
 \]</span></p>
 <p>考虑如何对 <span class="math inline">\(g\)</span> 进行状态转移。<span class="math inline">\(g(n, j)\)</span> 在 <span class="math inline">\(g(n, j - 1)\)</span> 的基础上少了所有非质数并且最小质因子恰为 <span class="math inline">\(P_j\)</span> 的数作为因变量的 <span class="math inline">\(f\)</span> 值。显然，这些数可以由一个最小质因子大于 <span class="math inline">\(P_j\)</span> 的数 <span class="math inline">\(t\)</span> 乘上 <span class="math inline">\(P_j\)</span> 得到。因为 <span class="math inline">\(f\)</span> 是积性函数且 <span class="math inline">\(t \perp P_j\)</span>，因此 <span class="math inline">\(f(tP_j) = f(P_j)f(t)\)</span>。考虑把 <span class="math inline">\(f(P_j)\)</span> 提出来，则需要减去的部分即为：</p>
 <p><span class="math display">\[
@@ -221,7 +225,7 @@ g(n, j - 1) &amp; \text{otherwise}
 <h2>筛非质数答案</h2>
 <p>接下来我们考虑求解：</p>
 <p><span class="math display">\[
-\sum\limits_{i = 1}^{n} \left[i \not \in \mathbb{P} \right] f(i)
+\sum\limits_{i = 1}^{n} \left[i \not \in P \right] f(i)
 \]</span></p>
 <p>由于 <span class="math inline">\(f\)</span> 在素数处有多项式表示，因此在筛 <span class="math inline">\(g\)</span> 的时候我们可以按每一个幂次分开计算。但是如果把合数也拉进来，就不可以拆开了。因此这一部分中 <span class="math inline">\(f\)</span> 指的就是原方程。</p>
 <p>令：</p>
@@ -234,19 +238,19 @@ s(n, j) = \sum\limits_{i = 2}^{n} \left[ minp(i) \ge P_j \right] f(i)
 \]</span></p>
 <p>现在我们来考虑如何求解 <span class="math inline">\(s(n, 1)\)</span>。对 <span class="math inline">\(s\)</span> 进行状态转移的时候，我们可以沿用分类的思想，即把它分成素数处之和和剩余数处之和两部分：</p>
 <p><span class="math display">\[
-s(n, j) = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) 
+s(n, j) = \sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] f(i) 
 \]</span></p>
-<p>第一部分我们之前已经解决了，就是 <span class="math inline">\(g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1} f(P_k)\)</span>。</p>
+<p>第一部分我们之前已经解决了，就是 <span class="math inline">\(g(n, |P|) - \sum\limits_{k = 1}^{j - 1} f(P_k)\)</span>。</p>
 <p>对于第二部分，既然是满足 <span class="math inline">\(minp \ge P_j\)</span> 的合数，那么自然可以表示为 <span class="math inline">\({P_j}^e \cdot t\)</span> 的形式（且满足 <span class="math inline">\({P_j}^e \perp t\)</span>）。与此同时，显然有 <span class="math inline">\(minp(t) \ge P_{j + 1}\)</span>。我们可以先枚举最小素因子 <span class="math inline">\(P_k\)</span>，然后对其枚举幂次 <span class="math inline">\(e\)</span>，然后利用积性函数的性质作如下计算：</p>
 <p><span class="math display">\[
-\sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+\sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \]</span></p>
 <p>最后加上 <span class="math inline">\(f({P_k}^{e + 1})\)</span> 的原因是前面利用积性函数性质的部分无法计算形如 <span class="math inline">\(f(p^k)\)</span> 处的值。</p>
 <p>完整的状态转移如下：</p>
 <p><span class="math display">\[
 \begin{aligned}
-s(n, j) &amp; =  g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
-&amp; + \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+s(n, j) &amp; =  g(n, |P|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
+&amp; + \sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \end{aligned}
 \]</span></p>
 <p>直接递归搜即可，不需要记忆化复杂度也是对的（<del>证明不来</del>），如果有多个状态可以考虑开个结构体一起转移。</p>
@@ -256,7 +260,7 @@ s(n, j) &amp; =  g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\
 <h1>应用</h1>
 <div id="模板" class="section level2">
 <h2>模板</h2>
-<p>首先可以试试洛谷上的模板题：<a href="https://www.luogu.org/problem/P5325">Luogu P5325: Min25筛</a>。同时附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P5325/min25_sieve.cpp">我的代码</a> 以供参考。</p>
+<p>首先可以试试洛谷上的模板题：<a href="https://www.luogu.com.cn/problem/P5325">Luogu P5325: Min25筛</a>。同时附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P5325/min25_sieve.cpp">我的代码</a> 以供参考。</p>
 <hr />
 <p>那对于常见的一些数论函数呢？</p>
 <p>欧拉函数 <span class="math inline">\(\varphi\)</span>：</p>
@@ -306,12 +310,12 @@ f(\prod\limits_{i = 1}^{k} {p_i}^{a_i}) = \sum\limits_{i = 1}^{k} a_i t(p_i)
 <p><span class="math display">\[
 \begin{aligned}
 s(n, j) 
-&amp; = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
-&amp; = g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
-&amp; + \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+&amp; = \sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] f(i) \\
+&amp; = g(n, |P|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
+&amp; + \sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \end{aligned}
 \]</span></p>
-<p>对于第一部分，也就是 <span class="math inline">\(\sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i)\)</span>，不必对其进行修改。由于我们在筛 <span class="math inline">\(s\)</span> 的时候只会用到 <span class="math inline">\(g(n, |\mathbb{P}|)\)</span>，其中只包含素数处的值，因此我们大可将其当作积性函数来筛出 <span class="math inline">\(g\)</span>，筛 <span class="math inline">\(g\)</span> 的过程保持和上文一样就行了。</p>
+<p>对于第一部分，也就是 <span class="math inline">\(\sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i)\)</span>，不必对其进行修改。由于我们在筛 <span class="math inline">\(s\)</span> 的时候只会用到 <span class="math inline">\(g(n, |P|)\)</span>，其中只包含素数处的值，因此我们大可将其当作积性函数来筛出 <span class="math inline">\(g\)</span>，筛 <span class="math inline">\(g\)</span> 的过程保持和上文一样就行了。</p>
 <p>对于第二部分，发现本质上要解决的是由 <span class="math inline">\(\sum\limits_{p^e \perp k} f(k)\)</span> 快速得出 <span class="math inline">\(\sum\limits_{p^e \perp k} f(p^e \cdot k)\)</span> 的问题。对于积性函数，有：</p>
 <p><span class="math display">\[
 \sum\limits_{p^e \perp k} f(p^e \cdot k) = f(p^e) \sum\limits_{p^e \perp k}f(k)
@@ -326,7 +330,7 @@ s(n, j)
 \]</span></p>
 <p>也就是说，第二部分可以改成如下形式：</p>
 <p><span class="math display">\[
-\sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+\sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \]</span></p>
 <p>当然，这会让这一部分的复杂度多一个快速幂带来的 <span class="math inline">\(\mathcal{O}(\log{n})\)</span>。</p>
 <p>接下来就是怎么确定 <span class="math inline">\(m\)</span> 了，不难发现这就是求对于函数 <span class="math inline">\(y(n) = 1\)</span> 的 <span class="math inline">\(s\)</span> 值。因此我们只需要在处理函数 <span class="math inline">\(f\)</span> 时，同时处理函数 <span class="math inline">\(y\)</span>，并且在对函数 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(s\)</span> 进行转移时借助函数 <span class="math inline">\(y\)</span> 转移过来的 <span class="math inline">\(s\)</span> 即可。实现的时候开一个结构体一起搜就好了。</p>
@@ -334,7 +338,7 @@ s(n, j)
 </div>
 <div id="带条件的前缀和" class="section level2">
 <h2>带条件的前缀和？</h2>
-<p>这也是我自己 YY 的一种应用，不排除有更优秀的做法。对此我也 YY 了一道题：<a href="https://www.luogu.org/problem/U87962">春燕的板子题</a>（也没有严格验过题，而且由于洛谷私人题库有总时限限制所以可能有点卡常，这只是一个 Proof of concept）。</p>
+<p>这也是我自己 YY 的一种应用，不排除有更优秀的做法。对此我也 YY 了一道题：<a href="https://www.luogu.com.cn/problem/U87962">春燕的板子题</a>（也没有严格验过题，而且由于洛谷私人题库有总时限限制所以可能有点卡常，这只是一个 Proof of concept）。</p>
 <p>本质上我就是把洛谷上的模板题拉过来对所求前缀和加了一个限制 <span class="math inline">\(i\)</span> 余数的条件。更正式地表示即给定 <span class="math inline">\(r, d (r &lt; d \le 6)\)</span>，求：</p>
 <p><span class="math display">\[
 \sum\limits_{i = 0}^{n} \left[ i \equiv r \pmod d \right] \cdot f(i)
@@ -343,7 +347,7 @@ s(n, j)
 </div>
 <div id="前缀积" class="section level2">
 <h2>前缀积？</h2>
-<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="https://www.luogu.org/problem/U87823">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
+<p>Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：<a href="https://www.luogu.com.cn/problem/U87823">春燕的数列</a>（没有严格验过题，只是一个 Proof of concept）。</p>
 <p>由乘法原理，题目本质即求解：</p>
 <p><span class="math display">\[
 \prod\limits_{i = 1}^{n} d(i) \pmod {10^9 + 7}
@@ -361,7 +365,7 @@ s(n, j) = \prod\limits_{i = 2}^{n} \left[ minp(i) \ge P_j \right] d(i)
 \]</span></p>
 <p>依然把它拆成素数和非素数部分考虑：</p>
 <p><span class="math display">\[
-s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cdot \prod\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] d(i) 
+s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in P \right]d(i) \cdot \prod\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] d(i) 
 \]</span></p>
 <p>对于第一部分，由于 <span class="math inline">\(d(p) = 2\)</span>，因此第一部分就是 <span class="math inline">\(2^{m}\)</span>，其中 <span class="math inline">\(m\)</span> 为对应区间中质数个数。因此我们依然没有必要魔改 <span class="math inline">\(g\)</span>，只需要通过 <span class="math inline">\(g\)</span> 筛出质数个数即可。</p>
 <p>对于第二部分，需要解决的变成了由 <span class="math inline">\(\prod\limits_{p^e \perp k} f(k)\)</span> 快速得出 <span class="math inline">\(\prod\limits_{p^e \perp k} f(p^e \cdot k)\)</span> 的问题。有：</p>
@@ -390,6 +394,8 @@ s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cd
 			<guid>https://codgician.me/zh-hans/posts/2019/08/arithmetic-function-and-dirichlet-convolution/</guid>
 			<description>简介 狄利克雷卷积 定义 构造一个环 有趣的性质 再谈莫比乌斯反演？ 杜教筛 构造？ 应用 %%% 简介 本文先从狄利克雷卷积讲起，然后会简要介绍一种基于这一理论的有</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -624,7 +630,7 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
  S(n) = \sum\limits_{i = 1}^{n}i^3 - \sum\limits_{d = 2}^{n}d^2S(\left\lfloor \frac{n}{d} \right\rfloor)
  \]</span></p></li>
 </ul>
-<p>至于具体的代码，大家可以去试试 <a href="https://www.luogu.org/problem/P4213">洛谷 P4213: 杜教筛 (Sum)</a>，顺便提供 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4213/arithmetic_function.cpp">我的代码</a> 供参考。</p>
+<p>至于具体的代码，大家可以去试试 <a href="https://www.luogu.com.cn/problem/P4213">洛谷 P4213: 杜教筛 (Sum)</a>，顺便提供 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4213/arithmetic_function.cpp">我的代码</a> 供参考。</p>
 <p>完结撒花~</p>
 </div>
 </div>
@@ -648,6 +654,8 @@ S(n) = 1 - \sum\limits_{d = 2}^{n} S(\left\lfloor \frac{n}{d} \right\rfloor)
 			<guid>https://codgician.me/zh-hans/posts/2019/07/offline-divide-and-conquer/</guid>
 			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -853,7 +861,7 @@ T(n) \le \mathcal{O}(f(n) \log{n})
 <p>接下来，我们再来仔细考虑一下之前为了方便引入的限制。如果不满足不同元素间同一维上的值互不相同会引入什么问题？</p>
 <p>问题依然是出在第 <span class="math inline">\(4\)</span> 步。在这一步时，我们只能保证左区间 <span class="math inline">\(a\)</span> 维<strong>小于等于</strong>右区间，而不能保证<strong>严格小于</strong>。换言之，在对 <span class="math inline">\(b\)</span> 维进行分治时，可能出现对于右区间某元素，左区间中存在某个元素使得两者 <span class="math inline">\(a\)</span> 维相等。读者可以先自行思考一下如何解决这一问题~</p>
 <p>这里提供一种解决方法以供参考：先将 <span class="math inline">\(a\)</span> 维离散化，在双指针处理时开一个数组来记录某个 <span class="math inline">\(a\)</span> 维值对应的左区间中的元素的个数，在统计时减掉 <span class="math inline">\(a\)</span> 维相等的情况。</p>
-<p>最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： <a href="https://www.luogu.org/problem/P3810">洛谷 P3810: 陌上花开</a>。顺便附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
+<p>最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： <a href="https://www.luogu.com.cn/problem/P3810">洛谷 P3810: 陌上花开</a>。顺便附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp">我的代码</a> 以供参考。</p>
 </div>
 <div id="四维偏序" class="section level4">
 <h4>四维偏序？</h4>
@@ -933,7 +941,7 @@ Q(x_L, y_L, x_R, y_R) = &amp; F(x_R, y_R) + F(x_L − 1, y_L − 1) \\
 <li>查询区间 <span class="math inline">\([L, R]\)</span> 内不同的数有多少种。</li>
 </ul>
 <p><strong>数据范围</strong>：<span class="math inline">\(n \le 10^5, \ q \le 10^5\)</span>。</p>
-<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problemnew/show/P1903">Luogu P1903: 数颜色</a></p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.com.cn/problemnew/show/P1903">Luogu P1903: 数颜色</a></p>
 <hr />
 <p>下面给出一点提示：</p>
 <ul>
@@ -954,7 +962,7 @@ Q(x_L, y_L, x_R, y_R) = &amp; F(x_R, y_R) + F(x_L − 1, y_L − 1) \\
 <li>查询距离 <span class="math inline">\((x_A, y_A)\)</span> 曼哈顿距离最接近的点。</li>
 </ul>
 <p><strong>数据范围</strong>：均为 <span class="math inline">\(10^5\)</span> 数量级。</p>
-<p><strong>题目链接</strong>： <a href="https://www.luogu.org/problem/P4169">洛谷 P4169: 天使玩偶</a></p>
+<p><strong>题目链接</strong>： <a href="https://www.luogu.com.cn/problem/P4169">洛谷 P4169: 天使玩偶</a></p>
 <hr />
 <p><span class="math inline">\(A, B\)</span> 两点之间的曼哈顿距离：</p>
 <p><span class="math display">\[
@@ -1159,12 +1167,12 @@ T(C, S) = \mathcal{O}(nS)
 			
 			<guid>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</guid>
 			<description>题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡</description>
-			<content type="html"><![CDATA[<h1 id="heading">题面</h1>
+			<content type="html"><![CDATA[<h1 id="题面">题面</h1>
 <p>现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡区间，对这个区间内所有灯泡的状态都进行一次翻转（亮变灭，灭变亮）。试求最少需要几次操作就可以让所有灯泡都被点亮。</p>
 <p><strong>数据范围</strong>：$1 \le n, b_i \le 4 \times 10^4, \ 1 \le m \le 64, \ 1 \le k \le 8$</p>
-<p><strong>题目链接</strong>：<a href="https://www.luogu.org/problemnew/show/P3943">Luogu P3943: 星空</a></p>
-<h1 id="heading-1">分析</h1>
-<h2 id="heading-2">差分思想</h2>
+<p><strong>题目链接</strong>：<a href="https://www.luogu.com.cn/problemnew/show/P3943">Luogu P3943: 星空</a></p>
+<h1 id="分析">分析</h1>
+<h2 id="差分思想">差分思想</h2>
 <p>首先一个非常优雅的想法就是利用差分将区间操作变换为单点操作。不过这里我们面对的是一个 $01$ 序列，我们可以把普通的前缀和改成异或前缀和。严格地说，记 $a$ 代表原 $01$ 序列，$d$ 是原序列的异或差分数组。那么它们之间存在如下关系：</p>
 <p>$$
 a_i = b_0 \oplus b_1 \oplus \dots \oplus b_i
@@ -1174,7 +1182,7 @@ $$</p>
 <hr>
 <p>我们不妨记灯亮为 $0$，灯暗为 $1$。这样的方便之处在于所有灯全亮时 $a$ 为全 $0$，而其对应的 $d$ 前 $n$ 个位置也为全 $0$。至于 $d$ 中的第 $n + 1$ 个位置，不论其为 $0$ 还是 $1$ 都不会对 $a$ 产生任何影响，因此第 $n + 1$ 位可以是任意值。</p>
 <p>需要注意的是，题目给出了 $a$ 中 $1$ 的个数 $k \le 8$，这一限制对应到差分数组 $d$ 中会是怎样呢？如果我们要让 $d$ 为 $111111\dots$，那么 $a$ 的形式即如 $101010\dots$。不难发现若 $a$ 中最多有 $k$ 个 $1$，则 $d$ 中最多有 $2k$ 个 $1$。</p>
-<h2 id="heading-3">完全背包</h2>
+<h2 id="完全背包">完全背包</h2>
 <p>我们继续考虑转换后的问题。为了最小化反转次数我们显然不会选择两个 $0$ 进行翻转，因为这样只会使得 $1$ 的个数增多。那么我们可以选择：</p>
 <ul>
 <li>选中两个 $1$，那么翻转后两个位置上的值都会变为 $0$；</li>
@@ -1183,12 +1191,12 @@ $$</p>
 <p>那么问题进一步转换为：给定一个 $01$ 序列，对于序列中每个 $1$，每一步可以向前或向后走 $k$ 种距离，如果走到的位置上也是 $1$ 则两者相消为 $0$，问最少需要多少步可以使得所有位置都变为 $0$？</p>
 <hr>
 <p>考虑某一对 $1$ 之间的距离为 $\Delta{x}$，若要将这对 $1$ 相消，就需要左右两端的 $1$ 分别向左和向右移动到同一位置上。我们不妨把 $\Delta{x}$ 看作背包容量，每种可能的步数看作背包里的物品（每种步数 $v$ 要拆成 $+v$ 和 $-v$ 两个物品，因为既可以往左走又可以往右走），那么我们 $\mathcal{O}(nm)$ 跑一个完全背包就可以得到消去每一对 $1$ 所需要的最小步数。</p>
-<h2 id="heading-4">一般图的最大匹配</h2>
+<h2 id="一般图的最大匹配">一般图的最大匹配</h2>
 <p>在得到了消去每一对 $1$ 所需要的最小步数后 $w$，我们可以考虑在这两个点间建立一条价值为 $w$ 的无向边。这样一来，问题就转变为了一般图的最大匹配问题…… 大佬们可以使用带花树算法用 $\mathcal{O}(k^3)$ 级别复杂度解决之…… 当然这道题数据范围很小，所以我们也可以使用状压 DP 来解决。</p>
 <p>最后还有一个细节，前面说了 $d$ 中第 $n + 1$ 位可以是任意值，因此如果考虑这一位会带来一些不便。我们可以这样处理：如果位置 $i$ 经过若干步可以到达第 $n + 1$ 位，我们就从 $i$ 向自己连一条边。其意义为 $i$ 可以与自己进行匹配。这样子就可以完全去掉第 $n + 1$ 位从而简化模型。</p>
 <p>为了减小状态数量，我们不妨只考虑所有 $1$ 点。这样一来，初始状态用二进制表示就是 $11\dots1$，而目标状态即为 $00\dots0$。另外一个常见的优化是，我们不必用 $\mathcal{O}(k^2)$ 的复杂度去枚举每一个点对（那样会造成大量重复运算）。我们可以每次选取最左的 $1$ 点作为点对的一个点，然后 $\mathcal{O}(k)$ 枚举另一个点直接进行转移即可。这样子其实是可以遍历到所有状态的（反正目标状态中这个 $1$ 迟早要消去，这样转移的意义就是按顺序依次消去 $1$）。因此状压 DP 的复杂度为 $\mathcal{O}(k \cdot 2^k)$。</p>
 <p>如果最后一部分采用状压 DP 实现，那么总的复杂度为 $\mathcal{O}(nm + k \cdot 2^k)$。如果能用带花树大概可以有 $\mathcal{O}(nm + k^3)$ 的复杂度，可惜我不会。最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3943/dp_state_compression.cpp">我的代码</a> 以供参考。</p>
-<h1 id="heading-5">%%%</h1>
+<h1 id="heading">%%%</h1>
 <ul>
 <li>fstqwq 杨爷太强了 %%%</li>
 </ul>
@@ -1255,6 +1263,8 @@ $$</p>
 			<guid>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</guid>
 			<description>题面 分析 %%% 题面 对于长度为 \(l\) 且初始全为 \(0\) 的序列 \(a\)（下标 \(1 \sim l\)），有 \(q\) 次操作。操作分为两种： 给定 \(n, d, v\)，对于每个满足 \(\gcd(x, n) = d\) 的 \</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -1331,6 +1341,8 @@ a(x) = \sum\limits_{k \mid x}f(k)
 			<guid>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</guid>
 			<description>题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 
 <div id="题面" class="section level1">
@@ -1341,7 +1353,7 @@ a(x) = \sum\limits_{k \mid x}f(k)
 \]</span></p>
 <p>答案对 <span class="math inline">\(20101009\)</span> 取模。</p>
 <p><strong>数据范围</strong>：<span class="math inline">\(1 \le n,m \le 10^7\)</span></p>
-<p><strong>题目链接</strong>：<a href="https://www.luogu.org/problemnew/show/P1829">Luogu P1829: Crash 的数字表格</a></p>
+<p><strong>题目链接</strong>：<a href="https://www.luogu.com.cn/problemnew/show/P1829">Luogu P1829: Crash 的数字表格</a></p>
 </div>
 <div id="分析" class="section level1">
 <h1>分析</h1>
@@ -1412,7 +1424,7 @@ F(a) \cdot F(b) = &amp; \sum\limits_{i \mid a}i\mu(i)\sum\limits_{j \mid b}j\mu(
 <div id="section" class="section level1">
 <h1>%%%</h1>
 <ul>
-<li>An-Amazing-Blog - <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
+<li>An-Amazing-Blog - <a href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
 </ul>
 </div>
 ]]></content>
@@ -1426,6 +1438,8 @@ F(a) \cdot F(b) = &amp; \sum\limits_{i \mid a}i\mu(i)\sum\limits_{j \mid b}j\mu(
 			<guid>https://codgician.me/zh-hans/posts/2018/11/mobius-inversion-formula/</guid>
 			<description>简介 莫比乌斯函数 定义 性质 莫比乌斯反演 形式 #1 内容 证明 形式 #2 内容 证明 应用 与欧拉函数联系 与最大公约数联系 %%% 简介 最近经常演人/被人演，所以是时候学一</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -1618,7 +1632,7 @@ f(k) = &amp; \sum\limits_{k \mid d} \mu(\frac{d}{k})F(d) \\
 <p><span class="math display">\[
 f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\lfloor \frac{m}{k} \right\rfloor)} \mu(t) \left\lfloor \frac{n}{tk} \right\rfloor \left\lfloor \frac{m}{tk} \right\rfloor
 \]</span></p>
-<p>至于更多的应用，强烈安利这篇博文： <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a>。</p>
+<p>至于更多的应用，强烈安利这篇博文： <a href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a>。</p>
 </div>
 </div>
 <div id="section" class="section level1">
@@ -1627,7 +1641,7 @@ f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\l
 <li>Ronald L. Graham, Donald E. Knuth, Oren Patashnik - Concrete Mathematics, Second Edition</li>
 <li>peng-ym - <a href="https://www.cnblogs.com/peng-ym/p/8647856.html">莫比乌斯反演</a></li>
 <li>outer_form - <a href="https://blog.csdn.net/outer_form/article/details/50588307">莫比乌斯反演定理证明（两种形式）</a></li>
-<li>An-Amazing-Blog - <a href="https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
+<li>An-Amazing-Blog - <a href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-让我们从基础开始</a></li>
 </ul>
 </div>
 ]]></content>
@@ -1641,6 +1655,8 @@ f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\l
 			<guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-2187/</guid>
 			<description>题面 分析 题面 给定四个正整数 \(a, b, c, d\)，试求最简正分数 \(\frac{p}{q}\)，满足： \[ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} \] 若有多组解，取 \(q\) 最小的一组解；若仍</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -1704,6 +1720,8 @@ f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\l
 			<guid>https://codgician.me/zh-hans/posts/2018/10/bzoj-3817/</guid>
 			<description>题面 分析 %%% 题面 给定正整数 \(n, r\)，试求： \[ \sum\limits_{d = 1}^{n} (-1)^{\left\lfloor \sqrt{d \cdot r \cdot d} \right\rfloor} \] 数据范围：\(n \le 10^9, \ r \le 10^4\)，测试数据组数 \(T \le 10^4\)。 题目链</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -1823,6 +1841,8 @@ nm - f(ac, -bc, a^2t^2 - b^2, m) &amp; \frac{at + b}{c} &lt; 1 \\
 			<guid>https://codgician.me/zh-hans/posts/2018/10/hduoj-6275/</guid>
 			<description>题面 分析 %%% 题面 对于给定的 \(n\)，计算： \[ (n \bmod 1) \oplus (n \bmod 2) \oplus \dots \oplus [n \bmod (n - 1)] \] 其中 \(\oplus\) 表示按位异或。 数据范围： \(n \le 10^{12}\) 题面链接：CCPC2018 Hangzhou</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -1909,6 +1929,8 @@ n \bmod r &amp; = n - \left\lfloor \frac{n}{r} \right\rfloor r \\
 			<guid>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</guid>
 			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -2356,6 +2378,8 @@ nm^2 - 2g(c, c - b - 1, a, m - 1) - f(c, c - b - 1, a, m - 1) &amp; \text{otherw
 			<guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6434/</guid>
 			<description>题面 分析 题面 本题有 \(T\) 个询问，对于每个询问 \(n\)，你需要计算： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{i - 1} \left[ \gcd(i + j, i - j) = 1 \right] \] 数据范围：\(1 \le T \le 10^5, 1 \le n \le 2 \times</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -2436,6 +2460,8 @@ i = p_1^{k_1} \cdot p_2^{k_2} \cdots p_n^{k_n}
 			<guid>https://codgician.me/zh-hans/posts/2018/08/hduoj-6372/</guid>
 			<description>题面 分析 %%% 题面 某巨犇发现了一种叫做海绵宝宝 \(\text{HMBB}\) 的神奇矩阵。 给定 \(i\)，记 \(p\) 是第 \(i\) 个质数。 矩阵 \(\text{HMBB}_{n}\) 的大小为 \(p^n \times p^n\)，同时： \[ \text{HMBB}_{n}[i][j] = \begin{cases} 0 &amp;amp; \binom{i}{j}</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -2538,14 +2564,14 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 			
 			<guid>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</guid>
 			<description>简介 Treap = Tree + Heap。Treap 是一种弱平衡的二叉查找树。 我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够</description>
-			<content type="html"><![CDATA[<h1 id="heading">简介</h1>
+			<content type="html"><![CDATA[<h1 id="简介">简介</h1>
 <p><strong>Treap = Tree + Heap</strong>。Treap 是一种<strong>弱平衡</strong>的二叉查找树。</p>
 <p>我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够有效防止前者退化成一条链的情况。平衡二叉树有很多种，比如 AVL、红黑树、SBT、Splay 等等， 而 Treap 是其中相对好写的一种。</p>
 <p>顾名思义，<strong>Treap 通过二叉堆的性质来维护二叉树的平衡</strong>。一个二叉（大根）堆满足这样的性质：一个节点的两个儿子的值都小于节点本身。但是这样的规定看似与二叉搜索树的性质矛盾…… 解决这个问题的办法只有一个 —— 让每个节点有两个键值，其中一个满足二叉堆性质，另一个满足二叉搜索树性质。</p>
 <p>因此，Treap 中的每个节点含有两个键值 $key$ 和 $value$，其中 $key$ 满足二叉堆的性质，而 $value$ 满足二叉搜索树的性质。$value$ 的值我们显然是无法随便改变的（因为它取决于用户输入），因此为了维护平衡性我们只能在 $key$ 上做文章。我们可以考虑给每个节点的 $key$ 都赋上随机值。由于主流的随机数生成算法（比如大素数取模）很难出现完全单调的序列，因此这样一来我们可以保证 Treap “基本平衡“。</p>
 <p>你可能会发现 Treap 和 笛卡尔树 存在很多相似之处。的确，不过这两者最显著的区别是，Treap 的 $key$ 是随机值，而笛卡尔树的不是。</p>
-<h1 id="-treap">无旋转的 Treap</h1>
-<h2 id="heading-1">两个核心函数</h2>
+<h1 id="无旋转的-treap">无旋转的 Treap</h1>
+<h2 id="两个核心函数">两个核心函数</h2>
 <p>一般的 Treap 是带有旋转操作的（正如大部分平衡树一样），而旋转操作的实现往往是我这种蒟蒻的噩梦。而无旋转的 Treap 却喜闻乐见地不通过旋转来维护其平衡性，所以相比普通的 Treap 要好写不少（也暴力不少）。下面我们首先来介绍无旋转 Treap 的两个核心操作：</p>
 <ul>
 <li><strong>merge (A, B)</strong>：合并两棵子树（它们的根节点分别是 $A$ 和 $B$），复杂度 $\mathcal{O}(\log{n})$；</li>
@@ -2553,10 +2579,10 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 </ul>
 <p><strong>注意：合并操作的前提是其中一棵 Treap 上的所有键值（即 $value$）小于另一棵 Treap 上的键值，否则只能启发式合并</strong>！</p>
 <p>有了这两个操作，我们就可以实现平衡树的大部分功能了。但在此之前，让我们先来看看如何实现这两个核心函数。</p>
-<h3 id="heading-2">合并</h3>
+<h3 id="合并">合并</h3>
 <p>我们假设现在维护的是满足<strong>小根堆</strong>性质的 Treap，记将被合并的两棵子树的根节点为 $A$ 和 $B$。</p>
 <p>我们比较 $A$ 和 $B$ 的 $key$，谁的 $key$ 小谁就留在当前位置并成为另一者的祖先（小根堆性质）。我们假设 $A$ 的 $key$ 较小，那么 $A$ 的左子树显然不需要变动了（二叉搜索树性质），所以我们需要把 $A$ 的右子树和 $B$ 合并在一起并将得到的树作为 $A$ 的新右子树。合并完后还需要更新一下以 $A$ 为根子树的大小。</p>
-<h3 id="heading-3">分裂</h3>
+<h3 id="分裂">分裂</h3>
 <p>分裂其实有两种方式：</p>
 <ul>
 <li>按排名分裂：前 $k$ 大的数构成一棵子树，剩余的构成另一棵；</li>
@@ -2564,7 +2590,7 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 </ul>
 <p>接下来我们主要演示按权值分裂（按排名分裂基本同理）。</p>
 <p>我们考虑到当前点 $cntPt$，我们只需要考虑 $cntPt$ 是需要跟左子树拆成一堆还是跟右子树拆成一堆。如果我们发现当前点的权值小于等于 $k$，那么它和它的左子树都应该被并入小于等于 $k$ 的数构成的子树。接下来，我们还需要在它的右子树中把小于等于 $k$ 的部分拆出来，递归下去。</p>
-<h2 id="heading-4">运用核心函数</h2>
+<h2 id="运用核心函数">运用核心函数</h2>
 <p>我们不妨先直接拉一道家喻户晓的模板题来举个例子：<a href="https://loj.ac/problem/104">普通平衡树 - 题目 - LibreOJ</a>。</p>
 <p>题目中要求我们实现 $6$ 类操作：</p>
 <ol>
@@ -2576,22 +2602,22 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 <li>求 $x$ 的后继（即大于 $x$ 的数中的最小值）。</li>
 </ol>
 <p>下面我们就试着主要靠两个核心函数来解决上述 $6$ 个问题。</p>
-<h3 id="heading-5">插入</h3>
+<h3 id="插入">插入</h3>
 <p>首先我们将带插入节点的 $key$ 赋成随机值，然后按 $x$ 将 Treap <strong>split</strong> （按权值分裂） 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$。我们不妨把待插入的 $x$ 看成一棵只含一个节点的 Treap，先将其与 $A$ <strong>merge</strong>，再得到的 Treap 与 $B$ <strong>merge</strong>，就完成插入了。</p>
-<h3 id="heading-6">删除</h3>
+<h3 id="删除">删除</h3>
 <p>与插入类似，首先我们按 $x$ 将 Treap <strong>split</strong> 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$，再将 $A$ <strong>split</strong> 成小于等于 $x - 1$ 的 $C$ 和大于 $x - 1$（即等于 $x$）的 $D$。接下来，我们将 $B$ 和 $C$ <strong>merge</strong> 在一起即可。</p>
 <p>上述操作会把所有等于 $x$ 的数全部删掉。如果题目只要求删掉一个 $x$，可以考虑将 $D$ 的左子树和右子树合并在一起得到 $E$。这样一来就等于舍弃了 $D$ 的根节点，使得 $D$ 中等于 $x$ 的数少了一个。最后再把 $E$ 也 <strong>merge</strong> 进答案。</p>
-<h3 id="heading-7">查询数的排名</h3>
+<h3 id="查询数的排名">查询数的排名</h3>
 <p>实际上就是查询有多少个数比 $x$ 小，然后将结果加 $1$ 即是排名。</p>
 <p>考虑现按 $x - 1$ 将 Treap <strong>split</strong> 成 $A$ 和 $B$，这样一来 $A$ 的大小加上 $1$ 就是我们需要的答案。查询完后再将 $A$ 和 $B$ <strong>merge</strong> 起来恢复原状即可。</p>
-<h3 id="heading-8">查询排名对应的数</h3>
+<h3 id="查询排名对应的数">查询排名对应的数</h3>
 <p>我们只需要实现按排名分裂，就可以跟上面类似直接 <strong>split</strong> 一下就好了。</p>
-<h3 id="heading-9">查询前驱或后继</h3>
+<h3 id="查询前驱或后继">查询前驱或后继</h3>
 <p>这里我们以查询前驱为例（后继完全同理）：</p>
 <p>我们考虑先将 Treap 按 $x - 1$ <strong>split</strong> 成 $A$ 和 $B$，那么 $A$ 树中最大的数（即第 $A.size$ 大）就是我们要查询的答案。借用上面的查询排名对应数的函数即可实现。</p>
-<h3 id="heading-10">参考代码</h3>
+<h3 id="参考代码">参考代码</h3>
 <p>大家可以看看 <a href="https://github.com/codgician/Competitive-Programming/blob/master/LOJ/104/treap_without_rotations.cpp">我的代码</a> 来对照理解一番~</p>
-<h1 id="heading-11">%%%</h1>
+<h1 id="heading">%%%</h1>
 <ul>
 <li>chen_tr - <a href="https://blog.csdn.net/chen_tr/article/details/50924073">偷懒专用平衡树——Treap</a></li>
 <li>LadyLex - <a href="https://www.cnblogs.com/LadyLex/p/7182491.html">无旋treap：从好奇到入门</a></li>
@@ -2639,7 +2665,7 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 <p>jackyan 巨佬貌似对我有了一句新的口头禅 “你羞愧吗？” QAQ 😶</p>
 <p>下午五点过就来到了火车站…… 打了若干盘斗地主，每次我发牌 jackyan 都会莫名其妙地当上地主，然后将本垃圾狂虐 QAQ。</p>
 <p>然后湘潭两日游就这么结束了（逃</p>
-<h1 id="heading">赛后总结</h1>
+<h1 id="赛后总结">赛后总结</h1>
 <p><del>可以明显感到这场比赛中我太水了。</del></p>
 <p>这场比赛反映出了我个人在思维能力上的不足。平时做专题的时候侧重点都在于学习新的算法而忽略了对思维的培养。这就造成一个很尴尬的局面，简单的思维题（诸如 DP）做不来，而比赛时需要稍微难一点算法的题目又不可能是裸的模板题，所以还是做不来。 🙈</p>
 <p>看起来下个月要抽时间多练练 DP 以及数学了。 QAQ</p>
@@ -2654,6 +2680,8 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 			<guid>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</guid>
 			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -3171,6 +3199,8 @@ A_i + B_j = w(i, j)
 			<guid>https://codgician.me/zh-hans/posts/2017/08/basics-on-computational-thinking/</guid>
 			<description>前言 逻辑运算 基本逻辑运算 “与”运算 AND：逻辑乘法 “或”运算 OR：逻辑加法 “非”运算 NOT：逻辑否定 复合逻辑运算 “与非”运算 NAND “或非”运算 NOR</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -3663,13 +3693,13 @@ C_{i + 1} = (A_i \oplus B_i)  C_i + A_i B_i
 			
 			<guid>https://codgician.me/zh-hans/posts/2017/08/on-int-and-float/</guid>
 			<description>前言 前几天好友终于也入了 C/C++ 的邪教，问起了几个浮点相关的问题，让我终于意识到深陷现代语言泥潭的我早已忘却这些富有趣味但又基础地不能在基础的知识</description>
-			<content type="html"><![CDATA[<h1 id="heading">前言</h1>
+			<content type="html"><![CDATA[<h1 id="前言">前言</h1>
 <p>前几天好友终于也入了 C/C++ 的邪教，问起了几个浮点相关的问题，让我终于意识到<del>深陷现代语言泥潭</del>的我早已忘却这些富有趣味但又基础地不能在基础的知识…… 在网上大量查阅相关资料后决定属文以记之。</p>
-<h1 id="heading-1">整型</h1>
+<h1 id="整型">整型</h1>
 <p>注：本文中默认 <code>int</code> 长度为 $32$ 位。</p>
-<h2 id="heading-2">无符号整形</h2>
+<h2 id="无符号整形">无符号整形</h2>
 <p>这里以 <code>unsigned int</code> 为例（$32$ 位）。<code>unsigned int</code> 就是没有符号的 <code>int</code>，在内存里占用 $4$ Byte，也就是 $32$ bit。很容易得知其能存储的最小值为 $0$，最大值则为 $2^{32} - 1 = 4294967295$。</p>
-<h2 id="heading-3">整形</h2>
+<h2 id="整形">整形</h2>
 <p>int 是带有符号的，因此其所占据的第 $0 \sim 31$ 位中第 $31$ 位是用于存储符号的（$0$ 为正，$1$ 为负）。当然你会问，既然所有位均为 $0$ 时变量的值为 $0$，那么符号位为 $1$ 时剩余位为 $0$ 表示的又是什么呢？</p>
 <p>这里就要牵扯进 <em>补数 (2’s complement，又称二补数)</em> 的概念了。</p>
 <blockquote>
@@ -3738,33 +3768,33 @@ C_{i + 1} = (A_i \oplus B_i)  C_i + A_i B_i
 <li>有两个数的二补数等于其本身：$0$ 和 $-128$ (溢出了，所以就变成自己了)。</li>
 </ul>
 <p>至此，我们也应该理解为什么 $32$ 位整型的取值范围是 $-2147483648 \sim 2147483647$ 了。</p>
-<h1 id="heading-4">浮点</h1>
+<h1 id="浮点">浮点</h1>
 <p>在 C 语言中，浮点数的存储均遵循 IEEE 754 标准。我们不妨结合标准内容来对 <code>float</code> 做一番介绍。</p>
 <p>注：并不是在任何情况下浮点数的存储都遵循 IEEE 754 标准！这里仅介绍 IEEE 754 标准。</p>
-<h2 id="heading-5">整体结构</h2>
+<h2 id="整体结构">整体结构</h2>
 <p>在 IEEE 754 中，浮点数的存储被划为三个部分：<em>符号位 (sign bit)、阶码 (biased exponent)、尾码 (mantissa)</em>。在单精度中它们的长度分别为 $1$ bit、$8$ bit 和 $23$  bit；双精度中它们的长度分别为 $1$ bit、$11$ bit 和 $52$ bit。</p>
 <p>为了方便展示，不妨从 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Representation_of_non-numbers">Wikipedia</a> 盗两张图下来（遵循  <a href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a>）：</p>
-<h3 id="heading-6">单精度</h3>
+<h3 id="单精度">单精度</h3>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/IEEE_754_Single_Floating_Point_Format.svg" alt="Single precision"></p>
-<h3 id="heading-7">双精度</h3>
+<h3 id="双精度">双精度</h3>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/IEEE_754_Double_Floating_Point_Format.svg" alt="Double precision"></p>
 <p>我们知道任意一个<strong>二进制</strong>浮点数 $V$ 都可以表示为（科学记数法）：</p>
 <p>$$
 V = (-1)^s \cdot M \cdot 2^E
 $$</p>
 <p>其中，$s$ 是<strong>符号位</strong>，$M$ 是有效数字（$1 \le M &lt; 2$），$E$ 是指数。</p>
-<p>举个例子，对于 ${0.15625}<em>{10}$，其二进制表示为 ${0.00101}</em>{2}$，用科学记数法表示就是 ${0.00101}_2 = {1.01}_2 \times 2^{-3}$，那么其符号位为 $0$，有效数字为 ${1.01}_2$，尾码为 ${.01}_2$，指数为 $-3$。</p>
-<p>我们很容易发现，$M$ 的整数部分一定恒为 1，那还存什么存？只用存 $M$ 的小数部分就行了，所以<strong>尾码</strong>就是 $M - 1$。</p>
-<h2 id="heading-8">指数偏移值</h2>
+<p>举个例子，对于十进制小数 $0.15625$，其二进制表示为 $0.00101$，用二进制下的科学记数法表示就是 $0.00101 = 1.01 \times 2^{-3}$，那么其符号位为 $0$，有效数字为 $1.01$，尾码为 $.01$，指数为 $-3$。</p>
+<p>我们很容易发现，$M$ 的整数部分一定恒为 $1$，那还存什么存？只用存 $M$ 的小数部分就行了，所以<strong>尾码</strong>就是 $M - 1$。</p>
+<h2 id="指数偏移值">指数偏移值</h2>
 <p>依据前文对阶码存储结构的介绍，<strong>阶码</strong>看起来就像是一个无符号整数。可惜科学记数法中指数是可以为负数的。怎么办？IEEE 就搞了个 <em>指数偏移值 (exponent bias)</em> 出来。指数偏移值就是指<strong>浮点数表示法中的指数域的编码值（即阶码的值）为指数的实际值加上某个固定的值</strong>（阶码 = $E$ + 指数偏移值）。在 IEEE 754 标准中，指数偏移值的固定大小为 $2^{e - 1} - 1$，其中 $e$ 为储存指数的比特长度。</p>
 <p>例如，在单精度中，阶码位长 $e$ 为 8 bit，换算成十进制其可表示范围为 $0 \sim 255$。依据前文，其指数偏移值是 $2^{8 - 1} - 1 = 127$。这样一来，对于单精度浮点数类型指数就可取 $-127 \sim 128$ 了。</p>
-<h2 id="heading-9">规约形式与非规约形式</h2>
-<h3 id="-normalized-numbers">规约形式 (Normalized numbers)</h3>
+<h2 id="规约形式与非规约形式">规约形式与非规约形式</h2>
+<h3 id="规约形式-normalized-numbers">规约形式 (Normalized numbers)</h3>
 <p><strong>规约形式的浮点数</strong>指的是<strong>阶码</strong>范围为 $(0, 2^{e} - 1)$ ，且<strong>尾码</strong>部分最高有效位（即整数部分）为 $1$ 的浮点数。也就是说，前文中我们讨论的浮点数都是规约形式的。</p>
-<h3 id="-denormalized-numbers">非规约形式 (Denormalized numbers)</h3>
+<h3 id="非规约形式-denormalized-numbers">非规约形式 (Denormalized numbers)</h3>
 <p>为了减小因为<em>下溢 (underflow)</em> 造成的精度损失（换言之，为了使得浮点数可表示的正最小值和负最大值更接近 $0$），IEEE 754 标准中提出了非规约形式浮点数——用于填补最小正数和最大负数与 $0$ 的距离。</p>
 <p><strong>非规约形式浮点数</strong>的<strong>阶码</strong>为 $0$，并且<strong>尾码</strong>为非 $0$。相比规约形式浮点数其最大的不同之处在于，<strong>其尾码隐含的整数部分不再是 $1$，而变成了 $0$</strong>。另外，IEEE 754 标准规定，<strong>非规约形式的浮点数的指数偏移值比规约形式的浮点数的指数偏移值小 $1$</strong>。也就是说，最小的规约形式浮点数阶码为 $1$，指数的实际值为 $-126$。而非规约形式的单精度浮点数的阶码为 $0$，依照上述规定其指数的实际值也是 $-126$ 而不是 $-127$。</p>
-<h4 id="heading-10">为什么要这样规定？</h4>
+<h4 id="为什么要这样规定">为什么要这样规定？</h4>
 <p>我们首先来看看这种规定下<strong>非规约形式</strong>浮点数能表示的<strong>最大</strong>正浮点数吧（拿<strong>单精度</strong>举个例子，双精度是类似的）：</p>
 <table>
 <thead>
@@ -3802,7 +3832,7 @@ $$</p>
 </table>
 <p>不难得出，其实际指数为 $E = 1 - 127 = -126$，其实际有效数字为 ${1.00000000000000000000000}_2$。因此，二进制下，其表示的实际值为 $V = {1.00000000000000000000000}_2 \times 2^{-126}$。</p>
 <p>不难发现在这种规定下，<strong>最大非规约形式浮点数和最小非规约形式浮点数是连续的</strong>。这也是该规定出现的原因。</p>
-<h2 id="heading-11">特殊值</h2>
+<h2 id="特殊值">特殊值</h2>
 <p>另外，在标准中也定义了几个特殊值：</p>
 <ul>
 <li>当<strong>阶码</strong>和<strong>尾码</strong>均为 $0$ 时，浮点数表示的实际值为 $\pm 0$；</li>
@@ -3811,11 +3841,11 @@ $$</p>
 </ul>
 <p>$\text{NaN}$ 是什么？可以吃吗？</p>
 <p>当然不能。$\text{NaN}$ 往往出现于一些无效的计算结果。比如说，对负数进行求平方根运算，返回的结果就是 $\text{NaN}$。</p>
-<h2 id="heading-12">取值范围、精度和间隙</h2>
+<h2 id="取值范围精度和间隙">取值范围、精度和间隙</h2>
 <p>注：本节主要讨论单精度浮点数的取值范围与精度。双精度与之类似，所以请读者自行推导。</p>
-<h3 id="-range">取值范围 (Range)</h3>
+<h3 id="取值范围-range">取值范围 (Range)</h3>
 <p>前文中已经介绍过单精度浮点数在存储中的大致结构了。我们先就<strong>正浮点数</strong>做一下分析：</p>
-<h4 id="heading-13">非规约形式单精度浮点数能表示的最小正值</h4>
+<h4 id="非规约形式单精度浮点数能表示的最小正值">非规约形式单精度浮点数能表示的最小正值</h4>
 <table>
 <thead>
 <tr>
@@ -3833,7 +3863,7 @@ $$</p>
 </tbody>
 </table>
 <p>不难得出，不难得出，其实际指数 $E$ = 0 - 126 = -126，其实际有效数字为 ${0.00000000000000000000001}_2$。因此，二进制下，其表示的实际值为 $V = {0.00000000000000000000001}_2 \times 2^{-126} \approx 1.40130 \times 10^{-45}$。</p>
-<h4 id="heading-14">规约形式单精度浮点数能表示的最小正值</h4>
+<h4 id="规约形式单精度浮点数能表示的最小正值">规约形式单精度浮点数能表示的最小正值</h4>
 <table>
 <thead>
 <tr>
@@ -3851,7 +3881,7 @@ $$</p>
 </tbody>
 </table>
 <p>不难得出，其实际指数为 $E$ = 1 - 127 = -126，其实际有效数字为 ${1.00000000000000000000000}_2$。因此，二进制下，其表示的实际值为 $V = {1.00000000000000000000000}_2 \times 2^{-126} \approx 1.17549 \times 10^{-38}$。</p>
-<h5 id="heading-15">单精度浮点数能表示的最大正值</h5>
+<h5 id="单精度浮点数能表示的最大正值">单精度浮点数能表示的最大正值</h5>
 <table>
 <thead>
 <tr>
@@ -3871,13 +3901,13 @@ $$</p>
 <p>不难得出，不难得出，其实际指数 $E$ = 254 - 127 = 127，其实际有效数字为 ${1.11111111111111111111111}_2$。因此，二进制下，其表示的实际值为 $V = {1.11111111111111111111111}_2 \times 2^{127} \approx 3.40282 \times 10^{38}$。</p>
 <p>对于负数也是一样的，这里也不做过多讨论。</p>
 <p>双精度也是与此类似的，这里只给出如下结论：</p>
-<h5 id="heading-16">非规约形式双精度浮点数能表示的最小正值</h5>
+<h5 id="非规约形式双精度浮点数能表示的最小正值">非规约形式双精度浮点数能表示的最小正值</h5>
 <p>$2^{-1074} \approx 4.94066 \times 10^{-324}$</p>
-<h5 id="heading-17">规约形式双精度浮点数能表示的最小正值</h5>
+<h5 id="规约形式双精度浮点数能表示的最小正值">规约形式双精度浮点数能表示的最小正值</h5>
 <p>$2^{-1022} \approx 2.22507 \times 10^{-308}$</p>
-<h5 id="heading-18">双精度浮点数能表示的最大正值</h5>
+<h5 id="双精度浮点数能表示的最大正值">双精度浮点数能表示的最大正值</h5>
 <p>$(1 - 2^{-53}) \times 2^{1024} \approx 1.79769 \times 10^{308}$</p>
-<h3 id="-precision---gap">精度 (Precision) 与 间隙 (Gap)</h3>
+<h3 id="精度-precision-与-间隙-gap">精度 (Precision) 与 间隙 (Gap)</h3>
 <p>首先摘抄一段来自 <a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Range_and_precision">Wikipedia</a> 的原文：</p>
 <blockquote>
 <p><strong>Precision</strong> is defined as the minimum difference between two successive mantissa representations; thus it is a function only in the mantissa; while the <strong>gap</strong> is defined as the difference between two successive numbers.</p>
@@ -4029,9 +4059,9 @@ $$</p>
 </tbody>
 </table>
 <p>这也完美地解释了前几天在学校的 OJ 上水题有的题明明在单精度取值范围内却没法用单精度 A 掉的原因…… 看起来还是我太弱了 orz。</p>
-<h1 id="heading-19">小结</h1>
+<h1 id="小结">小结</h1>
 <p>懒得写了（逃</p>
-<h1 id="heading-20">参考文献</h1>
+<h1 id="参考文献">参考文献</h1>
 <p>排序顺序嘛…… 我才不会告诉你是乱序呢。</p>
 <ul>
 <li>红太阳 <a href="http://fstqwq.pw">fstqwq</a> %%%</li>
@@ -4053,6 +4083,8 @@ $$</p>
 			<guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</guid>
 			<description>简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -4233,6 +4265,8 @@ h(x) = lnx + \frac{1 - x^2}{x^2 + 1}
 			<guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/</guid>
 			<description>简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -4525,6 +4559,8 @@ F(x) = \frac{e^x}{x} + (1 - e) - \ln x - \frac{1}{x}
 			<guid>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</guid>
 			<description>简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更</description>
 			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
 
 <div id="TOC">
 <ul>
