@@ -287,7 +287,7 @@ $$
    S(n) = \sum\limits_{i = 1}^{n}i^3 - \sum\limits_{d = 2}^{n}d^2S(\left\lfloor \frac{n}{d} \right\rfloor)
    $$
 
-至于具体的代码，大家可以去试试 [洛谷 P4213: 杜教筛 (Sum)](https://www.luogu.org/problem/P4213)，顺便提供 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4213/arithmetic_function.cpp) 供参考。
+至于具体的代码，大家可以去试试 [洛谷 P4213: 杜教筛 (Sum)](https://www.luogu.com.cn/problem/P4213)，顺便提供 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4213/arithmetic_function.cpp) 供参考。
 
 完结撒花~
 

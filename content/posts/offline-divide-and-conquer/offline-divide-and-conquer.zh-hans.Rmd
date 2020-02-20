@@ -153,7 +153,7 @@ void divideConquer(int headPt, int tailPt) {
 
 这里提供一种解决方法以供参考：先将 $a$ 维离散化，在双指针处理时开一个数组来记录某个 $a$ 维值对应的左区间中的元素的个数，在统计时减掉 $a$ 维相等的情况。
 
-最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： [洛谷 P3810: 陌上花开](https://www.luogu.org/problem/P3810)。顺便附上 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp) 以供参考。
+最后，大家可以去尝试一下一道模板题（注意这道题与前面举的例子不完全一样）： [洛谷 P3810: 陌上花开](https://www.luogu.com.cn/problem/P3810)。顺便附上 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P3810/divide_and_conquer.cpp) 以供参考。
 
 #### 四维偏序？
 
@@ -251,7 +251,7 @@ Umm... 这不就成一个三维偏序问题了吗？接下来我们会介绍这�
 
 **数据范围**：$n \le 10^5, \ q \le 10^5$。
 
-**题目链接**： [Luogu P1903: 数颜色](https://www.luogu.org/problemnew/show/P1903)
+**题目链接**： [Luogu P1903: 数颜色](https://www.luogu.com.cn/problemnew/show/P1903)
 
 ---
 
@@ -277,7 +277,7 @@ Umm... 这不就成一个三维偏序问题了吗？接下来我们会介绍这�
 
 **数据范围**：均为 $10^5$ 数量级。
 
-**题目链接**： [洛谷 P4169: 天使玩偶](https://www.luogu.org/problem/P4169)
+**题目链接**： [洛谷 P4169: 天使玩偶](https://www.luogu.com.cn/problem/P4169)
 
 ---
 

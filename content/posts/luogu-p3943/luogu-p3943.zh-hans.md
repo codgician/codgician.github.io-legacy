@@ -20,7 +20,7 @@ tags:
 
 **数据范围**：$1 \le n, b_i \le 4 \times 10^4, \ 1 \le m \le 64, \ 1 \le k \le 8$
 
-**题目链接**：[Luogu P3943: 星空](https://www.luogu.org/problemnew/show/P3943)
+**题目链接**：[Luogu P3943: 星空](https://www.luogu.com.cn/problemnew/show/P3943)
 
 # 分析
 

@@ -216,7 +216,7 @@ $$
 f(k) = \sum\limits_{t = 1}^{\min(\left\lfloor \frac{n}{k} \right\rfloor, \left\lfloor \frac{m}{k} \right\rfloor)} \mu(t) \left\lfloor \frac{n}{tk} \right\rfloor \left\lfloor \frac{m}{tk} \right\rfloor
 $$
 
-至于更多的应用，强烈安利这篇博文： [莫比乌斯反演-让我们从基础开始](https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi)。
+至于更多的应用，强烈安利这篇博文： [莫比乌斯反演-让我们从基础开始](https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi)。
 
 
 # %%%
@@ -224,4 +224,4 @@ $$
 - Ronald L. Graham, Donald E. Knuth, Oren Patashnik - Concrete Mathematics, Second Edition
 - peng-ym - [莫比乌斯反演](https://www.cnblogs.com/peng-ym/p/8647856.html)
 - outer_form - [莫比乌斯反演定理证明（两种形式）](https://blog.csdn.net/outer_form/article/details/50588307)
-- An-Amazing-Blog - [莫比乌斯反演-让我们从基础开始](https://www.luogu.org/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi)
+- An-Amazing-Blog - [莫比乌斯反演-让我们从基础开始](https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi)

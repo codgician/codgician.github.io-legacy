@@ -24,7 +24,7 @@ Min25 筛是一种对于满足特定条件积性函数的前缀和的亚线性�
 
 ## 核心思想
 
-下文默认记 $\mathbb{P}$ 为素数集，$P_i$ 代表其中第 $i$ 大的素数并默认 $p \in \mathbb{P}$。若函数 $f(x)$ 满足：
+下文默认记 $P$ 为素数集，$P_i$ 代表其中第 $i$ 大的素数并默认 $p \in P$。若函数 $f(x)$ 满足：
 
 - $f(p)$ 存在多项式表示；
 - $f(p^e)$ 可被快速计算；
@@ -34,8 +34,8 @@ Min25 筛可在 $\mathcal{O}(\frac{n^\frac{3}{4}}{\log{n}})$ 的复杂度内计�
 
 $$
 \begin{aligned}
-\sum\limits_{i = 1}^{n} f(i) & = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + \sum\limits_{i = 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
-& = \sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) + f(1) + \sum\limits_{p \in \mathbb{P}}\sum\limits_{1 \le p^e \le n}f(p^e)\sum\limits_{i = 1}^{\left\lfloor \frac{n}{p^e} \right\rfloor}f(i)
+\sum\limits_{i = 1}^{n} f(i) & = \sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) + \sum\limits_{i = 1}^{n} \left[i \not \in P \right] f(i) \\
+& = \sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) + f(1) + \sum\limits_{p \in P}\sum\limits_{1 \le p^e \le n}f(p^e)\sum\limits_{i = 1}^{\left\lfloor \frac{n}{p^e} \right\rfloor}f(i)
 \end{aligned}
 $$
 
@@ -46,19 +46,19 @@ $$
 首先我们考虑求解：
 
 $$
-\sum\limits_{i = 1}^{n} [i \in \mathbb{P}] f(i)
+\sum\limits_{i = 1}^{n} [i \in P] f(i)
 $$
 
-考虑先线性筛出不大于 $\sqrt{n}$ 的所有素数作为 $\mathbb{P}$。记 $minp(x)$ 代表 $x$ 的最小素因子，令：
+考虑先线性筛出不大于 $\sqrt{n}$ 的所有素数作为 $P$。记 $minp(x)$ 代表 $x$ 的最小素因子，令：
 
 $$
-g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in \mathbb{P} \text{ or } minp(i) > P_j \right] f(i)
+g(n, j) = \sum\limits_{i = 2}^{n} \left[i \in P \text{ or } minp(i) > P_j \right] f(i)
 $$
 
 则有：
 
 $$
-\sum\limits_{i = 1}^{n} \left[i \in \mathbb{P} \right] f(i) = g(n, |P|)
+\sum\limits_{i = 1}^{n} \left[i \in P \right] f(i) = g(n, |P|)
 $$
 
 考虑如何对 $g$ 进行状态转移。$g(n, j)$ 在 $g(n, j - 1)$ 的基础上少了所有非质数并且最小质因子恰为 $P_j$ 的数作为因变量的 $f$ 值。显然，这些数可以由一个最小质因子大于 $P_j$ 的数 $t$ 乘上 $P_j$ 得到。因为 $f$ 是积性函数且 $t \perp P_j$，因此 $f(tP_j) = f(P_j)f(t)$。考虑把 $f(P_j)$ 提出来，则需要减去的部分即为：
@@ -96,7 +96,7 @@ $$
 接下来我们考虑求解：
 
 $$
-\sum\limits_{i = 1}^{n} \left[i \not \in \mathbb{P} \right] f(i)
+\sum\limits_{i = 1}^{n} \left[i \not \in P \right] f(i)
 $$
 
 由于 $f$ 在素数处有多项式表示，因此在筛 $g$ 的时候我们可以按每一个幂次分开计算。但是如果把合数也拉进来，就不可以拆开了。因此这一部分中 $f$ 指的就是原方程。
@@ -116,15 +116,15 @@ $$
 现在我们来考虑如何求解 $s(n, 1)$。对 $s$ 进行状态转移的时候，我们可以沿用分类的思想，即把它分成素数处之和和剩余数处之和两部分：
 
 $$
-s(n, j) = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) 
+s(n, j) = \sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] f(i) 
 $$
 
-第一部分我们之前已经解决了，就是 $g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1} f(P_k)$。
+第一部分我们之前已经解决了，就是 $g(n, |P|) - \sum\limits_{k = 1}^{j - 1} f(P_k)$。
 
 对于第二部分，既然是满足 $minp \ge P_j$ 的合数，那么自然可以表示为 ${P_j}^e \cdot t$ 的形式（且满足 ${P_j}^e \perp t$）。与此同时，显然有 $minp(t) \ge P_{j + 1}$。我们可以先枚举最小素因子 $P_k$，然后对其枚举幂次 $e$，然后利用积性函数的性质作如下计算：
 
 $$
-\sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+\sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 $$
 
 最后加上 $f({P_k}^{e + 1})$ 的原因是前面利用积性函数性质的部分无法计算形如 $f(p^k)$ 处的值。
@@ -133,8 +133,8 @@ $$
 
 $$
 \begin{aligned}
-s(n, j) & =  g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
-& + \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+s(n, j) & =  g(n, |P|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
+& + \sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \end{aligned}
 $$
 
@@ -144,7 +144,7 @@ $$
 
 ## 模板
 
-首先可以试试洛谷上的模板题：[Luogu P5325: Min25筛](https://www.luogu.org/problem/P5325)。同时附上 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P5325/min25_sieve.cpp) 以供参考。
+首先可以试试洛谷上的模板题：[Luogu P5325: Min25筛](https://www.luogu.com.cn/problem/P5325)。同时附上 [我的代码](https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P5325/min25_sieve.cpp) 以供参考。
 
 ---
 
@@ -210,13 +210,13 @@ $$
 $$
 \begin{aligned}
 s(n, j) 
-& = \sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] f(i) \\
-& = g(n, |\mathbb{P}|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
-& + \sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+& = \sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i) + \sum\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] f(i) \\
+& = g(n, |P|) - \sum\limits_{k = 1}^{j - 1}f(P_k) \\ 
+& + \sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ f({P_k}^e) \cdot s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 \end{aligned}
 $$
 
-对于第一部分，也就是 $\sum\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]f(i)$，不必对其进行修改。由于我们在筛 $s$ 的时候只会用到 $g(n, |\mathbb{P}|)$，其中只包含素数处的值，因此我们大可将其当作积性函数来筛出 $g$，筛 $g$ 的过程保持和上文一样就行了。
+对于第一部分，也就是 $\sum\limits_{i = P_j + 1}^{n} \left[ i \in P \right]f(i)$，不必对其进行修改。由于我们在筛 $s$ 的时候只会用到 $g(n, |P|)$，其中只包含素数处的值，因此我们大可将其当作积性函数来筛出 $g$，筛 $g$ 的过程保持和上文一样就行了。
 
 对于第二部分，发现本质上要解决的是由 $\sum\limits_{p^e \perp k} f(k)$ 快速得出 $\sum\limits_{p^e \perp k} f(p^e \cdot k)$ 的问题。对于积性函数，有：
 
@@ -237,7 +237,7 @@ $$
 也就是说，第二部分可以改成如下形式：
 
 $$
-\sum\limits_{k = j}^{|\mathbb{P}|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
+\sum\limits_{k = j}^{|P|}\sum\limits_{{P_k}^{e + 1} \le n} \left[ m \cdot f({P_k}^e) +  s(\left\lfloor \frac{n}{{P_k}^{e}} \right\rfloor, k + 1) + f({P_k}^{e + 1}) \right]
 $$
 
 当然，这会让这一部分的复杂度多一个快速幂带来的 $\mathcal{O}(\log{n})$。
@@ -248,7 +248,7 @@ $$
 
 ## 带条件的前缀和？
 
-这也是我自己 YY 的一种应用，不排除有更优秀的做法。对此我也 YY 了一道题：[春燕的板子题](https://www.luogu.org/problem/U87962)（也没有严格验过题，而且由于洛谷私人题库有总时限限制所以可能有点卡常，这只是一个 Proof of concept）。
+这也是我自己 YY 的一种应用，不排除有更优秀的做法。对此我也 YY 了一道题：[春燕的板子题](https://www.luogu.com.cn/problem/U87962)（也没有严格验过题，而且由于洛谷私人题库有总时限限制所以可能有点卡常，这只是一个 Proof of concept）。
 
 本质上我就是把洛谷上的模板题拉过来对所求前缀和加了一个限制 $i$ 余数的条件。更正式地表示即给定 $r, d (r < d \le 6)$，求：
 
@@ -260,7 +260,7 @@ $$
 
 ## 前缀积？
 
-Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：[春燕的数列](https://www.luogu.org/problem/U87823)（没有严格验过题，只是一个 Proof of concept）。
+Min25 筛的思想是否可以应用在非前缀和的地方，比如…… 前缀积？对此我自己 YY 了一道题：[春燕的数列](https://www.luogu.com.cn/problem/U87823)（没有严格验过题，只是一个 Proof of concept）。
 
 由乘法原理，题目本质即求解：
 
@@ -285,7 +285,7 @@ $$
 依然把它拆成素数和非素数部分考虑：
 
 $$
-s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in \mathbb{P} \right]d(i) \cdot \prod\limits_{i = P_j + 1}^{n} \left[i \not \in \mathbb{P} \right] d(i) 
+s(n, j) = \prod\limits_{i = P_j + 1}^{n} \left[ i \in P \right]d(i) \cdot \prod\limits_{i = P_j + 1}^{n} \left[i \not \in P \right] d(i) 
 $$
 
 对于第一部分，由于 $d(p) = 2$，因此第一部分就是 $2^{m}$，其中 $m$ 为对应区间中质数个数。因此我们依然没有必要魔改 $g$，只需要通过 $g$ 筛出质数个数即可。
