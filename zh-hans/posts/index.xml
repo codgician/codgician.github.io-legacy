@@ -3060,34 +3060,136 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 			<pubDate>Sat, 28 Jul 2018 15:15:01 +0800</pubDate>
 			
 			<guid>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</guid>
-			<description>简介 Treap = Tree + Heap。Treap 是一种弱平衡的二叉查找树。 我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够</description>
+			<description>简介 Treap = Tree + Heap。Treap 是一种弱平衡的二叉搜索树。 相较普通的二叉搜索树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，即采取了一些</description>
 			<content type="html"><![CDATA[<h1 id="简介">简介</h1>
-<p><strong>Treap = Tree + Heap</strong>。Treap 是一种<strong>弱平衡</strong>的二叉查找树。</p>
-<p>我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够有效防止前者退化成一条链的情况。平衡二叉树有很多种，比如 AVL、红黑树、SBT、Splay 等等， 而 Treap 是其中相对好写的一种。</p>
-<p>顾名思义，<strong>Treap 通过二叉堆的性质来维护二叉树的平衡</strong>。一个二叉（大根）堆满足这样的性质：一个节点的两个儿子的值都小于节点本身。但是这样的规定看似与二叉搜索树的性质矛盾…… 解决这个问题的办法只有一个 —— 让每个节点有两个键值，其中一个满足二叉堆性质，另一个满足二叉搜索树性质。</p>
-<p>因此，Treap 中的每个节点含有两个键值 $key$ 和 $value$，其中 $key$ 满足二叉堆的性质，而 $value$ 满足二叉搜索树的性质。$value$ 的值我们显然是无法随便改变的（因为它取决于用户输入），因此为了维护平衡性我们只能在 $key$ 上做文章。我们可以考虑给每个节点的 $key$ 都赋上随机值。由于主流的随机数生成算法（比如大素数取模）很难出现完全单调的序列，因此这样一来我们可以保证 Treap “基本平衡“。</p>
-<p>你可能会发现 Treap 和 笛卡尔树 存在很多相似之处。的确，不过这两者最显著的区别是，Treap 的 $key$ 是随机值，而笛卡尔树的不是。</p>
+<p><strong>Treap = Tree + Heap</strong>。Treap 是一种<strong>弱平衡</strong>的二叉搜索树。</p>
+<p>相较普通的二叉搜索树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，即采取了一些措施防止搜索树退化为一条链。严格来说，平衡二叉搜索树要求对于任意节点，左子树和右子树的高度差不可超过 $1$。维护这一性质往往需要各种复杂的旋转，反而可能会带来较大的常数。而弱平衡二叉树虽然不能保证左右子树高度差不超过 $1$，但是可以基本保证树的平衡，难以退化成长链的情况。</p>
+<p><strong>Treap 通过二叉堆的性质来维护二叉树的平衡</strong>。一个二叉（小根）堆满足：一个节点的两个儿子的值都小于节点本身。但是这样的规定与二叉搜索树的性质矛盾…… 为了解决这一问题只好让每个节点包含两个键值，其中随机生成的 $\text{rnd}$ 满足二叉堆性质，而要保存的数据 $\text{value}$ 满足二叉搜索树性质。由于主流的随机数生成算法很难出现完全单调的序列，故以此可以保证 Treap “基本平衡“。</p>
 <h1 id="无旋转的-treap">无旋转的 Treap</h1>
-<h2 id="两个核心函数">两个核心函数</h2>
-<p>一般的 Treap 是带有旋转操作的（正如大部分平衡树一样），而旋转操作的实现往往是我这种蒟蒻的噩梦。而无旋转的 Treap 却喜闻乐见地不通过旋转来维护其平衡性，所以相比普通的 Treap 要好写不少（也暴力不少）。下面我们首先来介绍无旋转 Treap 的两个核心操作：</p>
+<h2 id="节点定义">节点定义</h2>
+<p>根据前面的描述，我们可以如下定义 Treap 中的节点：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Treap</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>      <span class="c1">// 当前节点处的值
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">rnd</span><span class="p">;</span>      <span class="c1">// 随机值
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">siz</span><span class="p">;</span>      <span class="c1">// 以当前节点为根子树的大小
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">son</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>   <span class="c1">// 左右儿子的下标
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="n">Treap</span> <span class="n">trp</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>  <span class="c1">// 内存池
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">trpPt</span><span class="p">;</span>        <span class="c1">// 内存池中第一个空闲节点的下标
+</span></code></pre></div><p>在后文的实现中有一个略微取巧的地方：将 <code>trp[0]</code> 初始化为空节点，因此节点下表应当从 $1$ 开始分配。这样带来的好处是判断节点是否为空的时候更加方便（只需要判断下标是否为 $0$ 就行了）。此外，后文为了让代码更加直观，定义了如下函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/* node(rt): int -&gt; Treap&amp; 获取下标为 rt 的节点信息 */</span>
+<span class="n">Treap</span><span class="o">&amp;</span> <span class="n">node</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">trp</span><span class="p">[</span><span class="n">rt</span><span class="p">];</span> <span class="p">}</span>
+
+<span class="cm">/* lson(rt): int -&gt; Treap&amp; 获取下标为 rt 的左儿子节点信息 */</span>
+<span class="n">Treap</span><span class="o">&amp;</span> <span class="n">lson</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">trp</span><span class="p">[</span><span class="n">trp</span><span class="p">[</span><span class="n">rt</span><span class="p">].</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span> <span class="p">}</span>
+
+<span class="cm">/* rson(rt): int -&gt; Treap&amp; 获取下标为 rt 的右儿子节点信息 */</span>
+<span class="n">Treap</span><span class="o">&amp;</span> <span class="n">rson</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">trp</span><span class="p">[</span><span class="n">trp</span><span class="p">[</span><span class="n">rt</span><span class="p">].</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">]];</span> <span class="p">}</span>
+
+<span class="cm">/* maintain(rt): int -&gt; void 更新以 rt 为根的子树大小 */</span>
+<span class="kt">void</span> <span class="nf">maintain</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span> <span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">siz</span> <span class="o">=</span> <span class="n">lson</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">siz</span> <span class="o">+</span> <span class="n">rson</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">siz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div><h2 id="核心操作">核心操作</h2>
+<p>一般的 Treap 是带有旋转操作的（正如大部分平衡树一样），而无旋转的 Treap 却用巧妙的方式避免了旋转。无旋转 Treap 抽象出了如下两种核心操作：</p>
 <ul>
-<li><strong>merge (A, B)</strong>：合并两棵子树（它们的根节点分别是 $A$ 和 $B$），复杂度 $\mathcal{O}(\log{n})$；</li>
-<li><strong>split (A, k)</strong>：将以 $A$ 为根节点的树分裂为两棵子树：前者包含 $A$ 中的前 $k$ 小的节点（或者是小于 $k$ 的节点），后者包含剩余节点。复杂度 $\mathcal{O}(\log{n})$。</li>
+<li>$\text{merge}(A, B)$：合并两棵子树（它们的根节点分别是 $A$ 和 $B$，并且满足 $A$ 中的所有 $\text{value}$ 均小于 $B$ 中的任意 $\text{value}$），复杂度 $\mathcal{O}(\log{n})$；</li>
+<li>$\text{split}(T, A, B, k)$：将以 $T$ 为根节点的树分裂为分别以 $A, B$ 为根的两棵子树，其中前者包含 $T$ 中的前 $k$ 小的节点（也可以实现为值小于 $k$ 的节点），后者包含剩余节点。复杂度 $\mathcal{O}(\log{n})$。</li>
 </ul>
-<p><strong>注意：合并操作的前提是其中一棵 Treap 上的所有键值（即 $value$）小于另一棵 Treap 上的键值，否则只能启发式合并</strong>！</p>
+<p><strong>注意：合并操作的前提是其中一棵 Treap 上的所有键值（即 $\text{value}$）小于另一棵 Treap 上的键值，否则只能启发式合并</strong>！</p>
 <p>有了这两个操作，我们就可以实现平衡树的大部分功能了。但在此之前，让我们先来看看如何实现这两个核心函数。</p>
 <h3 id="合并">合并</h3>
-<p>我们假设现在维护的是满足<strong>小根堆</strong>性质的 Treap，记将被合并的两棵子树的根节点为 $A$ 和 $B$。</p>
-<p>我们比较 $A$ 和 $B$ 的 $key$，谁的 $key$ 小谁就留在当前位置并成为另一者的祖先（小根堆性质）。我们假设 $A$ 的 $key$ 较小，那么 $A$ 的左子树显然不需要变动了（二叉搜索树性质），所以我们需要把 $A$ 的右子树和 $B$ 合并在一起并将得到的树作为 $A$ 的新右子树。合并完后还需要更新一下以 $A$ 为根子树的大小。</p>
-<h3 id="分裂">分裂</h3>
+<p>我们假设现在维护的是满足<strong>小根堆</strong>性质的 Treap，记将被合并的两棵子树的根节点为 $A$ 和 $B$。我们以分治的思想考虑合并。</p>
+<p>首先我们考虑 $\text{rnd}$ 应满足小根堆性质，故 $A$ 和 $B$ 中 $\text{rnd}$ 较小的点应当成为另一点的祖先。不妨假设 $A.\text{rnd} &lt; B.\text{rnd}$（反之是同理的），则 $A$ 应当成为 $B$ 的祖先。</p>
+<p>接下来考虑 $\text{value}$ 应满足二叉搜索树性质。由于 $A$ 节点原先的左子树中的值一定小于 $B$ 中的值，所以事实上我们只需要合并 $A$ 节点原先的右子树和 $B$。因此我们可以递归下去，也就完成了合并操作。</p>
+<p>当然，最后还需要更新一下新的子树大小。</p>
+<p>参考代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">fstRt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sndRt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fstRt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sndRt</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sndRt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fstRt</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">fstRt</span><span class="p">).</span><span class="n">rnd</span> <span class="o">&lt;</span> <span class="n">node</span><span class="p">(</span><span class="n">sndRt</span><span class="p">).</span><span class="n">rnd</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">node</span><span class="p">(</span><span class="n">fstRt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">fstRt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sndRt</span><span class="p">);</span>
+        <span class="n">maintain</span><span class="p">(</span><span class="n">fstRt</span><span class="p">);</span> 
+        <span class="k">return</span> <span class="n">fstRt</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">node</span><span class="p">(</span><span class="n">sndRt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">fstRt</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">sndRt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="n">maintain</span><span class="p">(</span><span class="n">sndRt</span><span class="p">);</span> 
+        <span class="k">return</span> <span class="n">sndRt</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="分裂">分裂</h3>
 <p>分裂其实有两种方式：</p>
 <ul>
-<li>按排名分裂：前 $k$ 大的数构成一棵子树，剩余的构成另一棵；</li>
+<li>按排名分裂：前 $k$ 小的数构成一棵子树，剩余的构成另一棵；</li>
 <li>按权值分裂：小于等于 $k$ 的数构成一棵子树，剩余的构成另一棵。</li>
 </ul>
-<p>接下来我们主要演示按权值分裂（按排名分裂基本同理）。</p>
-<p>我们考虑到当前点 $cntPt$，我们只需要考虑 $cntPt$ 是需要跟左子树拆成一堆还是跟右子树拆成一堆。如果我们发现当前点的权值小于等于 $k$，那么它和它的左子树都应该被并入小于等于 $k$ 的数构成的子树。接下来，我们还需要在它的右子树中把小于等于 $k$ 的部分拆出来，递归下去。</p>
-<h2 id="运用核心函数">运用核心函数</h2>
+<p>接下来我们主要演示按排名分裂（按权值分裂基本同理），其实现也基于分治思想。</p>
+<p>对于以 $T$ 为根的树，我们首先要考虑根要被拆分到值较小的左子树 $A$ 还是值较大的右子树 $B$ 去。如果当前左子树的大小大于等于 $k$，则说明 $T$ 以及其右子树都是应当被分到 $B$ 中去的。那我们不妨先把 $T$ 当作 $B$。接下来的问题就是要在 $B$ 的中继续分裂出前 $k$ 小的值给 $A$。因此我们递归地调用下去就好了。</p>
+<p>而如果 $T$ 的左子树大小小于 $k$，则说明整个左子树都应该给 $A$。类似地，不妨把 $T$ 当作 $A$，然后递归地在 $A$ 中分裂出前 $k - \text{左子树大小}$ 的值给 $B$ 就好了。</p>
+<p>最后不要忘了需要更新新的子树大小。</p>
+<p>参考代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">split</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">fstRt</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">sndRt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fstRt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sndRt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="n">lson</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">siz</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sndRt</span> <span class="o">=</span> <span class="n">rt</span><span class="p">;</span> 
+        <span class="n">split</span><span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">k</span><span class="p">,</span> <span class="n">fstRt</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">fstRt</span> <span class="o">=</span> <span class="n">rt</span><span class="p">;</span> 
+        <span class="n">split</span><span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">k</span> <span class="o">-</span> <span class="n">lson</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">siz</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sndRt</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">maintain</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><hr>
+<p>对于按权值分裂也是同理的，这里就只给出代码了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">splitByVal</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">fstRt</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">sndRt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fstRt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sndRt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sndRt</span> <span class="o">=</span> <span class="n">rt</span><span class="p">;</span>
+        <span class="n">splitByVal</span><span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">val</span><span class="p">,</span> <span class="n">fstRt</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">fstRt</span> <span class="o">=</span> <span class="n">rt</span><span class="p">;</span>
+        <span class="n">splitByVal</span><span class="p">(</span><span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">val</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">rt</span><span class="p">).</span><span class="n">son</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sndRt</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">maintain</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="这意味着什么">这意味着什么？</h1>
+<h2 id="支持快速插入删除的数组">支持快速插入删除的数组</h2>
+<ul>
+<li>在任意位置 $k$ 插入节点 $V$：
+<ul>
+<li>$\text{split}(T, k, A, B)$;</li>
+<li>$T = \text{merge}(\text{merge}(A, V), B)$;</li>
+</ul>
+</li>
+<li>在任意位置 $k$ 删除节点：
+<ul>
+<li>$\text{split}(T, k - 1, A, B)$;</li>
+<li>$\text{split}(B, 1, _, B)$;</li>
+<li>$T = \text{merge}(A, B)$;</li>
+</ul>
+</li>
+<li>询问位置 $k$ 处节点的值：
+<ul>
+<li>$\text{split}(T, k - 1, A, B)$;</li>
+<li>$\text{split}(B, 1, B, C)$;</li>
+<li>得到了 $B$ 节点的值~</li>
+<li>$\text{merge}(\text{merge}(A, B), C)$;</li>
+</ul>
+</li>
+</ul>
+<p>看起来很有用~ 基本可以代替掉块状链表了。</p>
+<h2 id="平衡树">平衡树</h2>
 <p>我们不妨先直接拉一道家喻户晓的模板题来举个例子：<a href="https://loj.ac/problem/104">普通平衡树 - 题目 - LibreOJ</a>。</p>
 <p>题目中要求我们实现 $6$ 类操作：</p>
 <ol>
@@ -3100,18 +3202,18 @@ F(i, j) = \binom{j + p}{p - 1} ^ i
 </ol>
 <p>下面我们就试着主要靠两个核心函数来解决上述 $6$ 个问题。</p>
 <h3 id="插入">插入</h3>
-<p>首先我们将带插入节点的 $key$ 赋成随机值，然后按 $x$ 将 Treap <strong>split</strong> （按权值分裂） 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$。我们不妨把待插入的 $x$ 看成一棵只含一个节点的 Treap，先将其与 $A$ <strong>merge</strong>，再得到的 Treap 与 $B$ <strong>merge</strong>，就完成插入了。</p>
+<p>首先我们将带插入节点的 $\text{rnd}$ 赋成随机值，然后按 $x$ 将 Treap $\text{split}$ （按权值分裂） 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$。我们不妨把待插入的 $x$ 看成一棵只含一个节点的 Treap，先将其与 $A$ $\text{merge}$，再得到的 Treap 与 $B$ $\text{merge}$，就完成插入了。</p>
 <h3 id="删除">删除</h3>
-<p>与插入类似，首先我们按 $x$ 将 Treap <strong>split</strong> 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$，再将 $A$ <strong>split</strong> 成小于等于 $x - 1$ 的 $C$ 和大于 $x - 1$（即等于 $x$）的 $D$。接下来，我们将 $B$ 和 $C$ <strong>merge</strong> 在一起即可。</p>
-<p>上述操作会把所有等于 $x$ 的数全部删掉。如果题目只要求删掉一个 $x$，可以考虑将 $D$ 的左子树和右子树合并在一起得到 $E$。这样一来就等于舍弃了 $D$ 的根节点，使得 $D$ 中等于 $x$ 的数少了一个。最后再把 $E$ 也 <strong>merge</strong> 进答案。</p>
+<p>与插入类似，首先我们按 $x$ 将 Treap $\text{split}$ 成小于等于 $x$ 的 $A$ 和大于 $x$ 的 $B$，再将 $A$ $\text{split}$ 成小于等于 $x - 1$ 的 $C$ 和大于 $x - 1$（即等于 $x$）的 $D$。接下来，我们将 $B$ 和 $C$ $\text{merge}$ 在一起即可。</p>
+<p>上述操作会把所有等于 $x$ 的数全部删掉。如果题目只要求删掉一个 $x$，可以考虑将 $D$ 的左子树和右子树合并在一起得到 $E$。这样一来就等于舍弃了 $D$ 的根节点，使得 $D$ 中等于 $x$ 的数少了一个。最后再把 $E$ 也 $\text{merge}$ 进答案。</p>
 <h3 id="查询数的排名">查询数的排名</h3>
 <p>实际上就是查询有多少个数比 $x$ 小，然后将结果加 $1$ 即是排名。</p>
-<p>考虑现按 $x - 1$ 将 Treap <strong>split</strong> 成 $A$ 和 $B$，这样一来 $A$ 的大小加上 $1$ 就是我们需要的答案。查询完后再将 $A$ 和 $B$ <strong>merge</strong> 起来恢复原状即可。</p>
+<p>考虑现按 $x - 1$ 将 Treap $\text{split}$ 成 $A$ 和 $B$，这样一来 $A$ 的大小加上 $1$ 就是我们需要的答案。查询完后再将 $A$ 和 $B$ $\text{merge}$ 起来恢复原状即可。</p>
 <h3 id="查询排名对应的数">查询排名对应的数</h3>
-<p>我们只需要实现按排名分裂，就可以跟上面类似直接 <strong>split</strong> 一下就好了。</p>
+<p>我们只需要实现按排名分裂，就可以跟上面类似直接 $\text{split}$ 一下就好了。</p>
 <h3 id="查询前驱或后继">查询前驱或后继</h3>
 <p>这里我们以查询前驱为例（后继完全同理）：</p>
-<p>我们考虑先将 Treap 按 $x - 1$ <strong>split</strong> 成 $A$ 和 $B$，那么 $A$ 树中最大的数（即第 $A.size$ 大）就是我们要查询的答案。借用上面的查询排名对应数的函数即可实现。</p>
+<p>我们考虑先将 Treap 按 $x - 1$ $\text{split}$ 成 $A$ 和 $B$，那么 $A$ 树中最大的数（即第 $A.size$ 大）就是我们要查询的答案。借用上面的查询排名对应数的函数即可实现。</p>
 <h3 id="参考代码">参考代码</h3>
 <p>大家可以看看 <a href="https://github.com/codgician/Competitive-Programming/blob/master/LOJ/104/treap_without_rotations.cpp">我的代码</a> 来对照理解一番~</p>
 <h1 id="heading">%%%</h1>
