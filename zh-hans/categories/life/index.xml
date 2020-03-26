@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life on codgician</title>
+    <link>https://codgician.me/zh-hans/categories/life/</link>
+    <description>Recent content in Life on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 15 Oct 2019 14:28:28 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World... Again!</title>
+      <link>https://codgician.me/zh-hans/posts/2019/10/hello-world/</link>
+      <pubDate>Tue, 15 Oct 2019 14:28:28 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2019/10/hello-world/</guid>
+      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+    </item>
+    
+    <item>
+      <title>ICPC 2018 亚洲区域赛北京站游记</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/icpc-2018-asia-beijing-regional-travel-notes/</link>
+      <pubDate>Mon, 26 Nov 2018 22:58:00 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/icpc-2018-asia-beijing-regional-travel-notes/</guid>
+      <description>Day 0 早早地到达了高铁站…… 北京之行时长竟然有 $4$ 天，真是令人感到舒适…… 前面几天一直在瞎搞各种线段树，包括什么势能线段树 (aka 吉司机线段树)、多 tag</description>
+    </item>
+    
+    <item>
+      <title>ICPC 2018 亚洲区域赛南京站游记</title>
+      <link>https://codgician.me/zh-hans/posts/2018/10/icpc-2018-asia-nanjing-regional-travel-notes/</link>
+      <pubDate>Tue, 16 Oct 2018 22:50:35 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/10/icpc-2018-asia-nanjing-regional-travel-notes/</guid>
+      <description>Day 0 国庆六场模拟赛场场自闭，导致比赛前一周状态不佳。抱着打铁的心态随便整理了一下模板。本来打算当天就整理好并打出来的结果转念一想去南航找复印</description>
+    </item>
+    
+    <item>
+      <title>CCPC 2018 湘潭邀请赛游记</title>
+      <link>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</link>
+      <pubDate>Wed, 16 May 2018 13:19:35 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</guid>
+      <description>Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器</description>
+    </item>
+    
+    <item>
+      <title>CCPC 2018 湘潭邀请赛游记</title>
+      <link>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</link>
+      <pubDate>Wed, 16 May 2018 13:19:35 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</guid>
+      <description>Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器</description>
+    </item>
+    
+  </channel>
+</rss>

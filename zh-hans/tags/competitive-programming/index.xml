@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 13:07:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2020 18:28:27 +0800</lastBuildDate>
     
 	<atom:link href="https://codgician.me/zh-hans/tags/competitive-programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅谈置换群计数</title>
+      <link>https://codgician.me/zh-hans/posts/2020/03/permutation-group/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2020/03/permutation-group/</guid>
+      <description>前言 群论基础 集合论基础 关系 等价关系 等价类 群论基础 群 子群 陪集 拉格朗日定理 置换、置换群 置换 轮换表示法 置换的幂运算 置换群 群在集合上的作用 轨道 稳定子</description>
+    </item>
     
     <item>
       <title>浅谈 Min25 筛</title>
@@ -154,6 +163,15 @@
       
       <guid>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</guid>
       <description>简介 Treap = Tree + Heap。Treap 是一种弱平衡的二叉查找树。 我们知道相较普通的二叉查找树，平衡二叉树与之最显著的区别就是后者是 “平衡的”，能够</description>
+    </item>
+    
+    <item>
+      <title>CCPC 2018 湘潭邀请赛游记</title>
+      <link>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</link>
+      <pubDate>Wed, 16 May 2018 13:19:35 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</guid>
+      <description>Day 0 打印了 Claris 巨佬的模板（虽然看不懂），顺便打印了几个自己整理的常用模板（然而最后全都没用上）。 下午收拾东西，不知道哪里一抽就把小黄兔和蛤乐器</description>
     </item>
     
     <item>

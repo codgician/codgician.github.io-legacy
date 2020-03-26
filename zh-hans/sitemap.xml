@@ -3,8 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://codgician.me/zh-hans/tags/abstract-algebra/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/algorithm/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/burnsides-lemma/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/categories/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/categories/"
+                />
+  </url>
+  
+  <url>
     <loc>https://codgician.me/zh-hans/</loc>
-    <lastmod>2019-12-12T20:29:35+08:00</lastmod>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -15,6 +45,66 @@
                 hreflang="zh-hans"
                 href="https://codgician.me/zh-hans/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/competitive-programming/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/categories/icpc-notes/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/mathematics/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/permutation-group/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/posts/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/posts/2020/03/permutation-group/</loc>
+    <lastmod>2020-03-26T18:28:27+08:00</lastmod>
   </url>
   
   <url>
@@ -88,83 +178,23 @@
   </url>
   
   <url>
-    <loc>https://codgician.me/zh-hans/posts/</loc>
+    <loc>https://codgician.me/zh-hans/categories/life/</loc>
     <lastmod>2019-10-15T14:28:28+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://codgician.me/posts/"
+                href="https://codgician.me/categories/life/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/posts/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/</loc>
-    <lastmod>2019-10-15T14:28:28+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/algorithm/</loc>
-    <lastmod>2019-09-01T13:07:42+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/algorithm/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/algorithm/"
+                href="https://codgician.me/zh-hans/categories/life/"
                 />
   </url>
   
   <url>
     <loc>https://codgician.me/zh-hans/tags/arithmetic-function/</loc>
     <lastmod>2019-09-01T13:07:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/competitive-programming/</loc>
-    <lastmod>2019-09-01T13:07:42+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/competitive-programming/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/competitive-programming/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/mathematics/</loc>
-    <lastmod>2019-09-01T13:07:42+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/mathematics/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/mathematics/"
-                />
   </url>
   
   <url>
@@ -175,21 +205,6 @@
   <url>
     <loc>https://codgician.me/zh-hans/posts/2019/09/min25-sieve/</loc>
     <lastmod>2019-09-01T13:07:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/abstract-algebra/</loc>
-    <lastmod>2019-08-06T13:18:39+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/abstract-algebra/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/abstract-algebra/"
-                />
   </url>
   
   <url>
@@ -219,6 +234,11 @@
   
   <url>
     <loc>https://codgician.me/zh-hans/tags/graph-theory/</loc>
+    <lastmod>2019-02-05T11:20:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/categories/icpc-solutions/</loc>
     <lastmod>2019-02-05T11:20:57+08:00</lastmod>
   </url>
   
@@ -343,6 +363,11 @@
   </url>
   
   <url>
+    <loc>https://codgician.me/zh-hans/posts/2018/05/ccpc-2018-xiangtan-travel-notes/</loc>
+    <lastmod>2018-05-16T13:19:35+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://codgician.me/zh-hans/tags/bipartite-matching/</loc>
     <lastmod>2018-03-09T12:52:01+08:00</lastmod>
   </url>
@@ -383,6 +408,11 @@
   </url>
   
   <url>
+    <loc>https://codgician.me/zh-hans/categories/math/</loc>
+    <lastmod>2017-04-08T20:26:59+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</loc>
     <lastmod>2017-04-08T20:26:59+08:00</lastmod>
   </url>
@@ -395,20 +425,6 @@
   <url>
     <loc>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</loc>
     <lastmod>2017-03-21T16:32:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/categories/"
-                />
   </url>
   
   <url>

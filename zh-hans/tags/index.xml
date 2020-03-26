@@ -7,10 +7,73 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 15 Oct 2019 14:28:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2020 18:28:27 +0800</lastBuildDate>
     
 	<atom:link href="https://codgician.me/zh-hans/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Abstract Algebra</title>
+      <link>https://codgician.me/zh-hans/tags/abstract-algebra/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/abstract-algebra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>https://codgician.me/zh-hans/tags/algorithm/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Burnside&#39;s Lemma</title>
+      <link>https://codgician.me/zh-hans/tags/burnsides-lemma/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/burnsides-lemma/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Competitive Programming</title>
+      <link>https://codgician.me/zh-hans/tags/competitive-programming/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/competitive-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mathematics</title>
+      <link>https://codgician.me/zh-hans/tags/mathematics/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/mathematics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Permutation Group</title>
+      <link>https://codgician.me/zh-hans/tags/permutation-group/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/permutation-group/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pólya Enumeration Theorem</title>
+      <link>https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem/</link>
+      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hello</title>
@@ -18,15 +81,6 @@
       <pubDate>Tue, 15 Oct 2019 14:28:28 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/hello/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Algorithm</title>
-      <link>https://codgician.me/zh-hans/tags/algorithm/</link>
-      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/algorithm/</guid>
       <description></description>
     </item>
     
@@ -40,38 +94,11 @@
     </item>
     
     <item>
-      <title>Competitive Programming</title>
-      <link>https://codgician.me/zh-hans/tags/competitive-programming/</link>
-      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/competitive-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mathematics</title>
-      <link>https://codgician.me/zh-hans/tags/mathematics/</link>
-      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/mathematics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Number Theory</title>
       <link>https://codgician.me/zh-hans/tags/number-theory/</link>
       <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/number-theory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Abstract Algebra</title>
-      <link>https://codgician.me/zh-hans/tags/abstract-algebra/</link>
-      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/abstract-algebra/</guid>
       <description></description>
     </item>
     

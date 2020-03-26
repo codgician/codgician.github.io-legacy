@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on codgician</title>
+    <link>https://codgician.me/zh-hans/categories/math/</link>
+    <description>Recent content in Math on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 08 Apr 2017 20:26:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>高考导数: 洛必达法则</title>
+      <link>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</link>
+      <pubDate>Sat, 08 Apr 2017 20:26:59 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-3/</guid>
+      <description>简介 法则内容 例题赏析 小结 参考文献 简介 分离参数可谓是解决高考导数题目中极为常见的一种基本方法，但很多时候我们却会遇到端点处取值没有意义的情况。</description>
+    </item>
+    
+    <item>
+      <title>高考导数: 优化函数以方便求解</title>
+      <link>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/</link>
+      <pubDate>Sat, 08 Apr 2017 20:21:50 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/04/thoughts-on-senior-3-derivative-problems-2/</guid>
+      <description>简介 真·简介 指数型 (\(e^x\)) 对数型 (\(\ln x\)) 既有对数又有指数？ 小结 参考文献 简介 在进入正题前总是忍不住想先扯点其它的…… 前几周经不住诱惑购入了蔡小雄先生所著</description>
+    </item>
+    
+    <item>
+      <title>高考导数: “两点”问题</title>
+      <link>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</link>
+      <pubDate>Tue, 21 Mar 2017 16:32:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2017/03/thoughts-on-senior-3-derivative-problems-1/</guid>
+      <description>简介 构造新变量 利用零点、极值的定义 利用韦达定理 直接构造新变量 消去旧变量 利用函数单调性 利用新函数的单调性 利用旧函数的单调性 利用韦达定理 小结 4/02 更</description>
+    </item>
+    
+  </channel>
+</rss>
