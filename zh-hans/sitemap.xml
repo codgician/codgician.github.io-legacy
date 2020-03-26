@@ -28,6 +28,21 @@
   </url>
   
   <url>
+    <loc>https://codgician.me/zh-hans/icpc/</loc>
+    <lastmod>2019-12-12T20:29:35+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/icpc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/icpc/"
+                />
+  </url>
+  
+  <url>
     <loc>https://codgician.me/zh-hans/icpc/templates/offline-algorithms/</loc>
     <lastmod>2019-11-18T09:10:17+08:00</lastmod>
   </url>
@@ -105,6 +120,16 @@
   <url>
     <loc>https://codgician.me/zh-hans/tags/algorithm/</loc>
     <lastmod>2019-09-01T13:07:42+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/algorithm/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/algorithm/"
+                />
   </url>
   
   <url>
@@ -115,11 +140,31 @@
   <url>
     <loc>https://codgician.me/zh-hans/tags/competitive-programming/</loc>
     <lastmod>2019-09-01T13:07:42+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/competitive-programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/competitive-programming/"
+                />
   </url>
   
   <url>
     <loc>https://codgician.me/zh-hans/tags/mathematics/</loc>
     <lastmod>2019-09-01T13:07:42+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/mathematics/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/mathematics/"
+                />
   </url>
   
   <url>
@@ -135,6 +180,16 @@
   <url>
     <loc>https://codgician.me/zh-hans/tags/abstract-algebra/</loc>
     <lastmod>2019-08-06T13:18:39+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/abstract-algebra/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/abstract-algebra/"
+                />
   </url>
   
   <url>
@@ -367,20 +422,6 @@
                 rel="alternate"
                 hreflang="zh-hans"
                 href="https://codgician.me/zh-hans/more/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/icpc/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/icpc/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/icpc/"
                 />
   </url>
   

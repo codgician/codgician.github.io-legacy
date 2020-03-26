@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="浅谈 Burnside 引理">
+<meta itemprop="description" content="前言 群论基础 集合论基础 关系 等价关系 等价类 群论基础 群 子群 陪集 拉格朗日定理 置换、置换群 置换 轮换表示法 置换的幂运算 置换群 群在集合上的作用 轨道 稳定子">
+<meta itemprop="datePublished" content="2020-03-26T18:28:27&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-26T18:28:27&#43;08:00" />
+<meta itemprop="wordCount" content="6570">
+<meta itemprop="image" content="https://codgician.me/"/>
+
+
+
+<meta itemprop="keywords" content="Algorithm,Competitive Programming,Mathematics,Abstract Algebra,Permutation Group,Burnside&#39;s Lemma,Polya Enumeration Theorem," /><meta property="og:title" content="浅谈 Burnside 引理" />
+<meta property="og:description" content="前言 群论基础 集合论基础 关系 等价关系 等价类 群论基础 群 子群 陪集 拉格朗日定理 置换、置换群 置换 轮换表示法 置换的幂运算 置换群 群在集合上的作用 轨道 稳定子" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2020/03/burnside-theorem/" />
+<meta property="og:image" content="https://codgician.me/"/>
+<meta property="article:published_time" content="2020-03-26T18:28:27+08:00" />
+<meta property="article:modified_time" content="2020-03-26T18:28:27+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="浅谈 Burnside 引理"/>
+<meta name="twitter:description" content="前言 群论基础 集合论基础 关系 等价关系 等价类 群论基础 群 子群 陪集 拉格朗日定理 置换、置换群 置换 轮换表示法 置换的幂运算 置换群 群在集合上的作用 轨道 稳定子"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>浅谈 Burnside 引理</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.b30187625a7d423c3fce439bfc630ffb0606aaa670b860811f7cbea5cdd3a2ec.css" integrity="sha256-swGHYlp9Qjw/zkOb/GMP+wYGqqZwuGCBH3y+pc3Touw=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 26, 2020</span></div>
+				<h1>浅谈 Burnside 引理</h1>
+			</header>
+			<div class="content">
+				
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#群论基础">群论基础</a>
+<ul>
+<li><a href="#集合论基础">集合论基础</a>
+<ul>
+<li><a href="#关系">关系</a></li>
+<li><a href="#等价关系">等价关系</a></li>
+<li><a href="#等价类">等价类</a></li>
+</ul></li>
+<li><a href="#群论基础-1">群论基础</a>
+<ul>
+<li><a href="#群">群</a></li>
+<li><a href="#子群">子群</a></li>
+<li><a href="#陪集">陪集</a></li>
+<li><a href="#拉格朗日定理">拉格朗日定理</a></li>
+</ul></li>
+<li><a href="#置换置换群">置换、置换群</a>
+<ul>
+<li><a href="#置换">置换</a></li>
+<li><a href="#轮换表示法">轮换表示法</a></li>
+<li><a href="#置换的幂运算">置换的幂运算</a></li>
+<li><a href="#置换群">置换群</a></li>
+</ul></li>
+<li><a href="#群在集合上的作用">群在集合上的作用</a>
+<ul>
+<li><a href="#轨道">轨道</a></li>
+<li><a href="#稳定子">稳定子</a></li>
+<li><a href="#轨道-稳定子定理">轨道-稳定子定理</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#burnside-引理">Burnside 引理</a>
+<ul>
+<li><a href="#内容">内容</a></li>
+<li><a href="#证明">证明</a></li>
+</ul></li>
+<li><a href="#polya-计数法">Polya 计数法</a></li>
+<li><a href="#常见题型">常见题型</a></li>
+</ul>
+</div>
+
+<div id="前言" class="section level1">
+<h1>前言</h1>
+<p>我们先引入一些例子来介绍一下 Burnside 引理常见的应用。</p>
+<p>考虑一个等边三角形玩具，我们要对其顶点用红蓝两种颜色进行染色。由乘法原理，我们知道如果不考虑其他条件染色方案数量为 <span class="math inline">\(2^3 = 8\)</span> 种。但是，我们也意识到，<code>红 - 蓝 - 红</code> 和 <code>红 - 红 - 蓝</code> 本质上对应的是同一种方案，因为后者可以由前者通过旋转得到。因此，本质上不同的染色方案一定是小于 <span class="math inline">\(8\)</span> 种的（事实上只有 <span class="math inline">\(4\)</span> 种）。应对这一类问题，仅靠传统的组合数学是非常难以应对的，而如果引入群论、置换群、置换群在集合上的作用等概念，再结合 Burnside 引理的话，就可以较好地解决这一类”求本质不同染色方案数“的问题。</p>
+<p>另外，Burnside 引理也常被应用于化学上同分异构体种类的计数，大家感兴趣的话也可以了解一下~</p>
+<p>本文大致分为三个部分：第一部分会首先对证明 Burnside 引理所需要的基本抽象代数知识进行介绍；第二部分会引入文章的主题 —— Burnside 引理和基础的 Polya 计数法；最后会浅谈一下 Burnside 引理在算法竞赛中的几类常见题型。同时，本文某种程度上也可以作为之前在集训队内做过的讲座 <a href="https://codgician.me/pgslides">浅谈置换群</a> 的讲义。</p>
+<p>另外，我的水平也有限，所以本文中的部分用语可能不太严谨…… 欢迎大家提出指正 QwQ。</p>
+</div>
+<div id="群论基础" class="section level1">
+<h1>群论基础</h1>
+<div id="集合论基础" class="section level2">
+<h2>集合论基础</h2>
+<div id="关系" class="section level3">
+<h3>关系</h3>
+<p><strong>关系 (relation)</strong> 指集合内部分元素之间的某种关联。比如整数构成的集合内元素间可以存在倍数关系，三角形构成的集合内元素间可以存在相似关系。</p>
+<p>首先回顾集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 的 <strong>笛卡尔积 (Cartesian product)</strong> 定义：</p>
+<p><span class="math display">\[
+A \times B = \left\{ (a, b) \mid a \in A, b \in B \right\}
+\]</span></p>
+<p>可见 <span class="math inline">\(A \times B\)</span> 后得到的是一个由二元组的集合，并且这些二元组的左部来自于集合 <span class="math inline">\(A\)</span>，右部来自于集合 <span class="math inline">\(B\)</span>。</p>
+<p>接下来我们尝试相对严格地定义关系：对于集合 <span class="math inline">\(A\)</span>，集合 <span class="math inline">\(A \times A\)</span> 的每个子集 <span class="math inline">\(R\)</span> 都叫做集合 <span class="math inline">\(A\)</span> 上的一个关系。如果 <span class="math inline">\((a, b) \in R\)</span>，则称 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 有关系 <span class="math inline">\(R\)</span>，记作 <span class="math inline">\(aRb\)</span>。</p>
+</div>
+<div id="等价关系" class="section level3">
+<h3>等价关系</h3>
+<p>等价关系是一类特殊的关系。若集合 <span class="math inline">\(A\)</span> 上的关系 <span class="math inline">\(\sim\)</span> 满足如下条件：</p>
+<ul>
+<li><strong>自反性</strong>：<span class="math inline">\(\forall a \in A\)</span>，<span class="math inline">\(a \sim a\)</span>；</li>
+<li><strong>对称性</strong>：<span class="math inline">\(\forall a, b \in A\)</span>，若 <span class="math inline">\(a \sim b\)</span> 则 <span class="math inline">\(b \sim a\)</span>；</li>
+<li><strong>传递性</strong>：<span class="math inline">\(\forall a, b \in A\)</span>，若 <span class="math inline">\(a \sim b, \ b \sim c\)</span>，则 <span class="math inline">\(a \sim c\)</span>；</li>
+</ul>
+<p>则称 <span class="math inline">\(\sim\)</span> 是<strong>等价关系 (equivalence relation)</strong>。</p>
+<p>前面提到的整除关系并不一定满足对称性、传递性，因此不属于等价关系；而三角形间的相似则满足全部 <span class="math inline">\(3\)</span> 条性质，因此属于等价关系。</p>
+<p>再举一个例子，定义关系 <span class="math inline">\(a \sim b := a \equiv b \pmod 7\)</span>，即若 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 除以 <span class="math inline">\(7\)</span> 所得的余数相等则称 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 间存在关系 <span class="math inline">\(\sim\)</span>，也可以很容易验证自反性、对称性、传递性。</p>
+</div>
+<div id="等价类" class="section level3">
+<h3>等价类</h3>
+<p>我们发现等价关系可以对集合内的元素进行分类：</p>
+<ul>
+<li>依据三角形的相似关系可以对三角形集合进行分类，</li>
+<li>依据模 <span class="math inline">\(7\)</span> 的余数可以把所有自然数分成 <span class="math inline">\(7\)</span> 类。</li>
+</ul>
+<p>设 <span class="math inline">\(\sim\)</span> 是 <span class="math inline">\(A\)</span> 上的等价关系，<span class="math inline">\(\forall a \in A\)</span>，<span class="math inline">\([a]\)</span> 表示 <span class="math inline">\(A\)</span> 中与 <span class="math inline">\(a\)</span> 等价的全部元素构成的集合：</p>
+<p><span class="math display">\[
+[a] = \{ b \sim a \mid b \in A \}
+\]</span></p>
+<p>称 <span class="math inline">\([a]\)</span> 为 <span class="math inline">\(a\)</span> 所在的<strong>等价类 (equivalence class)</strong>。</p>
+<hr />
+<p>我们注意到一个元素似乎只可能属于一个等价类，而不能同时存在于多个等价类内。这也就使得，不同等价类之间的交集必然为空集。</p>
+<p>性质：若 <span class="math inline">\(a, b \in A\)</span> 且 <span class="math inline">\([a] \cap [b] \neq \emptyset\)</span>，则 <span class="math inline">\([a] = [b]\)</span>。</p>
+<p>运用反证法可以证明这一性质：</p>
+<ul>
+<li>假设存在 <span class="math inline">\([a] \neq [b]\)</span> 且 <span class="math inline">\([a] \cap [b] \neq \emptyset\)</span>；</li>
+<li>令 <span class="math inline">\(k_1 \in [a]\)</span> 且 <span class="math inline">\(k_1 \notin [b]\)</span>，<span class="math inline">\(k_2 \in [a] \cap [b]\)</span>；</li>
+<li>则有 <span class="math inline">\(k_1 \sim a, \ k_2 \sim a, \ k_2 \sim b\)</span>；</li>
+<li>由传递性得 <span class="math inline">\(k_1 \sim b\)</span>，与假设不符。</li>
+</ul>
+<p>这启示我们：</p>
+<ul>
+<li><p>集合 <span class="math inline">\(A\)</span> 可看作一些两两不相交的等价类的并：</p>
+<p><span class="math display">\[
+A = \bigcup\limits_{a \in R} [a] \text{（两两不相交之并）}
+\]</span></p>
+<p>其中，式子里的 <span class="math inline">\(R\)</span> 我们称之为完全代表系，由等价类 <span class="math inline">\([a_i]\)</span> 中选出一个元素构成，使得 <span class="math inline">\(A\)</span> 中每个元素都与 <span class="math inline">\(R\)</span> 中的某个元素等价，同时 <span class="math inline">\(R\)</span> 中的元素彼此不等价。</p></li>
+<li><p><span class="math inline">\(A\)</span> 上的每个等价关系给出集合 <span class="math inline">\(A\)</span> 的一个<strong>划分 (partition)</strong>。</p>
+<p>划分的定义：若 <span class="math inline">\(A\)</span> 是它的某些子集 <span class="math inline">\(\{ A_i | i \in I \}\)</span> 之并，且 <span class="math inline">\(A_i\)</span> 两两不交，则称其为集合 <span class="math inline">\(A\)</span> 的一个划分（或分拆）。</p></li>
+</ul>
+<p>我们可以看到，引入等价类的意义就是为了对集合中的元素进行分类。后面要介绍的轨道、陪集等本质上都是基于等价关系的。</p>
+</div>
+</div>
+<div id="群论基础-1" class="section level2">
+<h2>群论基础</h2>
+<div id="群" class="section level3">
+<h3>群</h3>
+<p>设 <span class="math inline">\(G\)</span> 是非空集合，且二元运算 <span class="math inline">\(\cdot\)</span> 满足：</p>
+<ul>
+<li>结合律：<span class="math inline">\((a \cdot b) \cdot c = a \cdot (b \cdot c)\)</span></li>
+<li>单位元 <span class="math inline">\(e\)</span>：<span class="math inline">\(\forall a \in G, \ ea = ae = a\)</span></li>
+<li>逆元：<span class="math inline">\(\forall a \in G, \ \exist b \in G \text{ \ s.t. \ } ab = ba = e\)</span></li>
+</ul>
+<p>则我们称 <span class="math inline">\((G, \cdot)\)</span> 是一个<strong>群 (group)</strong>，有时也简写成 <span class="math inline">\(G\)</span>。</p>
+<p>需要注意的是，群并不要求运算满足交换律。如果运算满足交换律，我们称这样的群为<strong>阿贝尔群 (Abelian group)</strong>，或交换群。另外，若群 <span class="math inline">\(G\)</span> 的大小有限，则成其为<strong>有限群 (finite group)</strong>。</p>
+<hr />
+<p>例如我们在集合 <span class="math inline">\(\mathbb{Z}_7 = [0, 1, 2, 3, 4, 5, 6]\)</span> 上定义模 <span class="math inline">\(7\)</span> 加法，即 <span class="math inline">\(a + b := (a + b) \bmod 7\)</span>。我们来验证一下 <span class="math inline">\((\mathbb{Z}_7, +)\)</span> 是否成群：</p>
+<ul>
+<li>结合律：<span class="math inline">\((a + b) + c = a + (b + c)\)</span>；</li>
+<li>单位元 <span class="math inline">\(e = 0\)</span>：<span class="math inline">\(0 + a = a + 0 = a\)</span>；</li>
+<li>逆元：对于 <span class="math inline">\(a\)</span>，其逆元 <span class="math inline">\(a^{-1} = 7 - a\)</span>；</li>
+</ul>
+<p>所以 <span class="math inline">\((\mathbb{Z}_7, +)\)</span> 成群。</p>
+<hr />
+<p>群有两条非常重要的性质：</p>
+<ul>
+<li><p>左右逆元相等：</p>
+<p>设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(a\)</span> 的左逆元，<span class="math inline">\(y\)</span> 是 <span class="math inline">\(a\)</span> 的右逆元，有：</p>
+<p><span class="math display">\[
+x = xe = x(ay) = (xa)y = y
+\]</span></p></li>
+<li><p>满足消去律：</p>
+<p><span class="math display">\[
+\forall a, b, c \in G, \ ab = ac \Leftrightarrow b = c
+\]</span></p>
+<p>可见，只要逆元存在就存在消去律。</p></li>
+</ul>
+</div>
+<div id="子群" class="section level3">
+<h3>子群</h3>
+<p>设 <span class="math inline">\((G, \cdot)\)</span> 为群，<span class="math inline">\(H\)</span> 是 <span class="math inline">\(G\)</span> 的子集，若 <span class="math inline">\((H, \cdot)\)</span> 成群，则称 <span class="math inline">\(H\)</span> 为 <span class="math inline">\(G\)</span> 的<strong>子群 (subgroup)</strong>，记作 <span class="math inline">\(H \le G\)</span>；</p>
+</div>
+<div id="陪集" class="section level3">
+<h3>陪集</h3>
+<p>前面提到了我们可以通过等价类来对集合进行划分，那么现在我们需要找到一种东西来对群进行划分。基于此，我们引入陪集这一概念。</p>
+<p>设 <span class="math inline">\(H \leq G\)</span>，对于 <span class="math inline">\(x \in G\)</span>：</p>
+<ul>
+<li><span class="math inline">\(H\)</span> 的一个<strong>左陪集 (left coset)</strong> <span class="math inline">\(xH\)</span>：
+<span class="math display">\[
+xH = \{ x \cdot h \mid h \in H \}
+\]</span></li>
+<li><span class="math inline">\(H\)</span> 的一个<strong>右陪集 (right coset)</strong> <span class="math inline">\(Hx\)</span>：
+<span class="math display">\[
+Hx = \{ h \cdot x \mid h \in H \}
+\]</span></li>
+</ul>
+<p>由于左陪集和右陪集是相对类似的，因此接下来我们只讨论左陪集的相关性质。对于右陪集，就请读者自行尝试啦~</p>
+<hr />
+<p>对于 <span class="math inline">\(x, y \in G\)</span>，我们如下定义关系 <span class="math inline">\(\sim\)</span>：</p>
+<p><span class="math display">\[
+x \sim y := x \in yH
+\]</span></p>
+<p>我们会发现这其实是一个等价关系：</p>
+<ul>
+<li><strong>自反性</strong>：<span class="math inline">\(x \in xH\)</span>；</li>
+<li><strong>对称性</strong>：若 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(x \in yH\)</span>；</li>
+<li><strong>传递性</strong>：若 <span class="math inline">\(z \in yH, \ y \in xH\)</span>，则 <span class="math inline">\(z \in xH\)</span>。</li>
+</ul>
+<p>简要说明：</p>
+<ol style="list-style-type: decimal">
+<li><strong>自反性</strong>：既然 <span class="math inline">\(H\)</span> 是群，则 <span class="math inline">\(e \in H\)</span>，故 <span class="math inline">\(x \cdot e = x \in xH\)</span>；</li>
+<li><strong>对称性</strong>：由 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(\exist h \in H \text{ \ s.t. \ } y = x \cdot h\)</span>，即 <span class="math inline">\(x = y \cdot h^{-1}\)</span>。又由 <span class="math inline">\(h^{-1} \in H\)</span>，故 <span class="math inline">\(x \in yH\)</span>；</li>
+<li><strong>传递性</strong>：<span class="math inline">\(z = y \cdot h_1, \ y = x \cdot h_2 \Rightarrow z = x \cdot h_2h_1\)</span>，由 <span class="math inline">\(h_2h_1 \in H\)</span>，故 <span class="math inline">\(z \in xH\)</span>。</li>
+</ol>
+<hr />
+<p>这下子，我们就可以把之前在讨论等价类时得出的一堆结论搬到这里来了：</p>
+<ul>
+<li><p>若 <span class="math inline">\(xH \cap yH \neq \emptyset\)</span>，则 <span class="math inline">\(xH = yH\)</span>；</p></li>
+<li><p>利用陪集可以对群 <span class="math inline">\(G\)</span> 进行划分（陪集分解）：</p>
+<p><span class="math display">\[
+G = \bigcup\limits_{g \in R} gH \text{（两两不相交之并）}
+\]</span></p>
+<p>这里展现了对群 <span class="math inline">\(G\)</span> 的左陪集分解。与之前类似， <span class="math inline">\(R\)</span> 称作 <span class="math inline">\(G\)</span> 对 <span class="math inline">\(H\)</span> 左陪集的代表元系。<span class="math inline">\(R\)</span> 由 <span class="math inline">\(G\)</span> 中的元素构成，并且这些用元素生成的左陪集彼此互不相同，与此同时这些左陪集的并集恰好为 <span class="math inline">\(G\)</span>。</p></li>
+</ul>
+</div>
+<div id="拉格朗日定理" class="section level3">
+<h3>拉格朗日定理</h3>
+<p>对于群 <span class="math inline">\(H \leq G\)</span>（两者均为有限群），<span class="math inline">\(\forall a, b \in H, g \in G\)</span>，由消去律：</p>
+<p><span class="math display">\[
+a \neq b \Leftrightarrow ga \neq gb
+\]</span></p>
+<p>这启示我们，<span class="math inline">\(\forall g \in G\)</span>，<span class="math inline">\(gH\)</span> 内的元素其实和 <span class="math inline">\(H\)</span> 内的元素是一一对应的。因为 <span class="math inline">\(H\)</span> 内不同的元素左乘 <span class="math inline">\(g\)</span> 后并不会变得相等。因此两者大小也是相等的： <span class="math inline">\(|H| = |gH|\)</span>。记 <span class="math inline">\(R\)</span> 为 <span class="math inline">\(H\)</span> 的左陪集代表元系，有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+|G| &amp; = \sum\limits_{g \in R} |gH| \\
+&amp; = \sum\limits_{g \in R} |H| \\
+&amp; = |R| \cdot |H|
+\end{aligned}
+\]</span></p>
+<p>若把 <span class="math inline">\(H\)</span> 的左陪集代表元系的大小 <span class="math inline">\(|R|\)</span> 称作群 <span class="math inline">\(H\)</span> 对于群 <span class="math inline">\(G\)</span> 的<strong>指数 (index)</strong> 并记作 <span class="math inline">\([G : H]\)</span>，我们便得到了抽象代数里的拉格朗日定理：</p>
+<p>设 <span class="math inline">\(G\)</span> 为有限群，<span class="math inline">\(H \leq G\)</span>，则：</p>
+<p><span class="math display">\[
+|G| = [G : H] \cdot |H|
+\]</span></p>
+</div>
+</div>
+<div id="置换置换群" class="section level2">
+<h2>置换、置换群</h2>
+<div id="置换" class="section level3">
+<h3>置换</h3>
+<p>一个集合的<strong>置换 (permutation)</strong> 即从该集合映射至自身的双射。</p>
+<p>例如，对于 <span class="math inline">\([1, 2, \dots n]\)</span> 的置换 <span class="math inline">\(\sigma\)</span> 可记作：</p>
+<p><span class="math display">\[
+\sigma = 
+\left(\begin{array}{c}
+1 &amp; 2 &amp; \dots &amp; n \\
+\sigma(1) &amp; \sigma(2) &amp; \dots &amp; \sigma(n)
+\end{array}\right)
+\]</span></p>
+<p>其含义为，置换将 <span class="math inline">\(1\)</span> 变成 <span class="math inline">\(\sigma(1)\)</span>，<span class="math inline">\(2\)</span> 变成 <span class="math inline">\(\sigma(2)\)</span>…… 依此类推。</p>
+<p>置换之间存在复合运算： <span class="math inline">\((f \circ g)(x) = f(g(x))\)</span>，后文中时常简写为 <span class="math inline">\(f \circ g\)</span>，市场也会称其为置换间的乘法。</p>
+<hr />
+<p>举一个例子：</p>
+<p><span class="math display">\[
+\left(\begin{array}{c} 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\ 
+4 &amp; 5 &amp; 1 &amp; 3 &amp; 6 &amp; 2 
+\end{array}\right)
+\]</span></p>
+<p>我们试着写出其对应的“映射关系链”：</p>
+<p><span class="math display">\[
+\begin{aligned}
+1 &amp; \rightarrow 4 \rightarrow 3 \\
+2 &amp; \rightarrow 5 \rightarrow 6
+\end{aligned}
+\]</span></p>
+<p>任何一个置换都能被划分成若干不交的映射链吗？如果可以的话，这就意味着我们发现了一种能够更简单表示置换的方式 —— 以“映射链”相乘的形式表示置换（也就是马上会讲到的轮换表示法）。</p>
+</div>
+<div id="轮换表示法" class="section level3">
+<h3>轮换表示法</h3>
+<p><span class="math display">\[ 
+\left(\begin{array}{c}
+a_1 &amp; a_2 &amp; \dots &amp; a_n \\
+a_2 &amp; a_3 &amp; \dots &amp; a_1
+\end{array}\right) \xRightarrow{\text{记作}} (a_1 \enspace a_2 \enspace \dots \enspace a_n)
+\]</span></p>
+<p>借助轮换表示法来表示刚才的例子：</p>
+<p><span class="math display">\[
+\left(\begin{array}{c} 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\ 
+4 &amp; 5 &amp; 1 &amp; 3 &amp; 6 &amp; 2 
+\end{array}\right)
+= (1 \enspace 4 \enspace 3) \cdot (2 \enspace 5 \enspace 6)
+\]</span></p>
+<p>这让我们有点联想到了对于整数的质因数分解…… 那么若不计轮换内的次序（即 <span class="math inline">\((a, b, c)\)</span> 和 <span class="math inline">\((b, c, a)\)</span> 当作相同置换）以及轮换间的次序（即 <span class="math inline">\((a, b, c) \cdot (d, e, f)\)</span> 与 <span class="math inline">\((d, e, f) \cdot (a, b, c)\)</span> 当作相同分解方案），对于任意置换的不交轮换分解是唯一的吗？</p>
+<p>Hmm… 显然是唯一的。下面给出一个构造性的说明：</p>
+<ul>
+<li>对于恒等置换，显然分解是唯一的；</li>
+<li>对于非恒等置换，<span class="math inline">\(\exist i \text{ \ s.t. \ } \sigma(i) \neq i\)</span>。
+<ul>
+<li><span class="math inline">\(i \rightarrow \sigma(i) \rightarrow \sigma^2(i) \rightarrow \dots\)</span></li>
+<li>由抽屉原理，<span class="math inline">\(\exist t_1 &lt; t_2 \text{ \ s.t. \ } \sigma^{t_1}(i) = \sigma^{t_2}(i)\)</span></li>
+<li>令 <span class="math inline">\(t\)</span> 为使得 <span class="math inline">\(\sigma^t(i) = i\)</span> 的最小正整数，则：
+<span class="math display">\[
+(i \enspace \sigma(i) \enspace \dots \enspace \sigma^{t - 1}(i))
+\]</span>
+是一个轮换。</li>
+</ul></li>
+<li>对于每个这样的 <span class="math inline">\(i\)</span> 都如此操作即可构造出一个唯一的不相交轮换分解式：
+<ul>
+<li>每个元素在分解式中恰好出现 <span class="math inline">\(1\)</span> 次；</li>
+<li>每个元素所属于的轮换是固定的。</li>
+</ul></li>
+</ul>
+</div>
+<div id="置换的幂运算" class="section level3">
+<h3>置换的幂运算</h3>
+<p>下面我们来讨论如何快速得到置换 <span class="math inline">\(\sigma\)</span> 的 <span class="math inline">\(t\)</span> 次幂 <span class="math inline">\(\sigma^t\)</span>，即与先后作用 <span class="math inline">\(t\)</span> 次 <span class="math inline">\(\sigma\)</span> 置换等价的置换。举几个例子：</p>
+<p><span class="math display">\[
+\begin{aligned}
+(1 \enspace 2 \enspace 3 \enspace 4 \enspace 5 \enspace 6)^2 &amp; = (1 \enspace 3 \enspace 5) \cdot (2 \enspace 4 \enspace 6) \\
+(1 \enspace 2 \enspace 3 \enspace 4 \enspace 5 \enspace 6)^3 &amp; =  (1 \enspace 4) \cdot (2 \enspace 5) \cdot (3 \enspace 6) \\
+(1 \enspace 2 \enspace 3 \enspace 4 \enspace 5 \enspace 6)^4 &amp; = (1 \enspace 5 \enspace 3) \cdot (2 \enspace 6 \enspace 4)
+\end{aligned}
+\]</span></p>
+<p>直接考虑置换的幂并不方便，但由于置换可被分解成若干不相交轮换，我们不妨先看简单一些的情形：求一个轮换的幂次。</p>
+<p><span class="math display">\[
+\sigma = (a_0 \enspace a_1 \enspace \dots \enspace a_{n - 1})
+\]</span></p>
+<p>我们发现：</p>
+<ul>
+<li><span class="math inline">\(\sigma^t(a_i) = a_{[(i + t) \bmod n]}\)</span></li>
+<li>接下来我们来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(i\)</span> 所在的轮换大小：
+<ul>
+<li>令 <span class="math inline">\(k \in N^{*} \text{ \ s.t. \ } \sigma^{tk}(a_i) = a_i\)</span>：</li>
+</ul>
+<span class="math display">\[
+\begin{aligned}
+&amp; i + tk \equiv i \pmod n \\
+&amp; \Rightarrow tk \equiv 0 \pmod n
+\end{aligned}
+\]</span></li>
+</ul>
+<p>最小正整数解：<span class="math inline">\(k = \frac{n}{\gcd(n, t)}\)</span></p>
+<p>这意味着 <span class="math inline">\(\sigma^t\)</span> 可表示为 <span class="math inline">\(\gcd(n, t)\)</span> 个长为 <span class="math inline">\(\frac{n}{\gcd(n, t)}\)</span> 的轮换。</p>
+<p>另外，我们注意到 <span class="math inline">\(a_i\)</span> 所在轮换里第 <span class="math inline">\(j \ (0 \le j &lt; \gcd(n, t) )\)</span> 个元素为 <span class="math inline">\(a_{(i + jt) \bmod n}\)</span>。由于 <span class="math inline">\(i + jt \equiv i \pmod t\)</span> 且 <span class="math inline">\(\gcd(n, t) \mid t\)</span>，有 <span class="math inline">\(i + jt \equiv i \pmod {\gcd(n, t)}\)</span>。这意味着：</p>
+<ul>
+<li><span class="math inline">\(a_i\)</span> 所在轮换内元素下标模 <span class="math inline">\(\gcd(n, t)\)</span> 均为 <span class="math inline">\(i\)</span>；</li>
+<li><span class="math inline">\(a_0, a_1, \dots a_{\gcd(n, t) - 1}\)</span> 一定位于不同轮换。</li>
+</ul>
+<p>这些性质足以让我们快速求得任一长度为 <span class="math inline">\(n\)</span> 的置换的幂次：</p>
+<ul>
+<li>将置换分解为轮换：<span class="math inline">\(\mathcal{O}(n)\)</span>；</li>
+<li>对轮换内的每一个元素应用上述性质以生成结果的轮换分解式：<span class="math inline">\(\mathcal{O}(n)\)</span>；</li>
+<li>还原成置换：<span class="math inline">\(\mathcal{O}(n)\)</span>。</li>
+</ul>
+</div>
+<div id="置换群" class="section level3">
+<h3>置换群</h3>
+<p><span class="math inline">\(n\)</span> 个元的所有置换，在复合运算 <span class="math inline">\(\circ\)</span> 下成群，称作 <span class="math inline">\(n\)</span> 元<strong>对称群 (symmetric group)</strong>，记作 <span class="math inline">\(S_n\)</span></p>
+<ul>
+<li><strong>结合律</strong>：<span class="math inline">\((\sigma \circ \tau) \circ \phi = \sigma \circ (\tau \circ \phi)\)</span></li>
+<li><strong>单位元</strong>：恒等置换 <span class="math inline">\(\epsilon \circ x = x\)</span>；</li>
+<li><strong>逆元</strong>：置换是双射，故必然存在逆置换。</li>
+</ul>
+</div>
+</div>
+<div id="群在集合上的作用" class="section level2">
+<h2>群在集合上的作用</h2>
+<p>群在集合上作用是一个非常重要的概念。考虑如下映射 <span class="math inline">\(\phi\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\phi: G \times M &amp; \longrightarrow M \\
+(\sigma, x) &amp; \longmapsto \sigma \circ x
+\end{aligned}
+\]</span></p>
+<p>若 <span class="math inline">\(\forall x \in M\)</span> 同时满足：
+- <strong>单位元</strong>：<span class="math inline">\(\exist \epsilon \in G \text{ \ s.t. \ }\epsilon \circ x = x\)</span>
+- <strong>结合律</strong>：<span class="math inline">\(\tau \circ (\sigma \circ x) = (\tau \circ \sigma) \circ x\)</span></p>
+<p>则称群 <span class="math inline">\(G\)</span> 在集合 <span class="math inline">\(M\)</span> 上有群作用。</p>
+<p>根据 Cayley 定理，每个群均同构于某个置换群。有了这个前提可能会更好理解群在集合上的作用。但是今天碍于主题，我们主要探讨置换群对于集合的作用。</p>
+<hr />
+<p>为了更加清晰地介绍这一概念，我们再来看看本文开头所举的对等边三角形顶点染色的例子。</p>
+<p>考虑置换群 <span class="math inline">\(G\)</span> 和集合 <span class="math inline">\(M\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+G&amp; = \{ \text{顺时针旋转 } 0^\circ, 120^\circ, 240^\circ \} \\
+M &amp; = \{ \text{不考虑同构时的染色方案} \}
+\end{aligned}
+\]</span></p>
+<p>首先来看看不考虑同构时的所有染色方案：</p>
+<div class="figure">
+<img src="/pgslides/assets/ga-example-2.png" alt="" />
+<p class="caption">不考虑同构时的染色方案</p>
+</div>
+<p>再来看看 <span class="math inline">\(\phi\)</span> 作用下得到的结果：</p>
+<div class="figure">
+<img src="/pgslides/assets/ga-example-3.png" class="plain" style="background:transparent" alt="" />
+<p class="caption"><span class="math inline">\(\phi\)</span> 作用下得到的结果</p>
+</div>
+<p>可以看到，本质上 <span class="math inline">\(\phi\)</span> 作用后是并没有产生新元素的。另外，存在单位置换（旋转 <span class="math inline">\(0^\circ\)</span>）使得它与任何一个染色方案作用都不发生变化；多个旋转作用于染色方案也是满足结合律的。所以在这个例子里 <span class="math inline">\(G\)</span> 对 <span class="math inline">\(M\)</span> 有群作用。</p>
+<p>另外，图中每一列其实都是一个等价类。我们发现实际上不同的等价类只有四种（第 <span class="math inline">\(2, 3, 4\)</span> 列是相同的，第 <span class="math inline">\(5, 6, 7\)</span> 列是相同的）。可见，在旋转群的作用下，本质不同的方案实际上只有 <span class="math inline">\(4\)</span> 种。</p>
+<div class="figure">
+<img src="/pgslides/assets/ga-example-6.png" alt="" />
+<p class="caption">等价类</p>
+</div>
+<div id="轨道" class="section level3">
+<h3>轨道</h3>
+<p>我们把之前图中每一列都称作轨道。换言之，过 <span class="math inline">\(x\)</span> 的轨道就是将 <span class="math inline">\(G\)</span> 种每一个置换分别作用于 <span class="math inline">\(x\)</span> 得到的元素所组成的集合。由于群作用保证了不会产生新元素，因此这个集合是 <span class="math inline">\(M\)</span> 的子集。</p>
+<hr />
+<p>群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> 上，<span class="math inline">\(x \in M\)</span>，称 <span class="math inline">\(M\)</span> 的子集</p>
+<p><span class="math display">\[
+\text{orb}_G(x) = \{ \sigma \circ x \mid \sigma \in G \}
+\]</span></p>
+<p>为 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(G\)</span> 作用下的<strong>轨道 (orbit)</strong>，简称过 <span class="math inline">\(x\)</span> 的轨道。</p>
+</div>
+<div id="稳定子" class="section level3">
+<h3>稳定子</h3>
+<p>另外，我们也发现元素 <span class="math inline">\(x\)</span> 可能在部分置换下所得到的结果依然是 <span class="math inline">\(x\)</span>。我们将这些置换所组成的集合称作群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的稳定子。</p>
+<hr />
+<p>设群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span>，对 <span class="math inline">\(x \in M\)</span>，称</p>
+<p><span class="math display">\[
+\text{stab}_G(x) = \{ \sigma \circ x = x \mid \sigma \in G \}
+\]</span></p>
+<p>为群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的<strong>稳定子 (stabilizer)</strong>。</p>
+<hr />
+<p>我们首先来验证一下 <span class="math inline">\(\text{stab}_G(x)\)</span> 是否为置换群 <span class="math inline">\(G\)</span> 的子群：</p>
+<ul>
+<li><strong>封闭性</strong>：<span class="math inline">\(\forall \sigma, \tau \in \text{stab}_G(x)\)</span>，<span class="math inline">\(\sigma \circ \tau \circ x = \sigma \circ x = x\)</span>，故 <span class="math inline">\((\sigma \circ \tau) \in \text{stab}_G(x)\)</span>；</li>
+<li><strong>结合律</strong>：显然置换的复合满足结合律；</li>
+<li><strong>单位元</strong>：恒等置换 <span class="math inline">\(\epsilon \circ x = x\)</span>；</li>
+<li><strong>逆元</strong>：<span class="math inline">\(\forall \sigma \in \text{stab}_G(x)\)</span>，<span class="math inline">\(\sigma^{-1} \circ x = \sigma^{-1} \circ (\sigma \circ x) = \epsilon(x) = x\)</span>。</li>
+</ul>
+<p>于是我们得到 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>。</p>
+</div>
+<div id="轨道-稳定子定理" class="section level3">
+<h3>轨道-稳定子定理</h3>
+<p>联想之前的陪集划分，既然 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>，我们是否也可用子群 <span class="math inline">\(\text{stab}_G(x)\)</span> 对置换群 <span class="math inline">\(G\)</span> 进行左陪集划分？</p>
+<p><span class="math inline">\(\forall \beta \in G, \ \beta \text{stab}_G(x)\)</span> 里的元素相当于作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中所有与 <span class="math inline">\(\beta\)</span> 等价的置换：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\beta \text{stab}_G(x) 
+&amp; = \{ (\beta \circ \sigma) \circ x = \beta \circ x \mid \sigma \in G \} \\
+&amp; \text{let } \tau = \beta \circ \sigma \\
+&amp; = \{ \tau \circ x = \beta \circ x \mid \tau \in G \}
+\end{aligned}
+\]</span></p>
+<p>由拉格朗日定理，可以得到：</p>
+<p><span class="math display">\[
+|G| = |\text{stab}_G(x)| \cdot [G:\text{stab}_G(x)]
+\]</span></p>
+<p>其中 <span class="math inline">\([G:\text{stab}_G(x)]\)</span> 实际上就是本质不同的陪集个数。</p>
+<p>回忆对于轨道的定义：<span class="math inline">\(\text{orb}_G(x) = \{ \sigma \circ x \mid \sigma \in G \}\)</span> 表示 <span class="math inline">\(G\)</span> 中置换作用于 <span class="math inline">\(x\)</span> 时所能得到的不同结果，其大小等于作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换数。由于每一个陪集内的置换都是等价的，那么轨道数实际上就是本质不同的陪集个数。</p>
+<p>于是我们便得到了<strong>轨道-稳定子定理 (oribt-stabilizer theorem)</strong>。</p>
+<hr />
+<p>设有限群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> ，<span class="math inline">\(x \in M\)</span>，则：</p>
+<p><span class="math display">\[
+|G| = \mid \text{stab}_G(x) \mid \cdot \mid \text{orb}_G(x) \mid
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="burnside-引理" class="section level1">
+<h1>Burnside 引理</h1>
+<div id="内容" class="section level2">
+<h2>内容</h2>
+<p>设有限群 <span class="math inline">\(G\)</span> 作用于有限集 <span class="math inline">\(M\)</span> 上，则轨道数：</p>
+<p><span class="math display">\[
+| M/G | = \frac{1}{|G|} \sum\limits_{\sigma \in G} |\text{fix}(\sigma)|
+\]</span></p>
+<p>其中 <span class="math inline">\(\text{fix}(\sigma)\)</span> 代表 <span class="math inline">\(\sigma\)</span> 的不动元构成的集合：</p>
+<p><span class="math display">\[
+\text{fix}(\sigma) = \{ \sigma \circ x = x \mid x \in M \}
+\]</span></p>
+</div>
+<div id="证明" class="section level2">
+<h2>证明</h2>
+<p>回顾：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{stab}_G(x) &amp; = \{ \sigma \circ x = x \mid \sigma \in G \}\\
+\text{fix}(\sigma) &amp; = \{ \sigma \circ x = x \mid x \in M \}
+\end{aligned}
+\]</span></p>
+<p>首先有一个引理：</p>
+<p><span class="math display">\[
+\sum\limits_{x \in M} \mid \text{stab}_G(x) \mid = \sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+\]</span></p>
+<p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in G, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
+<hr />
+<p>接下来证明 Burnside 引理就很容易了：</p>
+<p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{\mid \text{orb}_G(x) \mid}\)</span>：</p>
+<p><span class="math display">\[
+  \begin{aligned}
+  | M/G | 
+  &amp; = \sum\limits_{x \in M} \frac{1}{ \mid \text{orb}_G(x) \mid } \\
+  &amp; = \sum\limits_{x \in M}\frac{ \mid \text{stab}_G(x) \mid }{ |G| } \text{（轨道-稳定子定理）} \\
+  &amp; = \frac{1}{|G|}\sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+  \end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="polya-计数法" class="section level1">
+<h1>Polya 计数法</h1>
+<p>Burnside 引理启示我们要求轨道数，本质上还是要看不动元的数量之和。那么我们进一步，考虑在没有额外限制的情况下，对于置换 <span class="math inline">\(\sigma\)</span> 什么样的染色方案会称为不动元。</p>
+<p>显然置换 <span class="math inline">\(\sigma\)</span> 可以被分解成若干个轮换，如：</p>
+<p><span class="math display">\[
+\sigma = (a_0 \enspace \dots \enspace a_t) \cdot (b_0 \enspace \dots \enspace b_s) \cdot \dots
+\]</span></p>
+<p>显然，若要成为不动元，每个轮换内的元素颜色应当相同。这样才能保证应用一次置换后，每一个点所变成新点的颜色依然与原来一致。</p>
+<p>这样一来，不动元数量之和其实就只与 <span class="math inline">\(\sigma\)</span> 所能被分解成的轮换个数相关了。记染色可选的颜色数为 <span class="math inline">\(m\)</span>， <span class="math inline">\(c(\sigma)\)</span> 为置换 <span class="math inline">\(\sigma\)</span> 被分解为不交轮换乘积的个数，则由乘法原理：</p>
+<p><span class="math display">\[
+\text{fix}(\sigma) = m^{c(\sigma)}
+\]</span></p>
+<p>故：</p>
+<p><span class="math display">\[
+| M/G | = \frac{1}{|G|} \sum\limits_{\sigma \in G} m^{c(\sigma)}
+\]</span></p>
+<p>这就是算法竞赛中常见的 Polya 计数法。</p>
+</div>
+<div id="常见题型" class="section level1">
+<h1>常见题型</h1>
+<p>Hmm… 感觉这一部分的当时<a href="https://codgician.me/pgslides/">幻灯片</a>说的还是比较清楚的，这里就不额外补充了（犯懒qwq）……</p>
+<ul>
+<li><a href="https://codgician.me/pgslides/#/coloring-necklace">项链染色</a> | <a href="https://www.luogu.com.cn/problem/P4980">洛谷 P4980：Polya定理</a>（这道题里只有旋转）| <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4980/polya_enumeration_theorem.cpp">参考代码</a></li>
+<li><a href="https://codgician.me/pgslides/#/icpc-2019-nanchang-j">带限制的项链染色</a> | <a href="https://nanti.jisuanke.com/t/42585">ICPC 2019 南昌 J: Summon</a> | <a href="https://github.com/codgician/Competitive-Programming/blob/master/Jisuanke/42585/burnside_theorem_dp_matrix_fast_pow.cpp">参考代码</a></li>
+<li><a href="https://codgician.me/pgslides/#/coloring-undirected-graph">无向图染色</a> | <a href="https://www.luogu.com.cn/problem/P4128">SHOI 2006: 有色图</a> | <a href="https://github.com/codgician/Competitive-Programming/blob/master/Luogu/P4128/polya_enumeration_theorem.cpp">参考代码</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/abstract-algebra">Abstract Algebra</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/permutation-group">Permutation Group</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/burnsides-lemma">Burnside&#39;s Lemma</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/polya-enumeration-theorem">Polya Enumeration Theorem</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6570 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-03-26 18:28 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2019/10/hello-world/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Hello World... Again!</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script async src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="72"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>

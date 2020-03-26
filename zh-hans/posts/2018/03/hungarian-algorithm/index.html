@@ -81,8 +81,7 @@
 			</header>
 			<div class="content">
 				
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<script src="/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js"></script>
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -195,7 +194,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p><strong>二分图 (Bipartite graph)</strong> 是一种特殊的简单图，它的顶点可以被分为两个不相交的集合（<span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span>），并且同属一个集合的点两两不相连 (<span class="math inline">\(E_U = E_V = \varnothing\)</span>)。也就是说，如果一个图是二分图，它要么没有圈 (cycle)，要么所有圈包含边的个数均为偶数。</p>
 <p>例如，下图 <code>Fig.1</code> 就是一个二分图。但是为了方便，我们通常将其画作 <code>Fig.2</code> 的样子。</p>
 <div class="figure">
-<img src="/posts/hungarian-algorithm/fig-1-to-2.png" alt="" />
+<img src="/posts/icpc-notes/hungarian-algorithm/fig-1-to-2.png" alt="" />
 <p class="caption">Fig.1 &amp;&amp; 2</p>
 </div>
 <p>那么我们如何使用算法来判定二分图呢？</p>
@@ -208,7 +207,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>显而易见，对于一个二分图来说，可能会有很多种匹配。如果某二分图的某一个匹配包含的边的数量在该二分图所有匹配中最大，那么称这个匹配为<strong>最大匹配</strong>。例如，下图 <code>Fig.4</code> 就是 <code>Fig.2</code> 的最大匹配。</p>
 <p>相似地，如果这个二分图带权，那么权值之和最大的匹配被称作<strong>最大权匹配</strong>。</p>
 <div class="figure">
-<img src="/posts/hungarian-algorithm/fig-3-to-4.png" alt="" />
+<img src="/posts/icpc-notes/hungarian-algorithm/fig-3-to-4.png" alt="" />
 <p class="caption">Fig.3 &amp;&amp; 4</p>
 </div>
 </div>
@@ -217,7 +216,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p><strong>增广路径 (Augmenting Path)</strong> 是一条连通两个未匹配点，且非匹配边和匹配边在其上交替出现的路径。</p>
 <p>例如，下图 <code>Fig.6</code> 就是 <code>Fig.5</code> 的一条增广路径。</p>
 <div class="figure">
-<img src="/posts/hungarian-algorithm/fig-5-to-6.png" alt="" />
+<img src="/posts/icpc-notes/hungarian-algorithm/fig-5-to-6.png" alt="" />
 <p class="caption">Fig.5 &amp;&amp; 6</p>
 </div>
 <p>我个人认为增广路径应该理解为<strong>某种还可以进一步优化的路径</strong>，因此在不同的问题中增广路径应该有不同的具体定义。例如上面提到的这种路径，如果把非匹配边和匹配边交换就可以增加一条匹配边（也就是说，这种路径不是最优的，是仍然可以增广的）。</p>
@@ -245,7 +244,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <hr />
 <p>下面我们举一个例子来演示匈牙利算法的大致过程（请配合图片下方的一段文字说明食用）：</p>
 <div class="figure">
-<img src="/posts/hungarian-algorithm/hungarian-unweighted-demo.png" alt="" />
+<img src="/posts/icpc-notes/hungarian-algorithm/hungarian-unweighted-demo.png" alt="" />
 <p class="caption">匈牙利算法样例</p>
 </div>
 <p>首先，我们从左1出发，找到右1，发现这两点可以匹配（满足条件1）。至此，我们找到了一条增广路径。在回溯时，我们将这条未匹配边标记为匹配边（见图2）。</p>
@@ -320,7 +319,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>我们不难发现，这棵树的根是一个左部节点，所有的叶子节点也是左部节点（因为最终匹配失败），并且树上的奇数层边均为非匹配边，偶数层边均为匹配边。因此我们把这棵树称作<strong>交错树</strong>。</p>
 <p>为了方便理解，下面简单举个例子：</p>
 <div class="figure">
-<img src="/posts/hungarian-algorithm/alternating-tree-demo.png" alt="" />
+<img src="/posts/icpc-notes/hungarian-algorithm/alternating-tree-demo.png" alt="" />
 <p class="caption">交错树样例</p>
 </div>
 </div>
@@ -581,7 +580,7 @@ A_i + B_j = w(i, j)
 <ul>
 <li>李煜东 - 《算法竞赛进阶指南》</li>
 <li>Renfei Song - <a href="https://www.renfei.org/blog/bipartite-matching.html">二分图的最大匹配、完美匹配和匈牙利算法</a></li>
-<li>liam0205 - <a href="https://liam0205.me/2016/04/03/Hungarian-algorithm-in-the-maximum-matching-problem-of-bigraph/">二分图最大匹配问题与匈牙利算法的核心思想</a></li>
+<li>liam0205 - <a href="https://liam0205.me/2016/04/03/icpc-notes/hungarian-algorithm-in-the-maximum-matching-problem-of-bigraph/">二分图最大匹配问题与匈牙利算法的核心思想</a></li>
 <li>Dark_Scope - <a href="http://blog.csdn.net/dark_scope/article/details/8880547">趣写算法系列之–匈牙利算法</a></li>
 <li>SixDayCoder - <a href="http://blog.csdn.net/sixdaycoder/article/details/47720471">二分图的最佳完美匹配——KM算法</a></li>
 <li>伊甸一点 - <a href="https://www.cnblogs.com/zpfbuaa/p/7218607.html">我的KM算法详解</a></li>
