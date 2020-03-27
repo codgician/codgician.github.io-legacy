@@ -363,9 +363,11 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 (\sigma, x) &amp; \longmapsto \sigma \circ x
 \end{aligned}
 \]</span></p>
-<p>若 <span class="math inline">\(\forall x \in M\)</span> 同时满足：
-- <strong>单位元</strong>：<span class="math inline">\(\exist \epsilon \in G \text{ \ s.t. \ }\epsilon \circ x = x\)</span>
-- <strong>结合律</strong>：<span class="math inline">\(\tau \circ (\sigma \circ x) = (\tau \circ \sigma) \circ x\)</span></p>
+<p>若 <span class="math inline">\(\forall x \in M\)</span> 同时满足：</p>
+<ul>
+<li><strong>单位元</strong>：<span class="math inline">\(\exist \epsilon \in G \text{ \ s.t. \ }\epsilon \circ x = x\)</span></li>
+<li><strong>结合律</strong>：<span class="math inline">\(\tau \circ (\sigma \circ x) = (\tau \circ \sigma) \circ x\)</span></li>
+</ul>
 <p>则称群 <span class="math inline">\(G\)</span> 在集合 <span class="math inline">\(M\)</span> 上有群作用。</p>
 <p>根据 Cayley 定理，每个群均同构于某个置换群。有了这个前提可能会更好理解群在集合上的作用。但是今天碍于主题，我们主要探讨置换群对于集合的作用。</p>
 <hr />
@@ -444,7 +446,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <hr />
 <p>设有限群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> ，<span class="math inline">\(x \in M\)</span>，则：</p>
 <p><span class="math display">\[
-|G| = \mid \text{stab}_G(x) \mid \cdot \mid \text{orb}_G(x) \mid
+|G| = |\text{stab}_G(x)| \cdot |\text{orb}_G(x)|
 \]</span></p>
 </div>
 </div>
@@ -473,18 +475,18 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>首先有一个引理：</p>
 <p><span class="math display">\[
-\sum\limits_{x \in M} \mid \text{stab}_G(x) \mid = \sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+\sum\limits_{x \in M} | \text{stab}_G(x) | = \sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
 \]</span></p>
 <p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in G, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
 <hr />
 <p>接下来证明 Burnside 引理就很容易了：</p>
-<p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{\mid \text{orb}_G(x) \mid}\)</span>：</p>
+<p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{| \text{orb}_G(x) |}\)</span>：</p>
 <p><span class="math display">\[
   \begin{aligned}
   | M/G | 
-  &amp; = \sum\limits_{x \in M} \frac{1}{ \mid \text{orb}_G(x) \mid } \\
-  &amp; = \sum\limits_{x \in M}\frac{ \mid \text{stab}_G(x) \mid }{ |G| } \text{（轨道-稳定子定理）} \\
-  &amp; = \frac{1}{|G|}\sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+  &amp; = \sum\limits_{x \in M} \frac{1}{ | \text{orb}_G(x) | } \\
+  &amp; = \sum\limits_{x \in M}\frac{ | \text{stab}_G(x) | }{ |G| } \text{（轨道-稳定子定理）} \\
+  &amp; = \frac{1}{|G|}\sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
   \end{aligned}
 \]</span></p>
 </div>

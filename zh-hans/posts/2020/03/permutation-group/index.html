@@ -11,7 +11,7 @@
 <meta itemprop="description" content="前言 群论基础 集合论基础 关系 等价关系 等价类 群论基础 群 子群 陪集 拉格朗日定理 置换、置换群 置换 轮换表示法 置换的幂运算 置换群 群在集合上的作用 轨道 稳定子">
 <meta itemprop="datePublished" content="2020-03-26T18:28:27&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-26T18:28:27&#43;08:00" />
-<meta itemprop="wordCount" content="6586">
+<meta itemprop="wordCount" content="6577">
 <meta itemprop="image" content="https://codgician.me/"/>
 
 
@@ -427,9 +427,11 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 (\sigma, x) &amp; \longmapsto \sigma \circ x
 \end{aligned}
 \]</span></p>
-<p>若 <span class="math inline">\(\forall x \in M\)</span> 同时满足：
-- <strong>单位元</strong>：<span class="math inline">\(\exist \epsilon \in G \text{ \ s.t. \ }\epsilon \circ x = x\)</span>
-- <strong>结合律</strong>：<span class="math inline">\(\tau \circ (\sigma \circ x) = (\tau \circ \sigma) \circ x\)</span></p>
+<p>若 <span class="math inline">\(\forall x \in M\)</span> 同时满足：</p>
+<ul>
+<li><strong>单位元</strong>：<span class="math inline">\(\exist \epsilon \in G \text{ \ s.t. \ }\epsilon \circ x = x\)</span></li>
+<li><strong>结合律</strong>：<span class="math inline">\(\tau \circ (\sigma \circ x) = (\tau \circ \sigma) \circ x\)</span></li>
+</ul>
 <p>则称群 <span class="math inline">\(G\)</span> 在集合 <span class="math inline">\(M\)</span> 上有群作用。</p>
 <p>根据 Cayley 定理，每个群均同构于某个置换群。有了这个前提可能会更好理解群在集合上的作用。但是今天碍于主题，我们主要探讨置换群对于集合的作用。</p>
 <hr />
@@ -508,7 +510,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <hr />
 <p>设有限群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> ，<span class="math inline">\(x \in M\)</span>，则：</p>
 <p><span class="math display">\[
-|G| = \mid \text{stab}_G(x) \mid \cdot \mid \text{orb}_G(x) \mid
+|G| = |\text{stab}_G(x)| \cdot |\text{orb}_G(x)|
 \]</span></p>
 </div>
 </div>
@@ -537,18 +539,18 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>首先有一个引理：</p>
 <p><span class="math display">\[
-\sum\limits_{x \in M} \mid \text{stab}_G(x) \mid = \sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+\sum\limits_{x \in M} | \text{stab}_G(x) | = \sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
 \]</span></p>
 <p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in G, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
 <hr />
 <p>接下来证明 Burnside 引理就很容易了：</p>
-<p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{\mid \text{orb}_G(x) \mid}\)</span>：</p>
+<p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{| \text{orb}_G(x) |}\)</span>：</p>
 <p><span class="math display">\[
   \begin{aligned}
   | M/G | 
-  &amp; = \sum\limits_{x \in M} \frac{1}{ \mid \text{orb}_G(x) \mid } \\
-  &amp; = \sum\limits_{x \in M}\frac{ \mid \text{stab}_G(x) \mid }{ |G| } \text{（轨道-稳定子定理）} \\
-  &amp; = \frac{1}{|G|}\sum\limits_{\sigma \in G} \mid \text{fix}(\sigma) \mid
+  &amp; = \sum\limits_{x \in M} \frac{1}{ | \text{orb}_G(x) | } \\
+  &amp; = \sum\limits_{x \in M}\frac{ | \text{stab}_G(x) | }{ |G| } \text{（轨道-稳定子定理）} \\
+  &amp; = \frac{1}{|G|}\sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
   \end{aligned}
 \]</span></p>
 </div>
@@ -587,7 +589,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/algorithm">Algorithm</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/competitive-programming">Competitive Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/abstract-algebra">Abstract Algebra</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/permutation-group">Permutation Group</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/burnsides-lemma">Burnside&#39;s Lemma</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem">Pólya Enumeration Theorem</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6586 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6577 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-03-26 18:28 &#43;0800</p>
 			</footer>
 		</article>
