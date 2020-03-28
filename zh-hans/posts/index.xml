@@ -147,7 +147,7 @@ A = \bigcup\limits_{a \in R} [a] \text{（两两不相交之并）}
 <ul>
 <li>结合律：<span class="math inline">\((a + b) + c = a + (b + c)\)</span>；</li>
 <li>单位元 <span class="math inline">\(e = 0\)</span>：<span class="math inline">\(0 + a = a + 0 = a\)</span>；</li>
-<li>逆元：对于 <span class="math inline">\(a\)</span>，其逆元 <span class="math inline">\(a^{-1} = 7 - a\)</span>；</li>
+<li>逆元：对于 <span class="math inline">\(a\)</span>，其逆元 <span class="math inline">\(a^{-1} = (7 - a) \bmod 7\)</span>；</li>
 </ul>
 <p>所以 <span class="math inline">\((\mathbb{Z}_7, +)\)</span> 成群。</p>
 <hr />
@@ -316,20 +316,18 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 <p><span class="math display">\[
 \sigma = (a_0 \enspace a_1 \enspace \dots \enspace a_{n - 1})
 \]</span></p>
-<p>我们发现：</p>
-<ul>
-<li><span class="math inline">\(\sigma^t(a_i) = a_{[(i + t) \bmod n]}\)</span></li>
-<li>接下来我们来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(i\)</span> 所在的轮换大小：
-<ul>
-<li>令 <span class="math inline">\(k \in N^{*} \text{ \ s.t. \ } \sigma^{tk}(a_i) = a_i\)</span>：</li>
-</ul>
-<span class="math display">\[
+<p>首先根据轮换的定义，不难发现：</p>
+<p><span class="math display">\[
+$\sigma^t(a_i) = a_{[(i + t) \bmod n]}$
+\]</span></p>
+<p>接下来我们来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(a_i\)</span> 所在的轮换大小，实际上也就是 <span class="math inline">\(a_i\)</span> 所在“映射链”的长度。我们只需要求得最小正整数的 <span class="math inline">\(k\)</span>，使得 <span class="math inline">\(\sigma\)</span> 作用于 <span class="math inline">\(a_i\)</span> <span class="math inline">\(k\)</span> 次后能够回到 <span class="math inline">\(a_i\)</span>（也就是找到周期），就能够知道其所在的映射链的长度了。</p>
+<p>令 <span class="math inline">\(k \in N^{*} \text{ \ s.t. \ } \sigma^{tk}(a_i) = a_i\)</span>：</p>
+<p><span class="math display">\[
 \begin{aligned}
 &amp; i + tk \equiv i \pmod n \\
 &amp; \Rightarrow tk \equiv 0 \pmod n
 \end{aligned}
-\]</span></li>
-</ul>
+\]</span></p>
 <p>最小正整数解：<span class="math inline">\(k = \frac{n}{\gcd(n, t)}\)</span></p>
 <p>这意味着 <span class="math inline">\(\sigma^t\)</span> 可表示为 <span class="math inline">\(\gcd(n, t)\)</span> 个长为 <span class="math inline">\(\frac{n}{\gcd(n, t)}\)</span> 的轮换。</p>
 <p>另外，我们注意到 <span class="math inline">\(a_i\)</span> 所在轮换里第 <span class="math inline">\(j \ (0 \le j &lt; \gcd(n, t) )\)</span> 个元素为 <span class="math inline">\(a_{(i + jt) \bmod n}\)</span>。由于 <span class="math inline">\(i + jt \equiv i \pmod t\)</span> 且 <span class="math inline">\(\gcd(n, t) \mid t\)</span>，有 <span class="math inline">\(i + jt \equiv i \pmod {\gcd(n, t)}\)</span>。这意味着：</p>
@@ -477,7 +475,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p><span class="math display">\[
 \sum\limits_{x \in M} | \text{stab}_G(x) | = \sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
 \]</span></p>
-<p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in G, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
+<p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in M, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
 <hr />
 <p>接下来证明 Burnside 引理就很容易了：</p>
 <p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{| \text{orb}_G(x) |}\)</span>：</p>
