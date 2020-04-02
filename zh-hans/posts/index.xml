@@ -218,7 +218,9 @@ G = \bigcup\limits_{g \in R} gH \text{（两两不相交之并）}
 <p><span class="math display">\[
 a \neq b \Leftrightarrow ga \neq gb
 \]</span></p>
-<p>这启示我们，<span class="math inline">\(\forall g \in G\)</span>，<span class="math inline">\(gH\)</span> 内的元素其实和 <span class="math inline">\(H\)</span> 内的元素是一一对应的。因为 <span class="math inline">\(H\)</span> 内不同的元素左乘 <span class="math inline">\(g\)</span> 后并不会变得相等。因此两者大小也是相等的： <span class="math inline">\(|H| = |gH|\)</span>。记 <span class="math inline">\(R\)</span> 为 <span class="math inline">\(H\)</span> 的左陪集代表元系，有：</p>
+<p>这启示我们，<span class="math inline">\(\forall g \in G\)</span>，<span class="math inline">\(gH\)</span> 内的元素其实和 <span class="math inline">\(H\)</span> 内的元素是一一对应的。因为 <span class="math inline">\(H\)</span> 内不同的元素左乘 <span class="math inline">\(g\)</span> 后并不会变得相等。因此两者大小也是相等的： <span class="math inline">\(|H| = |gH|\)</span>。</p>
+<p>这也意味着群 <span class="math inline">\(G\)</span> 对子群 <span class="math inline">\(H\)</span> 的所有陪集的大小都是相等的，并且都等于 <span class="math inline">\(|H|\)</span>。</p>
+<p>记 <span class="math inline">\(R\)</span> 为 <span class="math inline">\(H\)</span> 的左陪集代表元系，有：</p>
 <p><span class="math display">\[
 \begin{aligned}
 |G| &amp; = \sum\limits_{g \in R} |gH| \\
@@ -318,7 +320,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 \]</span></p>
 <p>首先根据轮换的定义，不难发现：</p>
 <p><span class="math display">\[
-$\sigma^t(a_i) = a_{[(i + t) \bmod n]}$
+\sigma^t(a_i) = a_{[(i + t) \bmod n]}
 \]</span></p>
 <p>接下来我们来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(a_i\)</span> 所在的轮换大小，实际上也就是 <span class="math inline">\(a_i\)</span> 所在“映射链”的长度。我们只需要求得最小正整数的 <span class="math inline">\(k\)</span>，使得 <span class="math inline">\(\sigma\)</span> 作用于 <span class="math inline">\(a_i\)</span> <span class="math inline">\(k\)</span> 次后能够回到 <span class="math inline">\(a_i\)</span>（也就是找到周期），就能够知道其所在的映射链的长度了。</p>
 <p>令 <span class="math inline">\(k \in N^{*} \text{ \ s.t. \ } \sigma^{tk}(a_i) = a_i\)</span>：</p>
@@ -395,13 +397,15 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 </div>
 <div id="轨道" class="section level3">
 <h3>轨道</h3>
-<p>我们把之前图中每一列都称作轨道。换言之，过 <span class="math inline">\(x\)</span> 的轨道就是将 <span class="math inline">\(G\)</span> 种每一个置换分别作用于 <span class="math inline">\(x\)</span> 得到的元素所组成的集合。由于群作用保证了不会产生新元素，因此这个集合是 <span class="math inline">\(M\)</span> 的子集。</p>
+<p>我们把之前图中每一列都称作<strong>轨道</strong>。换言之，过 <span class="math inline">\(x\)</span> 的轨道就是将 <span class="math inline">\(G\)</span> 种每一个置换分别作用于 <span class="math inline">\(x\)</span> 得到的元素所组成的集合。由于群作用保证了不会产生新元素，因此这个集合是 <span class="math inline">\(M\)</span> 的子集。</p>
 <hr />
 <p>群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> 上，<span class="math inline">\(x \in M\)</span>，称 <span class="math inline">\(M\)</span> 的子集</p>
 <p><span class="math display">\[
 \text{orb}_G(x) = \{ \sigma \circ x \mid \sigma \in G \}
 \]</span></p>
 <p>为 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(G\)</span> 作用下的<strong>轨道 (orbit)</strong>，简称过 <span class="math inline">\(x\)</span> 的轨道。</p>
+<hr />
+<p>更进一步，如果 <span class="math inline">\(G\)</span> 中两个不同的置换 <span class="math inline">\(\sigma, \tau\)</span> 作用于 <span class="math inline">\(x\)</span> 后的结果是相同的，我们可以认为 <span class="math inline">\(\sigma, \tau\)</span> 在仅考虑作用于 <span class="math inline">\(x\)</span> 时是两个等价的置换。由此，<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数。</p>
 </div>
 <div id="稳定子" class="section level3">
 <h3>稳定子</h3>
@@ -409,11 +413,11 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <hr />
 <p>设群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span>，对 <span class="math inline">\(x \in M\)</span>，称</p>
 <p><span class="math display">\[
-\text{stab}_G(x) = \{ \sigma \circ x = x \mid \sigma \in G \}
+\text{stab}_G(x) = \{ \sigma \mid \sigma \in G, \sigma \circ x = x \}
 \]</span></p>
 <p>为群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的<strong>稳定子 (stabilizer)</strong>。</p>
 <hr />
-<p>我们首先来验证一下 <span class="math inline">\(\text{stab}_G(x)\)</span> 是否为置换群 <span class="math inline">\(G\)</span> 的子群：</p>
+<p>我们发现 <span class="math inline">\(\text{stab}_G(x)\)</span> 其实是置换群 <span class="math inline">\(G\)</span> 的子群：</p>
 <ul>
 <li><strong>封闭性</strong>：<span class="math inline">\(\forall \sigma, \tau \in \text{stab}_G(x)\)</span>，<span class="math inline">\(\sigma \circ \tau \circ x = \sigma \circ x = x\)</span>，故 <span class="math inline">\((\sigma \circ \tau) \in \text{stab}_G(x)\)</span>；</li>
 <li><strong>结合律</strong>：显然置换的复合满足结合律；</li>
@@ -434,13 +438,15 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 &amp; = \{ \tau \circ x = \beta \circ x \mid \tau \in G \}
 \end{aligned}
 \]</span></p>
-<p>由拉格朗日定理，可以得到：</p>
+<p>由拉格朗日定理：</p>
 <p><span class="math display">\[
 |G| = |\text{stab}_G(x)| \cdot [G:\text{stab}_G(x)]
 \]</span></p>
-<p>其中 <span class="math inline">\([G:\text{stab}_G(x)]\)</span> 实际上就是本质不同的陪集个数。</p>
-<p>回忆对于轨道的定义：<span class="math inline">\(\text{orb}_G(x) = \{ \sigma \circ x \mid \sigma \in G \}\)</span> 表示 <span class="math inline">\(G\)</span> 中置换作用于 <span class="math inline">\(x\)</span> 时所能得到的不同结果，其大小等于作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换数。由于每一个陪集内的置换都是等价的，那么轨道数实际上就是本质不同的陪集个数。</p>
-<p>于是我们便得到了<strong>轨道-稳定子定理 (oribt-stabilizer theorem)</strong>。</p>
+<p><span class="math inline">\([G:\text{stab}_G(x)]\)</span> 实际上就是本质不同的陪集种数。回忆前文提到了<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数，因此：</p>
+<p><span class="math display">\[
+[G:\text{stab}_G(x)] = |\text{orb}_G(x)|
+\]</span></p>
+<p>于是我们得到了<strong>轨道-稳定子定理 (oribt-stabilizer theorem)</strong>。</p>
 <hr />
 <p>设有限群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> ，<span class="math inline">\(x \in M\)</span>，则：</p>
 <p><span class="math display">\[
@@ -459,7 +465,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>其中 <span class="math inline">\(\text{fix}(\sigma)\)</span> 代表 <span class="math inline">\(\sigma\)</span> 的不动元构成的集合：</p>
 <p><span class="math display">\[
-\text{fix}(\sigma) = \{ \sigma \circ x = x \mid x \in M \}
+\text{fix}(\sigma) = \{ x \mid x \in M, \sigma \circ x = x \}
 \]</span></p>
 </div>
 <div id="证明" class="section level2">
@@ -467,8 +473,8 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p>回顾：</p>
 <p><span class="math display">\[
 \begin{aligned}
-\text{stab}_G(x) &amp; = \{ \sigma \circ x = x \mid \sigma \in G \}\\
-\text{fix}(\sigma) &amp; = \{ \sigma \circ x = x \mid x \in M \}
+\text{stab}_G(x) &amp; = \{ \sigma \mid \sigma \in G, \sigma \circ x = x \}\\
+\text{fix}(\sigma) &amp; = \{ x \mid x \in M, \sigma \circ x = x \}
 \end{aligned}
 \]</span></p>
 <p>首先有一个引理：</p>
@@ -496,8 +502,8 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p><span class="math display">\[
 \sigma = (a_0 \enspace \dots \enspace a_t) \cdot (b_0 \enspace \dots \enspace b_s) \cdot \dots
 \]</span></p>
-<p>显然，若要成为不动元，每个轮换内的元素颜色应当相同。这样才能保证应用一次置换后，每一个点所变成新点的颜色依然与原来一致。</p>
-<p>这样一来，不动元数量之和其实就只与 <span class="math inline">\(\sigma\)</span> 所能被分解成的轮换个数相关了。记染色可选的颜色数为 <span class="math inline">\(m\)</span>， <span class="math inline">\(c(\sigma)\)</span> 为置换 <span class="math inline">\(\sigma\)</span> 被分解为不交轮换乘积的个数，则由乘法原理：</p>
+<p>每一次置换作用时，每个轮换内的元素都会变成其右边的元素。故若要成为不动元，每个轮换内元素的颜色必然相同。这样一来，不动元数量之和其实就只与 <span class="math inline">\(\sigma\)</span> 所能被分解成的轮换个数相关了。</p>
+<p>记染色可选的颜色数为 <span class="math inline">\(m\)</span>， <span class="math inline">\(c(\sigma)\)</span> 为置换 <span class="math inline">\(\sigma\)</span> 被分解为不交轮换乘积的个数，则由乘法原理：</p>
 <p><span class="math display">\[
 \text{fix}(\sigma) = m^{c(\sigma)}
 \]</span></p>
