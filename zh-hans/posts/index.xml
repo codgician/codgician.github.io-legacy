@@ -6,8 +6,364 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>zh-hans</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 26 Mar 2020 18:28:27 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 06 Apr 2020 12:19:10 +0800</lastBuildDate>
 		<atom:link href="https://codgician.me/zh-hans/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Church 编码学习笔记</title>
+			<link>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</link>
+			<pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
+			
+			<guid>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</guid>
+			<description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#church-booleans">Church Booleans</a>
+<ul>
+<li><a href="#定义">定义</a></li>
+<li><a href="#运算">运算</a>
+<ul>
+<li><a href="#非运算">非运算</a></li>
+<li><a href="#与运算">与运算</a></li>
+<li><a href="#或运算">或运算</a></li>
+<li><a href="#其他">其他？</a></li>
+</ul></li>
+<li><a href="#实现">实现</a></li>
+</ul></li>
+<li><a href="#church-numerals">Church Numerals</a>
+<ul>
+<li><a href="#peano-axioms">Peano Axioms</a></li>
+<li><a href="#定义-1">定义</a></li>
+<li><a href="#基础运算">基础运算</a>
+<ul>
+<li><a href="#加法">加法</a></li>
+<li><a href="#乘法">乘法</a></li>
+<li><a href="#幂运算">幂运算</a></li>
+</ul></li>
+<li><a href="#实现-1">实现</a></li>
+</ul></li>
+<li><a href="#refs">Refs</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>既然 <span class="math inline">\(\lambda\)</span> 演算与图灵机等价，那么理论上图灵机能干的事情都能通过 <span class="math inline">\(\lambda\)</span> 演算表示。</p>
+<p>考虑一个不支持任何除了 <span class="math inline">\(\lambda\)</span> 表达式的编程语言…… 假设我们要在其中建立一个支持计数，并且支持各种运算的表示系统，该如何只用 <span class="math inline">\(\lambda\)</span> 表达式来构造它？更进一步，是否可以仅用 <span class="math inline">\(\lambda\)</span> 表达式来构造诸如链表的数据结构？</p>
+<p>Church 编码便能解决这一问题，其可以定义与布尔数等价的 Church Boolean，借助皮亚诺公理 (Peano Axioms) 能够定义出与自然数等价的 Church Numeral，甚至还可以定义出 Church Pairs 和 Church List…… 本文作为自己在学习 Church 编码所记录的笔记，可能有很多不合适的地方，等到以后自己有更加深入的理解后再来修改吧……</p>
+<p>本文会随自己学习精度慢慢（<del>咕咕</del>）更新……</p>
+</div>
+<div id="church-booleans" class="section level1">
+<h1>Church Booleans</h1>
+<div id="定义" class="section level2">
+<h2>定义</h2>
+<p>首先来考虑构造真和假。既然有两样东西，考虑选择二元函数：对于真所代表的函数，它总是返回第一个参数；而对于否所代表的函数，它总是返回第二个参数。于是：</p>
+<p><span class="math display">\[
+\begin{aligned}
+true &amp; = \lambda x \ . \ \lambda y \ . \ x \\
+false &amp; = \lambda x \ . \ \lambda y \ . \ y
+\end{aligned}
+\]</span></p>
+<p>发现这样构造带来一个非常有趣的性质：Church Boolean 似乎内置了 <span class="math inline">\(\text{if - then - else}\)</span> 这种表达形式。考虑如下 <span class="math inline">\(\lambda\)</span> 表达式：</p>
+<p><span class="math display">\[
+b \enspace T \enspace F
+\]</span></p>
+<p>其中 <span class="math inline">\(b\)</span> 是一个 Church Boolean。发现其实际含义就是，若 <span class="math inline">\(b\)</span> 为真，则结果为 <span class="math inline">\(T\)</span>，否则结果为 <span class="math inline">\(F\)</span>，跟 <span class="math inline">\(\text{if } \ b \ \text{ then } \ T \ \text{ else } \ F\)</span> 实际上没有什么区别。所以实际上可以定义自己的条件分支表达式：</p>
+<p><span class="math display">\[
+iff = \lambda b \ . \ \lambda t \ . \ \lambda f \ . \ b \enspace t \enspace f 
+\]</span></p>
+</div>
+<div id="运算" class="section level2">
+<h2>运算</h2>
+<p>可以应用上面提到的性质比较轻松地定义出所有的布尔逻辑运算……</p>
+<div id="非运算" class="section level3">
+<h3>非运算</h3>
+<p>先来看最简单的非运算。非运算是一个单参数的函数，对于 Church Boolean <span class="math inline">\(b\)</span> 可以表示成 <span class="math inline">\(\text{ if } \ b \ \text{ then } \ true \ \text{else} \ false\)</span>，因此可以写作：</p>
+<p><span class="math display">\[
+not = \lambda b \ . \ false \enspace true
+\]</span></p>
+</div>
+<div id="与运算" class="section level3">
+<h3>与运算</h3>
+<p>与运算则是一个双参数的函数，当且仅当两参数 <span class="math inline">\(a, b\)</span> 都为 <span class="math inline">\(true\)</span> 是才会返回 <span class="math inline">\(true\)</span>，否则返回 <span class="math inline">\(false\)</span>。可以表示成 <span class="math inline">\(\text{ if } \ a \ \text{ then } ( \ \text{ if } \ b \ \text{ then } \ true \ \text{ else } \ false \ ) \ \text { else } \ false\)</span>，因此：</p>
+<p><span class="math display">\[
+and = \lambda a \ . \ \lambda b \ . \ a \enspace (b \enspace true \enspace false) \enspace false
+\]</span></p>
+</div>
+<div id="或运算" class="section level3">
+<h3>或运算</h3>
+<p>或运算也是一个双参数的函数，只要两参数 <span class="math inline">\(a, b\)</span> 中存在一个 <span class="math inline">\(true\)</span> 即返回 <span class="math inline">\(true\)</span>，否则返回 <span class="math inline">\(false\)</span>。可以表示成 <span class="math inline">\(\text{ if } \ a \ \text{ then } \ true \ \text{else} \ ( \ \text{ if } \ b \ \text{ then } \ true \ \text{ else } \ false \ )\)</span>，因此：</p>
+<p><span class="math display">\[
+or = \lambda a \ . \ \lambda b \ . \ a \enspace true \enspace (b \enspace true \enspace false)
+\]</span></p>
+</div>
+<div id="其他" class="section level3">
+<h3>其他？</h3>
+<p>诸如异或、同或等运算已经可以由上述三种运算组合起来表示了。</p>
+</div>
+</div>
+<div id="实现" class="section level2">
+<h2>实现</h2>
+<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048">CodeWars: Church Booleans</a>）：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">{-# Language RankNTypes #-}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (<span class="dt">Bool</span>, <span class="dt">False</span>, <span class="dt">True</span>, not, and, or, (&amp;&amp;), (||), (==), (/=))</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">type</span> <span class="dt">Boolean</span> <span class="ot">=</span> <span class="kw">forall</span> a<span class="op">.</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a </span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>false,<span class="ot"> true ::</span> <span class="dt">Boolean</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>false <span class="ot">=</span> \ t f <span class="ot">-&gt;</span> f</span>
+<span id="cb1-9"><a href="#cb1-9"></a>true  <span class="ot">=</span> \ t f <span class="ot">-&gt;</span> t</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">not</span><span class="ot"> ::</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">and</span>, <span class="fu">or</span>,<span class="ot"> xor ::</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">not</span> <span class="ot">=</span> \ a   <span class="ot">-&gt;</span> a false true</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">and</span> <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a (b true false) false</span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="fu">or</span>  <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a true (b true false)</span></code></pre></div>
+</div>
+</div>
+<div id="church-numerals" class="section level1">
+<h1>Church Numerals</h1>
+<div id="peano-axioms" class="section level2">
+<h2>Peano Axioms</h2>
+<p>在讨论 Church 数前，先来看看自然数是怎么被定义的。显然可以递归地定义自然数（类似于数学归纳法），首先定义 <span class="math inline">\(0\)</span>，其次对于任意自然数 <span class="math inline">\(n\)</span> 定义一个能获得其后继元素的函数 <span class="math inline">\(S(n)\)</span>（对于自然数而言，显然 <span class="math inline">\(S(n) = n + 1\)</span>）就行了。严谨地说，定义自然数集 <span class="math inline">\(\mathbb{N}\)</span> 的过程如下：</p>
+<ul>
+<li><span class="math inline">\(0 \in \mathbb{N}\)</span></li>
+<li>定义等价关系 (equality relation)：
+<ul>
+<li><strong>自反性</strong>：<span class="math inline">\(\forall x \in \mathbb{N},\ x = x\)</span></li>
+<li><strong>对称性</strong>：<span class="math inline">\(\forall x, y \in \mathbb{N},\ x = y \Rightarrow y = x\)</span></li>
+<li><strong>传递性</strong>：<span class="math inline">\(\forall x, y, z \in \mathbb{N},\ x = y,\ y = z \Rightarrow x = z\)</span></li>
+<li><strong>封闭性</strong>：<span class="math inline">\(\forall x \in \mathbb{N},\ x = y \Rightarrow y \in \mathbb{N}\)</span></li>
+</ul></li>
+<li>定义算术性质 (arithmetical properties)：
+<ul>
+<li><span class="math inline">\(\forall n \in \mathbb{N},\ S(n) \in \mathbb{N}\)</span></li>
+<li><span class="math inline">\(\forall m, n \in \mathbb{N},\ m = n \Leftrightarrow S(m) = S(n)\)</span></li>
+<li><span class="math inline">\(\forall n \in \mathbb{N},\ S(n) \neq 0\)</span></li>
+</ul></li>
+<li>归纳公理 (induction axiom)：
+<ul>
+<li>若 <span class="math inline">\(\mathbb{K}\)</span> 是一个集合，满足：
+<ul>
+<li><span class="math inline">\(0 \in \mathbb{K}\)</span></li>
+<li><span class="math inline">\(\forall n \in \mathbb{K},\ S(n) \in \mathbb{K}\)</span></li>
+</ul></li>
+<li>则：<span class="math inline">\(\mathbb{N} \subseteq \mathbb{K}\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="定义-1" class="section level2">
+<h2>定义</h2>
+<p>既然只要有了后继函数和 <span class="math inline">\(0\)</span> 就可以表示出所有的自然数，那么依然考虑用二元函数来表述 Church 数，形如：</p>
+<p><span class="math display">\[
+\lambda f \ . \ \lambda x \ . \ something
+\]</span></p>
+<p>其中第一个参数 <span class="math inline">\(f\)</span> 可以看作后继函数，第二个参数 <span class="math inline">\(x\)</span> 可看作 <span class="math inline">\(0\)</span> 。由此可以很方便地使用这个式子定义 <span class="math inline">\(0\)</span> ：</p>
+<p><span class="math display">\[
+C_0 = \lambda f \ . \ \lambda x \ . \ x
+\]</span></p>
+<p>可以看到，不论我们传递给它什么后继函数，它所返回的结果都是 <span class="math inline">\(0\)</span> 。进一步，也可以比较轻松地定义：</p>
+<p><span class="math display">\[
+\begin{aligned}
+C_1 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace x \\
+C_2 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace (f \enspace x) \\
+C_3 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace (f \enspace (f \enspace x)) \\
+&amp; \dots
+\end{aligned}
+\]</span></p>
+<p>可见，我们可以通过 Church Numeral 得到与自然数等价的任何事物。例如对于自然数 <span class="math inline">\(n\)</span>，有：</p>
+<p><span class="math display">\[
+n = C_n \enspace (+1) \enspace 0
+\]</span></p>
+</div>
+<div id="基础运算" class="section level2">
+<h2>基础运算</h2>
+<div id="加法" class="section level3">
+<h3>加法</h3>
+<p>先考虑一个简单一些的情形：以 <span class="math inline">\(C_n\)</span> 为参数，而以 <span class="math inline">\(C_{n + 1}\)</span> 为返回值的函数 <span class="math inline">\(succ\)</span> 应当如何定义？</p>
+<p>为了方便理解，先继续以自然数 <span class="math inline">\(n\)</span> 作为例子：</p>
+<p><span class="math display">\[
+\begin{aligned}
+n + 1 
+&amp; = C_{n + 1} \enspace (+1) \enspace 0 \\ 
+&amp; = C_n \enspace (+1) \enspace 1 \\
+&amp; = C_n \enspace (+1) \enspace (C_1 \enspace (+1) \enspace 0) \\
+\end{aligned}
+\]</span></p>
+<p>这启示我们，当 <span class="math inline">\(succ\)</span> 作用于 <span class="math inline">\(C_n\)</span> 时，只需要保持后继函数 <span class="math inline">\(f\)</span> 不变，同时将零元由 <span class="math inline">\(x\)</span> 变为 <span class="math inline">\(f \enspace x\)</span> 就可以了。因此：</p>
+<p><span class="math display">\[
+succ = \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)
+\]</span></p>
+<p>举个例子，试试用它作用于 <span class="math inline">\(C_0\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+succ \enspace C_0 
+&amp; = (\lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)) \enspace \lambda f \ . \ \lambda x \ . \ x \\
+&amp; = (\lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x))[M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace (M \enspace g \enspace y))[M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace ((\lambda f \ . \ \lambda x \ . \ x) \enspace g \enspace y)) \\
+&amp; = \lambda g \ . \ \lambda y \ . \ g \enspace y \\
+&amp; = \lambda f \ . \ \lambda x \ . \ f \enspace x \\
+&amp; = C_1
+\end{aligned}
+\]</span></p>
+<hr />
+<p>进一步考虑加法。加法也可看作一个二元函数，输入 <span class="math inline">\(C_a, C_b\)</span> 并且返回 <span class="math inline">\(C_{a + b}\)</span>。与之前类似地，先以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a + b
+&amp; = C_{a + b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace (+1) \enspace b \\
+&amp; = C_a \enspace (+1) \enspace (C_b \enspace (+1) \enspace 0)
+\end{aligned}
+\]</span></p>
+<p>故将 <span class="math inline">\(C_a\)</span> 作用于后继函数 <span class="math inline">\(f\)</span>，同时将 <span class="math inline">\(C_b\)</span> 作用于零元 <span class="math inline">\(x\)</span> 即可得到 <span class="math inline">\(C_{a + b}\)</span>：</p>
+<p><span class="math display">\[
+(+) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ M \enspace f \enspace (N \enspace f \enspace x)
+\]</span></p>
+</div>
+<div id="乘法" class="section level3">
+<h3>乘法</h3>
+<p>乘法运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a \cdot b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a \cdot b 
+&amp; = C_{a \cdot b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace (+b) \enspace 0 \\
+&amp; = C_a \enspace (C_b \enspace (+1)) \enspace 0
+\end{aligned}
+\]</span></p>
+<p>这启示我们，只需要将 <span class="math inline">\(C_a, C_b\)</span> 依次作用于后继函数 <span class="math inline">\(f\)</span>，并且保持零元 <span class="math inline">\(x\)</span> 不变即可：</p>
+<p><span class="math display">\[
+(\cdot) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ M \enspace (N \enspace f) \enspace x 
+\]</span></p>
+<p>当然对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次加法也可以达到相同效果…… 但显然上面的方式实际运算的效率更高。</p>
+</div>
+<div id="幂运算" class="section level3">
+<h3>幂运算</h3>
+<p>幂运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a^b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a^b
+&amp; = C_{a^b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace ( \underbrace{C_a \enspace \dots \enspace C_a}_{(b - 1) \text{ times}} \enspace (+1)) \enspace 0
+\end{aligned}
+\]</span></p>
+<p>本质上就是对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次乘法（正如在自然数中我们也没有更好的办法）。</p>
+<p><span class="math display">\[
+(\hat{\enspace}) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ \underbrace{ M \dots M}_{b - 1 \text{ times}} \enspace ( M \enspace f) \enspace x 
+\]</span></p>
+</div>
+</div>
+<div id="实现-1" class="section level2">
+<h2>实现</h2>
+<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048">CodeWars: Church Booleans</a>）：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">{-# LANGUAGE RankNTypes #-}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (succ)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">newtype</span> <span class="dt">Number</span> <span class="ot">=</span> <span class="dt">Nr</span> (<span class="kw">forall</span> a<span class="op">.</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="ot">zero ::</span> <span class="dt">Number</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>zero <span class="ot">=</span> <span class="dt">Nr</span> (\ _ x <span class="ot">-&gt;</span> x)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">succ</span><span class="ot"> ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">succ</span> (<span class="dt">Nr</span> a) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> f (a f x))</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="ot">one ::</span> <span class="dt">Number</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>one <span class="ot">=</span> <span class="fu">succ</span> zero</span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="ot">add ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>add (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a f (b f x))</span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">-- add (Nr a) = a succ</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="ot">mult ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>mult (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a (b f) x)</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">-- mult (Nr a) b =  a (add b) zero</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="ot">pow ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>pow x (<span class="dt">Nr</span> n) <span class="ot">=</span> n (mult x) one</span></code></pre></div>
+</div>
+</div>
+<div id="refs" class="section level1">
+<h1>Refs</h1>
+<ul>
+<li><a href="https://www.cs.rice.edu/~javaplt/311/Readings/supplemental.pdf">Comp 311 - Review 2</a></li>
+<li><a href="https://blog.ploeh.dk/2018/05/22/church-encoding/">Church Encoding by Mark Seemann</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano Aximos - Wikipedia</a></li>
+</ul>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>浅谈置换群计数</title>
@@ -64,7 +420,7 @@
 <div id="前言" class="section level1">
 <h1>前言</h1>
 <p>我们先引入一些例子来介绍一下 Burnside 引理常见的应用。</p>
-<p>考虑一个等边三角形玩具，我们要对其顶点用红蓝两种颜色进行染色。由乘法原理，我们知道如果不考虑其他条件染色方案数量为 <span class="math inline">\(2^3 = 8\)</span> 种。但是，我们也意识到，<code>红 - 蓝 - 红</code> 和 <code>红 - 红 - 蓝</code> 本质上对应的是同一种方案，因为后者可以由前者通过旋转得到。因此，本质上不同的染色方案一定是小于 <span class="math inline">\(8\)</span> 种的（事实上只有 <span class="math inline">\(4\)</span> 种）。应对这一类问题，仅靠传统的组合数学是非常难以应对的，而如果引入群论、置换群、置换群在集合上的作用等概念，再结合 Burnside 引理的话，就可以较好地解决这一类”求本质不同染色方案数“的问题。</p>
+<p>考虑一个等边三角形玩具，要对其顶点用红蓝两种颜色进行染色。由乘法原理，如果不考虑其他条件染色方案数量为 <span class="math inline">\(2^3 = 8\)</span> 种。但是，<code>红 - 蓝 - 红</code> 和 <code>红 - 红 - 蓝</code> 本质上对应的是同一种方案，后者可以由前者通过旋转得到。故本质上不同的染色方案一定小于 <span class="math inline">\(8\)</span> 种（事实上只有 <span class="math inline">\(4\)</span> 种）。应对这一类问题，仅靠传统的组合数学是非常难以应对的，而如果引入群论、置换群、置换群在集合上的作用等概念，再结合 Burnside 引理的话，就可以较好地解决这一类”求本质不同染色方案数“的问题。</p>
 <p>另外，Burnside 引理也常被应用于化学上同分异构体种类的计数，大家感兴趣的话也可以了解一下~</p>
 <p>本文大致分为三个部分：第一部分会首先对证明 Burnside 引理所需要的基本抽象代数知识进行介绍；第二部分会引入文章的主题 —— Burnside 引理和基础的 Pólya 计数法；最后会浅谈一下 Burnside 引理在算法竞赛中的几类常见题型。同时，本文某种程度上也可以作为之前在集训队内做过的讲座 <a href="https://codgician.me/pgslides">浅谈置换群</a> 的讲义。</p>
 <p>另外，我的水平也有限，所以本文中的部分用语可能不太严谨…… 欢迎大家提出指正 QwQ。</p>
@@ -81,7 +437,7 @@
 A \times B = \left\{ (a, b) \mid a \in A, b \in B \right\}
 \]</span></p>
 <p>可见 <span class="math inline">\(A \times B\)</span> 后得到的是一个由二元组的集合，并且这些二元组的左部来自于集合 <span class="math inline">\(A\)</span>，右部来自于集合 <span class="math inline">\(B\)</span>。</p>
-<p>接下来我们尝试相对严格地定义关系：对于集合 <span class="math inline">\(A\)</span>，集合 <span class="math inline">\(A \times A\)</span> 的每个子集 <span class="math inline">\(R\)</span> 都叫做集合 <span class="math inline">\(A\)</span> 上的一个关系。如果 <span class="math inline">\((a, b) \in R\)</span>，则称 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 有关系 <span class="math inline">\(R\)</span>，记作 <span class="math inline">\(aRb\)</span>。</p>
+<p>接下来尝试相对严格地定义关系：对于集合 <span class="math inline">\(A\)</span>，集合 <span class="math inline">\(A \times A\)</span> 的每个子集 <span class="math inline">\(R\)</span> 都叫做集合 <span class="math inline">\(A\)</span> 上的一个关系。如果 <span class="math inline">\((a, b) \in R\)</span>，则称 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 有关系 <span class="math inline">\(R\)</span>，记作 <span class="math inline">\(aRb\)</span>。</p>
 </div>
 <div id="等价关系" class="section level3">
 <h3>等价关系</h3>
@@ -97,7 +453,7 @@ A \times B = \left\{ (a, b) \mid a \in A, b \in B \right\}
 </div>
 <div id="等价类" class="section level3">
 <h3>等价类</h3>
-<p>我们发现等价关系可以对集合内的元素进行分类：</p>
+<p>发现等价关系可以对集合内的元素进行分类：</p>
 <ul>
 <li>依据三角形的相似关系可以对三角形集合进行分类，</li>
 <li>依据模 <span class="math inline">\(7\)</span> 的余数可以把所有自然数分成 <span class="math inline">\(7\)</span> 类。</li>
@@ -108,7 +464,7 @@ A \times B = \left\{ (a, b) \mid a \in A, b \in B \right\}
 \]</span></p>
 <p>称 <span class="math inline">\([a]\)</span> 为 <span class="math inline">\(a\)</span> 所在的<strong>等价类 (equivalence class)</strong>。</p>
 <hr />
-<p>我们注意到一个元素似乎只可能属于一个等价类，而不能同时存在于多个等价类内。这也就使得，不同等价类之间的交集必然为空集。</p>
+<p>注意到一个元素似乎只可能属于一个等价类，而不能同时存在于多个等价类内。这也就使得，不同等价类之间的交集必然为空集。</p>
 <p>性质：若 <span class="math inline">\(a, b \in A\)</span> 且 <span class="math inline">\([a] \cap [b] \neq \emptyset\)</span>，则 <span class="math inline">\([a] = [b]\)</span>。</p>
 <p>运用反证法可以证明这一性质：</p>
 <ul>
@@ -123,11 +479,11 @@ A \times B = \left\{ (a, b) \mid a \in A, b \in B \right\}
 <p><span class="math display">\[
 A = \bigcup\limits_{a \in R} [a] \text{（两两不相交之并）}
 \]</span></p>
-<p>其中，式子里的 <span class="math inline">\(R\)</span> 我们称之为完全代表系，由等价类 <span class="math inline">\([a_i]\)</span> 中选出一个元素构成，使得 <span class="math inline">\(A\)</span> 中每个元素都与 <span class="math inline">\(R\)</span> 中的某个元素等价，同时 <span class="math inline">\(R\)</span> 中的元素彼此不等价。</p></li>
+<p>其中，式子里的 <span class="math inline">\(R\)</span> 称之为完全代表系，由等价类 <span class="math inline">\([a_i]\)</span> 中选出一个元素构成，使得 <span class="math inline">\(A\)</span> 中每个元素都与 <span class="math inline">\(R\)</span> 中的某个元素等价，同时 <span class="math inline">\(R\)</span> 中的元素彼此不等价。</p></li>
 <li><p><span class="math inline">\(A\)</span> 上的每个等价关系给出集合 <span class="math inline">\(A\)</span> 的一个<strong>划分 (partition)</strong>。</p>
 <p>划分的定义：若 <span class="math inline">\(A\)</span> 是它的某些子集 <span class="math inline">\(\{ A_i | i \in I \}\)</span> 之并，且 <span class="math inline">\(A_i\)</span> 两两不交，则称其为集合 <span class="math inline">\(A\)</span> 的一个划分（或分拆）。</p></li>
 </ul>
-<p>我们可以看到，引入等价类的意义就是为了对集合中的元素进行分类。后面要介绍的轨道、陪集等本质上都是基于等价关系的。</p>
+<p>引入等价类的意义就是为了对集合中的元素进行分类。后面要介绍的轨道、陪集等本质上都是基于等价关系的。</p>
 </div>
 </div>
 <div id="群论基础-1" class="section level2">
@@ -140,10 +496,10 @@ A = \bigcup\limits_{a \in R} [a] \text{（两两不相交之并）}
 <li>单位元 <span class="math inline">\(e\)</span>：<span class="math inline">\(\forall a \in G, \ ea = ae = a\)</span></li>
 <li>逆元：<span class="math inline">\(\forall a \in G, \ \exist b \in G \text{ \ s.t. \ } ab = ba = e\)</span></li>
 </ul>
-<p>则我们称 <span class="math inline">\((G, \cdot)\)</span> 是一个<strong>群 (group)</strong>，有时也简写成 <span class="math inline">\(G\)</span>。</p>
-<p>需要注意的是，群并不要求运算满足交换律。如果运算满足交换律，我们称这样的群为<strong>阿贝尔群 (Abelian group)</strong>，或交换群。另外，若群 <span class="math inline">\(G\)</span> 的大小有限，则成其为<strong>有限群 (finite group)</strong>。</p>
+<p>则称 <span class="math inline">\((G, \cdot)\)</span> 是一个<strong>群 (group)</strong>，有时也简写成 <span class="math inline">\(G\)</span>。</p>
+<p>需要注意的是，群并不要求运算满足交换律。如果运算满足交换律，称这样的群为<strong>阿贝尔群 (Abelian group)</strong>，或交换群。另外，若群 <span class="math inline">\(G\)</span> 的大小有限，则成其为<strong>有限群 (finite group)</strong>。</p>
 <hr />
-<p>例如我们在集合 <span class="math inline">\(\mathbb{Z}_7 = [0, 1, 2, 3, 4, 5, 6]\)</span> 上定义模 <span class="math inline">\(7\)</span> 加法，即 <span class="math inline">\(a + b := (a + b) \bmod 7\)</span>。我们来验证一下 <span class="math inline">\((\mathbb{Z}_7, +)\)</span> 是否成群：</p>
+<p>例如在集合 <span class="math inline">\(\mathbb{Z}_7 = [0, 1, 2, 3, 4, 5, 6]\)</span> 上定义模 <span class="math inline">\(7\)</span> 加法，即 <span class="math inline">\(a + b := (a + b) \bmod 7\)</span>。我们来验证一下 <span class="math inline">\((\mathbb{Z}_7, +)\)</span> 是否成群：</p>
 <ul>
 <li>结合律：<span class="math inline">\((a + b) + c = a + (b + c)\)</span>；</li>
 <li>单位元 <span class="math inline">\(e = 0\)</span>：<span class="math inline">\(0 + a = a + 0 = a\)</span>；</li>
@@ -171,7 +527,7 @@ x = xe = x(ay) = (xa)y = y
 </div>
 <div id="陪集" class="section level3">
 <h3>陪集</h3>
-<p>前面提到了我们可以通过等价类来对集合进行划分，那么现在我们需要找到一种东西来对群进行划分。基于此，我们引入陪集这一概念。</p>
+<p>前面提到可以通过等价类来对集合进行划分，而现在我们需要找到一种东西来对群进行划分。基于此引入陪集这一概念。</p>
 <p>设 <span class="math inline">\(H \leq G\)</span>，对于 <span class="math inline">\(x \in G\)</span>：</p>
 <ul>
 <li><span class="math inline">\(H\)</span> 的一个<strong>左陪集 (left coset)</strong> <span class="math inline">\(xH\)</span>：
@@ -183,13 +539,13 @@ xH = \{ x \cdot h \mid h \in H \}
 Hx = \{ h \cdot x \mid h \in H \}
 \]</span></li>
 </ul>
-<p>由于左陪集和右陪集是相对类似的，因此接下来我们只讨论左陪集的相关性质。对于右陪集，就请读者自行尝试啦~</p>
+<p>由于左陪集和右陪集是相对类似的，因此接下来只讨论左陪集的相关性质。对于右陪集，就请读者自行尝试啦~</p>
 <hr />
-<p>对于 <span class="math inline">\(x, y \in G\)</span>，我们如下定义关系 <span class="math inline">\(\sim\)</span>：</p>
+<p>对于 <span class="math inline">\(x, y \in G\)</span>，定义如下关系 <span class="math inline">\(\sim\)</span>：</p>
 <p><span class="math display">\[
 x \sim y := x \in yH
 \]</span></p>
-<p>我们会发现这其实是一个等价关系：</p>
+<p>发现这其实是一个<strong>等价关系</strong>：</p>
 <ul>
 <li><strong>自反性</strong>：<span class="math inline">\(x \in xH\)</span>；</li>
 <li><strong>对称性</strong>：若 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(x \in yH\)</span>；</li>
@@ -202,7 +558,7 @@ x \sim y := x \in yH
 <li><strong>传递性</strong>：<span class="math inline">\(z = y \cdot h_1, \ y = x \cdot h_2 \Rightarrow z = x \cdot h_2h_1\)</span>，由 <span class="math inline">\(h_2h_1 \in H\)</span>，故 <span class="math inline">\(z \in xH\)</span>。</li>
 </ol>
 <hr />
-<p>这下子，我们就可以把之前在讨论等价类时得出的一堆结论搬到这里来了：</p>
+<p>这下子就可以把之前在讨论等价类时得出的一堆结论搬到这里来了：</p>
 <ul>
 <li><p>若 <span class="math inline">\(xH \cap yH \neq \emptyset\)</span>，则 <span class="math inline">\(xH = yH\)</span>；</p></li>
 <li><p>利用陪集可以对群 <span class="math inline">\(G\)</span> 进行划分（陪集分解）：</p>
@@ -228,7 +584,7 @@ a \neq b \Leftrightarrow ga \neq gb
 &amp; = |R| \cdot |H|
 \end{aligned}
 \]</span></p>
-<p>若把 <span class="math inline">\(H\)</span> 的左陪集代表元系的大小 <span class="math inline">\(|R|\)</span> 称作群 <span class="math inline">\(H\)</span> 对于群 <span class="math inline">\(G\)</span> 的<strong>指数 (index)</strong> 并记作 <span class="math inline">\([G : H]\)</span>，我们便得到了抽象代数里的拉格朗日定理：</p>
+<p>若把 <span class="math inline">\(H\)</span> 的左陪集代表元系的大小 <span class="math inline">\(|R|\)</span> 称作群 <span class="math inline">\(H\)</span> 对于群 <span class="math inline">\(G\)</span> 的<strong>指数 (index)</strong> 并记作 <span class="math inline">\([G : H]\)</span>，便得到抽象代数里的拉格朗日定理：</p>
 <p>设 <span class="math inline">\(G\)</span> 为有限群，<span class="math inline">\(H \leq G\)</span>，则：</p>
 <p><span class="math display">\[
 |G| = [G : H] \cdot |H|
@@ -258,7 +614,7 @@ a \neq b \Leftrightarrow ga \neq gb
 4 &amp; 5 &amp; 1 &amp; 3 &amp; 6 &amp; 2 
 \end{array}\right)
 \]</span></p>
-<p>我们试着写出其对应的“映射关系链”：</p>
+<p>试着写出其对应的“映射关系链”：</p>
 <p><span class="math display">\[
 \begin{aligned}
 1 &amp; \rightarrow 4 \rightarrow 3 \\
@@ -283,7 +639,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 \end{array}\right)
 = (1 \enspace 4 \enspace 3) \cdot (2 \enspace 5 \enspace 6)
 \]</span></p>
-<p>这让我们有点联想到了对于整数的质因数分解…… 那么若不计轮换内的次序（即 <span class="math inline">\((a, b, c)\)</span> 和 <span class="math inline">\((b, c, a)\)</span> 当作相同置换）以及轮换间的次序（即 <span class="math inline">\((a, b, c) \cdot (d, e, f)\)</span> 与 <span class="math inline">\((d, e, f) \cdot (a, b, c)\)</span> 当作相同分解方案），对于任意置换的不交轮换分解是唯一的吗？</p>
+<p>这令人联想到对于整数的质因数分解…… 那么若不计轮换内的次序（即 <span class="math inline">\((a, b, c)\)</span> 和 <span class="math inline">\((b, c, a)\)</span> 当作相同置换）以及轮换间的次序（即 <span class="math inline">\((a, b, c) \cdot (d, e, f)\)</span> 与 <span class="math inline">\((d, e, f) \cdot (a, b, c)\)</span> 当作相同分解方案），对于任意置换的不交轮换分解是唯一的吗？</p>
 <p>Hmm… 显然是唯一的。下面给出一个构造性的说明：</p>
 <ul>
 <li>对于恒等置换，显然分解是唯一的；</li>
@@ -306,7 +662,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 </div>
 <div id="置换的幂运算" class="section level3">
 <h3>置换的幂运算</h3>
-<p>下面我们来讨论如何快速得到置换 <span class="math inline">\(\sigma\)</span> 的 <span class="math inline">\(t\)</span> 次幂 <span class="math inline">\(\sigma^t\)</span>，即与先后作用 <span class="math inline">\(t\)</span> 次 <span class="math inline">\(\sigma\)</span> 置换等价的置换。举几个例子：</p>
+<p>下面讨论如何快速得到置换 <span class="math inline">\(\sigma\)</span> 的 <span class="math inline">\(t\)</span> 次幂 <span class="math inline">\(\sigma^t\)</span>，即与先后作用 <span class="math inline">\(t\)</span> 次 <span class="math inline">\(\sigma\)</span> 置换等价的置换。举几个例子：</p>
 <p><span class="math display">\[
 \begin{aligned}
 (1 \enspace 2 \enspace 3 \enspace 4 \enspace 5 \enspace 6)^2 &amp; = (1 \enspace 3 \enspace 5) \cdot (2 \enspace 4 \enspace 6) \\
@@ -314,7 +670,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 (1 \enspace 2 \enspace 3 \enspace 4 \enspace 5 \enspace 6)^4 &amp; = (1 \enspace 5 \enspace 3) \cdot (2 \enspace 6 \enspace 4)
 \end{aligned}
 \]</span></p>
-<p>直接考虑置换的幂并不方便，但由于置换可被分解成若干不相交轮换，我们不妨先看简单一些的情形：求一个轮换的幂次。</p>
+<p>直接考虑置换的幂并不方便，但由于置换可被分解成若干不相交轮换，不妨先看简单一些的情形：求一个轮换的幂次。</p>
 <p><span class="math display">\[
 \sigma = (a_0 \enspace a_1 \enspace \dots \enspace a_{n - 1})
 \]</span></p>
@@ -322,7 +678,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 <p><span class="math display">\[
 \sigma^t(a_i) = a_{[(i + t) \bmod n]}
 \]</span></p>
-<p>接下来我们来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(a_i\)</span> 所在的轮换大小，实际上也就是 <span class="math inline">\(a_i\)</span> 所在“映射链”的长度。我们只需要求得最小正整数的 <span class="math inline">\(k\)</span>，使得 <span class="math inline">\(\sigma\)</span> 作用于 <span class="math inline">\(a_i\)</span> <span class="math inline">\(k\)</span> 次后能够回到 <span class="math inline">\(a_i\)</span>（也就是找到周期），就能够知道其所在的映射链的长度了。</p>
+<p>接下来看看 <span class="math inline">\(\sigma^t\)</span> 中 <span class="math inline">\(a_i\)</span> 所在的轮换大小，实际上也就是 <span class="math inline">\(a_i\)</span> 所在“映射链”的长度。只需要求得最小正整数的 <span class="math inline">\(k\)</span>，使得 <span class="math inline">\(\sigma\)</span> 作用于 <span class="math inline">\(a_i\)</span> <span class="math inline">\(k\)</span> 次后能够回到 <span class="math inline">\(a_i\)</span>（也就是找到周期），就能够知道其所在的映射链的长度了。</p>
 <p>令 <span class="math inline">\(k \in N^{*} \text{ \ s.t. \ } \sigma^{tk}(a_i) = a_i\)</span>：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -332,12 +688,12 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 \]</span></p>
 <p>最小正整数解：<span class="math inline">\(k = \frac{n}{\gcd(n, t)}\)</span></p>
 <p>这意味着 <span class="math inline">\(\sigma^t\)</span> 可表示为 <span class="math inline">\(\gcd(n, t)\)</span> 个长为 <span class="math inline">\(\frac{n}{\gcd(n, t)}\)</span> 的轮换。</p>
-<p>另外，我们注意到 <span class="math inline">\(a_i\)</span> 所在轮换里第 <span class="math inline">\(j \ (0 \le j &lt; \gcd(n, t) )\)</span> 个元素为 <span class="math inline">\(a_{(i + jt) \bmod n}\)</span>。由于 <span class="math inline">\(i + jt \equiv i \pmod t\)</span> 且 <span class="math inline">\(\gcd(n, t) \mid t\)</span>，有 <span class="math inline">\(i + jt \equiv i \pmod {\gcd(n, t)}\)</span>。这意味着：</p>
+<p>另外注意到 <span class="math inline">\(a_i\)</span> 所在轮换里第 <span class="math inline">\(j \ (0 \le j &lt; \gcd(n, t) )\)</span> 个元素为 <span class="math inline">\(a_{(i + jt) \bmod n}\)</span>。由于 <span class="math inline">\(i + jt \equiv i \pmod t\)</span> 且 <span class="math inline">\(\gcd(n, t) \mid t\)</span>，有 <span class="math inline">\(i + jt \equiv i \pmod {\gcd(n, t)}\)</span>。这意味着：</p>
 <ul>
 <li><span class="math inline">\(a_i\)</span> 所在轮换内元素下标模 <span class="math inline">\(\gcd(n, t)\)</span> 均为 <span class="math inline">\(i\)</span>；</li>
 <li><span class="math inline">\(a_0, a_1, \dots a_{\gcd(n, t) - 1}\)</span> 一定位于不同轮换。</li>
 </ul>
-<p>这些性质足以让我们快速求得任一长度为 <span class="math inline">\(n\)</span> 的置换的幂次：</p>
+<p>这些性质足以快速求得任一长度为 <span class="math inline">\(n\)</span> 的置换的幂次：</p>
 <ul>
 <li>将置换分解为轮换：<span class="math inline">\(\mathcal{O}(n)\)</span>；</li>
 <li>对轮换内的每一个元素应用上述性质以生成结果的轮换分解式：<span class="math inline">\(\mathcal{O}(n)\)</span>；</li>
@@ -371,7 +727,7 @@ a_2 &amp; a_3 &amp; \dots &amp; a_1
 <p>则称群 <span class="math inline">\(G\)</span> 在集合 <span class="math inline">\(M\)</span> 上有群作用。</p>
 <p>根据 Cayley 定理，每个群均同构于某个置换群。有了这个前提可能会更好理解群在集合上的作用。但是今天碍于主题，我们主要探讨置换群对于集合的作用。</p>
 <hr />
-<p>为了更加清晰地介绍这一概念，我们再来看看本文开头所举的对等边三角形顶点染色的例子。</p>
+<p>为了更加清晰地介绍这一概念，再来看看本文开头所举的对等边三角形顶点染色的例子。</p>
 <p>考虑置换群 <span class="math inline">\(G\)</span> 和集合 <span class="math inline">\(M\)</span>：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -390,7 +746,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p class="caption"><span class="math inline">\(\phi\)</span> 作用下得到的结果</p>
 </div>
 <p>可以看到，本质上 <span class="math inline">\(\phi\)</span> 作用后是并没有产生新元素的。另外，存在单位置换（旋转 <span class="math inline">\(0^\circ\)</span>）使得它与任何一个染色方案作用都不发生变化；多个旋转作用于染色方案也是满足结合律的。所以在这个例子里 <span class="math inline">\(G\)</span> 对 <span class="math inline">\(M\)</span> 有群作用。</p>
-<p>另外，图中每一列其实都是一个等价类。我们发现实际上不同的等价类只有四种（第 <span class="math inline">\(2, 3, 4\)</span> 列是相同的，第 <span class="math inline">\(5, 6, 7\)</span> 列是相同的）。可见，在旋转群的作用下，本质不同的方案实际上只有 <span class="math inline">\(4\)</span> 种。</p>
+<p>另外，图中每一列其实都是一个等价类。发现实际上不同的等价类只有四种（第 <span class="math inline">\(2, 3, 4\)</span> 列是相同的，第 <span class="math inline">\(5, 6, 7\)</span> 列是相同的）。可见，在旋转群的作用下，本质不同的方案实际上只有 <span class="math inline">\(4\)</span> 种。</p>
 <div class="figure">
 <img src="/pgslides/assets/ga-example-6.png" alt="" />
 <p class="caption">等价类</p>
@@ -405,11 +761,11 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>为 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(G\)</span> 作用下的<strong>轨道 (orbit)</strong>，简称过 <span class="math inline">\(x\)</span> 的轨道。</p>
 <hr />
-<p>更进一步，如果 <span class="math inline">\(G\)</span> 中两个不同的置换 <span class="math inline">\(\sigma, \tau\)</span> 作用于 <span class="math inline">\(x\)</span> 后的结果是相同的，我们可以认为 <span class="math inline">\(\sigma, \tau\)</span> 在仅考虑作用于 <span class="math inline">\(x\)</span> 时是两个等价的置换。由此，<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数。</p>
+<p>更进一步，如果 <span class="math inline">\(G\)</span> 中两个不同的置换 <span class="math inline">\(\sigma, \tau\)</span> 作用于 <span class="math inline">\(x\)</span> 后的结果是相同的，可以认为 <span class="math inline">\(\sigma, \tau\)</span> 在仅考虑作用于 <span class="math inline">\(x\)</span> 时是两个等价的置换。由此，<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数。</p>
 </div>
 <div id="稳定子" class="section level3">
 <h3>稳定子</h3>
-<p>另外，我们也发现元素 <span class="math inline">\(x\)</span> 可能在部分置换下所得到的结果依然是 <span class="math inline">\(x\)</span>。我们将这些置换所组成的集合称作群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的稳定子。</p>
+<p>另外发现元素 <span class="math inline">\(x\)</span> 可能在部分置换下所得到的结果依然是 <span class="math inline">\(x\)</span>。将这些置换所组成的集合称作群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的稳定子。</p>
 <hr />
 <p>设群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span>，对 <span class="math inline">\(x \in M\)</span>，称</p>
 <p><span class="math display">\[
@@ -417,18 +773,18 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>为群 <span class="math inline">\(G\)</span> 作用下 <span class="math inline">\(x\)</span> 的<strong>稳定子 (stabilizer)</strong>。</p>
 <hr />
-<p>我们发现 <span class="math inline">\(\text{stab}_G(x)\)</span> 其实是置换群 <span class="math inline">\(G\)</span> 的子群：</p>
+<p>发现 <span class="math inline">\(\text{stab}_G(x)\)</span> 其实是置换群 <span class="math inline">\(G\)</span> 的子群：</p>
 <ul>
 <li><strong>封闭性</strong>：<span class="math inline">\(\forall \sigma, \tau \in \text{stab}_G(x)\)</span>，<span class="math inline">\(\sigma \circ \tau \circ x = \sigma \circ x = x\)</span>，故 <span class="math inline">\((\sigma \circ \tau) \in \text{stab}_G(x)\)</span>；</li>
 <li><strong>结合律</strong>：显然置换的复合满足结合律；</li>
 <li><strong>单位元</strong>：恒等置换 <span class="math inline">\(\epsilon \circ x = x\)</span>；</li>
 <li><strong>逆元</strong>：<span class="math inline">\(\forall \sigma \in \text{stab}_G(x)\)</span>，<span class="math inline">\(\sigma^{-1} \circ x = \sigma^{-1} \circ (\sigma \circ x) = \epsilon(x) = x\)</span>。</li>
 </ul>
-<p>于是我们得到 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>。</p>
+<p>于是得到 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>。</p>
 </div>
 <div id="轨道-稳定子定理" class="section level3">
 <h3>轨道-稳定子定理</h3>
-<p>联想之前的陪集划分，既然 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>，我们是否也可用子群 <span class="math inline">\(\text{stab}_G(x)\)</span> 对置换群 <span class="math inline">\(G\)</span> 进行左陪集划分？</p>
+<p>联想之前的陪集划分，既然 <span class="math inline">\(\text{stab}_G(x) \leq G\)</span>，是否也可用子群 <span class="math inline">\(\text{stab}_G(x)\)</span> 对置换群 <span class="math inline">\(G\)</span> 进行左陪集划分？</p>
 <p><span class="math inline">\(\forall \beta \in G, \ \beta \text{stab}_G(x)\)</span> 里的元素相当于作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中所有与 <span class="math inline">\(\beta\)</span> 等价的置换：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -446,7 +802,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p><span class="math display">\[
 [G:\text{stab}_G(x)] = |\text{orb}_G(x)|
 \]</span></p>
-<p>于是我们得到了<strong>轨道-稳定子定理 (oribt-stabilizer theorem)</strong>。</p>
+<p>便得到了<strong>轨道-稳定子定理 (oribt-stabilizer theorem)</strong>。</p>
 <hr />
 <p>设有限群 <span class="math inline">\(G\)</span> 作用于集合 <span class="math inline">\(M\)</span> ，<span class="math inline">\(x \in M\)</span>，则：</p>
 <p><span class="math display">\[
@@ -481,7 +837,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 <p><span class="math display">\[
 \sum\limits_{x \in M} | \text{stab}_G(x) | = \sum\limits_{\sigma \in G} | \text{fix}(\sigma) |
 \]</span></p>
-<p>我们发现，等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in M, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
+<p>发现等号左边实际上是对于集合 <span class="math inline">\(M\)</span> 内的每一个元素 <span class="math inline">\(x\)</span>，看有多少置换 <span class="math inline">\(\sigma\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>；而等号右边是对于群 <span class="math inline">\(G\)</span> 内每一个置换 <span class="math inline">\(\sigma\)</span>，看有多少元素 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\(\sigma \circ x = x\)</span>。换句话说，等号两边本质上都是求集合 <span class="math inline">\(\{ (\sigma, x) \mid \sigma \in G, x \in M, \sigma \circ x = x \}\)</span> 的大小，因此是相等的。</p>
 <hr />
 <p>接下来证明 Burnside 引理就很容易了：</p>
 <p>每个轨道对轨道数贡献为 <span class="math inline">\(1\)</span>，故 <span class="math inline">\(x \in M\)</span> 对答案的贡献为 <span class="math inline">\(\frac{1}{| \text{orb}_G(x) |}\)</span>：</p>
@@ -497,7 +853,7 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 </div>
 <div id="pólya-计数法" class="section level1">
 <h1>Pólya 计数法</h1>
-<p>Burnside 引理启示我们要求轨道数，本质上还是要看不动元的数量之和。那么我们进一步，考虑在没有额外限制的情况下，对于置换 <span class="math inline">\(\sigma\)</span> 什么样的染色方案会称为不动元。</p>
+<p>Burnside 引理启示我们要求轨道数，本质上还是要看不动元的数量之和。进一步，考虑在没有额外限制的情况下，对于置换 <span class="math inline">\(\sigma\)</span> 什么样的染色方案会称为不动元。</p>
 <p>显然置换 <span class="math inline">\(\sigma\)</span> 可以被分解成若干个轮换，如：</p>
 <p><span class="math display">\[
 \sigma = (a_0 \enspace \dots \enspace a_t) \cdot (b_0 \enspace \dots \enspace b_s) \cdot \dots

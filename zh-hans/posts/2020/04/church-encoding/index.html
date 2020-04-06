@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#292a2d">
+	<meta name="msapplication-TileColor" content="#292a2d">
+<meta itemprop="name" content="Church 编码学习笔记">
+<meta itemprop="description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }">
+<meta itemprop="datePublished" content="2020-04-06T12:19:10&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-06T12:19:10&#43;08:00" />
+<meta itemprop="wordCount" content="3170">
+<meta itemprop="image" content="https://codgician.me/"/>
+
+
+
+<meta itemprop="keywords" content="Functional Programming,Lambda Calculus,Mathematics,Abstract Algebra," /><meta property="og:title" content="Church 编码学习笔记" />
+<meta property="og:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codgician.me/zh-hans/posts/2020/04/church-encoding/" />
+<meta property="og:image" content="https://codgician.me/"/>
+<meta property="article:published_time" content="2020-04-06T12:19:10+08:00" />
+<meta property="article:modified_time" content="2020-04-06T12:19:10+08:00" /><meta property="og:site_name" content="codgician" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codgician.me/"/>
+
+<meta name="twitter:title" content="Church 编码学习笔记"/>
+<meta name="twitter:description" content="pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Church 编码学习笔记</title>
+	<link rel="stylesheet" href="https://codgician.me/css/style.min.b30187625a7d423c3fce439bfc630ffb0606aaa670b860811f7cbea5cdd3a2ec.css" integrity="sha256-swGHYlp9Qjw/zkOb/GMP+wYGqqZwuGCBH3y+pc3Touw=" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/zh-hans">codgician</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://codgician.me/zh-hans/posts/">博客</a>
+				<a href="https://codgician.me/zh-hans/icpc/">竞赛</a>
+				<a href="https://codgician.me/zh-hans/more/">更多</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://www.github.com/codgician/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/codgician/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://t.me/codgician/" target="_blank" rel="noopener me" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.509 1.793.997 3.592 1.48 5.388.16.36.506.494.864.498l-.002.018s.281.028.555-.038a2.1 2.1 0 0 0 .933-.517c.345-.324 1.28-1.244 1.811-1.764l3.999 2.952.032.018s.442.311 1.09.355c.324.022.75-.04 1.116-.308.37-.27.613-.702.728-1.196.342-1.492 2.61-12.285 2.997-14.072l-.01.042c.27-1.006.17-1.928-.455-2.474a1.654 1.654 0 0 0-1.034-.407z"/></svg></a><a href="mailto:gutomata@outlook.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://codgician.me/zh-hans/posts/">博客</a></li>
+			<li><a href="https://codgician.me/zh-hans/icpc/">竞赛</a></li>
+			<li><a href="https://codgician.me/zh-hans/more/">更多</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 6, 2020</span></div>
+				<h1>Church 编码学习笔记</h1>
+			</header>
+			<div class="content">
+				
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#church-booleans">Church Booleans</a>
+<ul>
+<li><a href="#定义">定义</a></li>
+<li><a href="#运算">运算</a>
+<ul>
+<li><a href="#非运算">非运算</a></li>
+<li><a href="#与运算">与运算</a></li>
+<li><a href="#或运算">或运算</a></li>
+<li><a href="#其他">其他？</a></li>
+</ul></li>
+<li><a href="#实现">实现</a></li>
+</ul></li>
+<li><a href="#church-numerals">Church Numerals</a>
+<ul>
+<li><a href="#peano-axioms">Peano Axioms</a></li>
+<li><a href="#定义-1">定义</a></li>
+<li><a href="#基础运算">基础运算</a>
+<ul>
+<li><a href="#加法">加法</a></li>
+<li><a href="#乘法">乘法</a></li>
+<li><a href="#幂运算">幂运算</a></li>
+</ul></li>
+<li><a href="#实现-1">实现</a></li>
+</ul></li>
+<li><a href="#refs">Refs</a></li>
+</ul>
+</div>
+
+<div id="简介" class="section level1">
+<h1>简介</h1>
+<p>既然 <span class="math inline">\(\lambda\)</span> 演算与图灵机等价，那么理论上图灵机能干的事情都能通过 <span class="math inline">\(\lambda\)</span> 演算表示。</p>
+<p>考虑一个不支持任何除了 <span class="math inline">\(\lambda\)</span> 表达式的编程语言…… 假设我们要在其中建立一个支持计数，并且支持各种运算的表示系统，该如何只用 <span class="math inline">\(\lambda\)</span> 表达式来构造它？更进一步，是否可以仅用 <span class="math inline">\(\lambda\)</span> 表达式来构造诸如链表的数据结构？</p>
+<p>Church 编码便能解决这一问题，其可以定义与布尔数等价的 Church Boolean，借助皮亚诺公理 (Peano Axioms) 能够定义出与自然数等价的 Church Numeral，甚至还可以定义出 Church Pairs 和 Church List…… 本文作为自己在学习 Church 编码所记录的笔记，可能有很多不合适的地方，等到以后自己有更加深入的理解后再来修改吧……</p>
+<p>本文会随自己学习精度慢慢（<del>咕咕</del>）更新……</p>
+</div>
+<div id="church-booleans" class="section level1">
+<h1>Church Booleans</h1>
+<div id="定义" class="section level2">
+<h2>定义</h2>
+<p>首先来考虑构造真和假。既然有两样东西，考虑选择二元函数：对于真所代表的函数，它总是返回第一个参数；而对于否所代表的函数，它总是返回第二个参数。于是：</p>
+<p><span class="math display">\[
+\begin{aligned}
+true &amp; = \lambda x \ . \ \lambda y \ . \ x \\
+false &amp; = \lambda x \ . \ \lambda y \ . \ y
+\end{aligned}
+\]</span></p>
+<p>发现这样构造带来一个非常有趣的性质：Church Boolean 似乎内置了 <span class="math inline">\(\text{if - then - else}\)</span> 这种表达形式。考虑如下 <span class="math inline">\(\lambda\)</span> 表达式：</p>
+<p><span class="math display">\[
+b \enspace T \enspace F
+\]</span></p>
+<p>其中 <span class="math inline">\(b\)</span> 是一个 Church Boolean。发现其实际含义就是，若 <span class="math inline">\(b\)</span> 为真，则结果为 <span class="math inline">\(T\)</span>，否则结果为 <span class="math inline">\(F\)</span>，跟 <span class="math inline">\(\text{if } \ b \ \text{ then } \ T \ \text{ else } \ F\)</span> 实际上没有什么区别。所以实际上可以定义自己的条件分支表达式：</p>
+<p><span class="math display">\[
+iff = \lambda b \ . \ \lambda t \ . \ \lambda f \ . \ b \enspace t \enspace f 
+\]</span></p>
+</div>
+<div id="运算" class="section level2">
+<h2>运算</h2>
+<p>可以应用上面提到的性质比较轻松地定义出所有的布尔逻辑运算……</p>
+<div id="非运算" class="section level3">
+<h3>非运算</h3>
+<p>先来看最简单的非运算。非运算是一个单参数的函数，对于 Church Boolean <span class="math inline">\(b\)</span> 可以表示成 <span class="math inline">\(\text{ if } \ b \ \text{ then } \ true \ \text{else} \ false\)</span>，因此可以写作：</p>
+<p><span class="math display">\[
+not = \lambda b \ . \ false \enspace true
+\]</span></p>
+</div>
+<div id="与运算" class="section level3">
+<h3>与运算</h3>
+<p>与运算则是一个双参数的函数，当且仅当两参数 <span class="math inline">\(a, b\)</span> 都为 <span class="math inline">\(true\)</span> 是才会返回 <span class="math inline">\(true\)</span>，否则返回 <span class="math inline">\(false\)</span>。可以表示成 <span class="math inline">\(\text{ if } \ a \ \text{ then } ( \ \text{ if } \ b \ \text{ then } \ true \ \text{ else } \ false \ ) \ \text { else } \ false\)</span>，因此：</p>
+<p><span class="math display">\[
+and = \lambda a \ . \ \lambda b \ . \ a \enspace (b \enspace true \enspace false) \enspace false
+\]</span></p>
+</div>
+<div id="或运算" class="section level3">
+<h3>或运算</h3>
+<p>或运算也是一个双参数的函数，只要两参数 <span class="math inline">\(a, b\)</span> 中存在一个 <span class="math inline">\(true\)</span> 即返回 <span class="math inline">\(true\)</span>，否则返回 <span class="math inline">\(false\)</span>。可以表示成 <span class="math inline">\(\text{ if } \ a \ \text{ then } \ true \ \text{else} \ ( \ \text{ if } \ b \ \text{ then } \ true \ \text{ else } \ false \ )\)</span>，因此：</p>
+<p><span class="math display">\[
+or = \lambda a \ . \ \lambda b \ . \ a \enspace true \enspace (b \enspace true \enspace false)
+\]</span></p>
+</div>
+<div id="其他" class="section level3">
+<h3>其他？</h3>
+<p>诸如异或、同或等运算已经可以由上述三种运算组合起来表示了。</p>
+</div>
+</div>
+<div id="实现" class="section level2">
+<h2>实现</h2>
+<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048">CodeWars: Church Booleans</a>）：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">{-# Language RankNTypes #-}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (<span class="dt">Bool</span>, <span class="dt">False</span>, <span class="dt">True</span>, not, and, or, (&amp;&amp;), (||), (==), (/=))</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">type</span> <span class="dt">Boolean</span> <span class="ot">=</span> <span class="kw">forall</span> a<span class="op">.</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a </span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>false,<span class="ot"> true ::</span> <span class="dt">Boolean</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>false <span class="ot">=</span> \ t f <span class="ot">-&gt;</span> f</span>
+<span id="cb1-9"><a href="#cb1-9"></a>true  <span class="ot">=</span> \ t f <span class="ot">-&gt;</span> t</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">not</span><span class="ot"> ::</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">and</span>, <span class="fu">or</span>,<span class="ot"> xor ::</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">not</span> <span class="ot">=</span> \ a   <span class="ot">-&gt;</span> a false true</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">and</span> <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a (b true false) false</span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="fu">or</span>  <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a true (b true false)</span></code></pre></div>
+</div>
+</div>
+<div id="church-numerals" class="section level1">
+<h1>Church Numerals</h1>
+<div id="peano-axioms" class="section level2">
+<h2>Peano Axioms</h2>
+<p>在讨论 Church 数前，先来看看自然数是怎么被定义的。显然可以递归地定义自然数（类似于数学归纳法），首先定义 <span class="math inline">\(0\)</span>，其次对于任意自然数 <span class="math inline">\(n\)</span> 定义一个能获得其后继元素的函数 <span class="math inline">\(S(n)\)</span>（对于自然数而言，显然 <span class="math inline">\(S(n) = n + 1\)</span>）就行了。严谨地说，定义自然数集 <span class="math inline">\(\mathbb{N}\)</span> 的过程如下：</p>
+<ul>
+<li><span class="math inline">\(0 \in \mathbb{N}\)</span></li>
+<li>定义等价关系 (equality relation)：
+<ul>
+<li><strong>自反性</strong>：<span class="math inline">\(\forall x \in \mathbb{N},\ x = x\)</span></li>
+<li><strong>对称性</strong>：<span class="math inline">\(\forall x, y \in \mathbb{N},\ x = y \Rightarrow y = x\)</span></li>
+<li><strong>传递性</strong>：<span class="math inline">\(\forall x, y, z \in \mathbb{N},\ x = y,\ y = z \Rightarrow x = z\)</span></li>
+<li><strong>封闭性</strong>：<span class="math inline">\(\forall x \in \mathbb{N},\ x = y \Rightarrow y \in \mathbb{N}\)</span></li>
+</ul></li>
+<li>定义算术性质 (arithmetical properties)：
+<ul>
+<li><span class="math inline">\(\forall n \in \mathbb{N},\ S(n) \in \mathbb{N}\)</span></li>
+<li><span class="math inline">\(\forall m, n \in \mathbb{N},\ m = n \Leftrightarrow S(m) = S(n)\)</span></li>
+<li><span class="math inline">\(\forall n \in \mathbb{N},\ S(n) \neq 0\)</span></li>
+</ul></li>
+<li>归纳公理 (induction axiom)：
+<ul>
+<li>若 <span class="math inline">\(\mathbb{K}\)</span> 是一个集合，满足：
+<ul>
+<li><span class="math inline">\(0 \in \mathbb{K}\)</span></li>
+<li><span class="math inline">\(\forall n \in \mathbb{K},\ S(n) \in \mathbb{K}\)</span></li>
+</ul></li>
+<li>则：<span class="math inline">\(\mathbb{N} \subseteq \mathbb{K}\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="定义-1" class="section level2">
+<h2>定义</h2>
+<p>既然只要有了后继函数和 <span class="math inline">\(0\)</span> 就可以表示出所有的自然数，那么依然考虑用二元函数来表述 Church 数，形如：</p>
+<p><span class="math display">\[
+\lambda f \ . \ \lambda x \ . \ something
+\]</span></p>
+<p>其中第一个参数 <span class="math inline">\(f\)</span> 可以看作后继函数，第二个参数 <span class="math inline">\(x\)</span> 可看作 <span class="math inline">\(0\)</span> 。由此可以很方便地使用这个式子定义 <span class="math inline">\(0\)</span> ：</p>
+<p><span class="math display">\[
+C_0 = \lambda f \ . \ \lambda x \ . \ x
+\]</span></p>
+<p>可以看到，不论我们传递给它什么后继函数，它所返回的结果都是 <span class="math inline">\(0\)</span> 。进一步，也可以比较轻松地定义：</p>
+<p><span class="math display">\[
+\begin{aligned}
+C_1 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace x \\
+C_2 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace (f \enspace x) \\
+C_3 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace (f \enspace (f \enspace x)) \\
+&amp; \dots
+\end{aligned}
+\]</span></p>
+<p>可见，我们可以通过 Church Numeral 得到与自然数等价的任何事物。例如对于自然数 <span class="math inline">\(n\)</span>，有：</p>
+<p><span class="math display">\[
+n = C_n \enspace (+1) \enspace 0
+\]</span></p>
+</div>
+<div id="基础运算" class="section level2">
+<h2>基础运算</h2>
+<div id="加法" class="section level3">
+<h3>加法</h3>
+<p>先考虑一个简单一些的情形：以 <span class="math inline">\(C_n\)</span> 为参数，而以 <span class="math inline">\(C_{n + 1}\)</span> 为返回值的函数 <span class="math inline">\(succ\)</span> 应当如何定义？</p>
+<p>为了方便理解，先继续以自然数 <span class="math inline">\(n\)</span> 作为例子：</p>
+<p><span class="math display">\[
+\begin{aligned}
+n + 1 
+&amp; = C_{n + 1} \enspace (+1) \enspace 0 \\ 
+&amp; = C_n \enspace (+1) \enspace 1 \\
+&amp; = C_n \enspace (+1) \enspace (C_1 \enspace (+1) \enspace 0) \\
+\end{aligned}
+\]</span></p>
+<p>这启示我们，当 <span class="math inline">\(succ\)</span> 作用于 <span class="math inline">\(C_n\)</span> 时，只需要保持后继函数 <span class="math inline">\(f\)</span> 不变，同时将零元由 <span class="math inline">\(x\)</span> 变为 <span class="math inline">\(f \enspace x\)</span> 就可以了。因此：</p>
+<p><span class="math display">\[
+succ = \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)
+\]</span></p>
+<p>举个例子，试试用它作用于 <span class="math inline">\(C_0\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+succ \enspace C_0 
+&amp; = (\lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)) \enspace \lambda f \ . \ \lambda x \ . \ x \\
+&amp; = (\lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x))[M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace (M \enspace g \enspace y))[M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace ((\lambda f \ . \ \lambda x \ . \ x) \enspace g \enspace y)) \\
+&amp; = \lambda g \ . \ \lambda y \ . \ g \enspace y \\
+&amp; = \lambda f \ . \ \lambda x \ . \ f \enspace x \\
+&amp; = C_1
+\end{aligned}
+\]</span></p>
+<hr />
+<p>进一步考虑加法。加法也可看作一个二元函数，输入 <span class="math inline">\(C_a, C_b\)</span> 并且返回 <span class="math inline">\(C_{a + b}\)</span>。与之前类似地，先以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a + b
+&amp; = C_{a + b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace (+1) \enspace b \\
+&amp; = C_a \enspace (+1) \enspace (C_b \enspace (+1) \enspace 0)
+\end{aligned}
+\]</span></p>
+<p>故将 <span class="math inline">\(C_a\)</span> 作用于后继函数 <span class="math inline">\(f\)</span>，同时将 <span class="math inline">\(C_b\)</span> 作用于零元 <span class="math inline">\(x\)</span> 即可得到 <span class="math inline">\(C_{a + b}\)</span>：</p>
+<p><span class="math display">\[
+(+) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ M \enspace f \enspace (N \enspace f \enspace x)
+\]</span></p>
+</div>
+<div id="乘法" class="section level3">
+<h3>乘法</h3>
+<p>乘法运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a \cdot b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a \cdot b 
+&amp; = C_{a \cdot b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace (+b) \enspace 0 \\
+&amp; = C_a \enspace (C_b \enspace (+1)) \enspace 0
+\end{aligned}
+\]</span></p>
+<p>这启示我们，只需要将 <span class="math inline">\(C_a, C_b\)</span> 依次作用于后继函数 <span class="math inline">\(f\)</span>，并且保持零元 <span class="math inline">\(x\)</span> 不变即可：</p>
+<p><span class="math display">\[
+(\cdot) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ M \enspace (N \enspace f) \enspace x 
+\]</span></p>
+<p>当然对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次加法也可以达到相同效果…… 但显然上面的方式实际运算的效率更高。</p>
+</div>
+<div id="幂运算" class="section level3">
+<h3>幂运算</h3>
+<p>幂运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a^b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p><span class="math display">\[
+\begin{aligned}
+a^b
+&amp; = C_{a^b} \enspace (+1) \enspace 0 \\
+&amp; = C_a \enspace ( \underbrace{C_a \enspace \dots \enspace C_a}_{(b - 1) \text{ times}} \enspace (+1)) \enspace 0
+\end{aligned}
+\]</span></p>
+<p>本质上就是对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次乘法（正如在自然数中我们也没有更好的办法）。</p>
+<p><span class="math display">\[
+(\hat{\enspace}) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ \underbrace{ M \dots M}_{b - 1 \text{ times}} \enspace ( M \enspace f) \enspace x 
+\]</span></p>
+</div>
+</div>
+<div id="实现-1" class="section level2">
+<h2>实现</h2>
+<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048">CodeWars: Church Booleans</a>）：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">{-# LANGUAGE RankNTypes #-}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (succ)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">newtype</span> <span class="dt">Number</span> <span class="ot">=</span> <span class="dt">Nr</span> (<span class="kw">forall</span> a<span class="op">.</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="ot">zero ::</span> <span class="dt">Number</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>zero <span class="ot">=</span> <span class="dt">Nr</span> (\ _ x <span class="ot">-&gt;</span> x)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">succ</span><span class="ot"> ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">succ</span> (<span class="dt">Nr</span> a) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> f (a f x))</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="ot">one ::</span> <span class="dt">Number</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>one <span class="ot">=</span> <span class="fu">succ</span> zero</span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="ot">add ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>add (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a f (b f x))</span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">-- add (Nr a) = a succ</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="ot">mult ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>mult (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a (b f) x)</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">-- mult (Nr a) b =  a (add b) zero</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="ot">pow ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>pow x (<span class="dt">Nr</span> n) <span class="ot">=</span> n (mult x) one</span></code></pre></div>
+</div>
+</div>
+<div id="refs" class="section level1">
+<h1>Refs</h1>
+<ul>
+<li><a href="https://www.cs.rice.edu/~javaplt/311/Readings/supplemental.pdf">Comp 311 - Review 2</a></li>
+<li><a href="https://blog.ploeh.dk/2018/05/22/church-encoding/">Church Encoding by Mark Seemann</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano Aximos - Wikipedia</a></li>
+</ul>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://codgician.me/zh-hans/tags/functional-programming">Functional Programming</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/lambda-calculus">Lambda Calculus</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/mathematics">Mathematics</a></span><span class="tag"><a href="https://codgician.me/zh-hans/tags/abstract-algebra">Abstract Algebra</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3170 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-06 12:19 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://codgician.me/zh-hans/posts/2020/03/permutation-group/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>浅谈置换群计数</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+    <script async src="https://utteranc.es/client.js"
+        repo="codgician/homepage-comments"
+        issue-number="73"
+        label=""
+        theme="photon-dark"
+        crossorigin="anonymous"
+    ></script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://codgician.me/">codgician</a> &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://codgician.me/zh-hans/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://codgician.me/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-97035940-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"
+        onload="
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        "></script><script>
+            let t = document.getElementById('TOC');
+            if (t !== null) {
+                t.id = 'toc';
+                t.innerHTML = '<div class=\'toc-title\'>目录</div><nav id=\'TableOfContents\'>' + t.innerHTML + '</nav>';
+            }
+        </script>
+</body>
+
+</html>
