@@ -103,6 +103,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#定义-1">定义</a></li>
 <li><a href="#基础运算">基础运算</a>
 <ul>
+<li><a href="#后继元素">后继元素</a></li>
 <li><a href="#加法">加法</a></li>
 <li><a href="#乘法">乘法</a></li>
 <li><a href="#幂运算">幂运算</a></li>
@@ -247,9 +248,10 @@ n = C_n \enspace (+1) \enspace 0
 </div>
 <div id="基础运算" class="section level2">
 <h2>基础运算</h2>
-<div id="加法" class="section level3">
-<h3>加法</h3>
-<p>先考虑一个简单一些的情形：以 <span class="math inline">\(C_n\)</span> 为参数，而以 <span class="math inline">\(C_{n + 1}\)</span> 为返回值的函数 <span class="math inline">\(succ\)</span> 应当如何定义？</p>
+<div id="后继元素" class="section level3">
+<h3>后继元素</h3>
+<p>在尝试解决加法前我们先解决一个看起来简单一些的问题：以 <span class="math inline">\(C_n\)</span> 为参数，而以 <span class="math inline">\(C_{n + 1}\)</span> 为返回值的函数 <span class="math inline">\(succ\)</span> 应当如何定义？</p>
+<p>如果我们能够定义出 <span class="math inline">\(succ\)</span>，那么将 <span class="math inline">\(succ\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(C_a\)</span> 即可达到 <span class="math inline">\(C_a + C_b\)</span> 的效果，更进一步，如果定义出了加法，则将 <span class="math inline">\((+ C_a)\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(0\)</span> 即可达到 <span class="math inline">\(C_a \cdot C_b\)</span> 的效果。</p>
 <p>为了方便理解，先继续以自然数 <span class="math inline">\(n\)</span> 作为例子：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -268,16 +270,41 @@ succ = \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f 
 \begin{aligned}
 succ \enspace C_0 
 &amp; = (\lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)) \enspace \lambda f \ . \ \lambda x \ . \ x \\
-&amp; = (\lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x))[M := \lambda f \ . \ \lambda x \ . \ x] \\
-&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace (M \enspace g \enspace y))[M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x)) \enspace [M := \lambda f \ . \ \lambda x \ . \ x] \\
+&amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace (M \enspace g \enspace y)) \enspace [M := \lambda f \ . \ \lambda x \ . \ x] \\
 &amp; = (\lambda g \ . \ \lambda y \ . \ g \enspace ((\lambda f \ . \ \lambda x \ . \ x) \enspace g \enspace y)) \\
 &amp; = \lambda g \ . \ \lambda y \ . \ g \enspace y \\
 &amp; = \lambda f \ . \ \lambda x \ . \ f \enspace x \\
 &amp; = C_1
 \end{aligned}
 \]</span></p>
+</div>
+<div id="加法" class="section level3">
+<h3>加法</h3>
+<p>前面成功定义出了 <span class="math inline">\(succ\)</span>，但还留下了一个问题：怎么表示 <span class="math inline">\(\underbrace{succ \circ succ \circ \dots \circ succ}_{b \text{ times}}\)</span>（下面简写为 <span class="math inline">\(succ^b\)</span>）？</p>
+<p><span class="math display">\[
+\begin{aligned}
+succ^b
+&amp; = [ \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x) ]^b \\
+&amp; = \lambda x \ . \ f^b  \enspace x \enspace [ f := \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x) ] \\
+&amp; = (\lambda f \ . \ \lambda x \ . \ f^b \enspace x) \enspace \lambda M \ . \ \lambda f \ . \ \lambda x \ . \ f \enspace (M \enspace f \enspace x) \\
+&amp; = C_b \enspace succ
+\end{aligned}
+\]</span></p>
+<p>简要推广，对于任意一元 Church Numeral 函数 <span class="math inline">\(f\)</span>，都有：</p>
+<p><span class="math display">\[
+f^b = C_b \enspace f
+\]</span></p>
+<p>于是对于加法：</p>
+<p><span class="math display">\[
+\begin{aligned}
+C_a + C_b
+&amp; = (+ C_b) \enspace C_a \\
+&amp; = (C_b \enspace succ) \enspace C_a 
+\end{aligned} 
+\]</span></p>
 <hr />
-<p>进一步考虑加法。加法也可看作一个二元函数，输入 <span class="math inline">\(C_a, C_b\)</span> 并且返回 <span class="math inline">\(C_{a + b}\)</span>。与之前类似地，先以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p>我们也可以不考虑 <span class="math inline">\(succ\)</span>，换一个角度考虑加法：其可看作二元函数，输入 <span class="math inline">\(C_a, C_b\)</span> 并且返回 <span class="math inline">\(C_{a + b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
 <p><span class="math display">\[
 \begin{aligned}
 a + b
@@ -293,7 +320,12 @@ a + b
 </div>
 <div id="乘法" class="section level3">
 <h3>乘法</h3>
-<p>乘法运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a \cdot b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p>与之前类似地，可以借助加法表示乘法，将 <span class="math inline">\((+ C_a)\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(C_0\)</span> 即可：</p>
+<p><span class="math display">\[
+C_a \cdot C_b = C_b \enspace  (+ C_a) \enspace C_0
+\]</span></p>
+<hr />
+<p>若不借助加法，可考虑：乘法运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a \cdot b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
 <p><span class="math display">\[
 \begin{aligned}
 a \cdot b 
@@ -306,27 +338,18 @@ a \cdot b
 <p><span class="math display">\[
 (\cdot) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ M \enspace (N \enspace f) \enspace x 
 \]</span></p>
-<p>当然对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次加法也可以达到相同效果…… 但显然上面的方式实际运算的效率更高。</p>
 </div>
 <div id="幂运算" class="section level3">
 <h3>幂运算</h3>
-<p>幂运算以 <span class="math inline">\(C_a, C_b\)</span> 为参数，并返回 <span class="math inline">\(C_{a^b}\)</span>。依然以自然数 <span class="math inline">\(a, b\)</span> 举例：</p>
+<p>正如对于自然数的情况一下，幂运算还是得借助乘法实现，将 <span class="math inline">\((\cdot C_a)\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(C_1\)</span> 即可：</p>
 <p><span class="math display">\[
-\begin{aligned}
-a^b
-&amp; = C_{a^b} \enspace (+1) \enspace 0 \\
-&amp; = C_a \enspace ( \underbrace{C_a \enspace \dots \enspace C_a}_{(b - 1) \text{ times}} \enspace (+1)) \enspace 0
-\end{aligned}
-\]</span></p>
-<p>本质上就是对 <span class="math inline">\(C_a\)</span> 做 <span class="math inline">\(b\)</span> 次乘法（正如在自然数中我们也没有更好的办法）。</p>
-<p><span class="math display">\[
-(\hat{\enspace}) = \lambda M \ . \ \lambda N \ . \ \lambda f \ . \ \lambda x \ . \ \underbrace{ M \dots M}_{b - 1 \text{ times}} \enspace ( M \enspace f) \enspace x 
+C_a \hat{\enspace} C_b = C_b \enspace (\cdot C_a) \enspace C_1
 \]</span></p>
 </div>
 </div>
 <div id="实现-1" class="section level2">
 <h2>实现</h2>
-<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048">CodeWars: Church Booleans</a>）：</p>
+<p>用 Haskell 实现（ <a href="https://www.codewars.com/kata/546dbd81018e956b51000077">CodeWars: Church Numbers</a>）：</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">{-# LANGUAGE RankNTypes #-}</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (succ)</span>
@@ -343,12 +366,12 @@ a^b
 <span id="cb2-14"><a href="#cb2-14"></a>one <span class="ot">=</span> <span class="fu">succ</span> zero</span>
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="ot">add ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>add (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a f (b f x))</span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">-- add (Nr a) = a succ</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>add (<span class="dt">Nr</span> a) <span class="ot">=</span> a <span class="fu">succ</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">-- add (Nr a) (Nr b) = Nr (\ f x -&gt; a f (b f x))</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a><span class="ot">mult ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>mult (<span class="dt">Nr</span> a) (<span class="dt">Nr</span> b) <span class="ot">=</span> <span class="dt">Nr</span> (\ f x <span class="ot">-&gt;</span> a (b f) x)</span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">-- mult (Nr a) b =  a (add b) zero</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>mult (<span class="dt">Nr</span> a) b <span class="ot">=</span>  a (add b) zero</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">-- mult (Nr a) (Nr b) = Nr (\ f x -&gt; a (b f) x)</span></span>
 <span id="cb2-23"><a href="#cb2-23"></a></span>
 <span id="cb2-24"><a href="#cb2-24"></a><span class="ot">pow ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>pow x (<span class="dt">Nr</span> n) <span class="ot">=</span> n (mult x) one</span></code></pre></div>
