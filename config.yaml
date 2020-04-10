@@ -54,14 +54,14 @@ languages:
     languageCode: en
     weight: 1
     title: codgician
-    subtitle: 'Have a codgistic day!'
+    subtitle: 'Coding Magic'
     keywords: ''
     footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>'
     taxonomies:
       category: categories
       tag: tags
     params:
-      homeSubtitle: Have a codgistic day!
+      homeSubtitle: Coding Magic
     menu:
       main:
         - identifier: blog
@@ -72,23 +72,27 @@ languages:
           name: ICPC
           url: icpc/
           weight: 20
+        # - identifier: pals
+        #   name: PALS 
+        #   url: pals/
+        #   weight: 30
         - identifier: more
           name: MORE
           url: more/
-          weight: 30
+          weight: 40
   zh-hans:
     languageName: 简体中文
     languageCode: zh-hans
     weight: 2
     title: codgician
-    subtitle: 'Have a codgistic day!'
+    subtitle: '码上就好~'
     keywords: ''
     footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>'
     taxonomies:
       category: categories
       tag: tags
     params:
-      homeSubtitle: Have a codgistic day!
+      homeSubtitle: '码上就好~'
     menu:
       main:
         - identifier: blog
@@ -99,8 +103,12 @@ languages:
           name: 竞赛
           url: icpc/
           weight: 20
+        # - identifier: pals
+        #   name: 朋友
+        #   url: pals/
+        #   weight: 30
         - identifier: more
           name: 更多
           url: more/
-          weight: 30
+          weight: 40
 
