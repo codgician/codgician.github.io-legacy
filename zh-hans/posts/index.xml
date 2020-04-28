@@ -97,6 +97,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </ul></li>
 <li><a href="#实现">实现</a></li>
 </ul></li>
+<li><a href="#church-maybe">Church Maybe</a></li>
 <li><a href="#church-numerals">Church Numerals</a>
 <ul>
 <li><a href="#peano-axioms">Peano Axioms</a></li>
@@ -109,6 +110,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#幂运算">幂运算</a></li>
 </ul></li>
 <li><a href="#实现-1">实现</a></li>
+<li><a href="#减法">减法？</a></li>
 </ul></li>
 <li><a href="#refs">Refs</a></li>
 </ul>
@@ -190,6 +192,9 @@ or = \lambda a \ . \ \lambda b \ . \ a \enspace true \enspace (b \enspace true \
 <span id="cb1-15"><a href="#cb1-15"></a><span class="fu">and</span> <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a (b true false) false</span>
 <span id="cb1-16"><a href="#cb1-16"></a><span class="fu">or</span>  <span class="ot">=</span> \ a b <span class="ot">-&gt;</span> a true (b true false)</span></code></pre></div>
 </div>
+</div>
+<div id="church-maybe" class="section level1">
+<h1>Church Maybe</h1>
 </div>
 <div id="church-numerals" class="section level1">
 <h1>Church Numerals</h1>
@@ -341,7 +346,7 @@ a \cdot b
 </div>
 <div id="幂运算" class="section level3">
 <h3>幂运算</h3>
-<p>正如对于自然数的情况一下，幂运算还是得借助乘法实现，将 <span class="math inline">\((\cdot C_a)\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(C_1\)</span> 即可：</p>
+<p>与自然数的情况类似，幂运算还是得借助乘法实现，将 <span class="math inline">\((\cdot C_a)\)</span> 作用 <span class="math inline">\(b\)</span> 次于 <span class="math inline">\(C_1\)</span> 即可：</p>
 <p><span class="math display">\[
 C_a \hat{\enspace} C_b = C_b \enspace (\cdot C_a) \enspace C_1
 \]</span></p>
@@ -375,6 +380,18 @@ C_a \hat{\enspace} C_b = C_b \enspace (\cdot C_a) \enspace C_1
 <span id="cb2-23"><a href="#cb2-23"></a></span>
 <span id="cb2-24"><a href="#cb2-24"></a><span class="ot">pow ::</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span> <span class="ot">-&gt;</span> <span class="dt">Number</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>pow x (<span class="dt">Nr</span> n) <span class="ot">=</span> n (mult x) one</span></code></pre></div>
+</div>
+<div id="减法" class="section level2">
+<h2>减法？</h2>
+<p>对于 Church Numeral 的减法是一个非常有趣且不简单的问题。先考虑较简单的情况：对于以 <span class="math inline">\(C_n\)</span> 为参数，<span class="math inline">\(C_{n - 1}\)</span> 为结果的函数 <span class="math inline">\(pred\)</span> 应当如何定义（即求前驱元素）。</p>
+<p>很快发现一个问题：<span class="math inline">\(pred \enspace C_0 = ?\)</span> 为了保证 <span class="math inline">\(pred\)</span> 是 well-defined 的，则：</p>
+<p><span class="math display">\[
+pred \enspace C_n = 
+\begin{cases}
+C_0 &amp; n = 0 \\
+C_{n - 1} &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
 </div>
 </div>
 <div id="refs" class="section level1">
@@ -562,7 +579,7 @@ xH = \{ x \cdot h \mid h \in H \}
 Hx = \{ h \cdot x \mid h \in H \}
 \]</span></li>
 </ul>
-<p>由于左陪集和右陪集是相对类似的，因此接下来只讨论左陪集的相关性质。对于右陪集，就请读者自行尝试啦~</p>
+<p>由于左陪集和右陪集性质上相似，故后文只讨论左陪集。对于右陪集，请读者自行尝试~</p>
 <hr />
 <p>对于 <span class="math inline">\(x, y \in G\)</span>，定义如下关系 <span class="math inline">\(\sim\)</span>：</p>
 <p><span class="math display">\[
@@ -570,18 +587,25 @@ x \sim y := x \in yH
 \]</span></p>
 <p>发现这其实是一个<strong>等价关系</strong>：</p>
 <ul>
-<li><strong>自反性</strong>：<span class="math inline">\(x \in xH\)</span>；</li>
-<li><strong>对称性</strong>：若 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(x \in yH\)</span>；</li>
-<li><strong>传递性</strong>：若 <span class="math inline">\(z \in yH, \ y \in xH\)</span>，则 <span class="math inline">\(z \in xH\)</span>。</li>
+<li><strong>自反性</strong>：<span class="math inline">\(x \in xH\)</span>；
+<ul>
+<li>既然 <span class="math inline">\(H\)</span> 是群，则 <span class="math inline">\(e \in H\)</span>，故 <span class="math inline">\(x \cdot e = x \in xH\)</span></li>
+</ul></li>
+<li><strong>对称性</strong>：若 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(x \in yH\)</span>；
+<ul>
+<li><span class="math inline">\(y \in xH \Rightarrow \exist h \in H \text{ \ s.t. \ } y = x \cdot h\)</span></li>
+<li><span class="math inline">\(H\)</span> 中逆元存在，则 <span class="math inline">\(\exists h \in H, \ \text{ s.t. } \ x = y \cdot h^{-1}\)</span></li>
+<li>由 <span class="math inline">\(h^{-1} \in H\)</span>，故 <span class="math inline">\(x \in yH\)</span></li>
+</ul></li>
+<li><strong>传递性</strong>：若 <span class="math inline">\(z \in yH, \ y \in xH\)</span>，则 <span class="math inline">\(z \in xH\)</span>。
+<ul>
+<li><span class="math inline">\(z \in yH \Rightarrow \exist h_1 \in H \text{ \ s.t. \ } y = z \cdot h_1\)</span></li>
+<li><span class="math inline">\(y \in xH \Rightarrow \exist h_2 \in H \text{ \ s.t. \ } x = y \cdot h_2\)</span></li>
+<li>令 <span class="math inline">\(h = h_1h_2\)</span>，则 <span class="math inline">\(x = z \cdot h\)</span> 且 <span class="math inline">\(h \in H\)</span>，故 <span class="math inline">\(z \in xH\)</span></li>
+</ul></li>
 </ul>
-<p>简要说明：</p>
-<ol style="list-style-type: decimal">
-<li><strong>自反性</strong>：既然 <span class="math inline">\(H\)</span> 是群，则 <span class="math inline">\(e \in H\)</span>，故 <span class="math inline">\(x \cdot e = x \in xH\)</span>；</li>
-<li><strong>对称性</strong>：由 <span class="math inline">\(y \in xH\)</span>，则 <span class="math inline">\(\exist h \in H \text{ \ s.t. \ } y = x \cdot h\)</span>，即 <span class="math inline">\(x = y \cdot h^{-1}\)</span>。又由 <span class="math inline">\(h^{-1} \in H\)</span>，故 <span class="math inline">\(x \in yH\)</span>；</li>
-<li><strong>传递性</strong>：<span class="math inline">\(z = y \cdot h_1, \ y = x \cdot h_2 \Rightarrow z = x \cdot h_2h_1\)</span>，由 <span class="math inline">\(h_2h_1 \in H\)</span>，故 <span class="math inline">\(z \in xH\)</span>。</li>
-</ol>
 <hr />
-<p>这下子就可以把之前在讨论等价类时得出的一堆结论搬到这里来了：</p>
+<p>故直接将讨论等价类时得出的结论搬到此处：</p>
 <ul>
 <li><p>若 <span class="math inline">\(xH \cap yH \neq \emptyset\)</span>，则 <span class="math inline">\(xH = yH\)</span>；</p></li>
 <li><p>利用陪集可以对群 <span class="math inline">\(G\)</span> 进行划分（陪集分解）：</p>
@@ -607,7 +631,7 @@ a \neq b \Leftrightarrow ga \neq gb
 &amp; = |R| \cdot |H|
 \end{aligned}
 \]</span></p>
-<p>若把 <span class="math inline">\(H\)</span> 的左陪集代表元系的大小 <span class="math inline">\(|R|\)</span> 称作群 <span class="math inline">\(H\)</span> 对于群 <span class="math inline">\(G\)</span> 的<strong>指数 (index)</strong> 并记作 <span class="math inline">\([G : H]\)</span>，便得到抽象代数里的拉格朗日定理：</p>
+<p>若把 <span class="math inline">\(H\)</span> 的左陪集代表元系的大小 <span class="math inline">\(|R|\)</span> 称作群 <span class="math inline">\(H\)</span> 对于群 <span class="math inline">\(G\)</span> 的<strong>指数 (index)</strong> 并记作 <span class="math inline">\([G : H]\)</span>，便得到抽象代数里的<strong>拉格朗日定理 (Lagrange’s Theorem)</strong>：</p>
 <p>设 <span class="math inline">\(G\)</span> 为有限群，<span class="math inline">\(H \leq G\)</span>，则：</p>
 <p><span class="math display">\[
 |G| = [G : H] \cdot |H|
@@ -784,7 +808,41 @@ M &amp; = \{ \text{不考虑同构时的染色方案} \}
 \]</span></p>
 <p>为 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(G\)</span> 作用下的<strong>轨道 (orbit)</strong>，简称过 <span class="math inline">\(x\)</span> 的轨道。</p>
 <hr />
-<p>更进一步，如果 <span class="math inline">\(G\)</span> 中两个不同的置换 <span class="math inline">\(\sigma, \tau\)</span> 作用于 <span class="math inline">\(x\)</span> 后的结果是相同的，可以认为 <span class="math inline">\(\sigma, \tau\)</span> 在仅考虑作用于 <span class="math inline">\(x\)</span> 时是两个等价的置换。由此，<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数。</p>
+<p>在之前的例子中，我们发现每一个元素都是属于唯一轨道的。换句话说，借助轨道，我们可以对集合 <span class="math inline">\(M\)</span> 中的元素进行分类。那对于更一般的情况这也成立吗？为了验证这一点，不妨继续把之前讨论等价类的那一套理论搬过来：</p>
+<p>定义如下关系 <span class="math inline">\(\sim\)</span>：</p>
+<p><span class="math display">\[
+x \sim y := x \in \text{orb}_G(y)
+\]</span></p>
+<p>只需要验证 <span class="math inline">\(\sim\)</span> 是一个<strong>等价关系</strong>即可。</p>
+<ul>
+<li><strong>自反性</strong>： <span class="math inline">\(x \in \text{orb}_G(x)\)</span>；
+<ul>
+<li>恒等置换 <span class="math inline">\(\epsilon \in G\)</span>，故 <span class="math inline">\(\epsilon \circ x = x \in \text{orb}_G(x)\)</span></li>
+</ul></li>
+<li><strong>对称性</strong>：若 <span class="math inline">\(y \in \text{orb}_G(x)\)</span>，则 <span class="math inline">\(x \in \text{orb}_G(y)\)</span>；
+<ul>
+<li><span class="math inline">\(y \in orb_G(x) \Rightarrow \exist \sigma \ \text{ s.t. } \ \sigma \circ x = y\)</span></li>
+<li><span class="math inline">\(G\)</span> 中逆元存在，故 <span class="math inline">\(\exist \sigma \ \text{ s.t. } \ \sigma^{-1} \circ y = x\)</span></li>
+<li>由 <span class="math inline">\(\sigma^{-1} \in G\)</span>，故 <span class="math inline">\(x \in \text{orb}_G(y)\)</span></li>
+</ul></li>
+<li><strong>传递性</strong>：若 <span class="math inline">\(z \in \text{orb}_G(y), \ y \in \text{orb}_G(x)\)</span>，则 <span class="math inline">\(z \in \text{orb}_G(x)\)</span>
+<ul>
+<li><span class="math inline">\(z \in orb_G(y) \Rightarrow \exist \sigma \ \text{ s.t. } \ \sigma \circ y = z\)</span></li>
+<li><span class="math inline">\(y \in orb_G(x) \Rightarrow \exist \tau \ \text{ s.t. } \ \tau \circ x = y\)</span></li>
+<li>令 <span class="math inline">\(\beta = \sigma \circ \tau\)</span>，则 <span class="math inline">\(\beta \circ x = z\)</span> 且 <span class="math inline">\(\beta \in G\)</span>，故 <span class="math inline">\(z \in \text{orb}_G(x)\)</span></li>
+</ul></li>
+</ul>
+<p>Voilà! 这样一来，之前的那一套结论也可以搬过来了：</p>
+<ul>
+<li><p>若 <span class="math inline">\(\text{orb}_G(x) \cap \text{orb}_G(y) \neq \emptyset\)</span>，则 <span class="math inline">\(\text{orb}_G(x) = \text{orb}_G(y)\)</span>；</p></li>
+<li><p>在 <span class="math inline">\(M\)</span> 的每一条轨道上取一个元素组成 <span class="math inline">\(M\)</span> 的一个子集 <span class="math inline">\(R\)</span>，称为 <span class="math inline">\(M\)</span> 的<strong>轨道的代表元集</strong>，则：</p>
+<p><span class="math display">\[
+M = \bigcup\limits_{x \in R} \text{orb}_G(x)
+\]</span></p>
+<p>并且此中各 <span class="math inline">\(\text{orb}_G(x)\)</span> 互不相交。</p></li>
+</ul>
+<hr />
+<p>既然可用于分类，则更进一步：如果 <span class="math inline">\(G\)</span> 中两个不同的置换 <span class="math inline">\(\sigma, \tau\)</span> 作用于 <span class="math inline">\(x\)</span> 后的结果是相同的，可以认为 <span class="math inline">\(\sigma, \tau\)</span> 在仅考虑作用于 <span class="math inline">\(x\)</span> 时是两个等价的置换（试着验证一下这是等价关系？）。由此，<span class="math inline">\(| \text{orb}_G(x) |\)</span> 实际上等价于仅考虑作用于 <span class="math inline">\(x\)</span> 时 <span class="math inline">\(G\)</span> 中本质不同的置换种数。</p>
 </div>
 <div id="稳定子" class="section level3">
 <h3>稳定子</h3>
@@ -1013,7 +1071,11 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <div id="一点微小的图表" class="section level2">
 <h2>一点微小的图表</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">5</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="st">&quot;git&quot;</span>, <span class="st">&quot;fit&quot;</span>, <span class="st">&quot;wit&quot;</span>), <span class="dt">col =</span> <span class="kw">gray</span>(<span class="kw">seq</span>(<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="dt">length =</span> <span class="dv">3</span>)))</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">pie</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">c</span>(<span class="st">&#39;git&#39;</span>, <span class="st">&#39;fit&#39;</span>, <span class="st">&#39;wit&#39;</span>),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">col =</span> <span class="kw">gray</span>(<span class="kw">seq</span>(<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="dt">length =</span> <span class="dv">3</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>)</span></code></pre></div>
 <div class="figure"><span id="fig:pie"></span>
 <img src="/posts/life/hello-world/hello-world.zh-hans_files/figure-html/pie-1.png" alt="What is inside me?" width="672" />
 <p class="caption">
