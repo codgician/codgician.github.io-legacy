@@ -105,6 +105,10 @@ and = \ a b -> a (b true false) false
 or  = \ a b -> a true (b true false)
 ```
 
+# Church Maybe
+
+
+
 # Church Numerals
 
 ## Peano Axioms
@@ -276,7 +280,7 @@ $$
 
 ### 幂运算
 
-正如对于自然数的情况一下，幂运算还是得借助乘法实现，将 $(\cdot C_a)$ 作用 $b$ 次于 $C_1$ 即可：
+与自然数的情况类似，幂运算还是得借助乘法实现，将 $(\cdot C_a)$ 作用 $b$ 次于 $C_1$ 即可：
 
 $$
 C_a \hat{\enspace} C_b = C_b \enspace (\cdot C_a) \enspace C_1
@@ -313,6 +317,22 @@ mult (Nr a) b =  a (add b) zero
 pow :: Number -> Number -> Number
 pow x (Nr n) = n (mult x) one
 ```
+
+## 减法？
+
+对于 Church Numeral 的减法是一个非常有趣且不简单的问题。先考虑较简单的情况：对于以 $C_n$ 为参数，$C_{n - 1}$ 为结果的函数 $pred$ 应当如何定义（即求前驱元素）。
+
+很快发现一个问题：$pred \enspace C_0 = ?$ 为了保证 $pred$ 是 well-defined 的，则：
+
+$$
+pred \enspace C_n = 
+\begin{cases}
+C_0 & n = 0 \\
+C_{n - 1} & \text{otherwise}
+\end{cases}
+$$
+
+
 
 # Refs
 
