@@ -4,5 +4,5 @@
 
 [submodule "public"]
 	path = public
-	url = https://github.com/codgician/codgician.github.io.git
+	url = https://github.com/codgician/codgician.github.io
 	branch = master
