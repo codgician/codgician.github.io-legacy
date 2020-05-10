@@ -3,13 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://codgician.me/zh-hans/tags/abstract-algebra/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://codgician.me/zh-hans/categories/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -23,13 +18,8 @@
   </url>
   
   <url>
-    <loc>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://codgician.me/zh-hans/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -40,6 +30,66 @@
                 hreflang="zh-hans"
                 href="https://codgician.me/zh-hans/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/computer-science/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/csapp/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/categories/csapp/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/posts/2020/05/csapp-attack-lab/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/posts/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/</loc>
+    <lastmod>2020-05-10T16:29:10+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codgician.me/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="https://codgician.me/zh-hans/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/tags/abstract-algebra/</loc>
+    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</loc>
+    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
   </url>
   
   <url>
@@ -60,36 +110,6 @@
   <url>
     <loc>https://codgician.me/zh-hans/tags/mathematics/</loc>
     <lastmod>2020-04-06T12:19:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/posts/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/posts/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://codgician.me/zh-hans/tags/</loc>
-    <lastmod>2020-04-06T12:19:10+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codgician.me/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="https://codgician.me/zh-hans/tags/"
-                />
   </url>
   
   <url>

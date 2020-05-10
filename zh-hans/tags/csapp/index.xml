@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSAPP on codgician</title>
+    <link>https://codgician.me/zh-hans/tags/csapp/</link>
+    <description>Recent content in CSAPP on codgician</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 10 May 2020 16:29:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://codgician.me/zh-hans/tags/csapp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSAPP: Attack Lab</title>
+      <link>https://codgician.me/zh-hans/posts/2020/05/csapp-attack-lab/</link>
+      <pubDate>Sun, 10 May 2020 16:29:10 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2020/05/csapp-attack-lab/</guid>
+      <description>实验内容 本实验是 CSAPP:3e 一书的配套实验之一，相关资料如下： 实验文件 实验要求 在本次实验中，我们将试着对给定的可在 Linux 下运行的二进制文件进行缓冲区溢出攻</description>
+    </item>
+    
+  </channel>
+</rss>
