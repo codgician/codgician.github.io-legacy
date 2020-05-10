@@ -1071,11 +1071,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <div id="一点微小的图表" class="section level2">
 <h2>一点微小的图表</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">pie</span>(</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">c</span>(<span class="st">&#39;git&#39;</span>, <span class="st">&#39;fit&#39;</span>, <span class="st">&#39;wit&#39;</span>),</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">col =</span> <span class="kw">gray</span>(<span class="kw">seq</span>(<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="dt">length =</span> <span class="dv">3</span>))</span>
-<span id="cb2-6"><a href="#cb2-6"></a>)</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">5</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="st">&quot;git&quot;</span>, <span class="st">&quot;fit&quot;</span>, <span class="st">&quot;wit&quot;</span>), <span class="dt">col =</span> <span class="kw">gray</span>(<span class="kw">seq</span>(<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="dt">length =</span> <span class="dv">3</span>)))</span></code></pre></div>
 <div class="figure"><span id="fig:pie"></span>
 <img src="/posts/life/hello-world/hello-world.zh-hans_files/figure-html/pie-1.png" alt="What is inside me?" width="672" />
 <p class="caption">
@@ -3392,7 +3388,7 @@ i = p_1^{k_1} \cdot p_2^{k_2} \cdots p_n^{k_n}
 <p>首先对于每一行都是奇数偶数各占一半的。当然上面列举的数中显然是有重复的。若把上面 <span class="math inline">\(n\)</span> 行看作 <span class="math inline">\(n\)</span> 个集合，那么任意 <span class="math inline">\(n\)</span> 个集合并起来后得到的集合依然是奇偶各占一半。那么全集显然也是奇偶各占一半。</p>
 <hr />
 <p>借助线性筛，我们可以在 <span class="math inline">\(\mathcal{O}(N)\)</span> 的复杂度内初始化欧拉函数，同时我们也可以在 <span class="math inline">\(O(N)\)</span> 时间内初始化 <span class="math inline">\(g(n)\)</span> 的前缀和。初始化好后再对不同询问进行 <span class="math inline">\(\mathcal{O}(1)\)</span> 回答即可。</p>
-<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/HDUOJ/6434/euler&#39;s_totient_function.cpp">我的代码</a> 以供参考。</p>
+<p>最后附上 <a href="https://github.com/codgician/Competitive-Programming/blob/master/HDUOJ/6434/arithmetic_function.cpp">我的代码</a> 以供参考。</p>
 </div>
 ]]></content>
 		</item>
