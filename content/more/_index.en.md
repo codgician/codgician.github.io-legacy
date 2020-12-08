@@ -9,10 +9,11 @@ This site is available in two languages (posts may differ): [English](/) | [ç®€ä
 
 # About me
 
-Under construction~
+Under construction
 
 # Friends
 
+- [Ziqiao Ma](https://mars-tin.github.io/)
 - [fstqwq](http://fstqwq.pw/)
 - [t123yh](https://blog.t123yh.xyz:2/)
 - [ice1000](https://ice1000.org/)
@@ -32,3 +33,4 @@ Under construction~
 - [BinGoo0o0o](https://blog.csdn.net/BinGoo0o0o/)
 - [whdsunny](https://www.cnblogs.com/whdsunny/)
 - [Edwiv](https://edwiv.com/)
+- [HelloVass](https://hellovass.info)

@@ -13,6 +13,7 @@ utterances: 12
 
 # 朋友们
 
+- [Ziqiao Ma](https://mars-tin.github.io/)
 - [fstqwq](http://fstqwq.pw/)
 - [t123yh](https://blog.t123yh.xyz:2/)
 - [ice1000](https://ice1000.org/)
