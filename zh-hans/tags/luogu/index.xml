@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 05 Feb 2019 11:20:57 +0800</lastBuildDate>
-    
-	<atom:link href="https://codgician.me/zh-hans/tags/luogu/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Feb 2019 11:20:57 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/luogu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Luogu P3943: 星空</title>
       <link>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</link>
@@ -19,15 +15,6 @@
       
       <guid>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</guid>
       <description>题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡</description>
-    </item>
-    
-    <item>
-      <title>Luogu P1829: Crash 的数字表格</title>
-      <link>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</link>
-      <pubDate>Wed, 21 Nov 2018 19:15:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/posts/2018/11/luogu-p1829/</guid>
-      <description>题面 给定 \(n, m\)，试求： \[ \sum\limits_{i = 1}^{n} \sum\limits_{j = 1}^{m} \operatorname{lcm}(i, j) \] 答案对 \(20101009\) 取模。 数据范围：\(1 \le n,m \le 10^7\) 题目链接：Luogu P1829: Crash 的数字表格 分析 显然我们需要往莫比乌</description>
     </item>
     
   </channel>

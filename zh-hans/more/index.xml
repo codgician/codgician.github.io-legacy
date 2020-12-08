@@ -6,10 +6,6 @@
     <description>Recent content in 更多 on codgician</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    
-	<atom:link href="https://codgician.me/zh-hans/more/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright><atom:link href="https://codgician.me/zh-hans/more/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

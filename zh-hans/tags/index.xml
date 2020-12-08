@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 10 May 2020 16:29:10 +0800</lastBuildDate>
-    
-	<atom:link href="https://codgician.me/zh-hans/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 10 May 2020 16:29:10 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Computer Science</title>
       <link>https://codgician.me/zh-hans/tags/computer-science/</link>
@@ -31,137 +27,20 @@
     </item>
     
     <item>
-      <title>Cybersecurity</title>
-      <link>https://codgician.me/zh-hans/tags/cybersecurity/</link>
-      <pubDate>Sun, 10 May 2020 16:29:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/cybersecurity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Abstract Algebra</title>
-      <link>https://codgician.me/zh-hans/tags/abstract-algebra/</link>
-      <pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/abstract-algebra/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Functional Programming</title>
-      <link>https://codgician.me/zh-hans/tags/functional-programming/</link>
-      <pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/functional-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lambda Calculus</title>
-      <link>https://codgician.me/zh-hans/tags/lambda-calculus/</link>
-      <pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/lambda-calculus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mathematics</title>
-      <link>https://codgician.me/zh-hans/tags/mathematics/</link>
-      <pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/mathematics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Algorithm</title>
       <link>https://codgician.me/zh-hans/tags/algorithm/</link>
-      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      <pubDate>Tue, 05 Feb 2019 11:20:57 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/algorithm/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Burnside&#39;s Lemma</title>
-      <link>https://codgician.me/zh-hans/tags/burnsides-lemma/</link>
-      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/burnsides-lemma/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Competitive Programming</title>
       <link>https://codgician.me/zh-hans/tags/competitive-programming/</link>
-      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
+      <pubDate>Tue, 05 Feb 2019 11:20:57 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/competitive-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Permutation Group</title>
-      <link>https://codgician.me/zh-hans/tags/permutation-group/</link>
-      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/permutation-group/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pólya Enumeration Theorem</title>
-      <link>https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem/</link>
-      <pubDate>Thu, 26 Mar 2020 18:28:27 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/p%C3%B3lya-enumeration-theorem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hello</title>
-      <link>https://codgician.me/zh-hans/tags/hello/</link>
-      <pubDate>Tue, 15 Oct 2019 14:28:28 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/hello/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Arithmetic Function</title>
-      <link>https://codgician.me/zh-hans/tags/arithmetic-function/</link>
-      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/arithmetic-function/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Number Theory</title>
-      <link>https://codgician.me/zh-hans/tags/number-theory/</link>
-      <pubDate>Sun, 01 Sep 2019 13:07:42 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/number-theory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dirichlet Convolution</title>
-      <link>https://codgician.me/zh-hans/tags/dirichlet-convolution/</link>
-      <pubDate>Tue, 06 Aug 2019 13:18:39 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/dirichlet-convolution/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Divide and Conquer</title>
-      <link>https://codgician.me/zh-hans/tags/divide-and-conquer/</link>
-      <pubDate>Mon, 22 Jul 2019 20:25:56 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/divide-and-conquer/</guid>
       <description></description>
     </item>
     
@@ -211,56 +90,11 @@
     </item>
     
     <item>
-      <title>Binary Indexed Tree</title>
-      <link>https://codgician.me/zh-hans/tags/binary-indexed-tree/</link>
-      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/binary-indexed-tree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data Structure</title>
       <link>https://codgician.me/zh-hans/tags/data-structure/</link>
-      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
+      <pubDate>Sat, 28 Jul 2018 15:15:01 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/data-structure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HDUOJ</title>
-      <link>https://codgician.me/zh-hans/tags/hduoj/</link>
-      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/hduoj/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>BZOJ</title>
-      <link>https://codgician.me/zh-hans/tags/bzoj/</link>
-      <pubDate>Sun, 28 Oct 2018 22:30:27 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/bzoj/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quasi-Euclidean Algorithm</title>
-      <link>https://codgician.me/zh-hans/tags/quasi-euclidean-algorithm/</link>
-      <pubDate>Sun, 28 Oct 2018 22:30:27 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/quasi-euclidean-algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Combinatorics</title>
-      <link>https://codgician.me/zh-hans/tags/combinatorics/</link>
-      <pubDate>Fri, 10 Aug 2018 16:02:23 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/combinatorics/</guid>
       <description></description>
     </item>
     
@@ -274,47 +108,11 @@
     </item>
     
     <item>
-      <title>Bipartite Matching</title>
-      <link>https://codgician.me/zh-hans/tags/bipartite-matching/</link>
-      <pubDate>Fri, 09 Mar 2018 12:52:01 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/bipartite-matching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hungarian Algorithm</title>
-      <link>https://codgician.me/zh-hans/tags/hungarian-algorithm/</link>
-      <pubDate>Fri, 09 Mar 2018 12:52:01 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/hungarian-algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Computational Thinking</title>
-      <link>https://codgician.me/zh-hans/tags/computational-thinking/</link>
-      <pubDate>Sat, 19 Aug 2017 23:03:10 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/computational-thinking/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Computer Organization</title>
       <link>https://codgician.me/zh-hans/tags/computer-organization/</link>
       <pubDate>Fri, 18 Aug 2017 22:43:10 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/tags/computer-organization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Calculus</title>
-      <link>https://codgician.me/zh-hans/tags/calculus/</link>
-      <pubDate>Sat, 08 Apr 2017 20:26:59 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/tags/calculus/</guid>
       <description></description>
     </item>
     

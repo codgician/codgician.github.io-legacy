@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 05 Feb 2019 11:20:57 +0800</lastBuildDate>
-    
-	<atom:link href="https://codgician.me/zh-hans/tags/graph-theory/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Feb 2019 11:20:57 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/graph-theory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Luogu P3943: 星空</title>
       <link>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</link>
@@ -19,15 +15,6 @@
       
       <guid>https://codgician.me/zh-hans/posts/2019/02/luogu-p3943/</guid>
       <description>题面 现有一个长度为 $n$ 的灯泡序列，其中 $k$ 个位置上的灯泡是熄灭的，其余的是点亮的。我们可以进行 $m$ 种操作，而第 $i$ 种操作是选定任意长度为 $b_i$ 的连续灯泡</description>
-    </item>
-    
-    <item>
-      <title>浅谈匈牙利算法</title>
-      <link>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</link>
-      <pubDate>Fri, 09 Mar 2018 12:52:01 +0800</pubDate>
-      
-      <guid>https://codgician.me/zh-hans/posts/2018/03/hungarian-algorithm/</guid>
-      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
     </item>
     
   </channel>

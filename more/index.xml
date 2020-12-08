@@ -6,10 +6,6 @@
     <description>Recent content in More on codgician</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    
-	<atom:link href="https://codgician.me/more/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright><atom:link href="https://codgician.me/more/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

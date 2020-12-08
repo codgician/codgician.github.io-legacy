@@ -9,14 +9,15 @@
 	<meta name="msapplication-TileColor" content="#292a2d">
 <meta itemprop="name" content="Graph Theory">
 <meta itemprop="description" content="最短路 Dijkstra long long int dist[VERTEX_SIZE]; bool vis[VERTEX_SIZE]; void dijkstra(int startPt) { for (int i = 0; i &lt; vertexNum; i&#43;&#43;) vis[i] = false, dist[i] = LLONG_MAX; priority_queue&lt;pair&lt;long long int, int&gt; &gt; pq; pq.push(make_pair(0, startPt)); dist[startPt] = 0; while (!pq.empty()) { int cntPt = pq.top().second; pq.pop(); if (vis[cntPt]) continue; vis[cntPt] = true; for (int i = head[cntPt]; i != -1; i = edges[i].next) { int nextPt = edges[i].to;">
-<meta itemprop="datePublished" content="2019-11-18T09:02:35&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-18T09:02:35&#43;08:00" />
+<meta itemprop="datePublished" content="2019-11-18T09:02:35+08:00" />
+<meta itemprop="dateModified" content="2019-11-18T09:02:35+08:00" />
 <meta itemprop="wordCount" content="5932">
 <meta itemprop="image" content="https://codgician.me/"/>
 
 
 
-<meta itemprop="keywords" content="" /><meta property="og:title" content="Graph Theory" />
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Graph Theory" />
 <meta property="og:description" content="最短路 Dijkstra long long int dist[VERTEX_SIZE]; bool vis[VERTEX_SIZE]; void dijkstra(int startPt) { for (int i = 0; i &lt; vertexNum; i&#43;&#43;) vis[i] = false, dist[i] = LLONG_MAX; priority_queue&lt;pair&lt;long long int, int&gt; &gt; pq; pq.push(make_pair(0, startPt)); dist[startPt] = 0; while (!pq.empty()) { int cntPt = pq.top().second; pq.pop(); if (vis[cntPt]) continue; vis[cntPt] = true; for (int i = head[cntPt]; i != -1; i = edges[i].next) { int nextPt = edges[i].to;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://codgician.me/zh-hans/icpc/templates/graph-theory/" />
@@ -109,7 +110,7 @@
 <p>$dp[st][i]$ 代表以 $i$ 为根，必选点联通状态为 $st$ 时最小边权和。</p>
 <p>不变根的状态转移（线性 DP）：</p>
 <p>$$
-dp[st][i] = \min\limits_{s&rsquo; \in st} { dp[s&rsquo;][i] + dp[st - s&rsquo;][i] }
+dp[st][i] = \min\limits_{s' \in st} { dp[s'][i] + dp[st - s'][i] }
 $$</p>
 <p>变根的状态转移（图上 DP）：</p>
 <p>$$
@@ -1262,7 +1263,7 @@ $$</p>
 </span><span class="c1"></span><span class="n">fill</span><span class="p">(</span><span class="n">lct</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lct</span> <span class="o">+</span> <span class="n">vertexNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">LinkCutTree</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}});</span>
 </code></pre></div><h2 id="高级应用">高级应用<a href="#高级应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="维护边上信息">维护边上信息<a href="#维护边上信息" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>对于边 $u \rightarrow v$，新建记录其信息的点 $p'$ ，并连边 $u \rightarrow p&rsquo; \rightarrow v$。</p>
+<p>对于边 $u \rightarrow v$，新建记录其信息的点 $p'$ ，并连边 $u \rightarrow p' \rightarrow v$。</p>
 <h3 id="维护动态-mst">维护动态 MST<a href="#维护动态-mst" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>下面举两个例子。</p>
 <h4 id="最小差值生成树">最小差值生成树<a href="#最小差值生成树" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
@@ -1448,8 +1449,8 @@ $$</p>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://codgician.me/zh-hans/icpc/templates/data-structure/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Data Structure</span>
+			<a class="next-post" href="https://codgician.me/zh-hans/icpc/templates/offline-algorithms/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Offline Algorithms</span>
 			</a>
 		</div>
 		<div id="comments" class="thin">
