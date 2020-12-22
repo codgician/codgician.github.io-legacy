@@ -7,18 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 06 Apr 2020 12:19:10 +0800</lastBuildDate>
-    
-	<atom:link href="https://codgician.me/zh-hans/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 06 Apr 2020 12:19:10 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Church 编码学习笔记</title>
       <link>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</link>
       <pubDate>Mon, 06 Apr 2020 12:19:10 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/posts/2020/04/church-encoding/</guid>
-      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span {</description>
     </item>
     
     <item>
@@ -108,7 +104,7 @@
       <pubDate>Thu, 18 Oct 2018 22:54:39 +0800</pubDate>
       
       <guid>https://codgician.me/zh-hans/posts/2018/10/quasi-euclidean-algorithm/</guid>
-      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span { text-indent: -5em; padding-left: 5em; }</description>
+      <description>pre code.sourceCode { white-space: pre; position: relative; } pre code.sourceCode span { display: inline-block; line-height: 1.25; } pre code.sourceCode span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre code.sourceCode { white-space: pre-wrap; } pre code.sourceCode span {</description>
     </item>
     
     <item>

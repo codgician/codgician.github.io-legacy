@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 28 Jul 2018 15:15:01 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Nov 2018 23:52:32 +0800</lastBuildDate><atom:link href="https://codgician.me/zh-hans/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HDUOJ 4947: GCD Array</title>
+      <link>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</link>
+      <pubDate>Sat, 24 Nov 2018 23:52:32 +0800</pubDate>
+      
+      <guid>https://codgician.me/zh-hans/posts/2018/11/hduoj-4947/</guid>
+      <description>题面 分析 %%% 题面 对于长度为 \(l\) 且初始全为 \(0\) 的序列 \(a\)（下标 \(1 \sim l\)），有 \(q\) 次操作。操作分为两种： 给定 \(n, d, v\)，对于每个满足 \(\gcd(x, n) = d\) 的 \</description>
+    </item>
+    
     <item>
       <title>浅谈无旋转 Treap</title>
       <link>https://codgician.me/zh-hans/posts/2018/07/treap-without-rotations/</link>
